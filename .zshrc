@@ -26,20 +26,15 @@ export HISTIGNORE="&:ls:ll:lll:pwd:exit:clear"  # Don't log boring shit
 set -o ignoreeof               # Prevent Ctrl-D from exiting shell
 set -o notify                  # Notify when background jobs terminate
 
-## Colorize ls if available
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && \
-    eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    # Make sure we're using correct command depending on OS
-    case $OS in
-        Linux)
-            alias ls='ls --color=always'
-        ;;
-        FreeBSD)
-            alias ls='ls -G'
-        ;;
-    esac
-fi
+## Colorize ls if available; modify command per OS
+case $OS in
+    Linux)
+        alias ls='ls --color=always'
+    ;;
+    FreeBSD)
+        alias ls='ls -G'
+    ;;
+esac
 
 
 ############################################################
