@@ -19,18 +19,21 @@ vnoremap <F1> <ESC>
 " Make ; do the same thing as :
 nnoremap ; :
 
+" -------------------------------------
+" Plugins
+" -------------------------------------
+call pathogen#infect()  " Enable pathogen, load plugins to ~/.vim/bundle 
+
 
 " -------------------------------------
 " Text format and display
 " -------------------------------------
+syntax on               " Turn syntax highlighting on
 "set wrap                " Wrap dat
 "set textwidth=79        " Wrap dat at 79 
 set colorcolumn=85      " Show a column at 85 to show when I'm being verbose
 if has("autocmd")
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
+  " Enable file type detection, load language-specific indentation files
   filetype plugin indent on
 endif
 set expandtab           " <Tab> key gets turned into spaces indicated in tabstop
@@ -48,15 +51,11 @@ set encoding=utf-8      " I liek utf8
 set scrolloff=3         " Start scrolling three lines from the bottom
 set showmode
 set showcmd
-syntax on               " Turn syntax highlighting on
-filetype off            " Turn plugins on so we can turn pathogen on
-call pathogen#runtime_append_all_bundles() " Turn on the pathogen plugin
-filetype plugin on      " Turn plugins back on
 set nocompatible        " That shit cray
 set modelines=0         " Get rid of modelines for security or something
 "set undofile            " Enable vim FILENAME.un~ undo files to undo after close
 set relativenumber      " Set line numbering relative to current line
-set clipboard=unnamedplus "Copy to system clipboard by default
+"set clipboard=unnamedplus "Copy to system clipboard by default
 
 
 " -------------------------------------
@@ -81,8 +80,19 @@ set gdefault            " Global search and replace by default
 " IMPORTANT: Uncomment one of the following lines to force
 " using 256 colors (or 88 colors) if your terminal supports it,
 " but does not automatically use 256 colors by default.
-set t_Co=256
-
+"set t_Co=256
+"set t_Co=88
+if (&t_Co == 256 || &t_Co == 88) && !has('gui_running') &&
+  \ filereadable(expand("$HOME/.vim/plugin/guicolorscheme.vim"))
+  " Use the guicolorscheme plugin to makes 256-color or 88-color
+  " terminal use GUI colors rather than cterm colors.
+  runtime! plugin/guicolorscheme.vim
+  GuiColorScheme molokai
+else
+  " For 8-color 16-color terminals or for gvim, just use the
+  " regular :colorscheme command.
+  colorscheme molokai
+endif
 
 
 " -------------------------------------
