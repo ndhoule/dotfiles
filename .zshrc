@@ -39,11 +39,12 @@ set -o notify                  # Notify when background jobs terminate
 
 ## Colorize ls if available
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    test -r ~/.dircolors && \
+    eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     # Make sure we're using correct command depending on OS
     case $OS in
         Linux)
-            alias ls='ls --color=auto'
+            alias ls='ls --color=always'
         ;;
         FreeBSD)
             alias ls='ls -G'
@@ -69,6 +70,11 @@ fi
 ## Set additional ls commands
 alias ll='ls -l'
 alias lll='ls -al'
+
+# Make sure stuff piped through less retains color
+alias less='less -R'
+# alias more to less--I always say more when I mean less ;)
+alias more='less'
 
 ## Replace vi with vim if installed
 [ -f $(which vim) ] && alias vi='vim'
