@@ -6,17 +6,6 @@
 OS=$(uname -s)
 HOSTNAME=$(hostname)
 
-# TMUX
-if which tmux 2>&1 >/dev/null; then
-    # if no session is started, start a new session
-    test -z ${TMUX} && tmux
-
-    # when quitting tmux, try to attach
-    while test -z ${TMUX}; do
-        tmux attach || break
-    done
-fi
-
 
 ############################################################
 ## Environmental variables
@@ -71,10 +60,10 @@ fi
 alias ll='ls -l'
 alias lll='ls -al'
 
-# Make sure stuff piped through less retains color
-alias less='less -R'
 # alias more to less--I always say more when I mean less ;)
 alias more='less'
+# Make sure stuff piped through less retains color
+alias less='less -R'
 
 ## Replace vi with vim if installed
 [ -f $(which vim) ] && alias vi='vim'
