@@ -1,3 +1,7 @@
+# ******************************************************** #
+# oh-my-zsh settings
+# ******************************************************** #
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -26,12 +30,13 @@ plugins=(git python django archlinux terminalapp virtualenvwrapper)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-#
-# ~/.zshrc
-#
 
-# Set some useful variables
+
+# ******************************************************** #
+# ~/.zshrc
+# ******************************************************** #
+
+# Useful variables
 OS=$(uname -s)
 HOSTNAME=$(hostname)
 
@@ -39,18 +44,19 @@ HOSTNAME=$(hostname)
 ############################################################
 ## Environmental variables
 ############################################################
-#export PROMPT="[%n@%m %1/]$ "
 export PATH=$PATH:$HOME/bin
 export PAGER=less
 export EDITOR=vim
 export SVN_EDITOR=vim
 
+
 ############################################################
 ## Shell behavior
 ############################################################
-export HISTCONTROL=ignorespace # Don't store commands beginning with a space
+export HISTFILE=~/.zsh_history
 export HISTSIZE=1000           # Set bash history max commands saved
 export HISTFILESIZE=2000       # Set bash history max lines saved
+export HISTCONTROL=ignorespace # Don't store commands beginning with a space
 export HISTIGNORE="&:ls:ll:lll:pwd:exit:clear"  # Don't log boring shit
 set -o ignoreeof               # Prevent Ctrl-D from exiting shell
 set -o notify                  # Notify when background jobs terminate
@@ -70,10 +76,10 @@ set -o notify                  # Notify when background jobs terminate
 ## External scripts
 ############################################################
 ## Enable virtualenvwrapper if present
-if [[ -f $(which virtualenvwrapper.sh) ]]; then
-    VIRTUALENVPATH=$(which virtualenvwrapper.sh)
+if [[ -x `which virtualenvwrapper.sh` ]]; then
+    VIRTUALENVEXEC=`which virtualenvwrapper.sh`
     export WORKON_HOME=$HOME/.virtualenvs
-    source $VIRTUALENVPATH
+    source $VIRTUALENVEXEC
 fi
 
 
@@ -90,7 +96,9 @@ alias more='less'
 alias less='less -R'
 
 ## Replace vi with vim if installed
-[ -f $(which vim) ] && alias vi='vim'
+if [[ -x `which vim` ]]; then 
+    alias vi='vim'
+fi
 
 ## Use 256-color tmux
 alias tmux='tmux -2'
