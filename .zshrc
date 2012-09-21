@@ -1,15 +1,8 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="lukerandall"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Set name of the theme to load. Look in ~/.oh-my-zsh/themes/
+ZSH_THEME="philips"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -63,14 +56,14 @@ set -o ignoreeof               # Prevent Ctrl-D from exiting shell
 set -o notify                  # Notify when background jobs terminate
 
 ## Colorize ls if available; modify command per OS
-case $OS in
-    Linux)
-        alias ls='ls --color=always'
-    ;;
-    FreeBSD)
-        alias ls='ls -G'
-    ;;
-esac
+#case $OS in
+#    Linux)
+#        alias ls='ls --color=always'
+#    ;;
+#    FreeBSD)
+#        alias ls='ls -G'
+#    ;;
+#esac
 
 
 ############################################################
