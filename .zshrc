@@ -61,16 +61,6 @@ export HISTIGNORE="&:ls:ll:lll:pwd:exit:clear"  # Don't log boring shit
 set -o ignoreeof               # Prevent Ctrl-D from exiting shell
 set -o notify                  # Notify when background jobs terminate
 
-## Colorize ls if available; modify command per OS
-#case $OS in
-#    Linux)
-#        alias ls='ls --color=always'
-#    ;;
-#    FreeBSD)
-#        alias ls='ls -G'
-#    ;;
-#esac
-
 
 ############################################################
 ## External scripts
