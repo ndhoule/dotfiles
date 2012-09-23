@@ -1,4 +1,4 @@
 dotfiles
 ========
 
-config files for bash, vim, etc.
+Configuration files for zsh, vim, tmux, and more!
