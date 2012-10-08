@@ -20,5 +20,5 @@ CURRENT_DIR="$DIR_COLOR%~\$(git_prompt_info)"
 CMD_PROMPT="$BRACKET_COLOR$"
 
 # Drop it like it's hot
-PROMPT="$USER$HOSTNAME $DIR $CMDPROMPT %{$reset_color%}"
+PROMPT="$USER$HOSTNAME $CURRENT_DIR $CMD_PROMPT %{$reset_color%}"
 # PROMPT=""  $
