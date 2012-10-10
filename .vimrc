@@ -32,8 +32,8 @@ syntax on               " Turn syntax highlighting on
 "set wrap                " Wrap dat
 "set textwidth=79        " Wrap dat at 79 
 set colorcolumn=85      " Show a column at 85 to show when I'm being verbose
+" Enable file type detection, load language-specific indentation files
 if has("autocmd")
-  " Enable file type detection, load language-specific indentation files
   filetype plugin indent on
 endif
 set expandtab           " <Tab> key gets turned into spaces indicated in tabstop
@@ -56,6 +56,7 @@ set modelines=0         " Get rid of modelines for security or something
 "set undofile            " Enable vim FILENAME.un~ undo files to undo after close
 set relativenumber      " Set line numbering relative to current line
 "set clipboard=unnamedplus "Copy to system clipboard by default
+set pastetoggle=<F3>    " Easier pasting
 
 
 " -------------------------------------
