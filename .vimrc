@@ -14,6 +14,11 @@ set scrolloff=5         " Start scrolling five lines from the bottom
 set showmode            " Display the mode we're in (visual, insert, etc.)
 set showcmd             " Show last executed command, visual selections
 set modelines=0         " Disable modelines for security's sake
+set history=1000        " Give vim a long memory
+set undolevels=1000     " Keep all the undos
+set title               " Change the terminal window's title
+set nobackup            " Turn off backups (use version control)
+set noswapfile          " Turn off swap file (it's annoying)
 "set clipboard=unnamedplus "Copy to system clipboard by default
 
 
@@ -43,7 +48,8 @@ set spelllang=en        " Set spelling to English
 set gdefault            " Global search and replace by default
 set ignorecase          " Ignore case when searching...
 set smartcase           " ...Except when search pattern contains an uppercase char
-set hls                 " Highlight search items
+set hlsearch            " Highlight search items
+set incsearch           " Highlight search results as you type
 
 
 " -------------------------------------
@@ -89,15 +95,7 @@ nmap <leader>md :%!/usr/bin/markdown_py<CR>
 " -------------------------------------
 " Key bindings
 " -------------------------------------
-" Get rid of the arrow keys for vim hardtime
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+" Jump to next row
 nnoremap j gj
 nnoremap k gk
 
@@ -106,8 +104,14 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
+" Change leader key from \ to ,
+let mapleader=","
+
 " Activate : using ;
 nnoremap ; :
+
+" Make writing file via sudo easier
+cmap w!! w !sudo tee % >/dev/null
 
 " Toggle between regular numbering, relative numbering, no numbering
 nmap <silent> <F2> :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
