@@ -1,3 +1,11 @@
+"
+" Nathan Houle's ~.vimrc 
+"
+" I lay claim to no genius contained within; many of these are stolen from or
+" inspired by innumerable blog posts, SO threads, the Vim book I'm editing, etc.
+"
+
+
 " -------------------------------------
 " Key bindings
 " -------------------------------------
@@ -12,76 +20,74 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
-" Get rid of the F1 key to avoid that shit help menu
+
+" Prevent F1 from toggling Vim's help menu
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
-" Make ; do the same thing as :
+
+" Activate : using ;
 nnoremap ; :
+
+" Toggle between regular numbering, relative numbering, no numbering
+nmap <silent> <F2> :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
+" 
+nmap <silent> <F3> :set hlsearch!<CR>
+
 
 " -------------------------------------
 " Plugins
 " -------------------------------------
-call pathogen#infect()  " Enable pathogen, load plugins to ~/.vim/bundle 
+call pathogen#infect()  " Enable pathogen, autoload plugins from ~/.vim/bundle 
 
 
 " -------------------------------------
 " Text format and display
 " -------------------------------------
 syntax on               " Turn syntax highlighting on
-"set wrap                " Wrap dat
-"set textwidth=79        " Wrap dat at 79 
-set colorcolumn=85      " Show a column at 85 to show when I'm being verbose
+set relativenumber      " Set line numbering relative to current line
+set colorcolumn=85      " Show a column at 85 to show max width
+" Enable file type detection, load language-specific indentation files
 if has("autocmd")
-  " Enable file type detection, load language-specific indentation files
   filetype plugin indent on
 endif
-set expandtab           " <Tab> key gets turned into spaces indicated in tabstop
 set tabstop=4           " Set tab width to four spaces
 set softtabstop=4       " Make tabs easier to delete
-set shiftwidth=4        " Autoindent indents this many spaces
-set number              " Turn on line numbering and a hotkey to hide it
-nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
-
+set shiftwidth=4        " Auto-indent this many spaces
+set expandtab           " Turn <Tab> into spaces indicated in tabstop
+set relativenumber      " Set line numbering relative to current line
 
 " -------------------------------------
 " Miscellaneous
 " -------------------------------------
-set encoding=utf-8      " I liek utf8
+set encoding=utf-8      " Use UTF8 encoding by default
 set scrolloff=3         " Start scrolling three lines from the bottom
 set showmode
 set showcmd
 set nocompatible        " That shit cray
 set modelines=0         " Get rid of modelines for security or something
-"set undofile            " Enable vim FILENAME.un~ undo files to undo after close
-set relativenumber      " Set line numbering relative to current line
 "set clipboard=unnamedplus "Copy to system clipboard by default
 
 
 " -------------------------------------
-" Highlighting, spellcheck, search, etc
+" Text editing
 " -------------------------------------
-"set spell              " Set spellcheck
+set spell               " Turn spellcheck on
 set spelllang=en        " Set spelling to English
 
 
 " -------------------------------------
 " Search and destro--er, replace
 " -------------------------------------
-set hls                 " Highlight search items
+set gdefault            " Global search and replace by default
 set ignorecase          " Ignore case when searching...
 set smartcase           " ...Except when search pattern contains an uppercase char
-set gdefault            " Global search and replace by default
+set hls                 " Highlight search items
 
 
 " -------------------------------------
 " Change vim colorz
 " -------------------------------------
-" IMPORTANT: Uncomment one of the following lines to force
-" using 256 colors (or 88 colors) if your terminal supports it,
-" but does not automatically use 256 colors by default.
-"set t_Co=256
-"set t_Co=88
 if (&t_Co == 256 || &t_Co == 88) && !has('gui_running') &&
   \ filereadable(expand("$HOME/.vim/plugin/guicolorscheme.vim"))
   " Use the guicolorscheme plugin to makes 256-color or 88-color
@@ -98,21 +104,13 @@ endif
 " -------------------------------------
 " External programs
 " -------------------------------------
-" Convert markdown to HTML by typing :md
-" nmap <leader>md :%!/usr/bin/markdown_py<cr>
-" Convert markdown to HTML by typing :md
-"nmap <leader>:md :%!/usr/bin/markdown_py<cr>
-
-function MarkdownToHTML()
-    :%!/usr/bin/markdown_py
-endfunction
-
-cmap Md call MarkdownToHTML()<cr>
-
+" Convert markdown to HTML
+nmap <leader>md :%!/usr/bin/markdown_py<CR>
 
 
 " -------------------------------------
-" Python autocompletion
+" Auto-completion
 " -------------------------------------
 autocmd FileType html set omnifunc=htmlcomplete#Complete
 let g:pydiction_location = '/usr/share/pydiction/complete-dict'
+
