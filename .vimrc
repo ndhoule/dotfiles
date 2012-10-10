@@ -111,6 +111,6 @@ nmap <leader>md :%!/usr/bin/markdown_py<CR>
 " -------------------------------------
 " Auto-completion
 " -------------------------------------
-autocmd FileType html set omnifunc=htmlcomplete#Complete
-let g:pydiction_location = '/usr/share/pydiction/complete-dict'
+" Enable the Pydiction auto-completion library
+let g:pydiction_location = '$HOME/.vim/bundle/Pydiction/complete-dict'
 
