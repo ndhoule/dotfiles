@@ -23,6 +23,8 @@
     Bundle 'vim-scripts/Pydiction'
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'godlygeek/tabular'
+    Bundle 'scrooloose/nerdtree'
+    Bundle 'tpope/vim-fugitive'
 " }
 " ## POST-SETUP CLEANUP ## {
     filetype plugin indent on       " Turn plugins, indentation back on
