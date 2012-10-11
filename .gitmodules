@@ -1,5 +1,5 @@
 [submodule ".vim/vundle.git"]
-    path = .vim/vundle.git
+    path = .vim/vundle
     url = https://github.com/gmarik/vundle.git
 
 [submodule ".oh-my-zsh"]
