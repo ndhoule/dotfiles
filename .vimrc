@@ -84,31 +84,26 @@
     nmap <leader>md :%!/usr/bin/markdown_py<CR>
 " }
 " ## KEYBINDINGS ## {
-    " # Fix annoyances # {
-        " Disable pesky ex mode
-        nnoremap Q <ESC>
-        " Prevent F1 from toggling Vim's help menu
-        nnoremap <F1> <ESC>
-        inoremap <F1> <ESC>
-        vnoremap <F1> <ESC>
-        " Move down by displayed lines, not actual lines
-        nnoremap j gj
-        nnoremap k gk
-    " }
-    " # New keybindings # {
-        " Change leader key from \ to ,
-        let mapleader=","
-        " Activate : using ;
-        nnoremap ; :
+    " Change leader key from \ to ,
+    let mapleader=","
+    " Activate : using ;
+    nnoremap ; :
 
-        " Toggle between regular numbering, relative numbering, no numbering
-        nmap <silent> <F1> :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
-        " Enable paste mode--helps quash indent, etc. when pasting large blocks of code
-        nnoremap <F2> :set invpaste paste?<CR>
-        " Clear any highlighting on search terms
-        nmap <silent> <F3> :set hlsearch!<CR>
+    " Move down by displayed lines, not actual lines
+    nnoremap j gj
+    nnoremap k gk
 
-        " Make writing files via sudo easier
-        cmap w!! w !sudo tee % >/dev/null
-    " }
+    " Remap Q to reformat paragraph text
+    vmap Q gq
+    nmap Q gqap
+
+    " Toggle between regular numbering, relative numbering, no numbering
+    nmap <silent> <F1> :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
+    " Enable paste mode--helps quash indent, etc. when pasting large blocks of code
+    nnoremap <F2> :set invpaste paste?<CR>
+    " Clear any highlighting on search terms
+    nmap <silent> <F3> :set hlsearch!<CR>
+
+    " Make writing files via sudo easier
+    cmap w!! w !sudo tee % >/dev/null
 " }
