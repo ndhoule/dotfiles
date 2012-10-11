@@ -5,10 +5,18 @@
 " inspired by innumerable blog posts, SO threads, the Vim book I'm editing, etc.
 "
 
+" Bundles {
+    " Use local bundles if available
+    if filereadable(expand("~/.vimrc.bundles"))
+        source ~/.vimrc.bundles
+    endif
+" }
+
+
+
 " -------------------------------------
 " General settings
 " -------------------------------------
-set nocompatible        " Get rid of vi compatibility mode
 set encoding=utf-8      " Use UTF-8 encoding by default
 set scrolloff=5         " Start scrolling five lines from the bottom
 set showmode            " Display the mode we're in (visual, insert, etc.)
@@ -56,7 +64,7 @@ set incsearch           " Highlight search results as you type
 " Auto-completion
 " -------------------------------------
 " Enable the Pydiction auto-completion library
-let g:pydiction_location = '$HOME/.vim/bundle/Pydiction/complete-dict'
+" let g:pydiction_location = '$HOME/.vim/bundle/Pydiction/complete-dict'
 
 
 " -------------------------------------
@@ -72,16 +80,6 @@ else
   " For 8-color 16-color terminals or for gvim, just use the
   " regular :colorscheme command.
   colorscheme molokai
-endif
-
-
-" -------------------------------------
-" Plugins
-" -------------------------------------
-call pathogen#infect()  " Enable pathogen, autoload plugins from ~/.vim/bundle 
-" Enable file type detection, load language-specific indentation files
-if has("autocmd")
-  filetype plugin indent on
 endif
 
 

@@ -1,0 +1,27 @@
+" 
+" ~/.vimrc.bundles
+" Define vim plugins to be managed by Vundle here.
+" 
+
+" Environment {
+    set nocompatible               " Turn off Vi compatibility (required)
+    filetype off                   " Required!
+
+    " Enable Vundle
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+
+    " Let Vundle manage Vundle
+    Bundle 'gmarik/vundle' 
+" }
+
+" User bundles {
+    Bundle 'vim-scripts/guicolorscheme'
+    Bundle 'kien/ctrlp'
+    Bundle 'vim-scripts/Pydiction'
+" }
+
+
+" Cleanup {
+    filetype plugin indent on       " Turn plugins, indentation back on
+" }
