@@ -1,5 +1,7 @@
 # Project-specific files #
 ##########################
+# Let Vundle manage bundles
+.vim/bundle
 .vim/.netrwhist
 
 # Temporary files #

@@ -8,7 +8,7 @@
     filetype off                   " Required!
 
     " Enable Vundle
-    set rtp+=~/.vim/bundle/vundle/
+    set rtp+=~/.vim/vundle/
     call vundle#rc()
 
     " Let Vundle manage Vundle
@@ -16,8 +16,8 @@
 " }
 
 " User bundles {
-    Bundle 'vim-scripts/guicolorscheme'
-    Bundle 'kien/ctrlp'
+    Bundle 'vim-scripts/guicolorscheme.vim'
+    Bundle 'kien/ctrlp.vim'
     Bundle 'vim-scripts/Pydiction'
 " }
 
