@@ -97,12 +97,14 @@
     vmap Q gq
     nmap Q gqap
 
+    " Launch nerdtree
+    noremap <silent> <leader>n :NERDTreeToggle<CR>
     " Toggle between regular numbering, relative numbering, no numbering
-    nmap <silent> <F1> :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
+    nmap <silent> <F2> :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
     " Enable paste mode--helps quash indent, etc. when pasting large blocks of code
-    nnoremap <F2> :set invpaste paste?<CR>
+    nnoremap <F3> :set invpaste paste?<CR>
     " Clear any highlighting on search terms
-    nmap <silent> <F3> :set hlsearch!<CR>
+    nmap <silent> <F4> :set hlsearch!<CR>
 
     " Make writing files via sudo easier
     cmap w!! w !sudo tee % >/dev/null
