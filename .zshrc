@@ -78,7 +78,7 @@ fi
 ############################################################
 ## Set additional ls commands
 alias ll='ls -l'
-alias lll='ls -al'
+alias lll='ls -a'
 
 # alias more to less--I always say more when I mean less ;)
 alias more='less'
