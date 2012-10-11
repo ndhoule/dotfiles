@@ -1,11 +1,14 @@
+" ## MODELINE & NOTES ## {
+" Fold sections by default
+" vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
 " 
-" ~/.vimrc.bundles
+" Nathan Houle's ~/.vimrc.bundles
 " Define vim plugins to be managed by Vundle here.
 " 
-
-" Environment {
-    set nocompatible               " Turn off Vi compatibility (required)
-    filetype off                   " Required!
+" }
+" ## ENVIRONMENT SET-UP ## {
+    set nocompatible                " Turn off Vi compatibility (required)
+    filetype off                    " Required!
 
     " Enable Vundle
     set rtp+=~/.vim/vundle/
@@ -14,14 +17,13 @@
     " Let Vundle manage Vundle
     Bundle 'gmarik/vundle' 
 " }
-
-" User bundles {
+" ## USER BUNDLES ## {
     Bundle 'vim-scripts/guicolorscheme.vim'
     Bundle 'kien/ctrlp.vim'
     Bundle 'vim-scripts/Pydiction'
+    Bundle 'scrooloose/nerdcommenter'
+    Bundle 'godlygeek/tabular'
 " }
-
-
-" Cleanup {
+" ## POST-SETUP CLEANUP ## {
     filetype plugin indent on       " Turn plugins, indentation back on
 " }

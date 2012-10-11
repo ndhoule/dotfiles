@@ -1,4 +1,4 @@
-" ## MODELINE & NOTES {
+" ## MODELINE & NOTES ## {
 " Fold sections by default
 " vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "
