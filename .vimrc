@@ -1,87 +1,67 @@
-" -------------------------------------
-" Key bindings
-" -------------------------------------
-" Get rid of the arrow keys for vim hardtime
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-nnoremap j gj
-nnoremap k gk
-" Get rid of the F1 key to avoid that shit help menu
-inoremap <F1> <ESC>
-nnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
-" Make ; do the same thing as :
-nnoremap ; :
+"
+" Nathan Houle's ~.vimrc 
+"
+" I lay claim to no genius contained within; many of these are stolen from or
+" inspired by innumerable blog posts, SO threads, the Vim book I'm editing, etc.
+"
 
 " -------------------------------------
-" Plugins
+" General settings
 " -------------------------------------
-call pathogen#infect()  " Enable pathogen, load plugins to ~/.vim/bundle 
+set nocompatible        " Get rid of vi compatibility mode
+set encoding=utf-8      " Use UTF-8 encoding by default
+set scrolloff=5         " Start scrolling five lines from the bottom
+set showmode            " Display the mode we're in (visual, insert, etc.)
+set showcmd             " Show last executed command, visual selections
+set modelines=0         " Disable modelines for security's sake
+set history=1000        " Give vim a long memory
+set undolevels=1000     " Keep all the undos
+set title               " Change the terminal window's title
+set nobackup            " Turn off backups (use version control)
+set noswapfile          " Turn off swap file (it's annoying)
+"set clipboard=unnamedplus "Copy to system clipboard by default
 
 
 " -------------------------------------
 " Text format and display
 " -------------------------------------
 syntax on               " Turn syntax highlighting on
-"set wrap                " Wrap dat
-"set textwidth=79        " Wrap dat at 79 
-set colorcolumn=85      " Show a column at 85 to show when I'm being verbose
-if has("autocmd")
-  " Enable file type detection, load language-specific indentation files
-  filetype plugin indent on
-endif
-set expandtab           " <Tab> key gets turned into spaces indicated in tabstop
+set relativenumber      " Set line numbering relative to current line
+set colorcolumn=85      " Show a column at 85 to show max width
 set tabstop=4           " Set tab width to four spaces
 set softtabstop=4       " Make tabs easier to delete
-set shiftwidth=4        " Autoindent indents this many spaces
-set number              " Turn on line numbering and a hotkey to hide it
-nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
-
-
-" -------------------------------------
-" Miscellaneous
-" -------------------------------------
-set encoding=utf-8      " I liek utf8
-set scrolloff=3         " Start scrolling three lines from the bottom
-set showmode
-set showcmd
-set nocompatible        " That shit cray
-set modelines=0         " Get rid of modelines for security or something
-"set undofile            " Enable vim FILENAME.un~ undo files to undo after close
+set shiftwidth=4        " Auto-indent this many spaces
+set expandtab           " Turn <Tab> into spaces indicated in tabstop
 set relativenumber      " Set line numbering relative to current line
-"set clipboard=unnamedplus "Copy to system clipboard by default
 
 
 " -------------------------------------
-" Highlighting, spellcheck, search, etc
+" Text editing
 " -------------------------------------
-"set spell              " Set spellcheck
+set spell               " Turn spellcheck on
 set spelllang=en        " Set spelling to English
 
 
 " -------------------------------------
-" Search and destro--er, replace
+" Search and replace
 " -------------------------------------
-set hls                 " Highlight search items
+set gdefault            " Global search and replace by default
 set ignorecase          " Ignore case when searching...
 set smartcase           " ...Except when search pattern contains an uppercase char
-set gdefault            " Global search and replace by default
+set hlsearch            " Highlight search items
+set incsearch           " Highlight search results as you type
 
 
 " -------------------------------------
-" Change vim colorz
+" Auto-completion
 " -------------------------------------
-" IMPORTANT: Uncomment one of the following lines to force
-" using 256 colors (or 88 colors) if your terminal supports it,
-" but does not automatically use 256 colors by default.
-"set t_Co=256
-"set t_Co=88
+" Enable the Pydiction auto-completion library
+let g:pydiction_location = '$HOME/.vim/bundle/Pydiction/complete-dict'
+
+
+" -------------------------------------
+" Color theme
+" -------------------------------------
 if (&t_Co == 256 || &t_Co == 88) && !has('gui_running') &&
   \ filereadable(expand("$HOME/.vim/plugin/guicolorscheme.vim"))
   " Use the guicolorscheme plugin to makes 256-color or 88-color
@@ -96,23 +76,48 @@ endif
 
 
 " -------------------------------------
+" Plugins
+" -------------------------------------
+call pathogen#infect()  " Enable pathogen, autoload plugins from ~/.vim/bundle 
+" Enable file type detection, load language-specific indentation files
+if has("autocmd")
+  filetype plugin indent on
+endif
+
+
+" -------------------------------------
 " External programs
 " -------------------------------------
-" Convert markdown to HTML by typing :md
-" nmap <leader>md :%!/usr/bin/markdown_py<cr>
-" Convert markdown to HTML by typing :md
-"nmap <leader>:md :%!/usr/bin/markdown_py<cr>
-
-function MarkdownToHTML()
-    :%!/usr/bin/markdown_py
-endfunction
-
-cmap Md call MarkdownToHTML()<cr>
-
+" Convert markdown to HTML
+nmap <leader>md :%!/usr/bin/markdown_py<CR>
 
 
 " -------------------------------------
-" Python autocompletion
+" Key bindings
 " -------------------------------------
-autocmd FileType html set omnifunc=htmlcomplete#Complete
-let g:pydiction_location = '/usr/share/pydiction/complete-dict'
+" Jump to next row
+nnoremap j gj
+nnoremap k gk
+
+" Prevent F1 from toggling Vim's help menu
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+" Change leader key from \ to ,
+let mapleader=","
+
+" Activate : using ;
+nnoremap ; :
+
+" Make writing file via sudo easier
+cmap w!! w !sudo tee % >/dev/null
+
+" Toggle between regular numbering, relative numbering, no numbering
+nmap <silent> <F2> :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
+" Enable paste mode--helps quash indent, etc. when pasting large blocks of code
+nnoremap <F3> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+" Clear any highlighting on search terms
+nmap <silent> <F4> :set hlsearch!<CR>
+
