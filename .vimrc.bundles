@@ -20,6 +20,7 @@
 " ## USER BUNDLES ## {
     Bundle 'godlygeek/tabular'
     Bundle 'kien/ctrlp.vim'
+    Bundle 'Lokaltog/vim-powerline'
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'scrooloose/nerdtree'
     Bundle 'tpope/vim-fugitive'

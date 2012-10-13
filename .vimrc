@@ -24,21 +24,25 @@
     if filereadable(expand("~/.vimrc.bundles")) 
         source ~/.vimrc.bundles
     endif
+
+    " Show Powerline, use fancy symbols
+    set laststatus=2
+    let g:Powerline_symbols = 'fancy'
 " }
 " ## GENERAL SETTINGS ## {
     set encoding=utf-8      " Use UTF-8 encoding by default
     set scrolloff=5         " Start scrolling five lines from the bottom
-    set showmode            " Display the mode we're in (visual, insert, etc.)
-    set showcmd             " Show last executed command, visual selections
-    set ruler               " Always show the cursor position
+    "set showmode            " Display the mode we're in (visual, insert, etc.)
+    "set showcmd             " Show last executed command, visual selections
+    "set ruler               " Always show the cursor position
     set history=100         " Give vim a long memory
     set undolevels=1000     " Keep all the undos
     set title               " Change the terminal window's title
     set nobackup            " Backups go down the hole
     set noswapfile          " Swap files go down the hole
-    set autowrite           " Make sure your data doesn't go down the hole
+    set autowrite           " Autosave on make or shell commands
     set wildmenu            " Better buffer switching menu
-    set clipboard=unnamedplus "Copy to system clipboard by default
+    "set clipboard=unnamedplus "Copy to system clipboard by default
 " }
 " ## TEXT DISPLAY AND FORMATTING ## {
     syntax on               " Turn syntax highlighting on
@@ -67,6 +71,8 @@
     let g:pydiction_location = '$HOME/.vim/bundle/Pydiction/complete-dict'
 " }
 " ## COLOR SCHEME ## {
+    set background=dark
+
     if (&t_Co == 256 || &t_Co == 88) && !has('gui_running') &&
         \ filereadable(expand("$HOME/.vim/plugin/guicolorscheme.vim"))
         " Use the guicolorscheme plugin to makes 256-color or 88-color
