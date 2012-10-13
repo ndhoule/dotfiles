@@ -18,13 +18,15 @@
     Bundle 'gmarik/vundle' 
 " }
 " ## USER BUNDLES ## {
-    Bundle 'vim-scripts/guicolorscheme.vim'
-    Bundle 'kien/ctrlp.vim'
-    Bundle 'vim-scripts/Pydiction'
-    Bundle 'scrooloose/nerdcommenter'
     Bundle 'godlygeek/tabular'
+    Bundle 'kien/ctrlp.vim'
+    Bundle 'scrooloose/nerdcommenter'
     Bundle 'scrooloose/nerdtree'
     Bundle 'tpope/vim-fugitive'
+    Bundle 'tpope/vim-surround'
+    Bundle 'vim-scripts/guicolorscheme.vim'
+    Bundle 'vim-scripts/Pydiction'
+    Bundle 'vim-scripts/ShowMarks'
 " }
 " ## POST-SETUP CLEANUP ## {
     filetype plugin indent on       " Turn plugins, indentation back on
