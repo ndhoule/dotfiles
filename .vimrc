@@ -1,11 +1,11 @@
 " ## MODELINE & NOTES ## {
-" Fold sections by default
-" vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
-"
-"
-" Nathan Houle's ~.vimrc 
-" Any genius contained within shamelessly stolen from smarter folks
-"
+    " Fold sections by default
+    " vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
+    "
+    "
+    " Nathan Houle's ~.vimrc 
+    " Any genius contained within shamelessly stolen from smarter folks
+    "
 " }
 " ## INITIAL SETUP ## {
     " Don't load this file when using evim
@@ -32,9 +32,6 @@
 " ## GENERAL SETTINGS ## {
     set encoding=utf-8      " Use UTF-8 encoding by default
     set scrolloff=5         " Start scrolling five lines from the bottom
-    "set showmode            " Display the mode we're in (visual, insert, etc.)
-    "set showcmd             " Show last executed command, visual selections
-    "set ruler               " Always show the cursor position
     set history=100         " Give vim a long memory
     set undolevels=1000     " Keep all the undos
     set title               " Change the terminal window's title
@@ -42,7 +39,7 @@
     set noswapfile          " Swap files go down the hole
     set autowrite           " Autosave on make or shell commands
     set wildmenu            " Better buffer switching menu
-    "set clipboard=unnamedplus "Copy to system clipboard by default
+    set clipboard=unnamedplus "Copy to system clipboard by default
 " }
 " ## TEXT DISPLAY AND FORMATTING ## {
     syntax on               " Turn syntax highlighting on
