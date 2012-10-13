@@ -27,7 +27,6 @@
     Bundle 'tpope/vim-surround'
     Bundle 'vim-scripts/guicolorscheme.vim'
     Bundle 'vim-scripts/Pydiction'
-    Bundle 'vim-scripts/ShowMarks'
 " }
 " ## POST-SETUP CLEANUP ## {
     filetype plugin indent on       " Turn plugins, indentation back on
