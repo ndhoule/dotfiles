@@ -9,7 +9,13 @@ fi
 # Run this script at first install.
 #
 
+# Back up and link these files in home dir:
+.oh-my-zsh
+.tmux.conf
+.vim
+.vimrc
+.vimrc.bundles
+.zshrc
 
-
-
-vim +BundleInstall +BundleClean +qall
+# Update Vim's bundles
+vim +BundleInstall! +BundleClean +qall
