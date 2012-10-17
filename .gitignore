@@ -3,6 +3,7 @@
 # Let Vundle manage bundles
 .vim/bundle
 .vim/.netrwhist
+.oh-my-zsh/cache
 
 # Temporary files #
 ###################
