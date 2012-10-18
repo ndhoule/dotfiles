@@ -34,4 +34,8 @@ done
 # Couldn't get the pure CLI method to work. Replace this when I figure it out.
 vim +BundleInstall! +BundleClean +qall
 
-echo "Now change and reload your shell for changes to take effect."
+# Change shell to zsh
+chsh -s /bin/zsh $(whoami)
+
+# Prompt user to reload shell
+echo "Reload your shell for changes to take effect."
