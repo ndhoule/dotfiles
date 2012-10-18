@@ -63,6 +63,12 @@ set -o notify                  # Notify when background jobs terminate
 
 
 ############################################################
+## Autocompletion
+############################################################
+compdef _pacman packer=pacman  # Enable autocompletion for packer
+
+
+############################################################
 ## External scripts
 ############################################################
 ## Enable virtualenvwrapper if present
