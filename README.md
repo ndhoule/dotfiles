@@ -3,7 +3,8 @@
 Configuration files zsh, vim, and tmux. Also a petty excuse to learn git.
 
 I use these dotfiles on Arch Linux and FreeBSD, but they'll probably work just fine
-on OS X, too.
+on OS X, too. The installer is still a work in progress and will probably only work
+on Linux systems.
 
 
 ## Installation
