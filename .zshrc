@@ -6,7 +6,7 @@
 ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Look in ~/.oh-my-zsh/themes/
-ZSH_THEME="ndhoule"
+ZSH_THEME="alanpeabody"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
