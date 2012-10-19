@@ -30,6 +30,9 @@ for file in $DOTFILES; do
     ln -s ${DOTFILEDIR}/${file} ~/${file}
 done
 
+# Create a local bin folder
+mkdir -p ~/bin
+
 # Update Vim's bundles.
 # Couldn't get the pure CLI method to work. Replace this when I figure it out.
 vim +BundleInstall! +BundleClean +qall
