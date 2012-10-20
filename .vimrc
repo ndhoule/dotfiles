@@ -57,10 +57,10 @@
     au FileType text setlocal textwidth=84 " Keep text files from getting too wide
 " }
 " ## FILETYPE-SPECIFIC SETTINGS ## {
+    au FileType xhtml,html,htm,php,xml setlocal noexpandtab
     au FileType xhtml,html,htm,php,xml setlocal tabstop=2
     au FileType xhtml,html,htm,php,xml setlocal softtabstop=2
     au FileType xhtml,html,htm,php,xml setlocal shiftwidth=2
-    au FileType xhtml,html,htm,php,xml setlocal noexpandtab
 " }
 " ## SEARCHING ## {
     set gdefault            " Global search and replace by default
