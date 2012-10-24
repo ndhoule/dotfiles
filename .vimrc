@@ -35,6 +35,7 @@
     set history=100         " Give vim a long memory
     set undolevels=1000     " Keep all the undos
     set title               " Change the terminal window's title
+    set showcmd             " Show inc commands in status line as they're being typed
     set nobackup            " Backups go down the hole
     set noswapfile          " Swap files go down the hole
     set autowrite           " Autosave on make or shell commands
