@@ -11,6 +11,7 @@ WORKINGDIR=$(pwd)
 DOTFILEDIR=$(dirname $(readlink -f $0))
 BACKUPDIR=~/.dotfiles.bak
 DOTFILES=$(ls -a $DOTFILEDIR | grep "^\." | grep -v -e "^..\?$" -e ".git")
+POSTRECEIVE_HOOKFILE=$DOTFILEDIR/.git/hooks/post-receive
 
 
 # Clone down any git submodules
@@ -35,7 +36,12 @@ mkdir -p ~/bin
 
 # Update Vim's bundles.
 # Couldn't get the pure CLI method to work. Replace this when I figure it out.
-vim +BundleInstall! +BundleClean +qall
+#vim +BundleInstall! +BundleClean +qall
+
+# Insert a git post-receive hook that will symlink any newly added files
+echo "#!/bin/sh
+UPDATESCRIPT=\"../../update.sh\"
+exec \$UPDATESCRIPT" > $POSTRECEIVE_HOOKFILE
 
 # Change shell to zsh
 chsh -s /bin/zsh $(whoami)
