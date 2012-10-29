@@ -36,7 +36,10 @@ mkdir -p ~/bin
 
 # Update Vim's bundles.
 # Couldn't get the pure CLI method to work. Replace this when I figure it out.
-#vim +BundleInstall! +BundleClean +qall
+vim +BundleInstall! +BundleClean +qall
+
+# Create the git post-receive hook and make sure it's executable
+touch $POSTRECEIVE_HOOKFILE && chmod +x $POSTRECEIVE_HOOKFILE
 
 # Insert a git post-receive hook that will symlink any newly added files
 echo "#!/bin/sh
