@@ -10,9 +10,9 @@ set -e
 WORKINGDIR=$(pwd)
 DOTFILEDIR=$(dirname $(readlink -f $0))
 BACKUPDIR=~/.dotfiles.bak
-DOTFILES=$(ls -a $DOTFILEDIR | grep "^\." | grep -v -e "^..\?$" -e ".git")
+DOTFILES=$(ls -a $DOTFILEDIR | grep "^\." | grep -v -e "^..\?$" -e "^.git$" \
+           -e "^.gitignore$" -e "^.gitmodules$" )
 POSTRECEIVE_HOOKFILE=$DOTFILEDIR/.git/hooks/post-receive
-
 
 # Clone down any git submodules
 git submodule update --init

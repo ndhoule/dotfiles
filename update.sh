@@ -7,7 +7,8 @@
 set -e
 
 DOTFILEDIR=$(pwd)
-DOTFILES=$(ls -a $DOTFILEDIR | grep "^\." | grep -v -e "^..\?$" -e ".git")
+DOTFILES=$(ls -a $DOTFILEDIR | grep "^\." | grep -v -e "^..\?$" -e "^.git$" \
+           -e "^.gitignore$" -e "^.gitmodules$" )
 
 for file in $DOTFILES; do
     if  [ ! -e ~/$file ]; then
