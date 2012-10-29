@@ -7,6 +7,7 @@
 set -e
 
 # Set some variables
+OS=$(uname -s)
 WORKINGDIR=$(pwd)
 DOTFILEDIR=$(dirname $(readlink -f $0))
 BACKUPDIR=~/.dotfiles.bak
@@ -47,7 +48,12 @@ UPDATESCRIPT=\"../../update.sh\"
 exec \$UPDATESCRIPT" > $POSTRECEIVE_HOOKFILE
 
 # Change shell to zsh
-chsh -s /bin/zsh $(whoami)
+if [ $OS == "Linux" ]; then
+    chsh -s /bin/zsh
+fi
+if [ $OS == "FreeBSD" ]; then
+    chsh -s /usr/local/bin/zsh
+fi
 
 # Prompt user to reload shell
 echo "Reload your shell for changes to take effect."
