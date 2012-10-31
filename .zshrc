@@ -35,8 +35,7 @@ source $ZSH/oh-my-zsh.sh
 # ******************************************************** #
 # ~/.zshrc
 # ******************************************************** #
-
-# Useful variables
+# Set some sweet, sweet variables
 OS=$(uname -s)
 HOSTNAME=$(hostname)
 
@@ -66,17 +65,6 @@ set -o notify                  # Notify when background jobs terminate
 ## Autocompletion
 ############################################################
 compdef _pacman packer=pacman  # Enable autocompletion for packer
-
-
-############################################################
-## External scripts
-############################################################
-## Enable virtualenvwrapper if present
-if [[ -x `which virtualenvwrapper.sh` ]]; then
-    VIRTUALENVEXEC=`which virtualenvwrapper.sh`
-    export WORKON_HOME=$HOME/.virtualenvs
-    source $VIRTUALENVEXEC
-fi
 
 
 ############################################################
