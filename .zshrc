@@ -97,10 +97,3 @@ if [[ $HOSTNAME == "hoth" ]]; then
     bindkey "^[[4~" end-of-line
     bindkey "^[[3~" delete-char
 fi
-
-if [[ $HOSTNAME == "alderaan" ]]; then
-    alias netmount='sudo mount /mnt/netshares/NSP_Files/ ; \ 
-                    sudo mount /mnt/netshares/Share/ ; \ 
-                    sudo mount /mnt/netshares/User_Backup/ ; \ 
-                    sudo mount /mnt/netshares/Archive/'
-fi
