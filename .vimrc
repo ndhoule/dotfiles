@@ -115,6 +115,8 @@
     nnoremap <F3> :set invpaste paste?<CR>
     " Clear any highlighting on search terms
     nmap <silent> <F4> :set hlsearch!<CR>
+    " Toggle spell check
+    nnoremap <F5> :set spell!<CR>
 
     " Make writing files via sudo easier
     cmap w!! w !sudo tee % >/dev/null
