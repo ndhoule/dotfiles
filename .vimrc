@@ -40,7 +40,6 @@
     set noswapfile          " Swap files go down the hole
     set autowrite           " Autosave on make or shell commands
     set wildmenu            " Better buffer switching menu
-    set clipboard=unnamedplus "Copy to system clipboard by default
 " }
 " ## TEXT DISPLAY AND FORMATTING ## {
     syntax on               " Turn syntax highlighting on
@@ -106,6 +105,11 @@
     " Remap Q to reformat paragraph text
     vmap Q gq
     nmap Q gqap
+
+    " Copy to system clipboard
+    map <leader>y "+yy
+    " Paste from system clipboard
+    map <leader>p "+p
 
     " Launch nerdtree
     noremap <silent> <leader>n :NERDTreeToggle<CR>
