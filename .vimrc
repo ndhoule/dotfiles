@@ -88,10 +88,10 @@
         colorscheme molokai
     endif
 " }
-" ## EXTERNAL PROGRAMS ## {
+" ## EXTERNAL PROGRAMS ## {"{
     " Convert markdown to HTML
     nmap <leader>md :%!/usr/bin/markdown_py<CR>
-" }
+" }"}
 " ## KEYBINDINGS ## {
     " Change leader key from \ to ,
     let mapleader=","
@@ -121,6 +121,8 @@
     nmap <silent> <F4> :set hlsearch!<CR>
     " Toggle spell check
     nnoremap <F5> :set spell!<CR>
+    " Strip trailing whitespace from all lines
+    nmap <silent> <F6> :%s/\s\+$<CR>
 
     " Make writing files via sudo easier
     cmap w!! w !sudo tee % >/dev/null
