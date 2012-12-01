@@ -6,7 +6,7 @@
 ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Look in ~/.oh-my-zsh/themes/
-ZSH_THEME="alanpeabody"
+ZSH_THEME="lukerandall"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -85,6 +85,8 @@ if [[ -x `which vim` ]]; then
 fi
 
 ## Use 256-color tmux
+## Having problems with misaligned cursors after sshing into a machine?
+## Could be that $TERM isn't being set to screen-256 colors. Try installing ncurses.
 alias tmux='tmux -2'
 
 
