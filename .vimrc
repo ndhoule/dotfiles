@@ -71,7 +71,7 @@
 " }
 " ## AUTOCOMPLETION ## {
     " Enable the Pydiction auto-completion library
-    let g:pydiction_location = '$HOME/.vim/bundle/Pydiction/complete-dict'
+    " let g:pydiction_location = '$HOME/.vim/bundle/Pydiction/complete-dict'
 " }
 " ## COLOR SCHEME ## {
     set background=dark
