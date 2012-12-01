@@ -26,6 +26,7 @@
     Bundle 'tpope/vim-fugitive'
     Bundle 'tpope/vim-surround'
     Bundle 'vim-scripts/guicolorscheme.vim'
+    Bundle 'vim-scripts/jQuery.git'
     " Bundle 'vim-scripts/Pydiction'
     Bundle 'walm/jshint.vim.git'
 " }
