@@ -26,7 +26,16 @@ ZSH_THEME="lukerandall"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git python django archlinux terminalapp virtualenvwrapper)
+
+if [[ $HOSTNAME == "hoth" ]]; then
+    plugins=(git python django archlinux terminalapp virtualenvwrapper)
+    echo "COOL"
+fi
+
+if [[ $OS == "darwin" ]]; then
+    plugins=(git python django osx terminalapp virtualenvwrapper)
+fi
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -35,8 +44,9 @@ source $ZSH/oh-my-zsh.sh
 # ******************************************************** #
 # ~/.zshrc
 # ******************************************************** #
+lowercase(){ echo "$1" | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/" }
 # Set some sweet, sweet variables
-OS=$(uname -s)
+OS=$(lowercase $(uname -s))
 HOSTNAME=$(hostname)
 
 
@@ -64,7 +74,9 @@ set -o notify                  # Notify when background jobs terminate
 ############################################################
 ## Autocompletion
 ############################################################
-compdef _pacman packer=pacman  # Enable autocompletion for packer
+if [[ $HOSTNAME == "hoth" ]]; then
+    compdef _pacman packer=pacman  # Enable autocompletion for packer
+fi
 
 
 ############################################################
