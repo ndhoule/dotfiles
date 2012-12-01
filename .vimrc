@@ -57,9 +57,10 @@
     au FileType text setlocal textwidth=84 " Keep text files from getting too wide
 " }
 " ## FILETYPE-SPECIFIC SETTINGS ## {
-    au FileType javascript setlocal ts=2, sts=2, sw=2
-    au FileType xhtml,html,htm,php,xml setlocal noexpandtab, ts=2, sts=2, sw=2
+    au FileType javascript setlocal ts=2 sts=2 sw=2
+    au FileType xhtml,html,htm,php,xml setlocal noexpandtab ts=2 sts=2 sw=2
 
+    " Enable syntax highlighting for jquery files
     au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 " }
 " ## SEARCHING ## {
