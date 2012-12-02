@@ -20,7 +20,7 @@ git submodule update --init
 
 # Back up existing dotfiles
 for file in $DOTFILES; do
-    if [ -e ~/$file ]; then
+    if [ -h ~/$file ] || [ -e ~/$file ]; then
         echo "Backing up $file..."
         mkdir -p $BACKUPDIR
         mv ~/$file $BACKUPDIR/
