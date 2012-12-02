@@ -118,12 +118,17 @@
     nmap <silent> <F2> :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
     " Enable paste mode--helps quash indent, etc. when pasting large blocks of code
     nnoremap <F3> :set invpaste paste?<CR>
-    " Clear any highlighting on search terms
-    nmap <silent> <F4> :set hlsearch!<CR>
     " Toggle spell check
-    nnoremap <F5> :set spell!<CR>
+    nnoremap <F4> :set spell!<CR>
+    " Clear any highlighting on search terms
+    nmap <silent> <F5> :set hlsearch!<CR>
     " Strip trailing whitespace from all lines
-    nmap <silent> <F6> :%s/\s\+$<CR>
+    nmap <F6> :echo "Whitespace removed" :%s/\s\+$<CR>
+
+    " Strip JavaScript comments. Only strips comments that begin on their own
+    " line--won't strip inline comments, and won't strip block comments. Need
+    " to revisit this to expand it.
+    nmap <F7> :%s/^\s*\/\/.*$\n<CR>
 
     " Make writing files via sudo easier
     cmap w!! w !sudo tee % >/dev/null
