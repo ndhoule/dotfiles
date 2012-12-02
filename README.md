@@ -19,7 +19,10 @@ cd ~/.dotfiles
 ```
 
 ## Caveats
-If you launch tmux in 256-color mode and try to ssh into a remote machine, you might
-run into a misaligned cursor problem. This is because some machines (I'm looking at
-you, headless servers) don't have the screen-256colors termcap option. You can either
-change your term to TERM=xterm and deal with 8-color mode, or install ncurses.
+* If you launch tmux in 256-color mode and try to ssh into a remote machine, you
+  might run into a misaligned cursor problem. This is because some machines don't
+  have the screen-256colors termcap option. You can either change your term to
+  TERM=xterm and deal with 8-color mode, or install ncurses.
+* bootstrap.sh won't work on OS X machines. OS X doesn't implement GNU readlink, and
+  the version it does include doesn't offer the -f option. This should be an easy
+  fix, but I haven't gotten around to it yet.
