@@ -130,6 +130,9 @@
     " to revisit this to expand it.
     nmap <F7> :%s/^\s*\/\/.*$\n<CR>
 
+    " Pull up the yank ring
+    nnoremap <silent> <F12> :YRShow<CR> 
+
     " Make writing files via sudo easier
     cmap w!! w !sudo tee % >/dev/null
 " }
