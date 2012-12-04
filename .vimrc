@@ -123,7 +123,7 @@
     " Clear any highlighting on search terms
     nmap <silent> <F5> :set hlsearch!<CR>
     " Strip trailing whitespace from all lines
-    nmap <F6> :echo "Whitespace removed" :%s/\s\+$<CR>
+    nmap <silent> <F6> :%s/\s\+$<CR>
 
     " Strip JavaScript comments. Only strips comments that begin on their own
     " line--won't strip inline comments, and won't strip block comments. Need
