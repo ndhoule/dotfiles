@@ -7,5 +7,6 @@
 	tool = vimdiff
 [alias]
     gu = !"git fetch origin -v ; git fetch upstream -v ; git merge upstream/master"
+	logp = log --oneline --decorate
 [credential]
 	helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring
