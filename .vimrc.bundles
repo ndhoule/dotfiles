@@ -25,6 +25,8 @@
     Bundle 'scrooloose/nerdtree'
     Bundle 'tpope/vim-fugitive'
     Bundle 'tpope/vim-surround'
+    Bundle 'vim-scripts/bufkill.vim.git'
+    Bundle 'vim-scripts/YankRing.vim.git'
     Bundle 'vim-scripts/guicolorscheme.vim'
     Bundle 'vim-scripts/jQuery.git'
     " Bundle 'vim-scripts/Pydiction'
