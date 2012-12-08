@@ -55,8 +55,8 @@
     hostname=$(hostname)
 # }
 ## Environment variables ## {
-    export PATH=$PATH:$HOME/bin
-    export PAGER=less
+    export PATH=$PATH:$HOME/bin:/usr/local/share/npm/bin
+    export PAGER=vimpager
     export EDITOR=vim
     export SVN_EDITOR=vim
 # }
