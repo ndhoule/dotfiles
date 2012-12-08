@@ -1,16 +1,20 @@
-# Nathan Houle's dotfiles
+# dotfiles
+Configuration files zsh, vim, and tmux. I've used these dotfiles on Arch Linux,
+FreeBSD, and OS X 10.8. I've made an effort to be as platform agnostic as possible,
+but a few options are OS X-specific since that's my primarily dev environment right
+now. Beware the `.gvimrc` and `.gitconfig` files in particular!
 
-Configuration files zsh, vim, and tmux. Also a petty excuse to learn git.
 
-I use these dotfiles on Arch Linux and FreeBSD, but they'll probably work just fine
-on OS X, too. The installer is still a work in progress and will probably only work
-on Linux systems.
+## Requirements
+* Installation script requires GNU `readline`--the version of `readline` included
+with OS X is not good enough. OS X users can install it using `brew install readline`;
+FreeBSD/Linux users can install it with their package manager of choice.
+* zsh, vim, and tmux (obviously). Optionally, gvim/MacVim.
 
 
 ## Installation
-
 Run the following commands in your terminal to clone and set up the dotfiles. Feel
-free to substitute the ~/projects directory with one of your choice.
+free to substitute the ~/.dotfiles directory with one of your choice.
 
 ```terminal
 git clone git@github.com:ndhoule/dotfiles.git ~/.dotfiles
@@ -20,9 +24,5 @@ cd ~/.dotfiles
 
 ## Caveats
 * If you launch tmux in 256-color mode and try to ssh into a remote machine, you
-  might run into a misaligned cursor problem. This is because some machines don't
-  have the screen-256colors termcap option. You can either change your term to
-  TERM=xterm and deal with 8-color mode, or install ncurses.
-* bootstrap.sh won't work on OS X machines. OS X doesn't implement GNU readlink, and
-  the version it does include doesn't offer the -f option. This should be an easy
-  fix, but I haven't gotten around to it yet.
+  might run into a misaligned cursor problem. Not sure why this is, but I suspect
+  it's a conflict between tmux and the remote machine's termcap.
