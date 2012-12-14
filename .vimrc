@@ -1,12 +1,12 @@
 " ## MODELINE & NOTES ## {
     " Fold sections by default
-    " vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
+    " vim: set foldmarker={,"} foldlevel=0 foldmethod=marker spell:
     "
     "
     " Nathan Houle's ~.vimrc 
     " Any genius contained within shamelessly stolen from smarter folks
     "
-" }
+"}
 " ## INITIAL SETUP ## {
     " Don't load this file when using evim
     if v:progname =~? "evim"
@@ -18,7 +18,7 @@
     nnoremap <F1> <ESC>
     inoremap <F1> <ESC>
     vnoremap <F1> <ESC>
-" }
+"}
 " ## BUNDLES/PLUGINS ## {
     " Use local bundles if available
     if filereadable(expand("~/.vimrc.bundles")) 
@@ -28,7 +28,7 @@
     " Show Powerline, use fancy symbols
     set laststatus=2
     let g:Powerline_symbols = 'fancy'
-" }
+"}
 " ## GENERAL SETTINGS ## {
     set encoding=utf-8      " Use UTF-8 encoding by default
     set scrolloff=5         " Start scrolling five lines from the bottom
@@ -40,7 +40,7 @@
     set noswapfile          " Swap files go down the hole
     set autowrite           " Autosave on make or shell commands
     set wildmenu            " Better buffer switching menu
-" }
+"}
 " ## TEXT DISPLAY AND FORMATTING ## {
     syntax on               " Turn syntax highlighting on
     set relativenumber      " Set line numbering relative to current line
@@ -50,30 +50,35 @@
     set shiftwidth=4        " Auto-indent this many spaces
     set expandtab           " Turn <Tab> into spaces indicated in tabstop
     set relativenumber      " Set line numbering relative to current line
-" }
+"}
 " ## PLAINTEXT EDITING ## {
     set spell               " Turn spellcheck on
     set spelllang=en        " Set spelling to English
-    au FileType text setlocal textwidth=84 " Keep text files from getting too wide
-" }
+    au FileType text,markdown setlocal textwidth=84 " Keep text files from getting too wide
+"}
 " ## FILETYPE-SPECIFIC SETTINGS ## {
-    au FileType javascript setlocal ts=2 sts=2 sw=2
+    au FileType javascript,css setlocal ts=2 sts=2 sw=2
     au FileType xhtml,html,htm,php,xml setlocal noexpandtab ts=2 sts=2 sw=2
 
     " Enable syntax highlighting for jquery files
     au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
-" }
+"}
+" ## WHITESPACE DETECTOR ## {
+    " Highlight trailing whitespace, don't highlight while typing
+    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=DarkRed guibg=DarkRed
+    au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    au InsertLeave * match ExtraWhitespace /\s\+$/
+"}
 " ## SEARCHING ## {
-    set gdefault            " Global search and replace by default
     set ignorecase          " Ignore case when searching...
     set smartcase           " ...Except when search contains an uppercase char
     set hlsearch            " Highlight search items
     set incsearch           " Highlight search results as you type
-" }
+"}
 " ## AUTOCOMPLETION ## {
     " Enable the Pydiction auto-completion library
     " let g:pydiction_location = '$HOME/.vim/bundle/Pydiction/complete-dict'
-" }
+"}
 " ## COLOR SCHEME ## {
     set background=dark
 
@@ -88,16 +93,22 @@
         " regular :colorscheme command.
         colorscheme molokai
     endif
-" }
-" ## EXTERNAL PROGRAMS ## {"{
+"}
+" ## EXTERNAL PROGRAMS ## {
     " Convert markdown to HTML
     nmap <leader>md :%!/usr/bin/markdown_py<CR>
-" }"}
+"}
 " ## KEYBINDINGS ## {
     " Change leader key from \ to ,
     let mapleader=","
+
     " Activate : using ;
     nnoremap ; :
+
+    " Map leader to pane switching for great victory
+    nnoremap <leader>w <C-w>w
+
+    nnoremap <leader>] zfi}      " Fold within curly braces
 
     " Move down by displayed lines, not actual lines
     nnoremap j gj
@@ -131,8 +142,8 @@
     nmap <F7> :%s/^\s*\/\/.*$\n<CR>
 
     " Pull up the yank ring
-    nnoremap <silent> <F12> :YRShow<CR> 
+    nnoremap <silent> <F12> :YRShow<CR>
 
     " Make writing files via sudo easier
     cmap w!! w !sudo tee % >/dev/null
-" }
+"}
