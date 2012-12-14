@@ -94,7 +94,7 @@
     ## Could be that $TERM isn't being set to screen-256 colors. Try installing ncurses.
     alias tmux='tmux -2'
 # }
-## Host-specific keyboard fixes ## {
+## Host/OS-specific ## {
     if [[ $hostname == "hoth" ]]; then 
         # Fix MacBook fn keys
         bindkey "^[[1~" beginning-of-line
@@ -108,6 +108,7 @@
 
     if [[ $os == "darwin" ]]; then
         zsh_plugins="osx brew sublime terminalapp"
+        alias brewall="brew update && brew upgrade `brew outdated`"
     fi
 
     if [[ $os == "freebsd" ]]; then
