@@ -1,4 +1,4 @@
-" ## MODELINE & NOTES ## {
+" ## Modeline & Notes ## {
     " Fold sections by default
     " vim: set foldmarker={,"} foldlevel=0 foldmethod=marker spell:
     "
@@ -7,7 +7,7 @@
     " Any genius contained within shamelessly stolen from smarter folks
     "
 "}
-" ## INITIAL SETUP ## {
+" ## Initial Setup ## {
     " Don't load this file when using evim
     if v:progname =~? "evim"
         finish
@@ -19,71 +19,73 @@
     inoremap <F1> <ESC>
     vnoremap <F1> <ESC>
 "}
-" ## BUNDLES/PLUGINS ## {
+" ## Bundles and Plugin Setup ## {
     " Use local bundles if available
     if filereadable(expand("~/.vimrc.bundles"))
         source ~/.vimrc.bundles
     endif
 
-    " Show Powerline, use fancy symbols
+    " Show Powerline by default
     set laststatus=2
     let g:Powerline_symbols = 'fancy'
 
-    " When writing a file, let Syntastic mark errors if they exist
+    " Let Syntastic lint files on save and show location markers, pane
     let g:syntastic_enable_signs=1
     let g:syntastic_auto_loc_list=1
 "}
-" ## GENERAL SETTINGS ## {
-    set encoding=utf-8      " Use UTF-8 encoding by default
-    set scrolloff=5         " Start scrolling five lines from the bottom
-    set history=100         " Give vim a long memory
-    set undolevels=1000     " Keep all the undos
-    set title               " Change the terminal window's title
-    set showcmd             " Show inc commands in status line as they're being typed
-    set nobackup            " Backups go down the hole
-    set noswapfile          " Swap files go down the hole
-    set autowrite           " Autosave on make or shell commands
-    set wildmenu            " Better buffer switching menu
+" ## General Settings ## {
+    set encoding=utf-8       " Use UTF-8 encoding by default
+    set scrolloff=5          " Start scrolling five lines from the bottom
+    set history=100          " Give vim a long memory
+    set undolevels=1000      " Keep all the undos
+    set title                " Change the terminal window's title
+    set showcmd              " Show inc commands in status line as they're being typed
+    set nobackup             " Backups go down the hole
+    set noswapfile           " Swap files go down the hole
+    set autowrite            " Autosave on make or shell commands
+    set wildmenu             " Better buffer switching menu
 "}
-" ## TEXT DISPLAY AND FORMATTING ## {
-    syntax on               " Turn syntax highlighting on
-    set relativenumber      " Set line numbering relative to current line
-    set colorcolumn=85      " Show a column at 85 to show max width
-    set tabstop=4           " Set tab width to four spaces
-    set softtabstop=4       " Make tabs easier to delete
-    set shiftwidth=4        " Auto-indent this many spaces
-    set expandtab           " Turn <Tab> into spaces indicated in tabstop
-    set relativenumber      " Set line numbering relative to current line
+" ## Text Display and Formatting ## {
+    syntax on                " Turn syntax highlighting on
+    set relativenumber       " Set line numbering relative to current line
+    set colorcolumn=85       " Show a column at 85 to show max width
+    set tabstop=4            " Set tab width to four spaces
+    set softtabstop=4        " Make tabs easier to delete
+    set shiftwidth=4         " Auto-indent this many spaces
+    set expandtab            " Turn <Tab> into spaces indicated in tabstop
+    set relativenumber       " Set line numbering relative to current line
 "}
-" ## PLAINTEXT EDITING ## {
-    set spell               " Turn spellcheck on
-    set spelllang=en        " Set spelling to English
+" ## Plaintext Editing ## {
+    set spell                " Turn spellcheck on
+    set spelllang=en         " Set spelling to English
     au FileType text,markdown setlocal textwidth=84 " Keep text files from getting too wide
 "}
-" ## FILETYPE-SPECIFIC SETTINGS ## {
+" ## Filetype-Specific Settings ## {
     au FileType javascript,css setlocal ts=2 sts=2 sw=2
     au FileType xhtml,html,htm,php,xml setlocal noexpandtab ts=2 sts=2 sw=2
 
     " Enable syntax highlighting for jquery files
     au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 "}
-" ## WHITESPACE DETECTOR ## {
-    " Highlight trailing whitespace, don't highlight while typing
+" ## Trailing Whitespace Highlighter ## {
+    " Highlight trailing whitespace after leaving insert mode
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=DarkRed guibg=DarkRed
     au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
     au InsertLeave * match ExtraWhitespace /\s\+$/
 "}
-" ## SEARCHING ## {
-    set ignorecase          " Ignore case when searching...
-    set smartcase           " ...Except when search contains an uppercase char
-    set hlsearch            " Highlight search items
-    set incsearch           " Highlight search results as you type
+" ## Searching ## {
+    set ignorecase           " Ignore case when searching...
+    set smartcase            " ...Except when search contains an uppercase char
+    set hlsearch             " Highlight search items
 "}
-" ## AUTOCOMPLETION ## {
-    " Enable the Pydiction auto-completion library
-    " let g:pydiction_location = '$HOME/.vim/bundle/Pydiction/complete-dict'
+" ## Autocompletion ## {
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 "}
-" ## COLOR SCHEME ## {
+" ## Color Scheme ## {
     set background=dark
 
     if (&t_Co == 256 || &t_Co == 88) && !has('gui_running') &&
@@ -98,13 +100,8 @@
         colorscheme molokai
     endif
 "}
-" ## EXTERNAL PROGRAMS ## {
-    " Convert markdown to HTML
-    nmap <leader>md :%!/usr/bin/markdown_py<CR>
-"}
-" ## KEYBINDINGS ## {
-    " Change leader key from \ to ,
-    let mapleader=","
+" ## Keybindings ## {
+    let mapleader=","        " Change leader key from \ to ,
 
     " Activate : using ;
     nnoremap ; :
@@ -112,7 +109,8 @@
     " Map leader to pane switching for great victory
     nnoremap <leader>w <C-w>w
 
-    nnoremap <leader>] zfi}      " Fold within curly braces
+    " Fold within curly braces
+    nnoremap <leader>] zfi}
 
     " Move down by displayed lines, not actual lines
     nnoremap j gj
@@ -145,8 +143,7 @@
     " Toggle spell check
     nnoremap <F4> :set spell!<CR>
 
-    " Clear any highlighting on search terms
-    nmap <silent> <F5> :set hlsearch!<CR>
+    nmap <silent> <F5> :set hlsearch!<CR> " Clear any highlighting on search terms
 
     " Strip trailing whitespace from all lines
     nmap <silent> <F11> :%s/\s\+$<CR>

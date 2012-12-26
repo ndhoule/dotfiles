@@ -25,7 +25,6 @@
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'scrooloose/nerdtree'
     Bundle 'scrooloose/syntastic.git'
-    Bundle 'Shougo/neocomplcache.git'
     Bundle 'Townk/vim-autoclose.git'
     Bundle 'tpope/vim-fugitive'
     Bundle 'tpope/vim-surround'
