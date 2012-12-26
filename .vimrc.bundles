@@ -1,12 +1,12 @@
-" ## MODELINE & NOTES ## {
+" ## Modeline & Notes ## {
 " Fold sections by default
 " vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
-" 
+"
 " Nathan Houle's ~/.vimrc.bundles
 " Define vim plugins to be managed by Vundle here.
-" 
+"
 " }
-" ## ENVIRONMENT SET-UP ## {
+" ## Environment Set-Up ## {
     set nocompatible                " Turn off Vi compatibility (required)
     filetype off                    " Required!
 
@@ -15,9 +15,9 @@
     call vundle#rc()
 
     " Let Vundle manage Vundle
-    Bundle 'gmarik/vundle' 
+    Bundle 'gmarik/vundle'
 " }
-" ## USER BUNDLES ## {
+" ## User Bundles ## {
     Bundle 'godlygeek/tabular'
     Bundle 'hallison/vim-markdown'
     Bundle 'kien/ctrlp.vim'
@@ -35,8 +35,7 @@
     Bundle 'vim-scripts/jQuery.git'
     Bundle 'vim-scripts/Rename.git'
     Bundle 'vim-scripts/YankRing.vim.git'
-    Bundle 'walm/jshint.vim.git'
 " }
-" ## POST-SETUP CLEANUP ## {
+" ## Post-Setup Cleanup ## {
     filetype plugin indent on       " Turn plugins, indentation back on
 " }
