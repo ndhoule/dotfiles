@@ -55,10 +55,14 @@
     hostname=$(hostname)
 # }
 ## Environment variables ## {
-    export PATH=$PATH:$HOME/bin:/usr/local/share/npm/bin
+    export PATH=$PATH:$HOME/bin:/usr/local/share/npm/bin:$HOME/.rvm/bin:/usr/local/share/python
     export PAGER=vimpager
     export EDITOR=vim
     export SVN_EDITOR=vim
+    # Import git-flow 
+    if [[ -e /usr/local/share/zsh/site-functions/git-flow-completion.zsh ]]; then
+        source /usr/local/share/zsh/site-functions/git-flow-completion.zsh
+    fi
 # }
 ## Shell behavior ## {
     export HISTFILE=~/.zsh_history
