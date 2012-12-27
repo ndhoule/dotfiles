@@ -48,12 +48,7 @@ UPDATESCRIPT=\"../../update.sh\"
 exec \$UPDATESCRIPT" > $POSTRECEIVE_HOOKFILE
 
 # Change shell to zsh
-if [ $OS == "Linux" ]; then
-    chsh -s /bin/zsh
-fi
-if [ $OS == "FreeBSD" ]; then
-    chsh -s /usr/local/bin/zsh
-fi
+chsh -s zsh
 
 # Prompt user to reload shell
 echo "Reload your shell for changes to take effect."
