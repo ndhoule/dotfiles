@@ -25,6 +25,10 @@
         source ~/.vimrc.bundles
     endif
 
+    " Enable YankRing and move its storage file
+    let g:yankring_enabled = 1
+    let g:yankring_history_file = '.vim-yankring_history'
+
     " Show Powerline by default
     set laststatus=2
     let g:Powerline_symbols = 'fancy'
