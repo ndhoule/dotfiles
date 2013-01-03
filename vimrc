@@ -36,6 +36,11 @@
     " Let Syntastic lint files on save and show location markers, pane
     let g:syntastic_enable_signs=1
     let g:syntastic_auto_loc_list=1
+
+    " Map ragtag
+    inoremap <M-o>       <Esc>o
+    inoremap <C-j>       <Down>
+    let g:ragtag_global_maps = 1
 "}
 " ## General Settings ## {
     set encoding=utf-8       " Use UTF-8 encoding by default
@@ -58,6 +63,7 @@
     set shiftwidth=4         " Auto-indent this many spaces
     set expandtab            " Turn <Tab> into spaces indicated in tabstop
     set relativenumber       " Set line numbering relative to current line
+    set list listchars=tab:→\ ,trail:·
 "}
 " ## Plaintext Editing ## {
     set spell                " Turn spellcheck on

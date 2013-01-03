@@ -18,6 +18,10 @@ POSTRECEIVE_HOOKFILE=$DOTFILEDIR/.git/hooks/post-receive
 # Clone down any git submodules
 git submodule update --init
 
+# Clone down zprezto. TODO: Move into submodules
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.dotfiles/zprezto"
+sudo chmod ugo-x /usr/libexec/path_helper
+
 # Back up existing dotfiles
 for file in $DOTFILES; do
     if [ -h ~/$file ] || [ -e ~/$file ]; then
@@ -29,7 +33,7 @@ done
 
 # Link the dotfiles into place
 for file in $DOTFILES; do
-    ln -s ${DOTFILEDIR}/${file} ~/${file}
+    ln -s ${DOTFILEDIR}/${file} ~/.${file}
 done
 
 # Create a local bin folder

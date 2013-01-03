@@ -5,64 +5,18 @@
     #
     # Nathan Houle's ~.zshrc
     #
-# } 
-## oh-my-zsh Settings ## {
-    # Path to your oh-my-zsh configuration.
-    ZSH=$HOME/.oh-my-zsh
-
-    # Set name of the theme to load. Look in ~/.oh-my-zsh/themes/
-    ZSH_THEME="lukerandall"
-
-    # Set to this to use case-sensitive completion
-    # CASE_SENSITIVE="true"
-
-    # Comment this out to disable weekly auto-update checks
-    # DISABLE_AUTO_UPDATE="true"
-
-    # Uncomment following line if you want to disable colors in ls
-    # DISABLE_LS_COLORS="true"
-
-    # Uncomment following line if you want to disable autosetting terminal title.
-    # DISABLE_AUTO_TITLE="true"
-
-    # Uncomment following line if you want red dots to be displayed while waiting for completion
-    # COMPLETION_WAITING_DOTS="true"
-
-    # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-    # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-
-    if [[ $hostname == "hoth" ]]; then
-        zsh_plugins="archlinux virtualenvwrapper"
+# }
+## zprezto Settings ## {
+    # Source Prezto
+    if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+      source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
     fi
-
-    if [[ $os == "darwin" ]]; then
-        zsh_plugins="osx brew sublime terminalapp"
-    fi
-
-    if [[ $os == "freebsd" ]]; then
-        # FreeBSD-specific options here
-    fi
- 
-    plugins=( git github python django vundle $(echo $zsh_plugins) )
-
-
-    source $ZSH/oh-my-zsh.sh
-# } 
+# }
 ## Global Functions ## {
     lowercase(){ echo "$1" | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/" }
     # Set some sweet, sweet variables
     os=$(lowercase $(uname -s))
     hostname=$(hostname)
-# }
-## Environment variables ## {
-    export PATH=$PATH:$HOME/bin:/usr/local/share/npm/bin:$HOME/.rvm/bin:/usr/local/share/python
-    export PAGER=vimpager
-    export EDITOR=vim
-    export SVN_EDITOR=vim
-    # Import git-flow 
-    if [[ -e /usr/local/share/zsh/site-functions/git-flow-completion.zsh ]]; then
-        source /usr/local/share/zsh/site-functions/git-flow-completion.zsh
-    fi
 # }
 ## Shell behavior ## {
     export HISTFILE=~/.zsh_history
@@ -101,9 +55,9 @@
 ## Host/OS-specific ## {
     if [[ $hostname == "hoth" ]]; then 
         # Fix MacBook fn keys
-        bindkey "^[[1~" beginning-of-line
-        bindkey "^[[4~" end-of-line
-        bindkey "^[[3~" delete-char
+        #bindkey "^[[1~" beginning-of-line
+        #bindkey "^[[4~" end-of-line
+        #bindkey "^[[3~" delete-char
     fi
 
     if [[ $hostname == "hoth" ]]; then
@@ -119,3 +73,4 @@
         # FreeBSD-specific options here
     fi
 # }
+
