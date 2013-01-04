@@ -21,6 +21,7 @@ export VISUAL='vim'
 export EDITOR='vim'
 export SVN_EDITOR='vim'
 export PAGER='vimpager'
+export VIM_APP_DIR='/usr/local/Cellar/macvim/7.3-66'
 
 #
 # Language
@@ -77,8 +78,8 @@ unset path_file
 
 # Set the list of directories that Zsh searches for programs.
 path=(
-  /$HOME/bin
-  /$HOME/.rvm/bin
+  $HOME/bin
+  $HOME/.rvm/bin
   /usr/local/share/npm/bin
   /usr/local/share/python
   /usr/local/{bin,sbin}
