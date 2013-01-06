@@ -18,3 +18,5 @@
   fi
 } &!
 
+rvm use 1.9.3 > /dev/null 2>&1
+

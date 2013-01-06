@@ -55,9 +55,12 @@
     set wildmenu             " Better buffer switching menu
 "}
 " ## Text Display and Formatting ## {
+    set cursorline           " Highlight the current line
+    set cursorcolumn         " Highlight the current column
     syntax on                " Turn syntax highlighting on
     set relativenumber       " Set line numbering relative to current line
-    set colorcolumn=85       " Show a column at 85 to show max width
+    set colorcolumn=80       " Show a column at 85 to show max width
+    set textwidth=84         " Keep text files from getting too wide
     set tabstop=4            " Set tab width to four spaces
     set softtabstop=4        " Make tabs easier to delete
     set shiftwidth=4         " Auto-indent this many spaces
@@ -68,7 +71,6 @@
 " ## Plaintext Editing ## {
     set spell                " Turn spellcheck on
     set spelllang=en         " Set spelling to English
-    au FileType text,markdown setlocal textwidth=84 " Keep text files from getting too wide
 "}
 " ## Filetype-Specific Settings ## {
     au FileType javascript,css setlocal ts=2 sts=2 sw=2
@@ -119,6 +121,10 @@
     " Map leader to pane switching for great victory
     nnoremap <leader>w <C-w>w
 
+    " Shortcuts for splitting
+    nnoremap <leader>vs :vsplit<CR>
+    nnoremap <leader>hs :split<CR>
+
     " Fold within curly braces
     nnoremap <leader>] zfi}
 
@@ -161,3 +167,4 @@
     " Open the yank ring
     nnoremap <silent> <F12> :YRShow<CR>
 "}
+

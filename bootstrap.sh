@@ -9,10 +9,12 @@ set -e
 # Set some variables
 OS=$(uname -s)
 WORKINGDIR=$(pwd)
-DOTFILEDIR=$(dirname $(readlink -f $0))
+# TODO: Test this further, check for greadlink on osx and error if it doesnt exist
+# Same with brew and other prerequisites
+READLINKPATH=$(which greadlink || which readlink)
+DOTFILEDIR=$(dirname $($READLINKPATH -f $0))
 BACKUPDIR=~/.dotfiles.bak
-DOTFILES=$(ls -a $DOTFILEDIR | grep "^\." | grep -v -e "^..\?$" -e "^.git$" \
-           -e "^.gitignore$" -e "^.gitmodules$" )
+DOTFILES=$(ls $DOTFILEDIR | grep -v -e "^README.md$" -e "^bootstrap.sh$" -e "^update.sh$")
 POSTRECEIVE_HOOKFILE=$DOTFILEDIR/.git/hooks/post-receive
 
 # Clone down any git submodules
@@ -20,7 +22,9 @@ git submodule update --init
 
 # Clone down zprezto. TODO: Move into submodules
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.dotfiles/zprezto"
-sudo chmod ugo-x /usr/libexec/path_helper
+if [ -e /usr/libexec/path_helper ]; then
+    sudo chmod ugo-x /usr/libexec/path_helper
+fi
 
 # Back up existing dotfiles
 for file in $DOTFILES; do

@@ -20,6 +20,7 @@
 " ## User Bundles ## {
     Bundle 'godlygeek/tabular'
     Bundle 'hallison/vim-markdown'
+    Bundle 'kchmck/vim-coffee-script.git'
     Bundle 'kien/ctrlp.vim'
     Bundle 'Lokaltog/vim-powerline'
     Bundle 'ndhoule/vim-ragtag.git'
