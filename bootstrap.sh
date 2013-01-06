@@ -21,7 +21,7 @@ POSTRECEIVE_HOOKFILE=$DOTFILEDIR/.git/hooks/post-receive
 git submodule update --init
 
 # Clone down zprezto. TODO: Move into submodules
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.dotfiles/zprezto"
+git clone --recursive git://github.com/ndhoule/prezto.git "${ZDOTDIR:-$HOME}/.dotfiles/zprezto"
 if [ -e /usr/libexec/path_helper ]; then
     sudo chmod ugo-x /usr/libexec/path_helper
 fi
