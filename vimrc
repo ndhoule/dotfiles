@@ -21,9 +21,12 @@
 "}
 " ## Bundles and Plugin Setup ## {
     " Use local bundles if available
-    if filereadable(expand("~/.vimrc.bundles"))
+    if filereadable(expand('~/.vimrc.bundles'))
         source ~/.vimrc.bundles
     endif
+
+    " Change snippets directory
+    let g:snippets_dir = '~/.vim/snippets'
 
     " Enable YankRing and move its storage file
     let g:yankring_enabled = 1

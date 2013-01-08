@@ -23,6 +23,7 @@
     Bundle 'kchmck/vim-coffee-script.git'
     Bundle 'kien/ctrlp.vim'
     Bundle 'Lokaltog/vim-powerline'
+    Bundle 'msanders/snipmate.vim.git'
     Bundle 'ndhoule/vim-ragtag.git'
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'scrooloose/nerdtree'
