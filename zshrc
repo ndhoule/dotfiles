@@ -4,17 +4,22 @@
     # vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
     #
 # }
+## Global Functions ## {
+    lowercase(){ echo "$1" | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/" }
+    # Set some sweet, sweet variables
+    os=$(lowercase $(uname -s))
+    hostname=$(hostname)
+# }
 ## zprezto Settings ## {
     # Source prezto
     if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
       source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
     fi
 # }
-## Global Functions ## {
-    lowercase(){ echo "$1" | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/" }
-    # Set some sweet, sweet variables
-    os=$(lowercase $(uname -s))
-    hostname=$(hostname)
+## Sourced Shell Files ## {
+    if [[ -e $(which virtualenvwrapper.sh) ]]; then
+        source /usr/local/share/python/virtualenvwrapper.sh
+    fi
 # }
 ## Shell Behavior ## {
     export HISTFILE=~/.zsh_history
