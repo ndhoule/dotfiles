@@ -18,6 +18,9 @@
     nnoremap <F1> <ESC>
     inoremap <F1> <ESC>
     vnoremap <F1> <ESC>
+
+    " Disable tmux status line when entering vim
+    "autocmd VimEnter,VimLeave * silent !tmux set status
 "}
 " ## Bundles and Plugin Setup ## {
     " Use local bundles if available
@@ -72,12 +75,10 @@
     set list listchars=tab:→\ ,trail:·
 "}
 " ## Plaintext Editing ## {
-    set spell                " Turn spellcheck on
     set spelllang=en         " Set spelling to English
 "}
 " ## Filetype-Specific Settings ## {
-    au FileType javascript,css setlocal ts=2 sts=2 sw=2
-    au FileType xhtml,html,htm,php,xml setlocal noexpandtab ts=2 sts=2 sw=2
+    au FileType xhtml,html,htm,slim,eruby,php,xml,javascript,css,scss,jade,sass,ruby setlocal ts=2 sts=2 sw=2
 
     " Enable syntax highlighting for jquery files
     au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
@@ -120,6 +121,12 @@
 
     " Activate : using ;
     nnoremap ; :
+
+    " Git mappings
+    nnoremap <leader>gw :Gwrite<CR>
+    nnoremap <leader>gc :Gcommit<CR>
+    nnoremap <leader>gst :Gstatus<CR>
+    nnoremap <leader>gd :Gdiff<CR>
 
     " Map leader to pane switching for great victory
     nnoremap <leader>w <C-w>w
@@ -170,4 +177,3 @@
     " Open the yank ring
     nnoremap <silent> <F12> :YRShow<CR>
 "}
-
