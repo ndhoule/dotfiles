@@ -82,6 +82,7 @@ path=(
   $HOME/.rvm/bin
   /usr/local/share/npm/bin
   /usr/local/share/python
+  /usr/local/lib/python2.7/site-packages
   /usr/local/{bin,sbin}
   /usr/{bin,sbin}
   /{bin,sbin}
