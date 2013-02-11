@@ -31,12 +31,12 @@ zstyle ':prezto:load' pmodule \
   'directory' \
   'spectrum' \
   'utility' \
-  'completion' \
-  'prompt' \
   'osx' \
   'git' \
-  'tmux' \
-  'ruby'
+  'ruby' \
+  'rails' \
+  'completion' \
+  'prompt'
 
 #
 # Editor
@@ -60,7 +60,7 @@ zstyle ':prezto:module:editor' keymap 'vi'
 #
 
 # Set the command prefix on non-GNU systems.
-# zstyle ':prezto:module:gnu-utility' prefix 'g'
+zstyle ':prezto:module:gnu-utility' prefix 'g'
 
 #
 # Pacman
