@@ -24,6 +24,7 @@
     Bundle 'hallison/vim-markdown'
     Bundle 'kchmck/vim-coffee-script.git'
     Bundle 'kien/ctrlp.vim'
+    Bundle 'kien/rainbow_parentheses.vim.git'
     Bundle 'Lokaltog/vim-powerline.git'
     Bundle 'msanders/snipmate.vim.git'
     Bundle 'ndhoule/vim-ragtag.git'
@@ -44,7 +45,7 @@
     Bundle 'vim-scripts/guicolorscheme.vim'
     Bundle 'vim-scripts/jQuery.git'
     Bundle 'vim-scripts/Rename.git'
-    Bundle 'vim-scripts/slimv.vim.git'
+    Bundle 'vim-scripts/VimClojure.git'
     Bundle 'vim-scripts/YankRing.vim.git'
 " }
 " ## Post-Setup Cleanup ## {

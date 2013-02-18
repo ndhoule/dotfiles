@@ -28,6 +28,18 @@
         source ~/.vimrc.bundles
     endif
 
+    " Enable rainbow parens on load
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces
+
+    " Set VimClojure settings
+    let g:vimclojure#HighlightBuiltins = 1
+    let g:vimclojure#ParenRainbow = 1
+    let vimclojure#WantNailgun = 1
+    let vimclojure#NailgunClient = "/Users/nathanhoule/lib/nailgun/ng"
+
     " Change snippets directory
     let g:snippets_dir = '~/.vim/snippets'
 
