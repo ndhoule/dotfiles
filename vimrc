@@ -41,7 +41,7 @@
     let vimclojure#NailgunClient = "/Users/nathanhoule/lib/nailgun/ng"
 
     " Change snippets directory
-    let g:snippets_dir = '~/.vim/snippets'
+    let g:snips_trigger_key = '<C-\>'
 
     " Enable YankRing and move its storage file
     let g:yankring_enabled = 1
@@ -59,6 +59,11 @@
     inoremap <M-o>       <Esc>o
     inoremap <C-j>       <Down>
     let g:ragtag_global_maps = 1
+
+    " Set tagbar to use jsctags on JavaScript files
+    let g:tagbar_type_javascript = {
+        \ 'ctagsbin' : '/usr/local/share/npm/bin/jsctags'
+    \ }
 "}
 " ## General Settings ## {
     set encoding=utf-8       " Use UTF-8 encoding by default
@@ -169,6 +174,9 @@
     " Launch nerdtree plugin
     noremap <silent> <leader>n :NERDTreeToggle<CR>
 
+    " Toggle tagbar
+    nmap <silent> <F11> :TagbarToggle<CR>
+
     " Launch CtrlP plugin
     map <leader>t :CtrlP<CR>
 
@@ -184,7 +192,7 @@
     nmap <silent> <F5> :set hlsearch!<CR> " Clear any highlighting on search terms
 
     " Strip trailing whitespace from all lines
-    nmap <silent> <F11> :%s/\s\+$<CR>
+    nmap <silent> <F10> :%s/\s\+$<CR>
 
     " Open the yank ring
     nnoremap <silent> <F12> :YRShow<CR>

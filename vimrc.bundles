@@ -26,7 +26,7 @@
     Bundle 'kien/ctrlp.vim'
     Bundle 'kien/rainbow_parentheses.vim.git'
     Bundle 'Lokaltog/vim-powerline.git'
-    Bundle 'msanders/snipmate.vim.git'
+    Bundle 'majutsushi/tagbar.git'
     Bundle 'ndhoule/vim-ragtag.git'
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'scrooloose/nerdtree'
@@ -47,6 +47,12 @@
     Bundle 'vim-scripts/Rename.git'
     Bundle 'vim-scripts/VimClojure.git'
     Bundle 'vim-scripts/YankRing.vim.git'
+
+    " SnipMate plugins
+    Bundle 'garbas/vim-snipmate.git'
+    Bundle 'MarcWeber/vim-addon-mw-utils.git'
+    Bundle 'tomtom/tlib_vim.git'
+    Bundle 'honza/snipmate-snippets.git'
 " }
 " ## Post-Setup Cleanup ## {
     filetype plugin indent on       " Turn plugins, indentation back on
