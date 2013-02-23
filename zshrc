@@ -31,22 +31,25 @@
     set -o notify                  # Notify when background jobs terminate
 # }}
 ## Aliases ## {{
-    ## Set additional ls commands
+    # Set additional ls commands
     alias l='ls -al'
     alias ll='ls -l'
     alias lll='ls -a'
 
-    # alias more to less--I always say more when I mean less ;)
+    # Alias more to less--I always say more when I mean less ;)
     alias more='less'
     # Make sure stuff piped through less retains color
     alias less='less -R'
 
-    ## If installed, prefer vim over vi
+    # If installed, prefer vim over vi
     if [[ -x `which vim` ]]; then
         alias vi='vim'
     fi
 
-    ## Always use 256-color tmux
+    # Shortcut for remote gvim sessions
+    alias rgvim='gvim --remote'
+
+    # Always use 256-color tmux
     alias tmux='tmux -2'
 
     # Short Git aliases
