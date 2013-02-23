@@ -1,13 +1,13 @@
-" ## Modeline & Notes ## {
+" ## Modeline & Notes ## {{
     " Fold sections by default
-    " vim: set foldmarker={,"} foldlevel=0 foldmethod=marker spell:
+    " vim: set foldmarker={{,"}} foldlevel=0 foldmethod=marker spell:
     "
     "
     " Nathan Houle's ~.vimrc
     " Any genius contained within shamelessly stolen from smarter folks
     "
-"}
-" ## Initial Setup ## {
+"}}
+" ## Initial Setup ## {{
     " Don't load this file when using evim
     if v:progname =~? "evim"
         finish
@@ -21,24 +21,16 @@
 
     " Disable tmux status line when entering vim
     "autocmd VimEnter,VimLeave * silent !tmux set status
-"}
-" ## Bundles and Plugin Setup ## {
+"}}
+" ## Bundles and Plugin Setup ## {{
     " Use local bundles if available
     if filereadable(expand('~/.vimrc.bundles'))
         source ~/.vimrc.bundles
     endif
 
-    " Enable rainbow parens on load
-    au VimEnter * RainbowParenthesesToggle
-    au Syntax * RainbowParenthesesLoadRound
-    au Syntax * RainbowParenthesesLoadSquare
-    au Syntax * RainbowParenthesesLoadBraces
-
     " Set VimClojure settings
     let g:vimclojure#HighlightBuiltins = 1
     let g:vimclojure#ParenRainbow = 1
-    let vimclojure#WantNailgun = 1
-    let vimclojure#NailgunClient = "/Users/nathanhoule/lib/nailgun/ng"
 
     " Change snippets directory
     let g:snips_trigger_key = '<C-\>'
@@ -64,8 +56,8 @@
     let g:tagbar_type_javascript = {
         \ 'ctagsbin' : '/usr/local/share/npm/bin/jsctags'
     \ }
-"}
-" ## General Settings ## {
+"}}
+" ## General Settings ## {{
     set encoding=utf-8       " Use UTF-8 encoding by default
     set scrolloff=5          " Start scrolling five lines from the bottom
     set history=100          " Give vim a long memory
@@ -76,8 +68,8 @@
     set noswapfile           " Swap files go down the hole
     set autowrite            " Autosave on make or shell commands
     set wildmenu             " Better buffer switching menu
-"}
-" ## Text Display and Formatting ## {
+"}}
+" ## Text Display and Formatting ## {{
     set cursorline           " Highlight the current line
     set cursorcolumn         " Highlight the current column
     syntax on                " Turn syntax highlighting on
@@ -90,35 +82,35 @@
     set expandtab            " Turn <Tab> into spaces indicated in tabstop
     set relativenumber       " Set line numbering relative to current line
     set list listchars=tab:→\ ,trail:·
-"}
-" ## Plaintext Editing ## {
+"}}
+" ## Plaintext Editing ## {{
     set spelllang=en         " Set spelling to English
-"}
-" ## Filetype-Specific Settings ## {
+"}}
+" ## Filetype-Specific Settings ## {{
     au FileType xhtml,html,htm,slim,eruby,php,xml,javascript,css,scss,jade,sass,ruby setlocal ts=2 sts=2 sw=2
 
     " Enable syntax highlighting for jquery files
     au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
-"}
-" ## Trailing Whitespace Highlighter ## {
+"}}
+" ## Trailing Whitespace Highlighter ## {{
     " Highlight trailing whitespace after leaving insert mode
     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=DarkRed guibg=DarkRed
     au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
     au InsertLeave * match ExtraWhitespace /\s\+$/
-"}
-" ## Searching ## {
+"}}
+" ## Searching ## {{
     set ignorecase           " Ignore case when searching...
     set smartcase            " ...Except when search contains an uppercase char
     set hlsearch             " Highlight search items
-"}
-" ## Autocompletion ## {
+"}}
+" ## Autocompletion ## {{
     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"}
-" ## Color Scheme ## {
+"}}
+" ## Color Scheme ## {{
     set background=dark
 
     if (&t_Co == 256 || &t_Co == 88) && !has('gui_running') &&
@@ -132,8 +124,8 @@
         " regular :colorscheme command.
         colorscheme molokai
     endif
-"}
-" ## Keybindings ## {
+"}}
+" ## Keybindings ## {{
     let mapleader=","        " Change leader key from \ to ,
 
     " Activate : using ;
@@ -153,7 +145,7 @@
     nnoremap <leader>hs :split<CR>
 
     " Fold within curly braces
-    nnoremap <leader>] zfi}
+    nnoremap <leader>} zfi}
 
     " Move down by displayed lines, not actual lines
     nnoremap j gj
@@ -174,11 +166,25 @@
     " Launch nerdtree plugin
     noremap <silent> <leader>n :NERDTreeToggle<CR>
 
-    " Toggle tagbar
-    nmap <silent> <F11> :TagbarToggle<CR>
-
     " Launch CtrlP plugin
     map <leader>t :CtrlP<CR>
+
+    nmap <silent> <leader>ch :set hlsearch!<CR> " Clear any highlighting on search terms
+
+    " Toggle tagbar
+    nmap <silent> <leader><Tab> :TagbarToggle<CR>
+
+    " Toggle rainbow parens (defaults to parens only)
+    function Rainbows()
+      :RainbowParenthesesToggle
+      :RainbowParenthesesLoadRound
+    endfunction
+
+    nnoremap <silent> <leader>r :exec Rainbows()<CR>
+
+
+    " Open a scratch file
+    nnoremap <silent> <leader>s :Scratch<CR>
 
     " Toggle between regular numbering, relative numbering, no numbering
     nmap <silent> <F2> :exec &nu==&rnu? "se nu!" : "se rnu!"<CR>
@@ -189,11 +195,17 @@
     " Toggle spell check
     nnoremap <F4> :set spell!<CR>
 
-    nmap <silent> <F5> :set hlsearch!<CR> " Clear any highlighting on search terms
-
     " Strip trailing whitespace from all lines
-    nmap <silent> <F10> :%s/\s\+$<CR>
+    nmap <silent> <F11> :%s/\s\+$<CR>
 
     " Open the yank ring
     nnoremap <silent> <F12> :YRShow<CR>
-"}
+
+    " Slimux commands - Send stuff to a REPL for great virtousness
+    nnoremap \sl :SlimuxREPLSendLine<CR>
+    nnoremap \sp :SlimuxShellPrompt<CR>
+    nnoremap \sl :SlimuxShellLast<CR>
+    nnoremap \ss :SlimuxREPLSendSelection<CR>
+    nnoremap \ssc :SlimuxShellConfigure<CR>
+    nnoremap \src :SlimuxShellConfigure<CR>
+"}}
