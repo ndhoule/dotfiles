@@ -1,27 +1,27 @@
-## Modeline & Notes ## {
+## Modeline & Notes ## {{
     #
     # Fold sections by default
-    # vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
+    # vim: set foldmarker={{,}} foldlevel=0 foldmethod=marker spell:
     #
-# }
-## Global Functions ## {
+# }}
+## Global Functions ## {{
     lowercase(){ echo "$1" | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/" }
     # Set some sweet, sweet variables
     os=$(lowercase $(uname -s))
     hostname=$(hostname)
-# }
-## zprezto Settings ## {
+# }}
+## zprezto Settings ## {{
     # Source prezto
     if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
       source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
     fi
-# }
-## Sourced Shell Files ## {
+# }}
+## Sourced Shell Files ## {{
     if [[ -e $(which virtualenvwrapper.sh) ]]; then
         source /usr/local/share/python/virtualenvwrapper.sh
     fi
-# }
-## Shell Behavior ## {
+# }}
+## Shell Behavior ## {{
     export HISTFILE=~/.zsh_history
     export HISTSIZE=1000           # Set bash history max commands saved
     export HISTFILESIZE=2000       # Set bash history max lines saved
@@ -29,8 +29,8 @@
     export HISTIGNORE="&:ls:l:ll:lll:pwd:exit:clear"  # Don't log boring shit
     set -o ignoreeof               # Prevent Ctrl-D from exiting shell
     set -o notify                  # Notify when background jobs terminate
-# }
-## Aliases ## {
+# }}
+## Aliases ## {{
     ## Set additional ls commands
     alias l='ls -al'
     alias ll='ls -l'
@@ -60,8 +60,8 @@
     alias gb='git branch'
     alias gba='git branch -a'
     alias del='git branch -d'
-# }
-## Key Remaps ## {
+# }}
+## Key Remaps ## {{
     bindkey -v                                          # Use vi key bindings
 
     bindkey '\ew' kill-region                           # [Esc-w] - Kill from the cursor to the mark
@@ -96,4 +96,4 @@
     bindkey '^[[3~' delete-char                         # [fn-Delete] - delete forward
     bindkey '^[3;5~' delete-char
     bindkey '\e[3~' delete-char
-# }
+# }}
