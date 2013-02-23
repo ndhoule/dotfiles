@@ -202,10 +202,10 @@
     nnoremap <silent> <F12> :YRShow<CR>
 
     " Slimux commands - Send stuff to a REPL for great virtousness
-    nnoremap \sl :SlimuxREPLSendLine<CR>
-    nnoremap \sp :SlimuxShellPrompt<CR>
-    nnoremap \sl :SlimuxShellLast<CR>
-    nnoremap \ss :SlimuxREPLSendSelection<CR>
-    nnoremap \ssc :SlimuxShellConfigure<CR>
-    nnoremap \src :SlimuxShellConfigure<CR>
+    map \sl :SlimuxREPLSendLine<CR>
+    map \sp :SlimuxShellPrompt<CR>
+    map \sl :SlimuxShellLast<CR>
+    map \ss :SlimuxREPLSendSelection<CR>
+    map \ssc :SlimuxShellConfigure<CR>
+    map \src :SlimuxShellConfigure<CR>
 "}}
