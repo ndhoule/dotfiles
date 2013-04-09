@@ -79,10 +79,7 @@ unset path_file
 # Set the list of directories that Zsh searches for programs.
 path=(
   $HOME/bin
-  $HOME/.rvm/bin
-  /usr/local/share/npm/bin
-  /usr/local/share/python
-  /usr/local/lib/python2.7/site-packages
+  /Applications/Racket-v5.3.1/bin
   /usr/local/{bin,sbin}
   /usr/{bin,sbin}
   /{bin,sbin}
@@ -104,4 +101,7 @@ if [[ -d "$TMPDIR" ]]; then
     mkdir -p "$TMPPREFIX"
   fi
 fi
+
+# If it exists, source Boxen's environment setup
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
