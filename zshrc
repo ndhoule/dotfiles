@@ -46,11 +46,22 @@
         alias vi='vim'
     fi
 
+    # Alias to selenium server
+    alias selenium-server='java -jar /usr/local/opt/selenium-server-standalone/selenium-server-standalone-2.31.0.jar -p 4444'
+
     # Shortcut for remote gvim sessions
     alias rgvim='gvim --remote'
 
+    # Shortcuts for fixing dumb repls that don't know about arrow keys
+    alias clj='rlwrap clj'
+    alias clojure='rlwrap clj'
+    alias racket='rlwrap racket'
+
+    # Shortcut for opening Sublime
+    alias subl='open -a "Sublime Text 2"'
+
     # Always use 256-color tmux
-    alias tmux='tmux -2'
+    #alias tmux='tmux -2'
 
     # Short Git aliases
     alias gst='git status'
@@ -63,6 +74,11 @@
     alias gb='git branch'
     alias gba='git branch -a'
     alias del='git branch -d'
+# }}
+## Helper Functions ## {{
+    server() {
+       open "http://localhost:${1:-8000}" && $(which python) -m SimpleHTTPServer ${1:-8000}
+    }
 # }}
 ## Key Remaps ## {{
     bindkey -v                                          # Use vi key bindings
