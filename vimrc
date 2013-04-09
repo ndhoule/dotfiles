@@ -23,10 +23,10 @@
     "autocmd VimEnter,VimLeave * silent !tmux set status
 "}}
 " ## Bundles and Plugin Setup ## {{
-    " Use local bundles if available
-    if filereadable(expand('~/.vimrc.bundles'))
-        source ~/.vimrc.bundles
-    endif
+    " Pathogen, go!
+    execute pathogen#infect()
+    syntax on
+    filetype plugin indent on
 
     " Set VimClojure settings
     let g:vimclojure#HighlightBuiltins = 1
@@ -52,10 +52,8 @@
     inoremap <C-j>       <Down>
     let g:ragtag_global_maps = 1
 
-    " Set tagbar to use jsctags on JavaScript files
-    let g:tagbar_type_javascript = {
-        \ 'ctagsbin' : '/usr/local/share/npm/bin/jsctags'
-    \ }
+    " CtrlP Options
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.git,.DS_Store*,*~,*.un~,\#*\#,.emacs.desktop*
 "}}
 " ## General Settings ## {{
     set encoding=utf-8       " Use UTF-8 encoding by default
@@ -64,33 +62,61 @@
     set undolevels=1000      " Keep all the undos
     set title                " Change the terminal window's title
     set showcmd              " Show inc commands in status line as they're being typed
-    set nobackup             " Backups go down the hole
     set noswapfile           " Swap files go down the hole
     set autowrite            " Autosave on make or shell commands
     set wildmenu             " Better buffer switching menu
+
+    " Save backups to a less annoying place than the current directory.
+    " If you have .vim-backup in the current directory, it'll use that.
+    " Otherwise it saves it to ~/.vim/backup or . if all else fails.
+    if isdirectory($HOME . '/.vim/backup') == 0
+      :silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
+    endif
+    set backupdir-=.
+    set backupdir+=.
+    set backupdir-=~/
+    set backupdir^=~/.vim/backup/
+    set backupdir^=./.vim-backup/
+    set backup
+
+    " viminfo stores the state of your previous editing session
+    set viminfo+=n~/.vim/viminfo
+
+    if exists("+undofile")
+      " undofile - This allows you to use undos after exiting and restarting
+      if isdirectory($HOME . '/.vim/undo') == 0
+        :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+      endif
+      set undodir=./.vim-undo//
+      set undodir+=~/.vim/undo//
+      set undofile
+    endif
 "}}
 " ## Text Display and Formatting ## {{
     set cursorline           " Highlight the current line
     set cursorcolumn         " Highlight the current column
     syntax on                " Turn syntax highlighting on
     set relativenumber       " Set line numbering relative to current line
-    set colorcolumn=80       " Show a column at 85 to show max width
-    set textwidth=84         " Keep text files from getting too wide
-    set tabstop=4            " Set tab width to four spaces
-    set softtabstop=4        " Make tabs easier to delete
-    set shiftwidth=4         " Auto-indent this many spaces
+    set colorcolumn=80       " Show a column at 80 to show max width
+    set textwidth=80         " Keep text files from getting too wide
+    set tabstop=2            " Set tab width to four spaces
+    set softtabstop=2        " Make tabs easier to delete
+    set shiftwidth=2         " Auto-indent this many spaces
     set expandtab            " Turn <Tab> into spaces indicated in tabstop
-    set relativenumber       " Set line numbering relative to current line
     set list listchars=tab:→\ ,trail:·
 "}}
 " ## Plaintext Editing ## {{
     set spelllang=en         " Set spelling to English
 "}}
 " ## Filetype-Specific Settings ## {{
-    au FileType xhtml,html,htm,slim,eruby,php,xml,javascript,css,scss,jade,sass,ruby setlocal ts=2 sts=2 sw=2
+    au FileType python setlocal ts=4 sts=4 sw=4
 
     " Enable syntax highlighting for jquery files
     au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+
+
+    " Set puppet files to ruby syntax
+    au BufNewFile,BufRead *.pp set filetype=ruby
 "}}
 " ## Trailing Whitespace Highlighter ## {{
     " Highlight trailing whitespace after leaving insert mode
@@ -151,6 +177,9 @@
     nnoremap j gj
     nnoremap k gk
 
+    " Remap Ctrl-Bksp to delete the last word
+    imap <C-BS> <C-W>
+
     " Remap Q to reformat paragraph text
     vmap Q gq
     nmap Q gqap
@@ -171,17 +200,31 @@
 
     nmap <silent> <leader>ch :set hlsearch!<CR> " Clear any highlighting on search terms
 
-    " Toggle tagbar
-    nmap <silent> <leader><Tab> :TagbarToggle<CR>
-
     " Toggle rainbow parens (defaults to parens only)
-    function Rainbows()
+    function! Rainbows()
       :RainbowParenthesesToggle
       :RainbowParenthesesLoadRound
     endfunction
 
-    nnoremap <silent> <leader>r :exec Rainbows()<CR>
+    nnoremap <silent> <leader>r :call Rainbows()<CR>
 
+    function! PresentationMode()
+       if g:colors_name != "default"
+         colorscheme default
+         set bg=light
+         set nolist
+         set nocursorline
+         set nocursorcolumn
+       else
+         set background=dark
+         colorscheme molokai
+         set cursorline
+         set cursorcolumn
+       endif
+    endfunction
+
+    " Enter/exit presentation mode
+    nnoremap <silent> <leader>pm :call PresentationMode()<CR>
 
     " Open a scratch file
     nnoremap <silent> <leader>s :Scratch<CR>
@@ -202,10 +245,10 @@
     nnoremap <silent> <F12> :YRShow<CR>
 
     " Slimux commands - Send stuff to a REPL for great virtousness
-    map \sl :SlimuxREPLSendLine<CR>
-    map \sp :SlimuxShellPrompt<CR>
-    map \sl :SlimuxShellLast<CR>
-    map \ss :SlimuxREPLSendSelection<CR>
-    map \ssc :SlimuxShellConfigure<CR>
-    map \src :SlimuxShellConfigure<CR>
+    map <leader>sl :SlimuxREPLSendLine<CR>
+    map <leader>sp :SlimuxShellPrompt<CR>
+    map <leader>sla :SlimuxShellLast<CR>
+    map <leader>ss :SlimuxREPLSendSelection<CR>
+    map <leader>ssc :SlimuxShellConfigure<CR>
+    map <leader>src :SlimuxREPLConfigure<CR>
 "}}
