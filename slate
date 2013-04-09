@@ -1,0 +1,21 @@
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+config focusPreferSameApp false
+config focusCheckWidthMax 3000
+config checkDefaultsOnLoad true
+
+alias top-half     move screenOriginX;screenOriginY                             screenSizeX;screenSizeY/2
+alias bottom-half  move screenOriginX;screenOriginY+screenSizeY/2               screenSizeX;screenSizeY/2
+alias left-half    move screenOriginX;screenOriginY                             screenSizeX/2;screenSizeY
+alias right-half   move screenOriginX+screenSizeX/2;screenOriginY               screenSizeX/2;screenSizeY
+alias top-left     move screenOriginX;screenOriginY                             screenSizeX/2;screenSizeY/2
+alias top-right    move screenOriginX+screenSizeX/2;screenOriginY               screenSizeX/2;screenSizeY/2
+alias bottom-left  move screenOriginX;screenOriginY+screenSizeY/2               screenSizeX/2;screenSizeY/2
+alias bottom-right move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2 screenSizeX/2;screenSizeY/2
+alias maximized    move screenOriginX;screenOriginY                             screenSizeX;screenSizeY
+
+# Positioning
+bind left:ctrl;cmd ${left-half}
+bind right:ctrl;cmd ${right-half}
+bind up:ctrl;cmd ${maximized}
