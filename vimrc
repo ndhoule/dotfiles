@@ -162,6 +162,11 @@
     nnoremap <leader>gc :Gcommit<CR>
     nnoremap <leader>gst :Gstatus<CR>
     nnoremap <leader>gd :Gdiff<CR>
+    nnoremap <leader>gd :Gdiff<CR>
+    nnoremap <leader>gb :Gbrowse<CR>
+
+    " Easy JavaScript mode
+    nnoremap <leader>js :set ft=javascript<CR>
 
     " Map leader to pane switching for great victory
     nnoremap <leader>w <C-w>w
@@ -192,11 +197,11 @@
     " Make writing files via sudo easier
     cmap w!! w !sudo tee % >/dev/null
 
-    " Launch nerdtree plugin
+    " Launch nerdtree
     noremap <silent> <leader>n :NERDTreeToggle<CR>
 
-    " Launch CtrlP plugin
-    map <leader>t :CtrlP<CR>
+    " Launch CtrlP
+    let g:ctrlp_map = '<leader>t'
 
     nmap <silent> <leader>ch :set hlsearch!<CR> " Clear any highlighting on search terms
 
