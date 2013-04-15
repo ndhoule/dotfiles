@@ -57,11 +57,8 @@
     alias clojure='rlwrap clj'
     alias racket='rlwrap racket'
 
-    # Shortcut for opening Sublime
-    alias subl='open -a "Sublime Text 2"'
-
     # Always use 256-color tmux
-    #alias tmux='tmux -2'
+    alias tmux='tmux -2'
 
     # Short Git aliases
     alias gst='git status'
