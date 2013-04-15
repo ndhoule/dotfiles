@@ -52,6 +52,9 @@
     inoremap <C-j>       <Down>
     let g:ragtag_global_maps = 1
 
+    " Disable default multicursor hotkeys (we remap them later)
+    let g:multi_cursor_use_default_mapping=0
+
     " CtrlP Options
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.git,.DS_Store*,*~,*.un~,\#*\#,.emacs.desktop*
 "}}
@@ -167,6 +170,15 @@
 
     " Easy JavaScript mode
     nnoremap <leader>js :set ft=javascript<CR>
+
+    " Remap tcomment to use leader key rather than g
+    let g:tcommentMapLeaderOp1="<leader>"
+
+    " Map multicursor hotkeys
+    let g:multi_cursor_next_key="\<C-n>"
+    let g:multi_cursor_prev_key="\<C-b>"
+    let g:multi_cursor_skip_key="\<C-x>"
+    let g:multi_cursor_exit_key="\<Esc>"
 
     " Map leader to pane switching for great victory
     nnoremap <leader>w <C-w>w
