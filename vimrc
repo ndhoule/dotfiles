@@ -37,7 +37,8 @@
 
     " Enable YankRing and move its storage file
     let g:yankring_enabled = 1
-    let g:yankring_history_file = '.vim-yankring_history'
+    let g:yankring_history_dir = '$VIM'
+    let g:yankring_history_file = 'yankring_history'
 
     " Show Powerline by default
     set laststatus=2
