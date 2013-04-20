@@ -3,27 +3,33 @@ slate.configAll({
   'checkDefaultsOnLoad': true
 });
 
-var operations = {
-  maximize: slate.operation("move", {
-    "x" : "screenOriginX",
-    "y" : "screenOriginY",
-    "width" : "screenSizeX",
-    "height" : "screenSizeY"
+var layout = {
+  maximize: S.op('move', {
+    'x' : 'screenOriginX',
+    'y' : 'screenOriginY',
+    'width' : 'screenSizeX',
+    'height' : 'screenSizeY'
   }),
 
-  pushRight: slate.operation("push", {
-    "direction" : "right",
-    "style" : "bar-resize:screenSizeX/2"
+  pushRight: S.op('push', {
+    'direction' : 'right',
+    'style' : 'bar-resize:screenSizeX/2'
   }),
 
-  pushLeft: slate.operation("push", {
-    "direction" : "left",
-    "style" : "bar-resize:screenSizeX/2"
+  pushLeft: S.op('push', {
+    'direction' : 'left',
+    'style' : 'bar-resize:screenSizeX/2'
   })
 };
 
+var operations = {
+  'grid': S.op('grid')
+};
+
 slate.bindAll({
-  "up:ctrl;cmd"    : operations.maximize,
-  "right:ctrl;cmd" : operations.pushRight,
-  "left:ctrl;cmd"  : operations.pushLeft
+  // Directionals
+  'up:ctrl;cmd': layout.maximize,
+  'right:ctrl;cmd': layout.pushRight,
+  'left:ctrl;cmd': layout.pushLeft,
+  'esc:cmd': operations.grid
 });
