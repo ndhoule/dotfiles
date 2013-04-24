@@ -1,3 +1,6 @@
 [submodule "emacs.d"]
 	path = emacs.d
 	url = https://github.com/ndhoule/emacs.d.git
+[submodule "prezto"]
+	path = prezto
+	url = https://github.com/ndhoule/prezto.git
