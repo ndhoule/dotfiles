@@ -5,9 +5,24 @@ vim/bundle
 vim/.netrwhist
 zprezto
 
+# emacs.d-specific ignores
+emacs.d/url/cache
+emacs.d/.emacs.desktop
+emacs.d/auto-save-list
+emacs.d/.session
+emacs.d/custom.el
+emacs.d/tramp
+emacs.d/anything-c-adaptive-history
+emacs.d/elpa
+emacs.d/site-lisp/package/
+emacs.d/swank
+emacs.d/.mc-lists.el
+emacs.d/var
+
 # Temporary files #
 ###################
 *~
+\#*
 *.lock
 *.out
 *.swp
@@ -22,6 +37,7 @@ zprezto
 *.pyc
 *.pyo
 *.so
+*.elc
 
 # OS-specific files #
 #####################
@@ -33,4 +49,3 @@ zprezto
 ehthumbs.db
 Icon?
 Thumbs.db
-
