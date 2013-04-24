@@ -23,7 +23,19 @@ var layout = {
 };
 
 var operations = {
-  'grid': S.op('grid')
+  'grid': S.op('grid'),
+
+  throw0: S.op('throw', {
+    'screen': '0',
+    'width': 'screenSizeX',
+    'height': 'screenSizeY'
+  }),
+
+  throw1: S.op('throw', {
+    'screen' : '1',
+    'width' : 'screenSizeX',
+    'height' : 'screenSizeY'
+  })
 };
 
 slate.bindAll({
@@ -31,5 +43,7 @@ slate.bindAll({
   'up:ctrl;cmd': layout.maximize,
   'right:ctrl;cmd': layout.pushRight,
   'left:ctrl;cmd': layout.pushLeft,
+  '[:ctrl;cmd': operations.throw0,
+  ']:ctrl;cmd': operations.throw1,
   'esc:cmd': operations.grid
 });
