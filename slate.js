@@ -11,6 +11,16 @@ var layout = {
     'height' : 'screenSizeY'
   }),
 
+  pushTop: slate.operation('push', {
+    'direction' : 'top',
+    'style' : 'bar-resize:screenSizeY/2'
+  }),
+
+  pushBottom: slate.operation('push', {
+    'direction' : 'bottom',
+    'style' : 'bar-resize:screenSizeY/2'
+  }),
+
   pushRight: S.op('push', {
     'direction' : 'right',
     'style' : 'bar-resize:screenSizeX/2'
@@ -40,10 +50,16 @@ var operations = {
 
 slate.bindAll({
   // Directionals
-  'up:ctrl;cmd': layout.maximize,
+  'up:ctrl;cmd;shift': layout.maximize,
+  'up:ctrl;cmd': layout.pushTop,
+  'down:ctrl;cmd': layout.pushBottom,
   'right:ctrl;cmd': layout.pushRight,
   'left:ctrl;cmd': layout.pushLeft,
+
+  // Monitors
   '[:ctrl;cmd': operations.throw0,
   ']:ctrl;cmd': operations.throw1,
+
+  // Features
   'esc:cmd': operations.grid
 });
