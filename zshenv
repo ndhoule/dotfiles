@@ -20,7 +20,7 @@ fi
 export VISUAL='vim'
 export EDITOR='vim'
 export SVN_EDITOR='vim'
-export PAGER='vimpager'
+[[ -x $(which vimpager) ]] && export PAGER='vimpager'
 export VIM_APP_DIR='/usr/local/Cellar/macvim/7.3-66'
 
 #
