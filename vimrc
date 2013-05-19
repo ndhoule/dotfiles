@@ -28,6 +28,11 @@
     syntax on
     filetype plugin indent on
 
+    " Powerline, go!
+    " See https://github.com/Lokaltog/powerline/issues/39 and
+    " https://coderwall.com/p/dmhp5q for installation tips
+    source /Library/Python/2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+
     " Set VimClojure settings
     let g:vimclojure#HighlightBuiltins = 1
     let g:vimclojure#ParenRainbow = 1
@@ -115,9 +120,14 @@
 " ## Filetype-Specific Settings ## {{
     au FileType python setlocal ts=4 sts=4 sw=4
 
+    " Allow HTML files to run longer than 80 characters wide
+    au FileType html setlocal textwidth=0 wrapmargin=0
+
+    au BufRead,BufNewFile *.html set ft=handlebars
+    au BufRead,BufNewFile *.lessimport set ft=less
+
     " Enable syntax highlighting for jquery files
     au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
-
 
     " Set puppet files to ruby syntax
     au BufNewFile,BufRead *.pp set filetype=ruby
@@ -174,6 +184,9 @@
 
     " Remap tcomment to use leader key rather than g
     let g:tcommentMapLeaderOp1="<leader>"
+
+    " Remap Dash lookup
+    nnoremap <leader>h :Dash
 
     " Map multicursor hotkeys
     let g:multi_cursor_next_key="\<C-n>"

@@ -46,11 +46,11 @@
         alias vi='vim'
     fi
 
-    # Alias to selenium server
-    alias selenium-server='java -jar /usr/local/opt/selenium-server-standalone/selenium-server-standalone-2.31.0.jar -p 4444'
-
     # Shortcut for remote gvim sessions
     alias rgvim='gvim --remote'
+
+    # Alias easy vim mode
+    alias egvim='gvim -y'
 
     # Shortcuts for fixing dumb repls that don't know about arrow keys
     alias clj='rlwrap clj'
