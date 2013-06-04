@@ -62,7 +62,10 @@
     let g:multi_cursor_use_default_mapping=0
 
     " CtrlP Options
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.git,.DS_Store*,*~,*.un~,\#*\#,.emacs.desktop*
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.git,.DS_Store*,*~,*.un~,\#*\#,.emacs.desktop*,.meteor,node_modules
+
+    " Disable useless subsitute command and replace with vimseek
+    let g:seek_subst_disable = 1
 "}}
 " ## General Settings ## {{
     set encoding=utf-8       " Use UTF-8 encoding by default
