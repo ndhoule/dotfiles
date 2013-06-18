@@ -48,6 +48,12 @@ alias rgvim='gvim --remote'
 # Alias easy vim mode
 alias egvim='gvim -y'
 
+# Alias Emacs to emacsclient
+alias emacs="emacsclient ${1:-'-t'} -a emacs"
+
+# Alias Emacs GUI mode on OS X
+alias gemacs="emacsclient -c -n $1"
+
 # Shortcuts for fixing dumb repls that don't know about arrow keys
 alias clj='rlwrap clj'
 alias clojure='rlwrap clj'
@@ -61,8 +67,9 @@ alias gst='git status'
 alias gc='git commit'
 alias gco='git checkout'
 alias gl='git pull'
-alias gpom="git pull origin master"
+alias glom='git pull origin master'
 alias gp='git push'
+alias gpom="git push origin master"
 alias gd='git diff'
 alias gb='git branch'
 alias gba='git branch -a'
