@@ -1,0 +1,35 @@
+[core]
+	editor = emacsclient -nw -a "emacs -nw"
+	excludesfile = ${HOME}/.gitignore.global
+
+[user]
+	name = Nathan Houle
+	email = nathan@nathanhoule.com
+
+[color]
+	ui = true
+
+[hub]
+	protocol = https
+
+[mergetool]
+	prompt = false
+
+[diff]
+	tool = ediff
+
+[difftool]
+	prompt = false
+
+[credential]
+	helper = osxkeychain
+
+[branch]
+	autosetuprebase = always
+
+[alias]
+	lp = log -p
+	ours = "!f() { git checkout --ours $@ && git add $@; }; f"
+	theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+	snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+	superpull = !git pull && git submodule init && git submodule update

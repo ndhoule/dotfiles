@@ -1,68 +1,94 @@
-## Global Functions
-lowercase(){ echo "$1" | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/" }
-# Set some sweet, sweet variables
-os=$(lowercase $(uname -s))
-hostname=$(hostname)
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
 
+#
+# Zprezto
+#
 
-## zprezto Settings
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+#
+# Completion libraries
+#
 
-## Sourced Shell Files
 if [[ -e $(which teamocil) ]]; then
-  compctl -g '~/.teamocil/*(:t:r)' teamocil
+  compctl -g '${HOME}/.teamocil/*(:t:r)' teamocil
 fi
 
-## Shell Behavior
+#
+# Shell configuration
+#
+
+# Don't log commands beginning with a space
+export HISTCONTROL=ignorespace
 export HISTFILE=~/.zsh_history
-export HISTSIZE=1000           # Set bash history max commands saved
-export HISTFILESIZE=2000       # Set bash history max lines saved
-export HISTCONTROL=ignorespace # Don't store commands beginning with a space
-export HISTIGNORE="&:ls:l:ll:lll:pwd:exit:clear"  # Don't log boring shit
-set -o ignoreeof               # Prevent Ctrl-D from exiting shell
-set -o notify                  # Notify when background jobs terminate
+export HISTSIZE=1000
+export HISTFILESIZE=2000
+export HISTIGNORE="&:ls:l:ll:lll:pwd:exit:clear"
 
+# Prevent Ctrl-D from exiting shell
+set -o ignoreeof
 
-## Aliases
-# Set additional ls commands
+# Notify when background jobs terminate
+set -o notify
+
+#
+# Helper Functions
+#
+
+# Launch a static server in the current directory, passing an optional port
+# number
+server() {
+  open "http://localhost:${1:-8000}" && $(which python) -m SimpleHTTPServer ${1:-8000}
+}
+
+# Keep a process running, restarting it if it crashes
+always() {
+  until $1; do
+    echo "$1 died with exit code $?. Respawning..." >&2
+    sleep 1
+  done
+}
+
+#
+# Aliases
+#
+
 alias l='ls -al'
 alias ll='ls -l'
 alias lll='ls -a'
 
-# Alias more to less--I always say more when I mean less ;)
+# I always say more when I mean less
 alias more='less'
+
 # Make sure stuff piped through less retains color
 alias less='less -R'
 
 # If installed, prefer vim over vi
-if [[ -x `which vim` ]]; then
+if [[ -x $(which vim) ]]; then
   alias vi='vim'
 fi
 
-# Shortcut for remote gvim sessions
-alias rgvim='gvim --remote'
-
-# Alias easy vim mode
+# Easy vim mode
 alias egvim='gvim -y'
 
-# Alias Emacs to emacsclient
-alias emacs="emacsclient ${1:-'-t'} -a emacs"
-
-# Alias Emacs GUI mode on OS X
-alias gemacs="emacsclient -c -n $1"
-
 # Shortcuts for fixing dumb repls that don't know about arrow keys
-alias clj='rlwrap clj'
-alias clojure='rlwrap clj'
-alias racket='rlwrap racket'
+if [[ -x $(rlwrap) ]]; then
+  alias clj='rlwrap clj'
+  alias clojure='rlwrap clj'
+  alias racket='rlwrap racket'
+fi
 
 # Always use 256-color tmux
 alias tmux='tmux -2'
 
-# Short Git aliases
+alias ga='git add'
 alias gst='git status'
 alias gc='git commit'
 alias gco='git checkout'
@@ -75,16 +101,9 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias del='git branch -d'
 
-
-## Helper Functions
-server() {
- open "http://localhost:${1:-8000}" && $(which python) -m SimpleHTTPServer ${1:-8000}
-}
-
-
-## Key Remaps
-bindkey -v                                          # Use vi key bindings
-
+#
+# Key remaps
+#
 bindkey '\ew' kill-region                           # [Esc-w] - Kill from the cursor to the mark
 bindkey '^k' kill-line                              # [Ctrl-k] - Kill from cursor to end of line
 bindkey -s '\el' 'ls\n'                             # [Esc-l] - run command: ls
@@ -103,10 +122,6 @@ bindkey '^[[F'  end-of-line                         # [End] - Go to end of line
 bindkey '^[[4~' end-of-line                         # [End] - Go to end of line
 bindkey '^[OF' end-of-line                          # [End] - Go to end of line
 
-# emacs style
-bindkey '^a' beginning-of-line
-bindkey '^e' end-of-line
-
 bindkey ' ' magic-space                             # [Space] - do history expansion
 
 bindkey '^f' forward-word                           # [Ctrl-F] - move forward one word
@@ -117,3 +132,7 @@ bindkey '^?' backward-delete-char                   # [Delete] - delete backward
 bindkey '^[[3~' delete-char                         # [fn-Delete] - delete forward
 bindkey '^[3;5~' delete-char
 bindkey '\e[3~' delete-char
+
+# Emacs-style bindings
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line

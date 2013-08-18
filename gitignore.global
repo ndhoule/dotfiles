@@ -1,14 +1,15 @@
-# Compiled source #
-###################
+# Compiled source
+#################
 *.com
 *.class
 *.dll
 *.exe
 *.o
 *.so
+*.pyc
 
-# Packages #
-############
+# Packages
+##########
 # it's better to unpack these files and commit the raw source
 # git has its own built in compression methods
 *.7z
@@ -20,14 +21,14 @@
 *.tar
 *.zip
 
-# Logs and databases #
-######################
+# Logs and databases
+####################
 *.log
 *.sql
 *.sqlite
 
-# OS generated files #
-######################
+# OS generated files
+####################
 .DS_Store
 .DS_Store?
 ._*
@@ -37,6 +38,10 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
-# User-specific files #
-#######################
+# User-specific files
+#####################
 *.vims
+.tern-port
+*.swp
+*.swo
+*.orig

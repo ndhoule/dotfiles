@@ -17,19 +17,38 @@ fi
 # Editors
 #
 
-export VISUAL='vim'
-export EDITOR='vim'
-export SVN_EDITOR='vim'
+export VISUAL='emacs'
+export EDITOR='emacs'
+export SVN_EDITOR='emacs'
 [[ -x $(which vimpager) ]] && export PAGER='vimpager'
-export VIM_APP_DIR='/usr/local/Cellar/macvim/7.3-66'
 
 #
 # Language
 #
 
 if [[ -z "$LANG" ]]; then
-  eval "$(locale)"
+  export LANG='en_US.UTF-8'
 fi
+
+#
+# Paths
+#
+
+typeset -gU cdpath fpath mailpath path
+
+# Set the the list of directories that cd searches.
+# cdpath=(
+#   $cdpath
+# )
+
+# Set the list of directories that Zsh searches for programs.
+path=(
+  $HOME/bin
+  /usr/local/{bin,sbin}
+  /usr/{bin,sbin}
+  /{bin,sbin}
+  $path
+)
 
 #
 # Less
@@ -46,62 +65,22 @@ if (( $+commands[lesspipe.sh] )); then
 fi
 
 #
-# Paths
-#
-
-typeset -gU cdpath fpath mailpath manpath path
-typeset -gUT INFOPATH infopath
-
-# Set the the list of directories that cd searches.
-# cdpath=(
-#   $cdpath
-# )
-
-# Set the list of directories that info searches for manuals.
-infopath=(
-  /usr/local/share/info
-  /usr/share/info
-  $infopath
-)
-
-# Set the list of directories that man searches for manuals.
-manpath=(
-  /usr/local/share/man
-  /usr/share/man
-  $manpath
-)
-
-for path_file in /etc/manpaths.d/*(.N); do
-  manpath+=($(<$path_file))
-done
-unset path_file
-
-# Set the list of directories that Zsh searches for programs.
-path=(
-  $HOME/bin
-  /Applications/Racket-v5.3.1/bin
-  /usr/local/{bin,sbin}
-  /usr/{bin,sbin}
-  /{bin,sbin}
-  $path
-)
-
-for path_file in /etc/paths.d/*(.N); do
-  path+=($(<$path_file))
-done
-unset path_file
-
-#
 # Temporary Files
 #
 
-if [[ -d "$TMPDIR" ]]; then
-  export TMPPREFIX="${TMPDIR%/}/zsh"
-  if [[ ! -d "$TMPPREFIX" ]]; then
-    mkdir -p "$TMPPREFIX"
-  fi
+if [[ ! -d "$TMPDIR" ]]; then
+  export TMPDIR="/tmp/$USER"
+  mkdir -p -m 700 "$TMPDIR"
 fi
+
+TMPPREFIX="${TMPDIR%/}/zsh"
+if [[ ! -d "$TMPPREFIX" ]]; then
+  mkdir -p "$TMPPREFIX"
+fi
+
+#
+# Boxen
+#
 
 # If it exists, source Boxen's environment setup
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
-
