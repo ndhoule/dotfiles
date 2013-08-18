@@ -31,7 +31,7 @@
     " Powerline, go!
     " See https://github.com/Lokaltog/powerline/issues/39 and
     " https://coderwall.com/p/dmhp5q for installation tips
-    source /Library/Python/2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+    " source /Library/Python/2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
 
     " Set VimClojure settings
     let g:vimclojure#HighlightBuiltins = 1
