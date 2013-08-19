@@ -3,6 +3,7 @@
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
+#   Nathan Houle <nathan@nathanhoule.com>
 #
 
 #
@@ -39,7 +40,7 @@ set -o ignoreeof
 set -o notify
 
 #
-# Helper Functions
+# Functions
 #
 
 # Launch a static server in the current directory, passing an optional port
@@ -65,7 +66,9 @@ alias ll='ls -l'
 alias lll='ls -a'
 
 # I always say more when I mean less
-alias more='less'
+if [[ -x $(which less) ]]; then
+  alias more='less'
+fi
 
 # Make sure stuff piped through less retains color
 alias less='less -R'
@@ -79,7 +82,7 @@ fi
 alias egvim='gvim -y'
 
 # Shortcuts for fixing dumb repls that don't know about arrow keys
-if [[ -x $(rlwrap) ]]; then
+if [[ -x $(which rlwrap) ]]; then
   alias clj='rlwrap clj'
   alias clojure='rlwrap clj'
   alias racket='rlwrap racket'
@@ -88,6 +91,7 @@ fi
 # Always use 256-color tmux
 alias tmux='tmux -2'
 
+# Git aliases
 alias ga='git add'
 alias gst='git status'
 alias gc='git commit'
@@ -95,7 +99,7 @@ alias gco='git checkout'
 alias gl='git pull'
 alias glom='git pull origin master'
 alias gp='git push'
-alias gpom="git push origin master"
+alias gpom='git push origin master'
 alias gd='git diff'
 alias gb='git branch'
 alias gba='git branch -a'
@@ -104,6 +108,7 @@ alias del='git branch -d'
 #
 # Key remaps
 #
+
 bindkey '\ew' kill-region                           # [Esc-w] - Kill from the cursor to the mark
 bindkey '^k' kill-line                              # [Ctrl-k] - Kill from cursor to end of line
 bindkey -s '\el' 'ls\n'                             # [Esc-l] - run command: ls
