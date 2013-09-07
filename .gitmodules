@@ -1,6 +1,6 @@
 [submodule "emacs.d"]
 	path = emacs.d
-	url = git@github.com:ndhoule/dotfiles.git
+	url = git@github.com:ndhoule/emacs.d.git
 [submodule "fonts/powerline-fonts"]
 	path = fonts/powerline-fonts
 	url = git@github.com:Lokaltog/powerline-fonts.git
