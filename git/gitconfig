@@ -1,6 +1,6 @@
 [core]
 	editor = emacsclient -nw -a "emacs -nw"
-	excludesfile = ${HOME}/.gitignore.global
+	excludesfile = ~/.gitignore.global
 
 [user]
 	name = Nathan Houle
@@ -20,9 +20,6 @@
 
 [difftool]
 	prompt = false
-
-[credential]
-	helper = osxkeychain
 
 [branch]
 	autosetuprebase = always
