@@ -34,6 +34,7 @@ zstyle ':prezto:load' pmodule \
   'osx' \
   'macports' \
   'git' \
+  'ssh' \
   'ruby' \
   'completion' \
   'history-substring-search' \
@@ -56,6 +57,13 @@ zstyle ':prezto:module:editor' dot-expansion 'yes'
 
 # Ignore submodules when they are 'dirty', 'untracked', 'all', or 'none'.
 # zstyle ':prezto:module:git:status:ignore' submodules 'all'
+
+#
+# SSH
+#
+
+# Autoload keys into ssh-agent
+zstyle ':prezto:module:ssh:load' identities 'id_github'
 
 #
 # GNU Utility
