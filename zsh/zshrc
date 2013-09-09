@@ -14,12 +14,30 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+[[ -x $(which bower) ]] && alias bower='noglob bower'
+
+#
+# fasd
+#
+if [[ -x $(which fasd) ]]; then
+  fasd_cache="$HOME/.fasd-init-zsh"
+  if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
+    fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install >| "$fasd_cache"
+  fi
+  source "$fasd_cache"
+  unset fasd_cache
+fi
+
 #
 # Completion libraries
 #
 
 if [[ -e $(which teamocil) ]]; then
   compctl -g '${HOME}/.teamocil/*(:t:r)' teamocil
+fi
+
+if [[ -e /etc/bash_completion.d/virtualenvwrapper ]]; then
+  source /etc/bash_completion.d/virtualenvwrapper
 fi
 
 #
