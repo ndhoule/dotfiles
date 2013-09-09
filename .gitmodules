@@ -7,3 +7,6 @@
 [submodule "zsh/zprezto"]
 	path = zsh/zprezto
 	url = git@github.com:ndhoule/prezto.git
+[submodule "vim"]
+	path = vim
+	url = git@github.com:ndhoule/vimrc.git
