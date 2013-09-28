@@ -111,6 +111,7 @@ alias tmux='tmux -2'
 
 # Git aliases
 [[ -x $(which hub) ]] && alias git=hub
+alias gW='git clean -f -d && git reset --hard'
 alias ga='git add'
 alias gst='git status'
 alias gc='git commit'
