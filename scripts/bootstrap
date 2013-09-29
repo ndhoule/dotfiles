@@ -1,10 +1,11 @@
 #!/usr/bin/env ruby
 
+require 'etc'
 require 'find'
 require 'fileutils'
 require 'securerandom'
 
-HOME = Dir.home
+HOME = Etc.getpwuid.dir
 CWD = File.expand_path(File.dirname(__FILE__))
 DOTFILES_SRC = File.expand_path(File.join(CWD, '..'))
 DOTFILES_DIR = File.join(HOME, '.dotfiles')

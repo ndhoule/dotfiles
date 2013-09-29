@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 
+require 'etc'
 require 'fileutils'
 require 'net/http'
 
-HOME = Dir.home
+HOME = Etc.getpwuid.dir
 CWD = File.expand_path(File.dirname(__FILE__))
 ST2_DIR = '/Applications/Sublime Text 2.app'
 ST2_BINARY = File.join(ST2_DIR, 'Contents/SharedSupport/bin/subl')
