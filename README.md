@@ -17,6 +17,7 @@ files:
 
 **\*.symlink**: Gets symlinked into a user's HOME directory. Can be either a
 file or directory.
+
 **install.\*** -- Gets run automatically when `scripts/install` is run
 
 ## `zsh` Configuration
