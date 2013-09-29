@@ -1,33 +1,46 @@
-# Project-specific files #
-##########################
+#
+# Project-specific files
+#
+
+bin/subl
+
 # Let Vundle manage bundles
-vim/bundle
-vim/.netrwhist
+vim/vim.symlink/bundle
+vim/vim.symlink/.netrwhist
+
+# Go home, Package Control--you're drunk
+sublime-text-2/Packages/User/Package Control.cache/
+sublime-text-2/Packages/User/Package Control.last-run
+sublime-text-2/Packages/User/Package Control.system-ca-bundle
 
 # emacs.d-specific ignores
-emacs.d/url/cache
-emacs.d/.emacs.desktop
-emacs.d/auto-save-list
-emacs.d/.session
-emacs.d/custom.el
-emacs.d/tramp
-emacs.d/anything-c-adaptive-history
-emacs.d/elpa
-emacs.d/site-lisp/package/
-emacs.d/swank
-emacs.d/.mc-lists.el
-emacs.d/var
+emacs/emacs.d.symlink/url/cache
+emacs/emacs.d.symlink/.emacs.desktop
+emacs/emacs.d.symlink/auto-save-list
+emacs/emacs.d.symlink/.session
+emacs/emacs.d.symlink/custom.el
+emacs/emacs.d.symlink/tramp
+emacs/emacs.d.symlink/anything-c-adaptive-history
+emacs/emacs.d.symlink/elpa
+emacs/emacs.d.symlink/site-lisp/package/
+emacs/emacs.d.symlink/swank
+emacs/emacs.d.symlink/.mc-lists.el
+emacs/emacs.d.symlink/var
 
-# Temporary files #
-###################
+#
+# Temporary files
+#
+
 *~
 \#*
 *.lock
 *.out
 *.swp
 
-# Compiled source #
-###################
+#
+# Compiled source
+#
+
 *.com
 *.class
 *.dll
@@ -38,8 +51,10 @@ emacs.d/var
 *.so
 *.elc
 
-# OS-specific files #
-#####################
+#
+# OS-specific files
+#
+
 .DS_Store
 .DS_Store?
 ._*

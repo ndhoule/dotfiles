@@ -1,0 +1,10 @@
+{
+	"installed_packages":
+	[
+		"ApplySyntax",
+		"CoffeeScript",
+		"Package Control",
+		"SublimeLinter",
+		"TrailingSpaces"
+	]
+}

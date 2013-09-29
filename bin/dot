@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+# dot
+#
+# `dot` handles installation, updates, things like that. Run it periodically
+# to make sure you're on the latest and greatest.
+#
+# Inspired by: https://github.com/holman/dotfiles/blob/master/bin/dot
+
+require 'etc'
+
+HOME = Etc.getpwuid.dir
+DOTFILES_DIR = File.join(HOME, '.dotfiles')
+
+system("#{DOTFILES_DIR}/osx/set-defaults.rb")
+
+# TODO: Sudo permissions?
+# If installed, update MacPorts
+if system('which port')
+  puts 'Updating MacPorts database...'
+  if system('sudo port selfupdate')
+    puts 'MacPorts database updated.'
+    puts 'Upgrading outdated ports...'
+    if system('sudo port upgrade outdated')
+      puts 'Upgraded all ports.'
+    else
+      puts 'Failed to upgrade all ports.'
+    end
+  else
+    puts 'Failed to update MacPorts database.'
+  end
+end

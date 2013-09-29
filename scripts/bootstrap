@@ -1,0 +1,87 @@
+#!/usr/bin/env ruby
+
+require 'find'
+require 'fileutils'
+require 'securerandom'
+
+HOME = Dir.home
+CWD = File.expand_path(File.dirname(__FILE__))
+DOTFILES_SRC = File.expand_path(File.join(CWD, '..'))
+DOTFILES_DIR = File.join(HOME, '.dotfiles')
+BACKUP_ROOT = File.join(HOME, '.dotfiles.bak')
+BACKUP_DIR = File.join(BACKUP_ROOT, SecureRandom.hex)
+BIN_DIR = File.join(DOTFILES_SRC, 'bin')
+RSYMLINK = /.*\.symlink$/
+BASE_DEPTH = DOTFILES_SRC.split('/').length
+
+def back_up_file(filename)
+  if File.exists?(BACKUP_ROOT) and not File.directory?(BACKUP_ROOT)
+    abort("Backup of #{filename} failed: #{BACKUP_ROOT} exists but is not a directory. Please rename or remove it.")
+  end
+
+  # If the backup root doesn't exist, create it
+  if not File.exists?(BACKUP_ROOT)
+    puts "Creating backup root at #{BACKUP_ROOT}..."
+    Dir.mkdir(BACKUP_ROOT)
+  end
+
+  # If the backup folder for this script run doesn't exist, create it
+  if not File.exists?(BACKUP_DIR)
+    puts "Creating backup directory at #{BACKUP_DIR}..."
+    Dir.mkdir(BACKUP_DIR)
+  end
+
+  # Move the file into the backup directory.
+  puts "Backing up existing file #{filename}..."
+  FileUtils.mv(filename, BACKUP_DIR)
+end
+
+# Create a symlink at "~/.dotfiles" so we have a static place to refer to dotfiles.
+if FileTest.exists?(DOTFILES_DIR)
+  if File.exists?(DOTFILES_DIR)
+    back_up_file(DOTFILES_DIR)
+  end
+else
+  File.symlink(DOTFILES_SRC, DOTFILES_DIR)
+end
+
+# Recursively clone and update any submodules the dotfiles repo depends on
+Dir.chdir(DOTFILES_SRC)
+system('git submodule update --init --recursive > /dev/null 2>&1')
+
+# Symlink the bin folder into place if it exists
+if File.directory?(BIN_DIR)
+  dest = File.join(HOME, File.basename(BIN_DIR))
+
+  if File.exists?(dest)
+    back_up_file(dest)
+  end
+
+  File.symlink(BIN_DIR, dest)
+end
+
+# Find any files that should be symlinked to the home directory and symlink them
+Find.find(DOTFILES_SRC) do |path|
+  # Don't search dot folders, max depth of two, and skip this `install` folder
+  if File.basename(path)[0] == '.' or path.split('/').length - BASE_DEPTH > 3
+      Find.prune
+  end
+
+  # If the file ends in .symlink, link it into the home directory.
+  if path =~ RSYMLINK
+    dest = File.join(HOME, ".#{File.basename(path.split('.symlink')[0])}")
+
+    # If there's already a file at the destination, back it up
+    if File.exist?(dest)
+      back_up_file(dest)
+    end
+
+    File.symlink(path, dest)
+
+    # If the path we've found is a directory that should be symlinked, don't
+    # recurse into it
+    if File.directory?(path)
+      Find.prune
+    end
+  end
+end
