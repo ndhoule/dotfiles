@@ -10,7 +10,9 @@
 #   https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 #
 
-SCRIPTS_DIR = "#{Dir.pwd()}/scripts"
+CWD = File.expand_path(File.dirname(__FILE__))
+SCRIPTS_DIR = File.join(CWD, 'scripts')
+
 AFFECTED_APPS = [
  "Dashboard",
  "Dock",
@@ -40,7 +42,7 @@ print "\n"
 
 Dir.glob("#{SCRIPTS_DIR}/*").each do |f|
   puts "Running #{File.basename(f)}..."
-  system "sh #{f}"
+  system("/usr/bin/env #{f}")
 end
 print "\n"
 

@@ -6,6 +6,12 @@ CWD = File.expand_path(File.dirname(__FILE__))
 DOTFILES_SRC = File.expand_path(File.join(CWD, '..'))
 BASE_DEPTH = DOTFILES_SRC.split('/').length
 
+# Set OSX defaults
+if File.exists?(File.join(DOTFILES_SRC, 'osx/set-defaults.rb'))
+  puts("/usr/bin/env #{File.join(DOTFILES_SRC, 'osx/set-defaults.rb')}")
+  system("/usr/bin/env #{File.join(DOTFILES_SRC, 'osx/set-defaults.rb')}")
+end
+
 # Scan each subdirectory for an install.* script and run it if it exists
 Find.find(DOTFILES_SRC) do |path|
   # Don't search dot folders, max depth of two, and skip this `install` folder

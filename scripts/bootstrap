@@ -60,6 +60,16 @@ if File.directory?(BIN_DIR)
   File.symlink(BIN_DIR, dest)
 end
 
+# Create the ~/ephemeral folder if it doesn't exist
+unless File.exists?(File.join(HOME, 'ephemeral'))
+  Dir.mkdir(File.join(HOME, 'ephemeral'))
+end
+
+# Link to a truly temporary directory
+unless File.exists?(File.join(HOME, 'tmp'))
+  File.symlink('/tmp', File.join(HOME, 'tmp'))
+end
+
 # Find any files that should be symlinked to the home directory and symlink them
 Find.find(DOTFILES_SRC) do |path|
   # Don't search dot folders, max depth of two, and skip this `install` folder
@@ -85,3 +95,6 @@ Find.find(DOTFILES_SRC) do |path|
     end
   end
 end
+
+puts 'Finished installing dotfiles. Run `scripts/install` to run install scripts'
+puts 'for individual modules.'
