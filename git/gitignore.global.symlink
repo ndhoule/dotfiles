@@ -1,34 +1,28 @@
-# Compiled source
-#################
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
-*.pyc
+#
+# JS-specific files
+#
 
-# Packages
-##########
-# it's better to unpack these files and commit the raw source
-# git has its own built in compression methods
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
+.sass-cache
+node_modules
+bower_components
 
-# Logs and databases
-####################
-*.log
-*.sql
-*.sqlite
+#
+# Editor-specific files
+#
 
-# OS generated files
-####################
+*.vims
+.tern-port
+*.swp
+*.swo
+*.orig
+*~
+\#*\#
+flycheck-*.el
+
+#
+# OS-generated files
+#
+
 .DS_Store
 .DS_Store?
 ._*
@@ -38,10 +32,36 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
-# User-specific files
-#####################
-*.vims
-.tern-port
-*.swp
-*.swo
-*.orig
+
+#
+# Compiled source
+#
+
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.pyc
+
+#
+# Packages
+#
+
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+#
+# Logs and databases
+#
+
+*.log
+*.sql
+*.sqlite
