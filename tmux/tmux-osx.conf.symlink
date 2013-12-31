@@ -1,2 +1,2 @@
 set-option -g default-command "reattach-to-user-namespace -l $SHELL"
-bind ^y run-shell "reattach-to-user-namespace -l zsh -c 'tmux showb | pbcopy'"
+# bind ^y run-shell "reattach-to-user-namespace -l zsh -c 'tmux showb | pbcopy'"

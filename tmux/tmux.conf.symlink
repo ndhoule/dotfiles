@@ -13,36 +13,28 @@
 # causes a race condition
 source-file ${HOME}/.tmux-osx.conf
 
+set -g history-limit 100000
+
 # Tell tmux to use 256-color terminals
 set -g default-terminal "xterm-256color"
 
-# Use UTF-8 characters in terminal
 set-option -g status-utf8 on
 
-# Allows for faster key repetition
+# Allow for faster key repetition
 set -s escape-time 0
 
 # Constrain window size to max window size rather than session max size
 setw -g aggressive-resize on
 
+# Start window numbering at 1
+set -g base-index 1
+
+# Automatically renumber windows on deletion
+set -g renumber-windows on
+
 #
 # Appearance
 #
-
-# Enable status bar
-set -g status on
-set -g status-interval 2
-
-# Powerline opts
-# TODO: Only do this if powerline exists
-set -g status-fg colour231
-set -g status-bg colour234
-set -g status-left '#[fg=colour16,bg=colour254,bold] #S #[fg=colour254,bg=colour234,nobold]#(powerline tmux left)'
-set -g status-left-length 500
-set -g status-right '#(powerline tmux right)'
-set -g status-right-length 500
-set -g window-status-format "#[fg=colour244,bg=colour234]#I #[fg=colour240] #[fg=colour249]#W "
-set -g window-status-current-format "#[fg=colour234,bg=colour31]#[fg=colour117,bg=colour31] #I  #[fg=colour231,bold]#W #[fg=colour31,bg=colour234,nobold]"
 
 # Automatically set window title
 set-window-option -g automatic-rename on
@@ -56,23 +48,44 @@ set -g pane-border-fg white
 set -g pane-active-border-bg black
 set -g pane-active-border-fg green
 
+# Enable status bar
+set -g status on
+set -g status-interval 1
+
+set -g status-fg colour231
+set -g status-bg colour234
+set -g status-left-length 100
+set -g window-status-format "#[fg=colour244,bg=colour234]#I #[fg=colour240] #[fg=colour249]#W "
+set -g window-status-current-format "#[fg=colour234,bg=colour31]#[fg=colour117,bg=colour31] #I  #[fg=colour231,bold]#W #[fg=colour31,bg=colour234,nobold]"
+set -g status-justify "centre"
+set -g status-left-length 500
+set -g status-right-length 500
+set -g status-left '#[fg=colour16,bg=colour254,bold] #S #[fg=colour254,bg=colour234,nobold]#(powerline tmux left)'
+set -g status-right "🔋  #(~/bin/battery Discharging; ~/bin/battery Charging) | %B %e, %r"
+
+set-window-option -g window-status-fg colour249
+set-window-option -g window-status-activity-attr none
+set-window-option -g window-status-bell-attr none
+set-window-option -g window-status-activity-fg yellow
+set-window-option -g window-status-bell-fg red
+
 #
 # Keybindings
 #
 
-# Reload the config.
 bind r source-file ~/.tmux.conf \; display "Reloaded ~/.tmux.conf"
 
-# Tell tmux to use vi-style keybindings
-setw -g mode-keys vi
-
-# Unbind Ctrl-b (Vim uses it), use Ctrl-a
+# Unbind Ctrl-b (Vim uses it); use Ctrl-a instead
 unbind C-b
 set -g prefix C-a
 bind-key C-a last-window
 
-# vim-style pane traversal
+# Tell tmux to use vi-style keybindings
+setw -g mode-keys vi
+
+# Vim-style pane traversal
 bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
+bind q killp
