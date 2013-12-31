@@ -38,10 +38,8 @@ def back_up_file(filename)
 end
 
 # Create a symlink at "~/.dotfiles" so we have a static place to refer to dotfiles.
-if FileTest.exists?(DOTFILES_DIR)
-  if File.exists?(DOTFILES_DIR)
-    back_up_file(DOTFILES_DIR)
-  end
+if File.exists?(DOTFILES_DIR)
+  back_up_file(DOTFILES_DIR)
 else
   File.symlink(DOTFILES_SRC, DOTFILES_DIR)
 end
