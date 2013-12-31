@@ -8,25 +8,90 @@
 # Inspired by: https://github.com/holman/dotfiles/blob/master/bin/dot
 
 require 'etc'
+require 'rbconfig'
 
 HOME = Etc.getpwuid.dir
 DOTFILES_DIR = File.join(HOME, '.dotfiles')
 
-system("#{DOTFILES_DIR}/osx/set-defaults.rb")
-
-# TODO: Sudo permissions?
-# If installed, update MacPorts
-if system('which port')
-  puts 'Updating MacPorts database...'
-  if system('sudo port selfupdate')
-    puts 'MacPorts database updated.'
-    puts 'Upgrading outdated ports...'
-    if system('sudo port upgrade outdated')
-      puts 'Upgraded all ports.'
+def detect_os()
+  @os ||= (
+    case RbConfig::CONFIG['host_os']
+    when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+      :windows
+    when /darwin|mac os/
+      :macosx
+    when /linux/
+      :linux
+    when /solaris|bsd/
+      :unix
     else
-      puts 'Failed to upgrade all ports.'
+      raise Error::WebDriverError, 'Unknown os: #{host_os.inspect}'
     end
-  else
-    puts 'Failed to update MacPorts database.'
+    )
+end
+
+def detect_linux_distro()
+  if File.stat('/etc/debian_version')
+    return :debian
   end
+end
+
+def detect_unix_distro()
+  if File.stat('/etc/rc.conf')
+    return :freebsd
+  end
+end
+
+def update_osx()
+  system("#{DOTFILES_DIR}/osx/set-defaults.rb") if DOTFILES_DIR
+
+  if system('which port')
+    puts 'Updating MacPorts database...'
+    if system('sudo port selfupdate')
+      puts 'MacPorts database updated.'
+      puts 'Upgrading outdated ports...'
+      if system('sudo port upgrade outdated')
+        puts 'Upgraded all ports.'
+      else
+        puts 'Failed to upgrade all ports.'
+      end
+    else
+      puts 'Failed to update MacPorts database.'
+    end
+  end
+end
+
+def update_freebsd()
+  if system('which portsnap')
+    system('sudo portsnap fetch update')
+  end
+  if system('which pkg')
+    system('sudo pkg upgrade')
+  end
+end
+
+def update_debian()
+  if system('which apt-get')
+    system('sudo apt-get update')
+    system('sudo apt-get upgrade')
+  end
+end
+
+def update_common()
+  if File.stat(DOTFILES_DIR)
+    Dir.chdir(DOTFILES_DIR)
+    system('git pull origin master')
+  end
+end
+
+update_common
+case detect_os
+when :windows
+  puts 'This script cannot be run on Windows.'
+when :linux
+  update_debian if detect_linux_distro == :debian
+when :macosx
+  update_osx
+when :unix
+  update_freebsd if detect_unix_distro == :freebsd
 end
