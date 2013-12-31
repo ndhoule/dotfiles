@@ -1,3 +1,5 @@
+# -*- mode: sh -*-
+
 #
 # Sets Prezto options.
 #
@@ -35,6 +37,7 @@ zstyle ':prezto:load' pmodule \
   'macports' \
   'git' \
   'ssh' \
+  'node' \
   'ruby' \
   'completion' \
   'history-substring-search' \
@@ -47,7 +50,7 @@ zstyle ':prezto:load' pmodule \
 #
 
 # Set the key mapping style to 'emacs' or 'vi'.
-zstyle ':prezto:module:editor' keymap 'vi'
+zstyle ':prezto:module:editor' key-bindings 'vi'
 
 # Auto convert .... to ../..
 zstyle ':prezto:module:editor' dot-expansion 'yes'
@@ -58,13 +61,6 @@ zstyle ':prezto:module:editor' dot-expansion 'yes'
 
 # Ignore submodules when they are 'dirty', 'untracked', 'all', or 'none'.
 # zstyle ':prezto:module:git:status:ignore' submodules 'all'
-
-#
-# SSH
-#
-
-# Autoload keys into ssh-agent
-zstyle ':prezto:module:ssh:load' identities 'id_github'
 
 #
 # GNU Utility
@@ -117,7 +113,7 @@ zstyle ':prezto:module:prompt' theme 'ndhoule'
 #
 
 # Set the SSH identities to load into the agent.
-# zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'id_github'
+zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_github'
 
 #
 # Syntax Highlighting
@@ -150,7 +146,7 @@ zstyle ':prezto:module:terminal' auto-title 'yes'
 #
 
 # Auto start a session when Zsh is launched.
-zstyle ':prezto:module:tmux:auto-start' local 'yes'
+# zstyle ':prezto:module:tmux:auto-start' local 'yes'
 
 # Auto start a session when Zsh is launched in a SSH connection.
 # zstyle ':prezto:module:tmux:auto-start' remote 'yes'
