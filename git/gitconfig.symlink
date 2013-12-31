@@ -10,7 +10,7 @@
 	ui = true
 
 [hub]
-	protocol = https
+	protocol = ssh
 
 [mergetool]
 	prompt = false
@@ -30,3 +30,5 @@
 	theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
 	snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
 	superpull = !git pull && git submodule init && git submodule update
+[push]
+	default = current

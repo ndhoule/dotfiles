@@ -3,19 +3,19 @@
 #
 
 .sass-cache
-node_modules
 bower_components
+node_modules
 
 #
 # Editor-specific files
 #
 
-*.vims
-.tern-port
-*.swp
-*.swo
 *.orig
+*.swo
+*.swp
+*.vims
 *~
+.tern-port
 \#*\#
 flycheck-*.el
 
@@ -25,25 +25,24 @@ flycheck-*.el
 
 .DS_Store
 .DS_Store?
-._*
 .Spotlight-V100
 .Trashes
+._*
 Icon?
-ehthumbs.db
 Thumbs.db
-
+ehthumbs.db
 
 #
 # Compiled source
 #
 
-*.com
 *.class
+*.com
 *.dll
 *.exe
 *.o
-*.so
 *.pyc
+*.so
 
 #
 # Packages
@@ -65,3 +64,4 @@ Thumbs.db
 *.log
 *.sql
 *.sqlite
+*.db

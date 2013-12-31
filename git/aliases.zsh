@@ -8,7 +8,7 @@
 #
 
 # If hub is installed, use it as a Git wrapper
-[[ -x $(which hub) ]] && alias git=hub
+# [[ -x $(which hub) ]] && alias git=hub
 
 alias gW='git clean -f -d && git reset --hard'
 alias ga='git add'
@@ -23,3 +23,5 @@ alias gd='git diff'
 alias gb='git branch'
 alias gba='git branch -a'
 alias del='git branch -d'
+alias gpr='git remote prune'
+alias gpr-local='git branch --merged | grep -v "^* master$" | grep -v "^  master$" | xargs git branch -d'
