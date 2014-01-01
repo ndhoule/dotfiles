@@ -55,7 +55,13 @@ path=(
 # nvm (node version manager)
 #
 
-source $HOME/.nvm/nvm.sh
+NVM_EXEC=$HOME/.nvm/nvm.sh
+
+if [[ -x $NVM_EXEC  ]]; then
+  source $NVM_EXEC
+fi
+
+unset NVM_EXEC
 
 #
 # Less
