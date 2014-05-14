@@ -52,7 +52,6 @@ done
 
 unset config_files
 
-
 #
 # Vi mode insert/normal indicator
 #

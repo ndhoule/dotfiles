@@ -34,6 +34,3 @@ if [[ -x $(which rlwrap) ]]; then
   alias racket='rlwrap racket'
   alias sml='rlwrap sml'
 fi
-
-# Always use 256-color tmux
-alias tmux='tmux -2'
