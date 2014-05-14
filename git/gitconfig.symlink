@@ -1,5 +1,5 @@
 [core]
-	editor = emacsclient -nw -a "emacs -nw"
+	editor = vim
 	excludesfile = ~/.gitignore.global
 
 [user]
