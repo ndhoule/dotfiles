@@ -18,8 +18,7 @@ AFFECTED_APPS = [
  "Dock",
  "Finder",
  "Safari",
- "SystemUIServer",
- "Terminal"
+ "SystemUIServer"
 ]
 
 def kill_app (app)
