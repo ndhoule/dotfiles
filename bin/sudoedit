@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+#
+# sudoedit patch for OS X, which doesn't have the sudoedit binary. Basically a
+# wrapper script for `sudo -e`.
+#
+
+ABSOLUTE_PATH=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd -P)/$(basename "${BASH_SOURCE[0]}")
+SUDOEDIT=$(which sudoedit)
+
+# TODO: This probably won't work correctly if this file comes before sudoedit in
+# the loadpath. More reliable to use `which` and split on commas
+if [[ ! -x SUDOEDIT || ABSOLUTE_PATH != SUDOEDIT ]]; then
+  sudo -e "$@"
+fi
