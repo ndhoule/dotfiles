@@ -1,0 +1,82 @@
+# -*- mode: ruby -*-
+# vi:syntax=ruby
+
+#
+# TODO: Description
+#
+# TODO: Link this file into place
+# TODO: Install from this file
+
+#
+# Prep
+#
+
+# Update the Brew work tree
+update
+
+# Upgrade any previously installed packages
+upgrade
+
+
+#
+# Packages
+#
+
+install ack
+install autoconf
+install automake
+install ccache
+install cmake
+install ctags
+install curl
+install git
+install mongodb
+install openssl
+install phantomjs
+install postgresql
+install reattach-to-user-namespace
+install redis
+install sqlite
+install ssh-copy-id
+install tmux
+install wget
+install zsh
+
+# Install GNU replacements for BSD utils
+tap homebrew/dupes
+install coreutils
+install findutils
+install gawk
+install gnu-getopt
+install gnu-indent
+install gnu-sed
+install gnu-tar
+install gnutls
+install grep
+install readline
+
+# Python
+install pyenv
+install pyenv-ccache
+install pyenv-pip-rehash
+install pyenv-virtualenv
+
+# Ruby
+install rbenv
+install rbenv-ctags
+# TODO: Create a ~/.rbenv/default-gems file and put `bundler, pry` etc in it
+install rbenv-default-gems
+install rbenv-gem-rehash
+install ruby-build
+
+# YouCompleteMe requires Vim be built against latest Python binaries; install
+# Python first
+install python
+install macvim --override-system-vim
+
+
+#
+# Cleanup
+#
+linkapps
+cleanup
