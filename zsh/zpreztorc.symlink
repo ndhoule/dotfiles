@@ -36,13 +36,14 @@ zstyle ':prezto:load' pmodule \
   'homebrew' \
   'osx' \
   'git' \
-  'ssh' \
   'node' \
+  'python' \
   'ruby' \
   'completion' \
-  'history-substring-search' \
-  'syntax-highlighting' \
   'fasd' \
+  'syntax-highlighting' \
+  'history-substring-search' \
+  'ssh' \
   'prompt'
 
 #
@@ -103,7 +104,7 @@ zstyle ':prezto:module:prompt' theme 'ndhoule'
 #
 
 # Auto switch the Ruby version on directory change.
-# zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
+zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
 
 #
 # Screen

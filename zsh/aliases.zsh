@@ -1,3 +1,4 @@
+# vi:syntax=zsh
 # -*- mode: sh -*-
 
 #
@@ -7,25 +8,17 @@
 #   Nathan Houle <nathan@nathanhoule.com>
 #
 
-alias l='ls -al'
-alias ll='ls -l'
-alias lll='ls -a'
+alias l='ls -alh'
+alias ll='ls -lh'
+alias lll='ls -ah'
 
-# I always say more when I mean less
+# more is always less
 if [[ -x $(which less) ]]; then
   alias more='less'
 fi
 
 # Make sure stuff piped through less retains color
 alias less='less -R'
-
-# If installed, prefer vim over vi
-if [[ -x $(which vim) ]]; then
-  alias vi='vim'
-fi
-
-# Easy vim mode
-alias egvim='gvim -y'
 
 # Shortcuts for fixing dumb repls that don't know about arrow keys
 if [[ -x $(which rlwrap) ]]; then
