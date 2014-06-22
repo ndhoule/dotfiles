@@ -18,7 +18,7 @@ if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux-osx.conf'
 set -g history-limit 100000
 
 # Tell tmux to use 256-color terminals
-set -g default-terminal "xterm-256color"
+set -g default-terminal "screen-256color"
 
 set-option -g status-utf8 on
 
