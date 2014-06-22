@@ -15,6 +15,10 @@ if [[ ! "$OSTYPE" == darwin* ]]; then
   exit 1
 fi
 
+# Require password immediately after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+
 # Show item info near icons on the desktop
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
 
