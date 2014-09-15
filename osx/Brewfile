@@ -11,10 +11,7 @@
 # Prep
 #
 
-# Update the Brew work tree
 update
-
-# Upgrade any previously installed packages
 upgrade
 
 
@@ -23,14 +20,19 @@ upgrade
 #
 
 install ack
+install android-sdk
 install autoconf
 install automake
 install ccache
+install closure-compiler
 install cmake
 install ctags
 install curl
 install git
+install homebrew/completions/vagrant-completion
+install hub
 install mongodb
+install ngrok
 install openssl
 install phantomjs
 install postgresql
@@ -38,6 +40,7 @@ install reattach-to-user-namespace
 install redis
 install sqlite
 install ssh-copy-id
+install tidy
 install tmux
 install wget
 install zsh
@@ -54,6 +57,14 @@ install gnu-tar
 install gnutls
 install grep
 install readline
+
+# FUSE
+install osxfuse
+install sshfs
+
+# Clang
+install cppcheck
+install valgrind
 
 # Python
 install pyenv
@@ -72,7 +83,63 @@ install ruby-build
 # YouCompleteMe requires Vim be built against latest Python binaries; install
 # Python first
 install python
+unlink python
 install macvim --override-system-vim
+
+#
+# Brew Cask
+#
+
+tap caskroom/cask
+install brew-cask
+
+# Apps
+cask install alfred
+cask install amethyst
+cask install appcleaner
+cask install balsamiq-mockups
+cask install bitcasa
+cask install clipmenu
+cask install cyberduck
+cask install dash
+cask install evernote
+cask install firefox
+cask install fluid
+cask install flux
+cask install google-chrome
+cask install google-drive
+cask install google-hangouts
+cask install hipchat
+cask install honer
+cask install imageoptim
+cask install karabiner
+cask install libreoffice
+cask install little-snitch
+cask install mou
+cask install pckeyboardhack
+cask install rdio
+cask install rescuetime
+cask install screenhero
+cask install scroll-reverser
+cask install skype
+cask install slate
+cask install spotify
+cask install sublime-text
+cask install the-unarchiver
+cask install thunderbird
+cask install toggldesktop
+cask install transmission
+cask install vlc
+# TODO: These.
+#cask install vagrant
+#cask install virtualbox
+#cask install silverlight
+#cask install fitbit-connect
+#cask install vmware-fusion
+#cask install webstorm
+
+# Ensure Alfred searches Cask directory
+cask alfred link
 
 
 #
