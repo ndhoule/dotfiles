@@ -28,6 +28,7 @@ emacs/emacs.d.symlink/var
 # Clojure
 clojure/lein.symlink/indices
 clojure/lein.symlink/repl-history
+clojure/lein.symlink/repl-port
 
 #
 # Temporary files
