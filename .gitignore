@@ -4,11 +4,9 @@
 
 bin/subl
 
-# Let Vundle manage bundles
 vim/vim.symlink/bundle
 vim/vim.symlink/.netrwhist
 
-# Go home, Package Control--you're drunk
 sublime-text-2/Packages/User/Package Control.cache/
 sublime-text-2/Packages/User/Package Control.last-run
 sublime-text-2/Packages/User/Package Control.system-ca-bundle
@@ -26,6 +24,10 @@ emacs/emacs.d.symlink/site-lisp/package/
 emacs/emacs.d.symlink/swank
 emacs/emacs.d.symlink/.mc-lists.el
 emacs/emacs.d.symlink/var
+
+# Clojure
+clojure/lein.symlink/indices
+clojure/lein.symlink/repl-history
 
 #
 # Temporary files
