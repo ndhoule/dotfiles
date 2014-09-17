@@ -28,6 +28,7 @@ install closure-compiler
 install cmake
 install ctags
 install curl
+install emacs --cocoa --srgb
 install git
 install homebrew/completions/vagrant-completion
 install hub
