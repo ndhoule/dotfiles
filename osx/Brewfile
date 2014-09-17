@@ -92,6 +92,8 @@ install macvim --override-system-vim
 #
 
 tap caskroom/cask
+# Tap the versions repository, which contains versioned packages like `google-chrome-canary`
+tap caskroom/versions
 install brew-cask
 
 # Apps
@@ -108,6 +110,7 @@ cask install firefox
 cask install fluid
 cask install flux
 cask install google-chrome
+cask install google-chrome-canary
 cask install google-drive
 cask install google-hangouts
 cask install hipchat
