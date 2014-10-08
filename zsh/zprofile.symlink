@@ -19,10 +19,10 @@ fi
 # Editors
 #
 
-export VISUAL="vim"
-export EDITOR="vim"
-export ALTERNATE_EDITOR="vi"
-export SVN_EDITOR="vim"
+export VISUAL="emacs"
+export EDITOR="emacs"
+export ALTERNATE_EDITOR="vim"
+export SVN_EDITOR="emacs"
 export PAGER="less"
 
 #
