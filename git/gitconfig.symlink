@@ -31,5 +31,9 @@
 	superpull = !git pull && git submodule init && git submodule update
 	freebase = rebase
 	branch-current = rev-parse --abbrev-ref HEAD
+
 [push]
 	default = current
+
+[include]
+	path = ~/.gitconfig.private
