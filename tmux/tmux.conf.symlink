@@ -6,10 +6,11 @@
 #
 
 #
-# OS-specific configuration
+# OS-specific configurations
 #
 
 if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux-osx.conf'
+if-shell 'test "$(uname)" = "Linux"' 'source ~/.tmux-linux.conf'
 
 #
 # Core Settings

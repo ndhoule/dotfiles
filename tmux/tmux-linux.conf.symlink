@@ -1,0 +1,9 @@
+#
+# Set Linux-specific preferences for tmux.
+#
+# Authors:
+#   Nathan Houle <nathan@nathanhoule.com>
+#
+
+# Yank current selection to clipboard (see `tmux.conf` for selection hotkey)
+bind-key -t vi-copy y copy-pipe "xclip -selection c"
