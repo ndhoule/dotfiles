@@ -27,6 +27,7 @@ install ctags
 install curl
 install emacs --cocoa --srgb
 install git
+install go
 install homebrew/completions/vagrant-completion
 install hub
 install mongodb
