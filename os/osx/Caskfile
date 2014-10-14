@@ -5,7 +5,7 @@
 #
 
 #
-# Prep
+# Preinstall
 #
 
 update
@@ -17,9 +17,13 @@ upgrade
 
 tap caskroom/cask
 tap caskroom/versions # Contains versioned packages like `google-chrome-canary`
+tap caskroom/fonts
 install brew-cask
 
+#
 # Apps
+#
+
 cask install alfred
 cask install amethyst
 cask install appcleaner
@@ -58,6 +62,17 @@ cask install transmission
 cask install vagrant
 cask install virtualbox
 cask install vlc
+
+#
+# Fonts
+#
+
+cask install font-dejavu-sans-mono-for-powerline
+cask install font-dejavu-sans
+
+#
+# Postinstall
+#
 
 # Ensure Alfred searches Cask directory
 cask alfred link

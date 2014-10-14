@@ -71,12 +71,12 @@ install pyenv-pip-rehash
 install pyenv-virtualenv
 
 # Ruby
-install rbenv
-install rbenv-ctags
+#install rbenv
+#install rbenv-ctags
 # TODO: Create a ~/.rbenv/default-gems file and put `bundler, pry` etc in it
-install rbenv-default-gems
-install rbenv-gem-rehash
-install ruby-build
+#install rbenv-default-gems
+#install rbenv-gem-rehash
+#install ruby-build
 
 # YouCompleteMe requires Vim be built against latest Python binaries; install
 # Python first
