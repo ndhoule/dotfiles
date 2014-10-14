@@ -5,5 +5,8 @@
 #   Nathan Houle <nathan@nathanhoule.com>
 #
 
-# Fix problems with OS X's pasteboard and tmux
+# Fix tmux/osx clipboard integration
 set-option -g default-command "reattach-to-user-namespace -l $SHELL"
+
+# Yank selection to clipboard (see `tmux.conf` for selection hotkey)
+bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"

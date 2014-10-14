@@ -91,3 +91,6 @@ bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
 bind q killp
+
+# Vim-style visual selection (see OS-specific config files for copy command)
+bind-key -t vi-copy v begin-selection
