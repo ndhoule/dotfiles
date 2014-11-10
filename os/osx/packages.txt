@@ -1,0 +1,50 @@
+ack
+android-sdk
+autoconf
+automake
+ccache
+closure-compiler
+cmake
+ctags
+curl
+emacs --cocoa --srgb
+git
+go
+hg
+homebrew/completions/vagrant-completion
+hub
+leiningen
+mongodb
+ngrok
+openssl
+phantomjs
+postgresql
+reattach-to-user-namespace
+redis
+rlwrap
+sqlite
+ssh-copy-id
+tidy
+tmux
+wget
+zsh
+
+# Install GNU replacements for BSD utils (Relies on homebrew/dupes tap)
+coreutils
+findutils
+gawk
+gnu-getopt
+gnu-indent
+gnu-sed
+gnu-tar
+gnutls
+grep
+readline
+
+# FUSE
+osxfuse
+sshfs
+
+# Clang
+cppcheck
+valgrind
