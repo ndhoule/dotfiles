@@ -11,7 +11,9 @@
 #   Zach Holman <zach@zachholman.com>
 #
 
-export DOTFILES=$HOME/.dotfiles
+export DOTFILES="${HOME}/.dotfiles"
+export DEV_PATH="${HOME}/dev"
+export SRC_PATH="${DEV_PATH}/src"
 
 #
 # Zprezto
@@ -29,7 +31,7 @@ fi
 # All zsh config files (all *.zsh files contained in $DOTFILES children
 # directories). Note that this glob is limited to one directory level deep.
 typeset -U config_files
-config_files=($DOTFILES/*/*.zsh)
+config_files=(${DOTFILES}/*/*.zsh)
 
 # Load path files
 for file in ${(M)config_files:#*/path.zsh}; do

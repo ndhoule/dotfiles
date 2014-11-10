@@ -45,8 +45,7 @@ typeset -gU cdpath fpath mailpath path
 #  $cdpath
 #)
 
-
-# Set the list of directories that Zsh searches for programs.
+# Set the list of directories that zsh searches for programs.
 path=(
   $HOME/bin
   $HOME/.cabal/bin
