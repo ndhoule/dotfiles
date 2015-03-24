@@ -14,6 +14,7 @@ alias gW='git clean -f -d && git reset --hard'
 alias ga='git add'
 alias gst='git status'
 alias gc='git commit'
+alias gcl='git clone'
 alias gco='git checkout'
 alias gf='git fetch'
 alias gfo='git fetch origin'
@@ -41,8 +42,3 @@ alias gprl='git branch --merged | \
             grep -v "^\(  \|* \)master$" | \
             grep -v "^* $(git rev-parse --abbrev-ref HEAD)$" | \
             xargs git branch -d'
-
-# Much doge, very alias
-alias such=git
-alias very=git
-alias wow='git status'
