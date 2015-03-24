@@ -8,13 +8,17 @@
 #   Nathan Houle <nathan@nathanhoule.com>
 #
 
-if [[ -x $(which vim) ]]; then
-  # Prefer vim over vi
-  alias vi='vim'
-fi
+function {
+  local VIM_BIN="nvim"
 
-if [[ -x $(which gvim) ]]; then
+  if [[ -x $VIM_BIN ]]; then
+    alias vi="$VIM_BIN"
+    alias vim="$VIM_BIN"
+  fi
+
   # Easy gvim mode
-  alias evim='gvim -y'
-  alias egvim='gvim -y'
-fi
+  if [[ -x gvim ]]; then
+    alias evim='gvim -y'
+    alias egvim='gvim -y'
+  fi
+}
