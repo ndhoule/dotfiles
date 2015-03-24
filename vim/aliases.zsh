@@ -11,13 +11,13 @@
 function {
   local VIM_BIN="nvim"
 
-  if [[ -x $VIM_BIN ]]; then
+  if [[ -x $(which $VIM_BIN) ]]; then
     alias vi="$VIM_BIN"
     alias vim="$VIM_BIN"
   fi
 
   # Easy gvim mode
-  if [[ -x gvim ]]; then
+  if [[ -x $(which gvim) ]]; then
     alias evim='gvim -y'
     alias egvim='gvim -y'
   fi
