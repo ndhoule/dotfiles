@@ -11,9 +11,3 @@
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
-
-# TODO: Move this to a better place
-# Source project-specific `.envrc` files
-if [[ -x $(which direnv) ]]; then
-  eval "$(direnv hook $(basename $SHELL))"
-fi

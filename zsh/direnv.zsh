@@ -1,2 +1,4 @@
 # Load direnv if it exists
-[[ -x direnv ]] && eval "$(direnv hook zsh)"
+if [[ -x direnv ]]; then
+  eval "$(direnv hook $(basename $SHELL))"
+fi
