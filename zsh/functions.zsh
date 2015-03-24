@@ -7,17 +7,15 @@
 #   Nathan Houle <nathan@nathanhoule.com>
 #
 
-# Launch a static server in the current directory, passing an optional port
-# number
+# Launch a static server in the current directory
+unalias http-serve
 http-serve() {
-  # Prefer http-server (`npm install -g http-server`) when available; fall back
-  # to a simple Python SimpleHTTPServer when unavailable. Note that
-  # SimpleHTTPServer has performance problems when serving more than a few files
-  # simultaneously (e.g. an HTML file with more than 2-3 linked files)
+  local port=${1:-8080}
+
   if [[ -x $(which http-server) ]]; then
-    $(which http-server)
+    http-server -p $port
   else
-    $(which python) -m SimpleHTTPServer
+    python -m SimpleHTTPServer $port
   fi
 }
 
