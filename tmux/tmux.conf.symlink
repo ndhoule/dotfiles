@@ -43,7 +43,7 @@ set -g renumber-windows on
 set-window-option -g automatic-rename on
 set-option -g set-titles on
 
-# Set pane divider color
+# Pane divider color
 set -g pane-border-bg black
 set -g pane-border-fg white
 
@@ -55,16 +55,17 @@ set -g pane-active-border-fg green
 set -g status on
 set -g status-interval 1
 
-set -g status-fg colour231
-set -g status-bg colour234
+# Set Powerline colors
+set -g status-fg white
+set -g status-bg black
 set -g status-left-length 100
-set -g window-status-format "#[fg=colour244,bg=colour234]#I #[fg=colour240] #[fg=colour249]#W "
-set -g window-status-current-format "#[fg=colour234,bg=colour31]#[fg=colour117,bg=colour31] #I  #[fg=colour231,bold]#W #[fg=colour31,bg=colour234,nobold]"
+set -g window-status-format "#[fg=colour244,bg=black]#I #[fg=colour240] #[fg=colour249]#W "
+set -g window-status-current-format "#[fg=black,bg=colour31]#[fg=white,bg=colour31] #I  #[fg=white,bold]#W #[fg=colour31,bg=black,nobold]"
 set -g status-justify "centre"
 set -g status-left-length 500
 set -g status-right-length 500
 set -g status-left '#[fg=colour16,bg=colour254,bold] #S #[fg=colour254,bg=colour234,nobold]#(powerline tmux left)'
-set -g status-right "🔋  #(~/bin/battery Discharging; ~/bin/battery Charging) | %B %e, %r"
+set -g status-right 'Battery #($HOME/bin/battery Discharging; $HOME/bin/battery Charging) | %B %e, %r'
 
 set-window-option -g window-status-fg colour249
 set-window-option -g window-status-activity-attr none
