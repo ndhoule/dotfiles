@@ -1,0 +1,41 @@
+{
+  "ecmaFeatures": {
+    "blockBindings": true,
+    "forOf": true,
+    "generators": true,
+    "octalLiterals": true,
+    "templateStrings": true
+  },
+
+  "env": {
+    "node": true
+  },
+
+  "rules": {
+    "block-scoped-var": 1,
+    "curly": [2, "multi-line"],
+    "generator-star-spacing": [2, "after"],
+    "indent": [2, 2],
+    "no-bitwise": 2,
+    "no-extra-parens": 2,
+    "no-floating-decimal": 2,
+    "no-inline-comments": 2,
+    "no-multiple-empty-lines": 2,
+    "no-nested-ternary": 2,
+    "no-shadow": 0,
+    "no-var": 2,
+    "quotes": [2, "single"],
+    "radix": 2,
+    "space-before-function-parentheses": [2, "never"],
+    "space-before-blocks": [2, "always"],
+    "strict": [2, "global"],
+    "valid-jsdoc": [1, {
+      "prefer": {
+        "returns": "return"
+      },
+      "requireReturn": false,
+      "requireReturnDescription": false
+    }],
+    "wrap-regex": 2
+  }
+}
