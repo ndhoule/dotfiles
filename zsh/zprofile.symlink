@@ -19,11 +19,12 @@ fi
 # Editors
 #
 
-export VISUAL="emacs"
-export EDITOR="emacs"
+export VISUAL="nvim"
+export EDITOR="nvim"
 export ALTERNATE_EDITOR="vim"
-export SVN_EDITOR="emacs"
+export SVN_EDITOR="nvim"
 export PAGER="less"
+export GREPPER="ag"
 
 #
 # Language
