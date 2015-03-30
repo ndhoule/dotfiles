@@ -24,8 +24,9 @@
 	autosetuprebase = always
 
 [alias]
-	freebase = rebase
 	checkout-pr = "!git-checkout-pr"
+	freebase = rebase
+	up = "!git-update"
 
 [push]
 	default = current
