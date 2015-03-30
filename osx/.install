@@ -108,8 +108,10 @@ _load_osx_preferences() {
 _brew_install_taps() {
   log_info "Tapping brew taps..."
   while read tap; do
-    # Don't use braces so we can pass args to `brew`
-    brew tap $tap
+    if [[ $(echo $tap | head -c 1) != "#" ]]; then
+      # Don't use braces so we can pass args to `brew`
+      brew tap $tap
+    fi
   done < "${PWD}/taps.txt"
   log_info "Tapped brew taps."
 }
@@ -121,7 +123,8 @@ _brew_install_taps() {
 _brew_install_packages() {
   log_info "Installing brew packages..."
   while read package; do
-    if [[ $(brew ls --versions $package) == "" ]]; then
+    if [[ $(echo $package | head -c 1) != "#" && $(brew ls --versions $package) == "" ]]; then
+      # Don't use braces so we can pass args to `brew`
       brew install $package
     fi
   done < "${PWD}/packages.txt"
