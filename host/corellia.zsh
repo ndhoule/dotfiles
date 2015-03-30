@@ -1,15 +1,18 @@
-# -*- mode: sh -*-
 #
-# TODO
+# Setup specific to `corellia`.
 #
 # Author:
 #   Nathan Houle <nathan@nathanhoule.com>
 #
 
 function {
-  local SEGMENT_DOTFILES_INIT="${DEV_PATH}/segmentio/dotfiles/index.sh"
+  local SEGMENT_DOTFILES_PATH="${DEV_PATH}/segmentio/dotfiles/source"
+  declare -a FILES
+  FILES=(general go npm release vm)
 
-  if [[ -f $SEGMENT_DOTFILES_INIT ]]; then
-    source $SEGMENT_DOTFILES_INIT
-  fi
+  for file in "${FILES[@]}"; do
+    if [[ -f "${SEGMENT_DOTFILES_PATH}/${file}.sh" ]]; then
+      source "${SEGMENT_DOTFILES_PATH}/${file}.sh"
+    fi
+  done
 }
