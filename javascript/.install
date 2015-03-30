@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+#
+# Set up JavaScript/Node.
+#
+# Authors:
+#   Nathan Houle <nathan@nathanhoule.com>
+#
+
+set -o nounset
+set -o errexit
+
+#
+# Directories.
+#
+
+PWD=$(dirname $(greadlink -f $0))
+DOTFILES_DIR=$(cd "${PWD}" && git rev-parse --show-toplevel)
+
+#
+# Global node/npm installation.
+#
+
+NPM=$(find /usr{,/local}/bin -name npm)
+
+#
+# Load dependencies.
+#
+
+source "${DOTFILES_DIR}/.lib/utils.sh"
+
+#
+# Install all npm packages in `./packages.txt`.
+#
+
+_npm_install_global_packages() {
+  # If no global npm available, bail out
+  [[ ! -x $NPM ]] && return 1
+
+  log_info "Installing global npm packages..."
+  while read package; do
+    if [[ $(echo $package | head -c 1) != "#" && $(npm info "${package}") ]]; then
+      $NPM install --global $package
+    fi
+  done < "${PWD}/packages.txt"
+  log_info "Installed global npm packages."
+}
+
+#
+# Install.
+#
+
+_install() {
+  _npm_install_global_packages
+}
+
+#
+# Init.
+#
+
+(_install)
