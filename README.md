@@ -4,7 +4,7 @@ My `$HOME`.
 
 ## Getting Started
 
-Run `scripts/install` to run all install scripts.
+Run `make install` to run all install scripts.
 
 ## File Layout
 
