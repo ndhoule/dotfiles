@@ -1,41 +1,27 @@
-Dotfiles
-========
-`zsh`, `emacs`, `vim`, and more!
+# Dotfiles
+
+My `$HOME`.
 
 ## Getting Started
-Run `scripts/bootstrap` to bootstrap all dotfiles into place. This will back up
-any existing dotfiles into a safe directory.
 
-Run `scripts/install` to run all topic-specific install scripts (e.g.
-`sublime-text-2/install.rb`) as well as set sane OS X defaults (as defined in
-`osx/set-defaults.rb`).
+Run `scripts/install` to run all install scripts.
 
-## General Notes
-This dotfiles repository largely follows Zach Holman's [dotfiles](https://github.com/holman/dotfiles)
-layout. Dotfiles are separated into topic folders, which contain a few special
-files:
+## File Layout
 
-**\*.symlink**: Gets symlinked into a user's HOME directory. Can be either a
-file or directory.
+This repository largely follows Zach Holman's [dotfiles](https://github.com/holman/dotfiles) layout. Dotfiles are separated into topic folders; a few files are treated specially:
 
-**install.\*** -- Gets run automatically when `scripts/install` is run
+- `{filename}.symlink`: Symlinked to `$HOME/.filename`. Can be a file or a directory.
+- `.install(\..*)?`: Executed whenever `scripts/install` is run.
 
 ## `zsh` Configuration
-I use [prezto](https://github.com/sorin-ionescu/prezto), an awesome zsh
-framework. If you know what you're looking at, a lot of my config is
-self-explanatory; if not, check out the [prezto readme](https://github.com/sorin-ionescu/prezto/blob/master/README.md)
-for details.
 
-## Caveats
-These scripts are meant to run only on OS X, and will be straight-up funky on
-any Windows-based machine. (If you want to use it on Linux, the scripts would
-work with some minor modifications.) I'm hoping to make them more OS-agnostic in
-the future, but for now, they target OS X only.
+This setup leverages [prezto](https://github.com/sorin-ionescu/prezto), a zsh framework. Check out the [prezto readme](https://github.com/sorin-ionescu/prezto/blob/master/README.md) for details.
 
-## Thanks
-Thanks go out to Sorin Ionescu for his great [prezto](https://github.com/sorin-ionescu/prezto)
-project.
+## Compatibility
 
-Big thanks go out to Zach Holman for his awesome [dotfiles](https://github.com/holman/dotfiles)
-repository, from which I drew much inpiration (and, okay--maybe I outright
-stole a few ideas while I was at it).
+These scripts are only tested on OS X.
+
+## Credits
+
+- Sorin Ionescu / [prezto](https://github.com/sorin-ionescu/prezto)
+- Zach Holman / [dotfiles](https://github.com/holman/dotfiles)
