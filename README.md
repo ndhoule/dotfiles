@@ -11,7 +11,7 @@ Run `make install` to run all install scripts.
 This repository largely follows Zach Holman's [dotfiles](https://github.com/holman/dotfiles) layout. Dotfiles are separated into topic folders; a few files are treated specially:
 
 - `{filename}.symlink`: Symlinked to `$HOME/.filename`. Can be a file or a directory.
-- `.install(\..*)?`: Executed whenever `scripts/install` is run.
+- `.install(\..*)?`: Executed whenever `make install` is run.
 
 ## `zsh` Configuration
 
@@ -19,7 +19,7 @@ This setup leverages [prezto](https://github.com/sorin-ionescu/prezto), a zsh fr
 
 ## Compatibility
 
-These scripts are only tested on OS X.
+The setup scripts are only tested on OS X.
 
 ## Credits
 
