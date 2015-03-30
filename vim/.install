@@ -6,6 +6,8 @@
 # Authors:
 #   Nathan Houle <nathan@nathanhoule.com>
 #
+# TODO: Handle existing .{vim,nvim} symlinks gracefully
+#
 
 set -o nounset
 set -o errexit
@@ -14,7 +16,7 @@ set -o errexit
 # Directories.
 #
 
-PWD=$(dirname $($READLINK -f "${BASH_SOURCE[0]}"))
+PWD=$(dirname $(greadlink -f "${BASH_SOURCE[0]}"))
 
 #
 # Load dependencies.
@@ -69,4 +71,4 @@ trap fail 0
 # Boot.
 #
 
-(_main)
+(_install)
