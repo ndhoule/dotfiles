@@ -36,9 +36,4 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias del='git branch -d'
 alias gpr='git remote prune'
-# Prune remote/origin branches that have been merged. Skips master and the
-# currently checked-out branch
-alias gprl='git branch --merged | \
-            grep -v "^\(  \|* \)master$" | \
-            grep -v "^* $(git rev-parse --abbrev-ref HEAD)$" | \
-            xargs git branch -d'
+alias gprl='git-delete-merged'
