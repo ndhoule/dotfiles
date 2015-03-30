@@ -1,1 +1,7 @@
+caskroom/cask
+caskroom/fonts
+caskroom/versions
+homebrew/completions
 homebrew/dupes
+homebrew/versions
+neovim/neovim
