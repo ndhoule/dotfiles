@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+#
+# Update a git tree, displaying a nicely formatted summary of changes.
+#
+# Author:
+#   Nathan Houle <nathan@nathanhoule.com>
+#
+# Inspired by:
+#   Ryan Tomayko <ryan@github.com> - http://github.com/rtomayko/dotfiles/blob/rtomayko/bin/git-up
+#
+
+set -o nounset
+set -o errexit
+
+#
+# Colors.
+#
+
+COLOR_BOLD=$(tput bold)
+COLOR_GRAY=$(tput setaf 8)
+COLOR_RESET=$(tput sgr0)
+COLOR_UNDERLINE=$(tput smul)
+
+#
+# Print a separator.
+#
+
+separator() {
+  echo "${COLOR_GRAY}${COLOR_BOLD}--------------------${COLOR_RESET}"
+}
+
+header() {
+  echo "${COLOR_BOLD}${COLOR_UNDERLINE}${@}${COLOR_RESET}"
+}
+
+report() {
+  local from=$1
+  local to=$2
+
+  echo ""
+  separator
+
+  header "Stats:"
+  echo ""
+  git --no-pager diff --color --stat $from..$to | sed 's/^/  /'
+  echo ""
+  header "Commits:"
+  echo ""
+  git --no-pager log --color --pretty=oneline --abbrev-commit $from..$to | sed 's/^/  /'
+
+  separator
+}
+
+#
+# Update the local repo and display a report if new changes were pulled down.
+#
+
+FROM=$(git rev-parse HEAD)
+git pull --rebase $@
+TO=$(git rev-parse HEAD)
+[[ $FROM != $TO ]] && report $FROM $TO
