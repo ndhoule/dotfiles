@@ -1,0 +1,152 @@
+#!/usr/bin/env bash
+
+#
+# Install OS X-specific config.
+#
+# Authors:
+#   Nathan Houle <nathan@nathanhoule.com>
+#
+
+set -o nounset
+set -o errexit
+
+#
+# Directories.
+#
+
+PWD=$(dirname $(greadlink -f $0))
+DOTFILES_DIR=$(cd "${PWD}" && git rev-parse --show-toplevel)
+
+#
+# Load dependencies.
+#
+
+source "${DOTFILES_DIR}/.lib/utils.sh"
+
+#
+# Ensure platform.
+#
+
+if [[ $(uname) != 'Darwin' ]]; then
+  fatal "This script can only be run on OS X."
+fi
+
+#
+# Given a list of apps, kill them all.
+#
+# $@ A list of app names.
+#
+
+_kill_apps() {
+  local apps=("$@")
+
+  for app in "${apps[@]}"; do
+    log_debug "Killing ${app}..."
+    killall "${app}" > /dev/null 2>&1 || true
+    log_debug "Killed ${app}."
+  done
+}
+
+#
+# Enable full-disk encryption, if it's not yet enabled.
+#
+
+_enable_fde() {
+  if [[ $(fdesetup status | grep Off) ]]; then
+    log_info "Enabling full-disk encryption..."
+    sudo fdesetup enable
+    log_info "Enabled full-disk encryption."
+  fi
+}
+
+#
+# Enable the accessibility API, if it's not yet enabled.
+#
+
+_enable_accessibility() {
+  local acc_api_path="/private/var/db/.AccessibilityAPIEnabled"
+
+  if [[ ! -f "${acc_api_path}" ]]; then
+    log_info "Enabling Accessibility API..."
+    sudo touch "${acc_api_path}"
+    log_info "Enabled Accessibility API."
+  fi
+}
+
+#
+# Hide the finder icon in the toolbar.
+#
+
+_hide_spotlight_icon() {
+  local icon_path="/System/Library/CoreServices/Search.bundle/Contents/MacOS/Search"
+
+  if [[ -w "${icon_path}" ]]; then
+    log_info "Hiding Spotlight icon..."
+    sudo chmod 600 "${icon_path}"
+    log_info "Hid Finder icon."
+  fi
+}
+
+#
+# Load OS X defaults.
+#
+
+_load_osx_preferences() {
+  log_info "Loading OS X default settings..."
+  find "${PWD}/scripts" -type f -print0 | while read -d $'\0' file; do
+    log_debug "Loading ${file}..."
+    env $file
+    log_debug "Loaded ${file}."
+  done
+  log_info "Loaded OS X default settings."
+}
+
+#
+# Tap all formulae in `./taps.txt`.
+#
+
+_brew_install_taps() {
+  log_info "Tapping brew taps..."
+  while read tap; do
+    # Don't use braces so we can pass args to `brew`
+    brew tap $tap
+  done < "${PWD}/taps.txt"
+  log_info "Tapped brew taps."
+}
+
+#
+# Install all packages in `./packages.txt`.
+#
+
+_brew_install_packages() {
+  log_info "Installing brew packages..."
+  while read package; do
+    if [[ $(brew ls --versions $package) == "" ]]; then
+      brew install $package
+    fi
+  done < "${PWD}/packages.txt"
+  log_info "Installed brew packages."
+}
+
+#
+# Install.
+#
+
+_install() {
+  _enable_fde
+  _enable_accessibility
+  _hide_spotlight_icon
+  _load_osx_preferences
+  _brew_install_taps
+  _brew_install_packages
+
+  # Restart affected apps.
+  _kill_apps Dashboard Dock Finder Safari SystemUIServer
+}
+
+#
+# Init.
+#
+
+(ensure_sudo)
+(_install)
