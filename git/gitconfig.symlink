@@ -25,6 +25,7 @@
 
 [alias]
 	freebase = rebase
+	checkout-pr = "!git-checkout-pr"
 
 [push]
 	default = current
