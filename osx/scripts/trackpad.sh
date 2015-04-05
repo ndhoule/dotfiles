@@ -15,9 +15,6 @@ if [[ ! "$OSTYPE" == darwin* ]]; then
   exit 1
 fi
 
-# Disable "natural" scrolling
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-
 # Use the Ctrl (^) modifier key as a trigger for zooming
 defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 
