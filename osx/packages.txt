@@ -1,6 +1,7 @@
 android-sdk
 autoconf
 automake
+boot2docker
 brew-cask
 cmake
 coreutils
