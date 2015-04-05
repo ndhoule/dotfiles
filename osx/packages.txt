@@ -6,6 +6,7 @@ brew-cask
 cmake
 coreutils
 cppcheck
+ctags
 curl
 direnv
 emacs
