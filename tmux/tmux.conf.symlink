@@ -6,67 +6,76 @@
 #
 
 #
-# OS-specific configurations
-#
-
-if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux-osx.conf'
-if-shell 'test "$(uname)" = "Linux"' 'source ~/.tmux-linux.conf'
-
-#
-# Core Settings
+# Core Settings.
 #
 
 set -g history-limit 100000
 
 # Tell tmux to use 256-color terminals
-set -g default-terminal "screen-256color"
+set -g default-terminal $TERM
 
+# Enable UTF-8 characters in the status line.
 set-option -g status-utf8 on
 
-# Allow for faster key repetition
+# Allow for faster key repetition.
 set -s escape-time 0
 
-# Constrain window size to max window size rather than session max size
+# Constrain window size to max window size rather than session max size.
 setw -g aggressive-resize on
 
-# Start window numbering at 1
+# Start window numbering at 1.
 set -g base-index 1
 
-# Automatically renumber windows on deletion
+# Renumber all windows when a window is deleted.
 set -g renumber-windows on
 
 #
-# Appearance
+# Appearance.
 #
 
-# Automatically set window title
+# Colors.
+TMUX_BLUE="colour31"
+TMUX_DARK_GRAY="colour16"
+TMUX_GRAY="colour244"
+TMUX_GRAY_DARK="colour240"
+TMUX_GRAY_LIGHT="colour249"
+
+# Automatically set window title.
 set-window-option -g automatic-rename on
 set-option -g set-titles on
 
-# Pane divider color
+# Set pane divider color.
 set -g pane-border-bg black
 set -g pane-border-fg white
 
-# Highlight active pane
+# Highlight active pane.
 set -g pane-active-border-bg black
 set -g pane-active-border-fg green
 
-# Enable status bar
+# Enable status line.
 set -g status on
+
+# Increase status line refresh interval.
 set -g status-interval 1
 
-# Set Powerline colors
+# Format status line.
 set -g status-fg white
 set -g status-bg black
-set -g status-left-length 100
-set -g window-status-format "#[fg=colour244,bg=black]#I #[fg=colour240] #[fg=colour249]#W "
-set -g window-status-current-format "#[fg=black,bg=colour31]#[fg=white,bg=colour31] #I  #[fg=white,bold]#W #[fg=colour31,bg=black,nobold]"
-set -g status-justify "centre"
+
+# Left bar format.
 set -g status-left-length 500
+set -g status-left '#[fg=$TMUX_GRAY_DARK,bg=white]#S'
+
+# Center bar format.
+set -g status-justify "centre"
+set -g window-status-format "#[fg=$TMUX_GRAY,bg=black]#I #[fg=$TMUX_GRAY_DARK] #[fg=$TMUX_GRAY_LIGHT]#W "
+set -g window-status-current-format "#[fg=black,bg=$TMUX_BLUE]#[fg=white,bg=$TMUX_BLUE] #I  #[fg=white,bold]#W #[fg=$TMUX_BLUE,bg=black,nobold]"
+
+# Right bar.
 set -g status-right-length 500
-set -g status-left '#[fg=colour16,bg=colour254,bold] #S #[fg=colour254,bg=colour234,nobold]#(powerline tmux left)'
 set -g status-right 'Battery #($HOME/bin/battery Discharging; $HOME/bin/battery Charging) | %B %e, %r'
 
+# TODO: Document what these do
 set-window-option -g window-status-fg colour249
 set-window-option -g window-status-activity-attr none
 set-window-option -g window-status-bell-attr none
@@ -74,25 +83,35 @@ set-window-option -g window-status-activity-fg yellow
 set-window-option -g window-status-bell-fg red
 
 #
-# Keybindings
+# Keybindings.
 #
 
-bind r source-file ~/.tmux.conf \; display "Reloaded ~/.tmux.conf"
-
-# Unbind Ctrl-b (Vim uses it); use Ctrl-a instead
+# Change activation key binding.
 unbind C-b
 set -g prefix C-a
-bind-key C-a last-window
 
-# Tell tmux to use vi-style keybindings
+# Use vi-style keybindings.
 setw -g mode-keys vi
 
-# Vim-style pane traversal
+# Vim-style pane traversal.
 bind h select-pane -L
 bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
 bind q killp
 
-# Vim-style visual selection (see OS-specific config files for copy command)
+# Vim-style visual selection.
 bind-key -t vi-copy v begin-selection
+
+# Toggle previous window.
+bind-key C-a last-window
+
+# Reload tmux config.
+bind r source-file ~/.tmux.conf \; display "Reloaded ~/.tmux.conf."
+
+#
+# OS-specific Configuration.
+#
+
+if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux-osx.conf'
+if-shell 'test "$(uname)" = "Linux"' 'source ~/.tmux-linux.conf'

@@ -5,5 +5,5 @@
 #   Nathan Houle <nathan@nathanhoule.com>
 #
 
-# Yank current selection to clipboard (see `tmux.conf` for selection hotkey)
+# Yank current selection to clipboard.
 bind-key -t vi-copy y copy-pipe "xclip -selection c"

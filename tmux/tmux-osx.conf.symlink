@@ -5,8 +5,8 @@
 #   Nathan Houle <nathan@nathanhoule.com>
 #
 
-# Fix tmux/osx clipboard integration
+# Fix tmux/osx clipboard integration.
 set-option -g default-command "reattach-to-user-namespace -l $SHELL"
 
-# Yank current selection to clipboard (see `tmux.conf` for selection hotkey)
+# Yank current selection to clipboard.
 bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
