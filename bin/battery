@@ -1,122 +1,69 @@
-#!/bin/sh
+#!/usr/bin/env ruby
 
-HEART_FULL=♥
-HEART_EMPTY=♡
-[ -z "$NUM_HEARTS" ] &&
-    NUM_HEARTS=5
+#
+# Get the current state of the battery.
+#
+# Author:
+#   Nathan Houle <nathan@nathanhoule.com>
+#
+# TODO:
+# - Cross-platform
+# - Gross, clean this thing up
+#
 
-cutinate()
-{
-    perc=$1
-    inc=$(( 100 / $NUM_HEARTS))
+require 'optparse'
 
+def to_percent(*vals)
+  (100 * vals.map(&:to_f).reduce(:/)).to_i
+end
 
-    for i in `seq $NUM_HEARTS`; do
-        if [ $perc -lt 100 ]; then
-            echo $HEART_EMPTY
-        else
-            echo $HEART_FULL
-        fi
-        perc=$(( $perc + $inc ))
-    done
-}
+def darwin_battery
+  mappings = { 'ExternalConnected' => :charging, 'MaxCapacity' => :max, 'CurrentCapacity' => :current }
+  r_config = /"(ExternalConnected|MaxCapacity|CurrentCapacity)" = (.*)/
 
-linux_get_bat ()
-{
-    bf=$(cat $BAT_FULL)
-    bn=$(cat $BAT_NOW)
-    echo $(( 100 * $bn / $bf ))
-}
+  Hash[`ioreg -n AppleSmartBattery -r`
+    .split(/\r?\n/)
+    .select { |s| s.match(r_config) }
+    .map { |s| s.match(r_config).captures }
+    .map { |kv| [mappings[kv[0]], kv[1]] }]
+end
 
-freebsd_get_bat ()
-{
-    sysctl -n hw.acpi.battery.life
-}
+def battery(opts)
+  stats = darwin_battery
 
-# Do with grep and awk unless too hard
+  if opts[:charge_status]
+    STDOUT.puts stats[:charging] === 'Yes' ? 'Charging' : 'Discharging'
+    exit 0
+  end
 
-# TODO Identify which machine we're on from teh script.
+  STDOUT.puts "#{to_percent(stats[:current], stats[:max]).to_s}"
+  exit 0
+end
 
-battery_status()
-{
-case $(uname -s) in
-    "Linux")
-        BATPATH=${BATPATH:-/sys/class/power_supply/BAT0}
-        STATUS=$BATPATH/status
-        [ "$1" = `cat $STATUS` ] || [ "$1" = "" ] || return 0
-        if [ -f "$BATPATH/energy_full" ]; then
-            naming="energy"
-        elif [ -f "$BATPATH/charge_full" ]; then
-            naming="charge"
-        elif [ -f "$BATPATH/capacity" ]; then
-            cat "$BATPATH/capacity"
-            return 0
-        fi
-        BAT_FULL=$BATPATH/${naming}_full
-        BAT_NOW=$BATPATH/${naming}_now
-        linux_get_bat
-        ;;
-    "FreeBSD")
-        STATUS=`sysctl -n hw.acpi.battery.state`
-        case $1 in
-            "Discharging")
-                if [ $STATUS -eq 1 ]; then
-                    freebsd_get_bat
-                fi
-                ;;
-            "Charging")
-                if [ $STATUS -eq 2 ]; then
-                    freebsd_get_bat
-                fi
-                ;;
-            "")
-                freebsd_get_bat
-                ;;
-        esac
-        ;;
-    "Darwin")
-        case $1 in
-            "Discharging")
-                ext="No";;
-            "Charging")
-                ext="Yes";;
-        esac
+def parse_opts
+  OptionParser.new do |opts|
+    options = {}
 
-        ioreg -c AppleSmartBattery -w0 | \
-        grep -o '"[^"]*" = [^ ]*' | \
-        sed -e 's/= //g' -e 's/"//g' | \
-        sort | \
-        while read key value; do
-            case $key in
-                "MaxCapacity")
-                    export maxcap=$value;;
-                "CurrentCapacity")
-                    export curcap=$value;;
-                "ExternalConnected")
-                    if [ -n "$ext" ] && [ "$ext" != "$value" ]; then
-                        exit
-                    fi
-                ;;
-                "FullyCharged")
-                    if [ "$value" = "Yes" ]; then
-                        exit
-                    fi
-                ;;
-            esac
-            if [[ -n "$maxcap" && -n $curcap ]]; then
-                echo $(( 100 * $curcap / $maxcap ))
-                break
-            fi
-        done
-esac
-}
+    opts.separator "This demo prints the results of parsing the options."
+    opts.version = "0.0.1"
 
-BATTERY_STATUS=`battery_status $1`
-[ -z "$BATTERY_STATUS" ] && exit
+    opts.on('--charge-status', 'Check if the battery is charging.') { options[:charge_status] = true }
 
-if [ -n "$CUTE_BATTERY_INDICATOR" ]; then
-    cutinate $BATTERY_STATUS
-else
-    echo ${BATTERY_STATUS}%
-fi
+    begin
+      opts.parse!
+      return options
+    rescue OptionParser::ParseError => error
+      $stderr.puts error
+      $stderr.puts "\n"
+      $stderr.puts opts.help
+      exit 1
+    end
+  end
+end
 
+#
+# Get the battery status.
+#
+
+opts = parse_opts
+print battery(opts)

@@ -76,7 +76,7 @@ set -g window-status-current-format "#[fg=$TMUX_BG,bg=$TMUX_BLUE]#[fg=$TMUX_F
 
 # Right bar.
 set -g status-right-length 500
-set -g status-right 'Battery #($HOME/bin/battery Discharging; $HOME/bin/battery Charging) | %B %e, %r'
+set -g status-right 'Battery #($HOME/bin/battery)%% (#($HOME/bin/battery --charge-status)) | %B %e, %r'
 
 # TODO: Document what these do
 set-window-option -g window-status-fg colour249
