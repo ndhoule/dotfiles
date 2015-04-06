@@ -58,18 +58,21 @@ set -g status on
 # Increase status line refresh interval.
 set -g status-interval 1
 
-# Format status line.
-set -g status-fg white
-set -g status-bg black
+# Status line colors.
+TMUX_BG="colour234"
+TMUX_FG="white"
+
+set -g status-fg $TMUX_FG
+set -g status-bg $TMUX_BG
 
 # Left bar format.
 set -g status-left-length 500
-set -g status-left '#[fg=$TMUX_GRAY_DARK,bg=white]#S'
+set -g status-left '#S'
 
 # Center bar format.
 set -g status-justify "centre"
-set -g window-status-format "#[fg=$TMUX_GRAY,bg=black]#I #[fg=$TMUX_GRAY_DARK] #[fg=$TMUX_GRAY_LIGHT]#W "
-set -g window-status-current-format "#[fg=black,bg=$TMUX_BLUE]#[fg=white,bg=$TMUX_BLUE] #I  #[fg=white,bold]#W #[fg=$TMUX_BLUE,bg=black,nobold]"
+set -g window-status-format "#[fg=$TMUX_GRAY,bg=$TMUX_BG]#I #[fg=$TMUX_GRAY_DARK] #[fg=$TMUX_GRAY_LIGHT]#W "
+set -g window-status-current-format "#[fg=$TMUX_BG,bg=$TMUX_BLUE]#[fg=$TMUX_FG,bg=$TMUX_BLUE] #I  #[fg=$TMUX_FG,bold]#W #[fg=$TMUX_BLUE,bg=$TMUX_BG,nobold]"
 
 # Right bar.
 set -g status-right-length 500
