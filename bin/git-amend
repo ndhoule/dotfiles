@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+#
+# Amend the last commit using the same message.
+#
+# Authors:
+#   Zach Holman <zach@zachholman.com>
+#   Nathan Houle <nathan@nathanhoule.com>
+#
+# Source:
+#   https://github.com/holman/dotfiles
+#
+
+git commit --amend -C HEAD

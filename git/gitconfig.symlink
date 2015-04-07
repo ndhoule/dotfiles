@@ -24,6 +24,7 @@
 	autosetuprebase = always
 
 [alias]
+	amend = "!git-amend"
 	checkout-pr = "!git-checkout-pr"
 	freebase = rebase
 	up = "!git-update"
