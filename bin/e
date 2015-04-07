@@ -1,20 +1,15 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-# Attribution: https://github.com/holman/dotfiles/blob/master/bin/e
 #
-# Quick shortcut to an editor.
+# Shortcut to open the current default $EDITOR.
 #
-# This means that as I travel back and forth between editors, hey, I don't have
-# to re-learn any arcane commands. Neat.
+# Authors:
+#   Zach Holman <zach@zachholman.com>
+#   Nathan Houle <nathan@nathanhoule.com>
 #
-# USAGE:
+# Source:
+#   https://github.com/holman/dotfiles
 #
-#   $ e
-#   # => opens the current directory in your editor
-#
-#   $ e .
-#   $ e /usr/local
-#   # => opens the specified directory in your editor
 
 if [ "$1" = "" ] ; then
   exec $EDITOR .
