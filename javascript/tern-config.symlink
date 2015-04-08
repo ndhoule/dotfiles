@@ -1,0 +1,13 @@
+{
+  "libs": [
+    "ecma5",
+    "ecma6",
+    "underscore"
+  ],
+  "plugins": {
+    "doc_comment": {},
+    "node": {
+      "load": true
+    }
+  }
+}
