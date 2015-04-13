@@ -6,5 +6,5 @@
 #
 
 if [[ $(which boot2docker) ]]; then
-  eval "$(boot2docker shellinit)"
+  eval "$(boot2docker shellinit > /dev/null 2>&1)"
 fi
