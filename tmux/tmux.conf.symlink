@@ -89,6 +89,11 @@ set-window-option -g window-status-bell-fg red
 # Keybindings.
 #
 
+# Bind new panes and windows to current directory.
+bind '"' split-window -c "#{pane_current_path}"
+bind % split-window -h -c "#{pane_current_path}"
+bind c new-window -c "#{pane_current_path}"
+
 # Change activation key binding.
 unbind C-b
 set -g prefix C-a
