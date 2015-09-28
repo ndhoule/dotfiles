@@ -21,17 +21,17 @@ usage: git-checkout-pr <pull-request-id>
 #
 
 _git-checkout-pr() {
-  id=$1
-  branch=${2:-"pr/${id}"}
+  id="$1"
+  branch="${2:-pr/${id}}"
 
   if [[ -z "${id}" ]]; then
     _usage
     exit 129
   fi
 
-  git fetch origin "pull/${id}/head:${branch}" > /dev/null 2>&1
+  git fetch origin "pull/${id}/head:${branch}" > /dev/null
 
-  if [[ $? == 128 ]]; then
+  if [[ "$?" = 128 ]]; then
     echo "Error: Pull request ${id} does not exist"
     exit 128
   fi
@@ -43,7 +43,7 @@ _git-checkout-pr() {
 # Parse options and start.
 #
 
-case $1 in
-  ''|-h|?|help|--help) shift; _usage $@;;
-  *) _git-checkout-pr $@;;
+case "$1" in
+  ''|'?'|-h|help|--help) shift; _usage "$@";;
+  *) _git-checkout-pr "$@";;
 esac
