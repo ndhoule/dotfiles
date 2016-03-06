@@ -3,6 +3,7 @@ autoconf
 automake
 awscli
 boot2docker
+circleci-cli
 cmake
 coreutils
 cppcheck

@@ -4,3 +4,4 @@ homebrew/completions
 homebrew/dupes
 homebrew/versions
 neovim/neovim
+rockymadden/rockymadden
