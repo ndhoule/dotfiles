@@ -1,4 +1,5 @@
-{:user {:plugins [[cider/cider-nrepl "0.7.0"]
-                  [lein-exec "0.3.4"]
-                  [redl "0.2.4"]
-                  [spyscope "0.1.4"]]}}
+{:user
+ :source-paths ["src/clojure"]
+ {:plugins [[org.clojure/tools.nrepl "0.2.10"]
+                  [cider/cider-nrepl "0.9.1"]
+                  [lein-exec "0.3.5"]]}}
