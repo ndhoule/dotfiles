@@ -1,17 +1,19 @@
 android-sdk
 autoconf
 automake
+awscli
 boot2docker
-brew-cask
 cmake
 coreutils
 cppcheck
 ctags
 curl
 direnv
+editorconfig
 emacs
 fasd
 findutils
+fzf
 gawk
 gdbm
 gettext
@@ -23,8 +25,11 @@ gnu-sed
 gnu-tar
 gnutls
 go
+go
 grep
 hub
+imagemagick
+ispell
 jq
 leiningen
 libevent
@@ -38,8 +43,8 @@ mongodb
 neovim --HEAD
 ngrok
 node
-nsq
 openssl
+parallel
 pkg-config
 postgresql
 python
