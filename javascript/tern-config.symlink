@@ -1,13 +1,9 @@
 {
-  "libs": [
-    "ecma5",
-    "ecma6",
-    "underscore"
-  ],
+  "libs": [],
   "plugins": {
+    "complete_strings": {},
     "doc_comment": {},
-    "node": {
-      "load": true
-    }
+    "node": {},
+    "node-extension": {}
   }
 }
