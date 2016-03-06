@@ -12,7 +12,6 @@ if [[ -x $(which hub) ]]; then
   eval "$(hub alias -s)"
 fi
 
-alias del='git branch -d'
 alias gW='git clean -f -d && git reset --hard'
 alias ga='git add'
 alias gb='git branch'
