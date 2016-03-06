@@ -8,7 +8,9 @@
 #
 
 # If hub is installed, use it as a Git wrapper
-[[ -x $(which hub) ]] && alias git=hub
+if [[ -x $(which hub) ]]; then
+  eval "$(hub alias -s)"
+fi
 
 alias del='git branch -d'
 alias gW='git clean -f -d && git reset --hard'
