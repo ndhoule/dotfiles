@@ -8,17 +8,8 @@
 #   Nathan Houle <nathan@nathanhoule.com>
 #
 
-function {
-  local VIM_BIN="nvim"
-
-  if [[ -x $(which $VIM_BIN) ]]; then
-    alias vi="$VIM_BIN"
-    alias vim="$VIM_BIN"
-  fi
-
-  # Easy gvim mode
-  if [[ -x $(which gvim) ]]; then
-    alias evim='gvim -y'
-    alias egvim='gvim -y'
-  fi
-}
+alias egvim="echo Launch egvim using e."
+alias evim="echo Launch evim using e."
+alias nvim="echo Launch nvim using e."
+alias vi="echo Launch vi using e."
+alias vim="echo Launch vim using e."
