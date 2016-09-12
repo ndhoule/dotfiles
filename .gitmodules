@@ -1,9 +1,9 @@
 [submodule "emacs/emacs.d.symlink"]
-	path = emacs/emacs.d.symlink
+	path = emacs/.emacs.d
 	url = git://github.com/ndhoule/emacs.d.git
 [submodule "vim/vim.symlink"]
-	path = vim/vim.symlink
+	path = vim/.vim
 	url = git://github.com/ndhoule/vimrc.git
 [submodule "zsh/zprezto.symlink"]
-	path = zsh/zprezto.symlink
+	path = zsh/.zprezto
 	url = git://github.com/ndhoule/prezto.git
