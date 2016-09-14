@@ -1,3 +1,3 @@
-if filereadable(expand('~/vim/vimrc'))
-  source ~/vim/vimrc
+if filereadable(expand('~/.config/nvim/init.vim'))
+  source ~/.config/nvim/init.vim
 endif

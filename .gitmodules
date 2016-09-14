@@ -2,7 +2,7 @@
 	path = emacs/.emacs.d
 	url = git://github.com/ndhoule/emacs.d.git
 [submodule "vim/vim.symlink"]
-	path = vim/.vim
+	path = vim/.config/nvim
 	url = git://github.com/ndhoule/vimrc.git
 [submodule "zsh/zprezto.symlink"]
 	path = zsh/.zprezto
