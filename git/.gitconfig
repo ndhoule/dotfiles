@@ -23,6 +23,9 @@
 [branch]
 	autosetuprebase = always
 
+[commit]
+	gpgsign = true
+
 [alias]
 	amend = "!git-amend"
 	checkout-pr = "!git-checkout-pr"
