@@ -1,9 +1,15 @@
 {
-  "libs": [],
+  "ecmaVersion": 6,
+  "loadEagerly": [],
   "plugins": {
-    "complete_strings": {},
-    "doc_comment": {},
-    "node": {},
-    "node-extension": {}
+    "complete_strings": {
+      "maxLength": 15
+    },
+    "doc_comment": {
+      "fullDocs": true
+    },
+    "es_modules": {},
+    "modules": {},
+    "node": {}
   }
 }
