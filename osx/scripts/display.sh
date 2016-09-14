@@ -16,4 +16,4 @@ if [[ ! "$OSTYPE" == darwin* ]]; then
 fi
 
 # Enable subpixel font rendering on non-Apple LCDs
-defaults write AppleFontSmoothing NSGlobalDomain -int 2
+defaults write NSGlobalDomain AppleFontSmoothing -int 2

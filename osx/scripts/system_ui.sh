@@ -44,7 +44,7 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
 # Show battery percentage in menubar
-defaults write com.apple.menuextra.battery ShowPercent -string “NO”
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
 # Show current date alongside time
 defaults write com.apple.menuextra.clock DateFormat -string "EEE MMM d hh:mm a"
@@ -67,3 +67,11 @@ defaults write com.apple.Dock expose-animation-duration -float 0.1
 
 # Eliminate Dock autohide delay
 defaults write com.apple.Dock autohide-delay -float 0
+
+# Specify menu items to display in menu bar tray
+defaults write com.apple.systemuiserver menuExtras -array \
+  "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+  "/System/Library/CoreServices/Menu Extras/Battery.menu" \
+  "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+  "/System/Library/CoreServices/Menu Extras/Clock.menu" \
+  "/System/Library/CoreServices/Menu Extras/Volume.menu"

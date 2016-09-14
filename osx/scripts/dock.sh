@@ -22,7 +22,7 @@ defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock mineffect -string scale
 
 # Move dock to side of screen
-defaults write com.apple.dock orientation -string "left"
+defaults write com.apple.dock orientation -string "bottom"
 
 # Set the icon size of Dock items to 50 pixels
 defaults write com.apple.dock tilesize -int 50
