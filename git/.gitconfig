@@ -31,7 +31,6 @@
 	checkout-pr = "!git-checkout-pr"
 	freebase = rebase
 	up = "!git-update"
-	hc = "!git-hashtag-commit"
 
 [push]
 	default = current
