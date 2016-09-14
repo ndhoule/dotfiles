@@ -25,34 +25,5 @@ function {
     source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
   fi
 
-  #
-  # Zsh submodules
-  #
-
-  # All zsh config files (all *.zsh files contained in $DOTFILES children
-  # directories). Note that this glob is limited to one directory level deep.
-  local -a config_files
-  config_files=(${DOTFILES}/*/*.zsh)
-
-  # Load path files
-  for file in ${(M)config_files:#*/path.zsh}; do
-    source $file
-  done
-
-  # Load all files except for path, completions, and host-specific files
-  for file in ${config_files:#*/(path.zsh|completion.zsh|host/*.zsh)}; do
-    source $file
-  done
-
-  # Load host-specific files
-  for file in ${(M)config_files:#*/host/*.zsh}; do
-    if [[ "$(basename $file | cut -d '.' -f 1)" == "$(hostname | cut -d '.' -f 1)" ]]; then
-      source $file
-    fi
-  done
-
-  # Load completions
-  for file in ${(M)config_files:#*/completion.zsh}; do
-    source $file
-  done
+  for config (~/.zsh/*.zsh) source "${config}"
 }
