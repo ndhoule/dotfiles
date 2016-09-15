@@ -43,11 +43,28 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 # Disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
+# Disable transparency in the menu bar and elsewhere on Yosemite
+defaults write com.apple.universalaccess reduceTransparency -bool true
+
 # Show battery percentage in menubar
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
 # Show current date alongside time
 defaults write com.apple.menuextra.clock DateFormat -string "EEE MMM d hh:mm a"
+
+# Menu bar: hide the Time Machine, Volume, and User icons
+for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
+  defaults write "${domain}" dontAutoLoad -array \
+    "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
+    "/System/Library/CoreServices/Menu Extras/User.menu"
+done
+
+defaults write com.apple.systemuiserver menuExtras -array \
+  "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+  "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+  "/System/Library/CoreServices/Menu Extras/Volume.menu" \
+  "/System/Library/CoreServices/Menu Extras/Battery.menu" \
+  "/System/Library/CoreServices/Menu Extras/Clock.menu"
 
 #
 # Animations
@@ -67,11 +84,3 @@ defaults write com.apple.Dock expose-animation-duration -float 0.1
 
 # Eliminate Dock autohide delay
 defaults write com.apple.Dock autohide-delay -float 0
-
-# Specify menu items to display in menu bar tray
-defaults write com.apple.systemuiserver menuExtras -array \
-  "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
-  "/System/Library/CoreServices/Menu Extras/Battery.menu" \
-  "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
-  "/System/Library/CoreServices/Menu Extras/Clock.menu" \
-  "/System/Library/CoreServices/Menu Extras/Volume.menu"

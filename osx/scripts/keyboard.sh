@@ -16,7 +16,7 @@ if [[ ! "$OSTYPE" == darwin* ]]; then
 fi
 
 # Swap Fn key state
-defaults write -g com.apple.keyboard.fnState -boolean true
+defaults write -g com.apple.keyboard.fnState -int 1
 
 # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
@@ -28,7 +28,10 @@ defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain KeyRepeat -float 1.25
+
+# Set a shorter delay until key repeat
+defaults write NSGlobalDomain InitialKeyRepeat -int 16
 
 # Automatically illuminate built-in MacBook keyboard in low light
 defaults write com.apple.BezelServices kDim -bool true
