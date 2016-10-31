@@ -1,16 +1,2 @@
-github.com/alecthomas/gocyclo
-github.com/golang/lint/golint
-github.com/gordonklaus/ineffassign
-github.com/jgautheron/goconst/cmd/goconst
-github.com/kisielk/errcheck
-github.com/mdempsky/unconvert
-github.com/mibk/dupl
-github.com/mvdan/interfacer/cmd/interfacer
 github.com/nsf/gocode
-github.com/opennota/check/cmd/aligncheck
-github.com/opennota/check/cmd/structcheck
-github.com/opennota/check/cmd/varcheck
-github.com/tsenart/deadcode
-github.com/walle/lll/cmd/lll
-golang.org/x/tools/cmd/goimports
-golang.org/x/tools/cmd/gotype
+github.com/alecthomas/gometalinter
