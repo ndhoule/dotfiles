@@ -1,2 +1,3 @@
-github.com/nsf/gocode
 github.com/alecthomas/gometalinter
+github.com/nsf/gocode
+golang.org/x/tools/cmd/guru
