@@ -29,11 +29,13 @@
 [alias]
 	amend = "!git-amend"
 	checkout-pr = "!git-checkout-pr"
-	freebase = rebase
 	up = "!git-update"
 
 [push]
 	default = current
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
 
 [include]
 	path = ~/.gitconfig.private
