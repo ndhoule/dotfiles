@@ -20,7 +20,7 @@ fi
 #
 
 export ALTERNATE_EDITOR=""
-export EDITOR="nvim"
+export EDITOR="emacsclient -c -n"
 export GREPPER="ag"
 export PAGER="less"
 export SVN_EDITOR="${EDITOR}"
