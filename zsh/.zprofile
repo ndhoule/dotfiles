@@ -23,7 +23,8 @@ export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -c -n"
 export GREPPER="ag"
 export PAGER="less"
-export SVN_EDITOR="${EDITOR}"
+export GIT_EDITOR="emacsclient -c -nw"
+export SVN_EDITOR="emacsclient -c -nw"
 export VISUAL="${EDITOR}"
 
 #
