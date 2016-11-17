@@ -65,7 +65,6 @@ ehthumbs.db
 #
 
 *.log
-*.sql
 *.sqlite
 *.db
 
