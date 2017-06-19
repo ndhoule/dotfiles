@@ -65,7 +65,7 @@ alias gst='git status'
 alias gup='git-update'
 
 # Patch ag to use a global ignore list
-alias ag="ag --path-to-agignore=${HOME}/.agignore"
+alias ag="ag --path-to-ignore=${HOME}/.agignore"
 
 # Docker aliases
 alias dc="docker-compose"
