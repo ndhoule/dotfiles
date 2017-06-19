@@ -1,34 +1,4 @@
-#
-# Project-specific files
-#
-
-bin/subl
-
-vim/vim.symlink/bundle
-vim/vim.symlink/.netrwhist
-
-sublime-text-2/Packages/User/Package Control.cache/
-sublime-text-2/Packages/User/Package Control.last-run
-sublime-text-2/Packages/User/Package Control.system-ca-bundle
-
-# emacs.d-specific ignores
-emacs/emacs.d.symlink/url/cache
-emacs/emacs.d.symlink/.emacs.desktop
-emacs/emacs.d.symlink/auto-save-list
-emacs/emacs.d.symlink/.session
-emacs/emacs.d.symlink/custom.el
-emacs/emacs.d.symlink/tramp
-emacs/emacs.d.symlink/anything-c-adaptive-history
-emacs/emacs.d.symlink/elpa
-emacs/emacs.d.symlink/site-lisp/package/
-emacs/emacs.d.symlink/swank
-emacs/emacs.d.symlink/.mc-lists.el
-emacs/emacs.d.symlink/var
-
-# Clojure
-clojure/lein.symlink/indices
-clojure/lein.symlink/repl-history
-clojure/lein.symlink/repl-port
+ssh/.ssh/segment_config
 
 #
 # Temporary files
