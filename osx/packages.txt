@@ -2,8 +2,6 @@ android-sdk
 autoconf
 automake
 awscli
-boot2docker
-circleci-cli
 cmake
 coreutils
 cppcheck
@@ -26,7 +24,6 @@ gnu-sed
 gnu-tar
 gnutls
 go
-go
 grep
 hub
 imagemagick
@@ -41,9 +38,9 @@ libtool
 lua
 luarocks
 mongodb
-neovim --HEAD
 ngrok
 node
+openssh
 openssl
 parallel
 pkg-config
