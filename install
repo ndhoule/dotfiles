@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+brew update
+
+while read -r tap; do
+    brew tap "${tap}"
+done < osx/taps.txt
+
+while read -r package; do
+    brew install "${package}"
+done < osx/packages.txt
+
+while read -r package; do
+    brew cask install "${package}"
+done < osx/casks.txt
