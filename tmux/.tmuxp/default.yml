@@ -1,3 +1,4 @@
+session_name: "${SESSION_NAME}"
 windows:
   - name: main
     layout: "2581,428x104,0,0{214x104,0,0,13,213x104,215,0[213x52,215,0,16,213x51,215,53,17]}"
