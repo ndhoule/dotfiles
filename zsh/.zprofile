@@ -20,7 +20,7 @@ fi
 #
 
 export ALTERNATE_EDITOR=""
-export EDITOR="emacsclient -c -n"
+export EDITOR="emacsclient -c -nw"
 export GREPPER="ag"
 export PAGER="less"
 export GIT_EDITOR="emacsclient -c -nw"
