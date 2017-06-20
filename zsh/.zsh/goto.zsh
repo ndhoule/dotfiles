@@ -65,6 +65,7 @@ goto() {
 
 # zsh completion for goto.
 _zsh_goto() {
+    compadd $(find "${GOTO_ROOT}/${GOTO_ORG}" -type d -mindepth 1 -maxdepth 1 | sed "s;${GOTO_ROOT}/${GOTO_ORG}/;;")
     compadd $(find "${GOTO_ROOT}" -type d -mindepth 2 -maxdepth 2 | sed "s;${GOTO_ROOT}/;;")
 }
 
