@@ -1,4 +1,0 @@
-emacs
-tmux
-xclip
-zsh
