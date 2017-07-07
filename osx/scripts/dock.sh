@@ -15,16 +15,21 @@ if [[ ! "$OSTYPE" == darwin* ]]; then
   exit 1
 fi
 
-# Enable dock autohide
+# Remove the auto-hiding Dock delay
+defaults write com.apple.dock autohide-delay -float 0.4
+# Remove the animation when hiding/showing the Dock
+defaults write com.apple.dock autohide-time-modifier -float 0.5
+
+# Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
 
 # Change window minimize effect
-defaults write com.apple.dock mineffect -string scale
+defaults write com.apple.dock mineffect -string "scale"
 
 # Move dock to bottom of screen
 defaults write com.apple.dock orientation -string "bottom"
 
-# Set the icon size of Dock items to 50 pixels
+# Set the size of Dock icons
 defaults write com.apple.dock tilesize -int 50
 
 # Use new-style stack view on dock folders
@@ -38,3 +43,6 @@ defaults write com.apple.dock show-process-indicators -bool true
 
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
+
+# Disable the Launchpad gesture (pinch with thumb and three fingers)
+defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
