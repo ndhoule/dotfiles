@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+#
+# Remove all Docker containers.
+#
+# Authors:
+#   Nathan Houle <nathan@nathanhoule.com>
+#
+
+docker rmi $(docker images -q)

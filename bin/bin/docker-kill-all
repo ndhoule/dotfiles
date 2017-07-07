@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+#
+# Kill all running Docker containers.
+#
+# Authors:
+#   Nathan Houle <nathan@nathanhoule.com>
+#
+
+docker kill $(docker ps -q)
