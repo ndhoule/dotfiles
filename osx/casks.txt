@@ -4,6 +4,7 @@ aws-vault
 clipy
 cyberduck
 dash3
+docker
 dropbox
 firefox
 font-dejavu-sans-mono-for-powerline
