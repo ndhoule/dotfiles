@@ -1,5 +1,5 @@
 export GOTO_ROOT="${HOME}/dev/src/github.com"
-export GOTO_ORG="segmentio"
+export GOTO_ORG="$(whoami)"
 
 # `goto` is an alias that quickly navigates to a project in a workspace, cloning
 # the project from GitHub if it does not exist. It assumes you store your
