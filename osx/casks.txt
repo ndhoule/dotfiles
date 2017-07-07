@@ -3,7 +3,7 @@ amethyst
 aws-vault
 clipy
 cyberduck
-dash
+dash3
 dropbox
 firefox
 font-dejavu-sans-mono-for-powerline
@@ -12,6 +12,7 @@ google-hangouts
 gpgtools
 honer
 iterm2
+keybase
 little-snitch
 logitech-control-center
 ngrok

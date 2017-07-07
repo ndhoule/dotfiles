@@ -32,6 +32,7 @@ kafkacat
 leiningen
 lua
 mongodb
+node
 nvm
 openssh
 openssl
@@ -44,6 +45,7 @@ readline
 reattach-to-user-namespace
 redis
 rlwrap
+rust
 shellcheck
 sqlite
 ssh-copy-id
@@ -53,4 +55,5 @@ tidy-html5
 tmux
 tree
 wget
+yarn
 zsh
