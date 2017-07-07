@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+ORG=$(basename "$(dirname "${PWD}")")
+REPO=$(basename "${PWD}")
+MD5=$(echo "${PWD}" | md5)
+
+SESSION_NAME="${ORG}/${REPO} [${MD5}]" tmuxp load default
