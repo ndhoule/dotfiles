@@ -4,6 +4,10 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+#
+# Install dependencies
+#
+
 brew update
 
 while read -r tap; do
@@ -17,3 +21,96 @@ done < osx/packages.txt
 while read -r package; do
     brew cask install "${package}"
 done < osx/casks.txt
+
+#
+# Change shell
+#
+
+if ! grep "/usr/local/bin/zsh" /etc/shells > /dev/null; then
+    echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells > /dev/null
+fi
+
+chsh -s /usr/local/bin/zsh
+
+#
+# Install ycmd
+#
+
+# git clone --recursive git@github.com:Valloric/ycmd.git $GOPATH/github.com/Valloric/ycmd
+# cd $GOPATH/github.com/Valloric/ycmd
+# ./build.py --clang-completer --gocode-completer --racer-completer --tern-completer
+
+#
+# Link dotfiles
+#
+
+packages=(
+    ack
+    ag
+    bin
+    clojure
+    emacs
+    git
+    haskell
+    javascript
+    ruby
+    ssh
+    tmux
+    vim
+    zsh
+)
+
+for pkg in "${packages[@]}"; do
+    stow --target=$HOME --verbose=1 "${pkg}"
+done
+
+#
+# Install language packages
+#
+
+go_packages=(
+    "github.com/alecthomas/gometalinter"
+    "github.com/kardianos/govendor"
+    "github.com/nsf/gocode"
+    "golang.org/x/tools/cmd/gorename"
+    "golang.org/x/tools/cmd/guru"
+)
+
+node_packages=(
+    "tern"
+)
+
+
+python_packages=(
+    "tmuxp"
+)
+
+ruby_packages=(
+    "pry"
+)
+
+for pkg in "${go_packages[@]}"; do
+    go get -u "${pkg}"
+done
+
+for pkg in "${node_packages[@]}"; do
+    npm install "${pkg}"
+done
+
+for pkg in "${python_packages[@]}"; do
+    pip install "${pkg}"
+done
+
+for pkg in "${ruby_packages[@]}"; do
+    gem install "${pkg}"
+done
+
+# Install CircleCI CLI
+curl -o /usr/local/bin/circleci https://circle-downloads.s3.amazonaws.com/releases/build_agent_wrapper/circleci && chmod +x /usr/local/bin/circleci
+
+#
+# OS X scripts
+#
+
+# TODO(ndhoule): Add this
+# TODO(ndhoule): On Sierra+, remap Caps Lock -> Escape
