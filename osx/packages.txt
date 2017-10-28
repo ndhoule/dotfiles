@@ -45,6 +45,7 @@ readline
 reattach-to-user-namespace
 redis
 rlwrap
+ruby
 rust
 shellcheck
 sqlite
