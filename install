@@ -5,6 +5,15 @@ set -o nounset
 set -o pipefail
 
 #
+# Check dependencies
+#
+
+if [[ -z "${GOPATH}" ]]; then
+    echo "ERROR: Must set GOPATH before running this script."
+    exit 1
+fi
+
+#
 # Install dependencies
 #
 
@@ -36,32 +45,32 @@ chsh -s /usr/local/bin/zsh
 # Install ycmd
 #
 
-# git clone --recursive git@github.com:Valloric/ycmd.git $GOPATH/github.com/Valloric/ycmd
-# cd $GOPATH/github.com/Valloric/ycmd
+# git clone --recursive git@github.com:Valloric/ycmd.git $GOPATH/src/github.com/Valloric/ycmd
+# pushd $GOPATH/src/github.com/Valloric/ycmd
 # ./build.py --clang-completer --gocode-completer --racer-completer --tern-completer
+# popd
 
 #
 # Link dotfiles
 #
 
 packages=(
-    ack
-    ag
-    bin
-    clojure
-    emacs
-    git
-    haskell
-    javascript
-    ruby
-    ssh
-    tmux
-    vim
-    zsh
+    "ag"
+    "bin"
+    "clojure"
+    "emacs"
+    "git"
+    "haskell"
+    "javascript"
+    "ruby"
+    "ssh"
+    "tmux"
+    "vim"
+    "zsh"
 )
 
 for pkg in "${packages[@]}"; do
-    stow --target=$HOME --verbose=1 "${pkg}"
+    stow --target="$HOME" --verbose=1 "${pkg}"
 done
 
 #
@@ -94,7 +103,7 @@ for pkg in "${go_packages[@]}"; do
 done
 
 for pkg in "${node_packages[@]}"; do
-    npm install "${pkg}"
+    npm install -g "${pkg}"
 done
 
 for pkg in "${python_packages[@]}"; do
