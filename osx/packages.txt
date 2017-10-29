@@ -12,6 +12,7 @@ editorconfig
 emacs
 fasd
 findutils
+flow
 fzf
 gawk
 gdbm
