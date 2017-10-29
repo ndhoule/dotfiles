@@ -15,3 +15,5 @@ fi
 # TODO: Check for go availability first
 export GOPATH="${HOME}/dev"
 export PATH="${PATH}:${GOPATH}/bin"
+# TODO: Check for nvm availability first
+export NVM_DIR="${HOME}/.nvm"
