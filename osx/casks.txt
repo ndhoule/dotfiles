@@ -10,7 +10,7 @@ firefox
 font-dejavu-sans-mono-for-powerline
 google-chrome
 google-hangouts
-gpgtools
+gpg-suite
 honer
 iterm2
 keybase
