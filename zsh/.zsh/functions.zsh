@@ -26,3 +26,7 @@ always() {
     sleep 1
   done
 }
+
+goroot() {
+  cd "$(git rev-parse --show-toplevel)"
+}
