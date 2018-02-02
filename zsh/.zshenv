@@ -7,13 +7,22 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+export GOPATH="${HOME}/dev"
+
+if [[ "$(hostname -s)" == "endor" ]]; then
+  export GOTO_ORG="goodeggs"
+
+  if [ -f "${HOME}/.sekret" ]; then
+    source "${HOME}/.sekret"
+  fi
+
+  if [ -f "${HOME}/.npmrc" ]; then
+    export NPM_AUTH=$(cat "${HOME}/.npmrc" | grep '^//npm.goodeggs.com/:_authToken=' | sed 's#//npm.goodeggs.com/:_authToken=##')
+  fi
+fi
+
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-# TODO: Check for go availability first
-export GOPATH="${HOME}/dev"
-export PATH="${PATH}:${GOPATH}/bin"
-# TODO: Check for nvm availability first
-export NVM_DIR="${HOME}/.nvm"

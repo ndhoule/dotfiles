@@ -34,7 +34,7 @@ leiningen
 lua
 mongodb
 node
-nvm
+nodenv
 openssh
 openssl
 parallel
