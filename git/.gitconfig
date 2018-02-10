@@ -1,5 +1,6 @@
 [core]
 	excludesfile = ~/.gitignore.global
+	hooksPath = ~/.githooks
 
 [user]
 	name = Nathan Houle
@@ -25,6 +26,7 @@
 
 [commit]
 	gpgsign = true
+	template = ~/.gitmessage
 
 [alias]
 	amend = "!git-amend"
