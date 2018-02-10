@@ -96,6 +96,7 @@ python_packages=(
 
 ruby_packages=(
     "pry"
+    "terminal-notifier"
 )
 
 for pkg in "${go_packages[@]}"; do
