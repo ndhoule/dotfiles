@@ -8,8 +8,9 @@ build
 # Node/JavaScript
 ##
 
-node_modules
 *.min.js
+flow-typed
+node_modules
 
 ##
 # Golang
