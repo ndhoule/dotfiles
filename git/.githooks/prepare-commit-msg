@@ -11,6 +11,11 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+# Bail out during rebase
+if [ -d "$(git rev-parse --git-path rebase-merge)" ] || [ -d "$(git rev-parse --git-path rebase-apply)" ]; then
+  exit 0
+fi
+
 BRANCH=$(git symbolic-ref --short HEAD)
 STORY_ID=$(echo "${BRANCH}" | grep -o '[-_]\#\?\d\+$' | sed -E "s/^-#?//") || echo ""
 
