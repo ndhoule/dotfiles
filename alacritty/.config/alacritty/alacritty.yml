@@ -85,9 +85,9 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: false
 
-# Base16 Eighties - alacritty color config
+# Base16 Eighties 256 - alacritty color config
 # Chris Kempson (http://chriskempson.com)
-# https://raw.githubusercontent.com/aaron-williamson/base16-alacritty/master/colors/base16-eighties.yml
+# https://raw.githubusercontent.com/aaron-williamson/base16-alacritty/master/colors/base16-eighties-256.yml
 colors:
   # Default colors
   primary:
@@ -113,12 +113,12 @@ colors:
   # Bright colors
   bright:
     black:   '0x747369'
-    red:     '0xf99157'
-    green:   '0x393939'
-    yellow:  '0x515151'
-    blue:    '0xa09f93'
-    magenta: '0xe8e6df'
-    cyan:    '0xd27b53'
+    red:     '0xf2777a'
+    green:   '0x99cc99'
+    yellow:  '0xffcc66'
+    blue:    '0x6699cc'
+    magenta: '0xcc99cc'
+    cyan:    '0x66cccc'
     white:   '0xd3d0c8'
 
 # Visual Bell
