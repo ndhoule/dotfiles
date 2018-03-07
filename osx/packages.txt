@@ -41,7 +41,7 @@ parallel
 pkg-config
 postgresql
 python
-python3
+python2
 readline
 reattach-to-user-namespace
 redis
