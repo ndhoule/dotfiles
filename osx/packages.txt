@@ -35,6 +35,7 @@ lua
 mongodb
 node
 nodenv
+nodenv-default-packages
 openssh
 openssl
 parallel
