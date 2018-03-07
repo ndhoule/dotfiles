@@ -1,5 +1,5 @@
-ssh/.ssh/segment_config
 tmux/.tmux/plugins
+tmux/.tmux/resurrect
 
 #
 # Temporary files
