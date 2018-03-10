@@ -1,6 +1,7 @@
 alfred
 amethyst
 aws-vault
+charles
 clipy
 cyberduck
 dash3

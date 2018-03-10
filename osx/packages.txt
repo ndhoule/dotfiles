@@ -40,6 +40,7 @@ nodenv-default-packages
 nodenv-package-json-engine
 openssh
 openssl
+neovim
 parallel
 pkg-config
 postgresql
