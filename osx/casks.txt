@@ -13,6 +13,7 @@ google-hangouts
 gpg-suite
 honer
 iterm2
+java
 keybase
 little-snitch
 logitech-control-center

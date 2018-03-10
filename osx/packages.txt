@@ -2,6 +2,7 @@ autoconf
 automake
 awscli
 bash
+chromedriver
 cmake
 coreutils
 cppcheck
@@ -50,6 +51,7 @@ redis
 rlwrap
 ruby
 rust
+selenium-server-standalone
 shellcheck
 sqlite
 ssh-copy-id
