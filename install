@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+#
+# Perform an install of all developer dependencies.
+#
+
+# TODO: Figure out how to list only user-installed homebrew packages and remove any that are not
+#       present in osx/packages.txt
+# TODO: Run OS X setup scripts
+# TODO: Use a stow ignore list (https://www.gnu.org/software/stow/manual/html_node/Types-And-Syntax-Of-Ignore-Lists.html)
+#       to add
+# TODO: Test for each package manager before installing packages
+
 set -o errexit
 set -o nounset
 set -o pipefail
@@ -17,19 +28,29 @@ fi
 # Install dependencies
 #
 
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 brew update
 
 while read -r tap; do
-    brew tap "${tap}"
+  brew tap "${tap}"
 done < osx/taps.txt
 
 while read -r package; do
-    brew install "${package}"
+  brew install "${package}"
 done < osx/packages.txt
 
 while read -r package; do
-    brew cask install "${package}"
+  brew cask install "${package}"
 done < osx/casks.txt
+
+for tap in $(echo "$(cat osx/taps.txt)" "$(cat osx/taps.txt)" "$(brew tap)" | tr ' ' '\n' | sort | uniq -u); do
+  echo "Found extraneous tapped homebrew tap ${tap}; consider adding it to osx/taps.txt."
+done
+
+for package in $(echo "$(cat osx/casks.txt)" "$(cat osx/casks.txt)" "$(brew cask list)" | tr ' ' '\n' | sort | uniq -u); do
+  echo "Found extraneous installed homebrew cask ${package}; consider adding it to osx/casks.txt."
+done
 
 #
 # Change shell
@@ -39,16 +60,9 @@ if ! grep "/usr/local/bin/zsh" /etc/shells > /dev/null; then
     echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells > /dev/null
 fi
 
-chsh -s /usr/local/bin/zsh
-
-#
-# Install ycmd
-#
-
-# git clone --recursive git@github.com:Valloric/ycmd.git $GOPATH/src/github.com/Valloric/ycmd
-# pushd $GOPATH/src/github.com/Valloric/ycmd
-# ./build.py --clang-completer --gocode-completer --racer-completer --tern-completer
-# popd
+if [[ "$(dscl . -read "${HOME}" UserShell | cut -d ' ' -f 2)" != "/usr/local/bin/zsh" ]]; then
+  chsh -s /usr/local/bin/zsh
+fi
 
 #
 # Link dotfiles
@@ -85,11 +99,6 @@ go_packages=(
     "golang.org/x/tools/cmd/guru"
 )
 
-node_packages=(
-    "tern"
-)
-
-
 python_packages=(
     "tmuxp"
 )
@@ -114,13 +123,3 @@ done
 for pkg in "${ruby_packages[@]}"; do
     gem install "${pkg}"
 done
-
-# Install CircleCI CLI
-curl -o /usr/local/bin/circleci https://circle-downloads.s3.amazonaws.com/releases/build_agent_wrapper/circleci && chmod +x /usr/local/bin/circleci
-
-#
-# OS X scripts
-#
-
-# TODO(ndhoule): Add this
-# TODO(ndhoule): On Sierra+, remap Caps Lock -> Escape
