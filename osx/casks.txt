@@ -7,6 +7,7 @@ cyberduck
 dash3
 docker
 dropbox
+enpass
 firefox
 font-dejavu-sans-mono-for-powerline
 google-chrome
