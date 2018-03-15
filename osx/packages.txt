@@ -38,6 +38,7 @@ node
 nodenv
 nodenv-default-packages
 nodenv-package-json-engine
+nodenv-package-rehash
 openssh
 openssl
 neovim

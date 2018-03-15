@@ -52,6 +52,9 @@ for package in $(echo "$(cat osx/casks.txt)" "$(cat osx/casks.txt)" "$(brew cask
   echo "Found extraneous installed homebrew cask ${package}; consider adding it to osx/casks.txt."
 done
 
+# (Re)install nodenv hooks for any existing installed node versions
+nodenv package-hooks install --all
+
 #
 # Change shell
 #
