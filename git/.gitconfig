@@ -28,6 +28,9 @@
 	gpgsign = true
 	template = ~/.gitmessage
 
+[tag]
+	gpgSign = true
+
 [alias]
 	amend = "!git-amend"
 	checkout-pr = "!git-checkout-pr"
