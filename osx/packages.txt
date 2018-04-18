@@ -34,6 +34,7 @@ kafkacat
 leiningen
 lua
 mongodb
+neovim
 node
 nodenv
 nodenv-default-packages
@@ -41,7 +42,6 @@ nodenv-package-json-engine
 nodenv-package-rehash
 openssh
 openssl
-neovim
 parallel
 pkg-config
 postgresql
@@ -61,6 +61,7 @@ stow
 the_silver_searcher
 tidy-html5
 tmux
+travis
 tree
 watchman
 wget
