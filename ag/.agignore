@@ -19,6 +19,3 @@ node_modules
 ##
 
 Godeps
-vendor
-# https://github.com/ggreer/the_silver_searcher/issues/722
-!vendor/vendor.json
