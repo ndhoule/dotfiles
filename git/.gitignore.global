@@ -1,6 +1,7 @@
 .projections.json
 .envrc
 .direnv
+.nvimrc
 
 #
 # JS-specific files
