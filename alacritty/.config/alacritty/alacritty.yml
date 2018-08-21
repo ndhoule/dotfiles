@@ -87,19 +87,15 @@ custom_cursor_colors: false
 
 # Base16 Eighties 256 - alacritty color config
 # Chris Kempson (http://chriskempson.com)
-# https://raw.githubusercontent.com/aaron-williamson/base16-alacritty/master/colors/base16-eighties-256.yml
+#
+# https://raw.githubusercontent.com/aaron-williamson/base16-alacritty/master/colors/base16-eighties.yml
 colors:
-  # Default colors
   primary:
     background: '0x2d2d2d'
     foreground: '0xd3d0c8'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
     text: '0x2d2d2d'
     cursor: '0xd3d0c8'
-
-  # Normal colors
   normal:
     black:   '0x2d2d2d'
     red:     '0xf2777a'
@@ -109,8 +105,6 @@ colors:
     magenta: '0xcc99cc'
     cyan:    '0x66cccc'
     white:   '0xd3d0c8'
-
-  # Bright colors
   bright:
     black:   '0x747369'
     red:     '0xf2777a'
