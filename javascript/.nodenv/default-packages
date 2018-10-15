@@ -1,4 +1,16 @@
+eslint_d
 flow-typed
 generator-generator
+jsonlint
 neovim
+npm-check
+yarn 1.9.4
 yo
+
+# LSP Servers
+dockerfile-language-server-nodejs 0.0.19
+flow-language-server 0.6.0
+typescript-language-server 0.3.5
+javascript-typescript-langserver 2.11.1
+vscode-css-languageserver-bin 1.4.0
+vscode-json-languageserver-bin 1.0.1
