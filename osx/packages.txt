@@ -3,6 +3,7 @@ automake
 awscli
 bash
 chromedriver
+circleci
 cmake
 coreutils
 cppcheck
