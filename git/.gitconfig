@@ -6,6 +6,9 @@
 	name = Nathan Houle
 	email = nathan@nathanhoule.com
 
+[github]
+	user = ndhoule
+
 [color]
 	ui = true
 
