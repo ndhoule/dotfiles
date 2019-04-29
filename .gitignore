@@ -1,3 +1,4 @@
+ssh/.ssh/config.d/*
 tmux/.tmux/plugins
 tmux/.tmux/resurrect
 
