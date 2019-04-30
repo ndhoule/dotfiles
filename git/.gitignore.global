@@ -1,7 +1,9 @@
-.projections.json
-.envrc
 .direnv
+.envrc
+.eslintcache
 .nvimrc
+.projections.json
+.stylelintcache
 
 #
 # JS-specific files
