@@ -4,6 +4,7 @@ awscli
 bash
 chromedriver
 circleci
+clang-format
 cmake
 coreutils
 cppcheck
