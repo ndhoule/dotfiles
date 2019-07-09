@@ -1,6 +1,7 @@
 eslint_d
 flow-typed
 generator-generator
+jscodeshift
 jsonlint
 neovim
 npm-check
