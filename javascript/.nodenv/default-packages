@@ -1,4 +1,4 @@
-eslint_d
+eslint_d 8.0.0
 flow-typed
 generator-generator
 jscodeshift
@@ -9,9 +9,9 @@ yarn 1.9.4
 yo
 
 # LSP Servers
-dockerfile-language-server-nodejs 0.0.19
+dockerfile-language-server-nodejs 0.0.21
 flow-language-server 0.6.0
-typescript-language-server 0.3.7
+typescript-language-server 0.4.0
 javascript-typescript-langserver 2.11.3
 vscode-css-languageserver-bin 1.4.0
 vscode-json-languageserver-bin 1.0.1
