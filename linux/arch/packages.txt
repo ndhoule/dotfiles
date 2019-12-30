@@ -1,0 +1,56 @@
+clamav clamtk
+dnsutils
+exfat-utils
+gnome-calculator
+gnome-keyring libsecret seahorse
+gnome-system-monitor
+go
+gvfs
+imv
+playerctl
+python python-pip
+sddm
+sysstat
+thunar
+traceroute
+tree
+veracrypt
+
+# Audio
+pavucontrol
+pulseaudio
+pulseaudio-alsa
+
+# wayland
+qt5-wayland
+wayland
+wl-clipboard
+xorg-server-xwayland
+
+# sway
+dmenu
+mako
+sway
+swaybg
+swayidle
+swaylock
+waybar python-gobject gtk3
+
+# Developer tools
+aws-cli
+docker
+docker-compose
+fzf
+git
+gnupg
+jq
+neovim python-pynvim
+openssh
+parallel
+shellcheck
+stow
+the_silver_searcher
+tmux
+tmuxp
+zeal
+zsh

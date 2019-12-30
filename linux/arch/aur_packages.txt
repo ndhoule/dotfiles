@@ -1,0 +1,28 @@
+aftershotpro3
+aws-vault
+direnv
+fedora-firefox-wayland-bin # Until Wayland becomes default in Firefox
+neovim-symlinks
+notion-app
+opensnitch-git
+thunar-dropbox
+
+# wayland
+wofi
+
+# Fonts
+ttf-dejavu
+ttf-dejavu-sans-mono-powerline-git
+ttf-mac-fonts
+ttf-material-design-fonts-git
+
+# Userland packages
+alacritty
+selenium-server-standalone
+
+# Desktop apps
+android-messages-desktop
+brave-bin
+dropbox thunar-dropbox
+slack-desktop
+spotify
