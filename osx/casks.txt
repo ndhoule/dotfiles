@@ -26,4 +26,5 @@ slack
 spotify
 the-unarchiver
 transmission
+veracrypt
 whatsapp
