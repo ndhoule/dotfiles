@@ -16,6 +16,38 @@ set -o nounset
 set -o pipefail
 
 #
+# User-defined variables
+#
+
+OS=${OS:-""}
+
+#
+# Detect the current operating system, bailing if $OS is not supported. Supported platforms include:
+#
+# - Linux
+# - MacOS (Darwin)
+#
+
+# If $OS was not set by the user, try to detect the current operating system.
+if [[ -z "$OS" ]]; then
+  kernel_name=$(uname -s)
+  case "${kernel_name}" in
+    Darwin): MacOS ;;
+    Linux|GNU*): Linux ;;
+  esac
+  OS=$_
+fi
+
+# Validate $OS
+case "${OS}" in
+  Linux|MacOS): ;;
+  *)
+    echo "Unsupported OS: '${OS}'"
+    exit 1
+  ;;
+esac
+
+#
 # Check dependencies
 #
 
@@ -28,29 +60,31 @@ fi
 # Install dependencies
 #
 
-export HOMEBREW_NO_AUTO_UPDATE=1
+if [[ "${OS}" == "MacOS" ]]; then
+  export HOMEBREW_NO_AUTO_UPDATE=1
 
-brew update
+  brew update
 
-while read -r tap; do
-  brew tap "${tap}"
-done < osx/taps.txt
+  while read -r tap; do
+    brew tap "${tap}"
+  done < osx/taps.txt
 
-while read -r package; do
-  brew install "${package}"
-done < osx/packages.txt
+  while read -r package; do
+    brew install "${package}"
+  done < osx/packages.txt
 
-while read -r package; do
-  brew cask install "${package}"
-done < osx/casks.txt
+  while read -r package; do
+    brew cask install "${package}"
+  done < osx/casks.txt
 
-for tap in $(echo "$(cat osx/taps.txt)" "$(cat osx/taps.txt)" "$(brew tap)" | tr ' ' '\n' | sort | uniq -u); do
-  echo "Found extraneous tapped homebrew tap ${tap}; consider adding it to osx/taps.txt."
-done
+  for tap in $(echo "$(cat osx/taps.txt)" "$(cat osx/taps.txt)" "$(brew tap)" | tr ' ' '\n' | sort | uniq -u); do
+    echo "Found extraneous tapped homebrew tap ${tap}; consider adding it to osx/taps.txt."
+  done
 
-for package in $(echo "$(cat osx/casks.txt)" "$(cat osx/casks.txt)" "$(brew cask list)" | tr ' ' '\n' | sort | uniq -u); do
-  echo "Found extraneous installed homebrew cask ${package}; consider adding it to osx/casks.txt."
-done
+  for package in $(echo "$(cat osx/casks.txt)" "$(cat osx/casks.txt)" "$(brew cask list)" | tr ' ' '\n' | sort | uniq -u); do
+    echo "Found extraneous installed homebrew cask ${package}; consider adding it to osx/casks.txt."
+  done
+fi
 
 # (Re)install nodenv hooks for any existing installed node versions
 nodenv package-hooks install --all
