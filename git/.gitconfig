@@ -1,6 +1,5 @@
 [core]
 	excludesfile = ~/.gitignore.global
-	hooksPath = ~/.githooks
 
 [user]
 	name = Nathan Houle
