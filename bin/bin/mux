@@ -6,6 +6,6 @@ set -o pipefail
 
 ORG=$(basename "$(dirname "${PWD}")")
 REPO=$(basename "${PWD}")
-MD5=$(echo "${PWD}" | md5)
+MD5=$(echo "${PWD}" | md5sum | cut -d ' ' -f 1)
 
 SESSION_NAME="${ORG}/${REPO} [${MD5}]" tmuxp load default

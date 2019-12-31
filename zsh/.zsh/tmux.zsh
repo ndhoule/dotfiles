@@ -11,7 +11,7 @@ _chpwd_tmux() {
     # TODO(ndhoule): Break this into a helper and reuse it here and in `mux`
     local t_org=$(basename "$(dirname "${PWD}")")
     local t_repo=$(basename "${PWD}")
-    local t_md5=$(echo "${PWD}" | md5)
+    local t_md5=$(echo "${PWD}" | md5sum | cut -d ' ' -f 1)
     local session_name="${t_org}/${t_repo} [${t_md5}]"
 
     if tmux has-session -t "${session_name}" &> /dev/null; then
