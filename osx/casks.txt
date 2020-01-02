@@ -9,7 +9,7 @@ docker
 dropbox
 enpass
 firefox
-font-dejavu-sans-mono-for-powerline
+font-dejavu-sans
 google-chrome
 google-hangouts
 gpg-suite
