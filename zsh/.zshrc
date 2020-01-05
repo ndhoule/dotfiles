@@ -75,6 +75,7 @@ unsetopt CLOBBER
 # Key remaps
 #
 
+# Bind bck-i-search to [Ctrl-R]
 bindkey '^R' history-incremental-search-backward
 
 # keybindings for zsh-users/zsh-history-substring-search
@@ -85,24 +86,44 @@ bindkey -M emacs '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
-# Fix a slew of MacBook keyboard keys/combinations
-if [[ "${OSTYPE}" == darwin* ]]; then
-  # [Fn-Arrow keys] - Home/End/PageUp/PageDown
-  bindkey '^[[1~' beginning-of-line
-  bindkey '^[[4~' end-of-line
-  bindkey '^[[5~' up-line-or-history
-  bindkey '^[[6~' down-line-or-history
+# [Ctrl-k] - Kill to EOL
+bindkey '^k' kill-line
 
-  # [Fn-Delete] - Kill character forward
-  bindkey '^[[3~' delete-char
-  # [Ctrl-k] - Kill to EOL
-  bindkey '^k' kill-line
+# [Ctrl-F] - Move forward one word
+bindkey '^f' forward-word
 
-  # [Ctrl-F] - Move forward one word
-  bindkey '^f' forward-word
-  # [Ctrl-B] - Move backward one word
-  bindkey '^b' backward-word
-fi
+# [Ctrl-B] - Move backward one word
+bindkey '^b' backward-word
+
+# Fix keybindings for special keys (e.g. Home, End, Delete, PgUp, PgDn, etc.)
+# For more information, see: https://wiki.archlinux.org/index.php/Zsh#Key_bindings
+typeset -g -A key
+
+key[Backspace]="${terminfo[kbs]}"
+key[Delete]="${terminfo[kdch1]}"
+key[Down]="${terminfo[kcud1]}"
+key[End]="${terminfo[kend]}"
+key[Home]="${terminfo[khome]}"
+key[Insert]="${terminfo[kich1]}"
+key[Left]="${terminfo[kcub1]}"
+key[PageDown]="${terminfo[knp]}"
+key[PageUp]="${terminfo[kpp]}"
+key[Right]="${terminfo[kcuf1]}"
+key[ShiftTab]="${terminfo[kcbt]}"
+key[Up]="${terminfo[kcuu1]}"
+
+[[ -n "${key[Backspace]}" ]] && bindkey -- "${key[Backspace]}" backward-delete-char
+[[ -n "${key[Delete]}"    ]] && bindkey -- "${key[Delete]}"    delete-char
+[[ -n "${key[Down]}"      ]] && bindkey -- "${key[Down]}"      down-line-or-history
+[[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"       end-of-line
+[[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"      beginning-of-line
+[[ -n "${key[Insert]}"    ]] && bindkey -- "${key[Insert]}"    overwrite-mode
+[[ -n "${key[Left]}"      ]] && bindkey -- "${key[Left]}"      backward-char
+[[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"  end-of-buffer-or-history
+[[ -n "${key[PageUp]}"    ]] && bindkey -- "${key[PageUp]}"    beginning-of-buffer-or-history
+[[ -n "${key[Right]}"     ]] && bindkey -- "${key[Right]}"     forward-char
+[[ -n "${key[ShiftTab]}"  ]] && bindkey -- "${key[ShiftTab]}"  reverse-menu-complete
+[[ -n "${key[Up]}"        ]] && bindkey -- "${key[Up]}"        up-line-or-history
 
 #
 # History
