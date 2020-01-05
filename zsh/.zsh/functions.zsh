@@ -13,8 +13,10 @@ http-serve() {
 
   if (( $+commands[http-server] )); then
     http-server -p $port
+  elif (( $+commands[python3] )); then
+    alias http-serve="python3 -m http.server"
   else
-    python -m SimpleHTTPServer $port
+    alias http-serve="python -m SimpleHTTPServer"
   fi
 }
 
