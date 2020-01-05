@@ -26,6 +26,7 @@ qt5-wayland
 wayland
 wl-clipboard
 xorg-server-xwayland
+redshift-wlr-gamma-control-git geoclue
 
 # sway
 dmenu
