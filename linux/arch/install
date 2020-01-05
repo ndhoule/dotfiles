@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+#
+# Install Arch Linux-specific dependencies.
+#
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+DISTRO_NAME=$(hostnamectl | grep "Operating System" | cut -d ':' -f 2 | xargs)
+
+if [[ "${DISTRO_NAME}" != "Arch Linux" ]]; then
+  echo "ERROR: This script can only be run on Arch Linux."
+  exit 1
+fi
+
+CURRENT_SCRIPT_PATH="$(cd "$(dirname "$0")" ; pwd -P)"
+
+PACKAGES_LIST="${CURRENT_SCRIPT_PATH}/packages.txt"
+AUR_PACKAGES_LIST="${CURRENT_SCRIPT_PATH}/aur_packages.txt"
+
+if ! command -v yay > /dev/null 2>&1; then
+  echo "ERROR: Could not find yay. Please install yay and re-run this script."
+  exit 1
+fi
+
+while read -r pkg; do
+  # Skip comments and empty lines
+  if [[ -z "${pkg}" || "${pkg}" =~ ^# ]]; then
+    continue
+  fi
+
+  # Lines may contain multiple packages, so don't double quote
+  yay -S --noconfirm $pkg
+done < "${PACKAGES_LIST}"
+
+while read -r pkg; do
+  # Skip comments and empty lines
+  if [[ -z "${pkg}" || "${pkg}" =~ ^# ]]; then
+    continue
+  fi
+
+  # Lines may contain multiple packages, so don't double quote
+  yay -S --noconfirm $pkg
+done < "${AUR_PACKAGES_LIST}"

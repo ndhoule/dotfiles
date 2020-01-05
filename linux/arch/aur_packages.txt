@@ -1,7 +1,7 @@
 aftershotpro3
 aws-vault
 direnv
-fedora-firefox-wayland-bin # Until Wayland becomes default in Firefox
+fedora-firefox-wayland-bin
 neovim-symlinks
 notion-app
 opensnitch-git

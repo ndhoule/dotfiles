@@ -4,47 +4,21 @@
 # Perform an install of all developer dependencies.
 #
 
-# TODO: Figure out how to list only user-installed homebrew packages and remove any that are not
-#       present in osx/packages.txt
-# TODO: Run OS X setup scripts
-# TODO: Use a stow ignore list (https://www.gnu.org/software/stow/manual/html_node/Types-And-Syntax-Of-Ignore-Lists.html)
-#       to add
-# TODO: Test for each package manager before installing packages
-
 set -o errexit
 set -o nounset
 set -o pipefail
 
-#
-# User-defined variables
-#
+CURRENT_SCRIPT_PATH="$(cd "$(dirname "$0")" ; pwd -P)"
 
-OS=${OS:-""}
-
-#
-# Detect the current operating system, bailing if $OS is not supported. Supported platforms include:
-#
-# - Linux
-# - MacOS (Darwin)
-#
-
-# If $OS was not set by the user, try to detect the current operating system.
-if [[ -z "$OS" ]]; then
-  kernel_name=$(uname -s)
-  case "${kernel_name}" in
-    Darwin): MacOS ;;
-    Linux|GNU*): Linux ;;
-  esac
-  OS=$_
-fi
-
-# Validate $OS
-case "${OS}" in
-  Linux|MacOS): ;;
-  *)
-    echo "Unsupported OS: '${OS}'"
+# Validate that the current OS is supported
+case "${OSTYPE}" in
+  darwin* | linux*):
+    # continue
+    ;;
+  *):
+    echo "ERROR: Unsupported OS: '${OSTYPE}'"
     exit 1
-  ;;
+    ;;
 esac
 
 #
@@ -52,111 +26,70 @@ esac
 #
 
 if [[ -z "${GOPATH}" ]]; then
-    echo "ERROR: Must set GOPATH before running this script."
-    exit 1
+  echo "ERROR: Must set GOPATH before running this script."
+  exit 1
 fi
 
 #
 # Install dependencies
 #
 
-if [[ "${OS}" == "MacOS" ]]; then
-  export HOMEBREW_NO_AUTO_UPDATE=1
-
-  brew update
-
-  while read -r tap; do
-    brew tap "${tap}"
-  done < osx/taps.txt
-
-  while read -r package; do
-    brew install "${package}"
-  done < osx/packages.txt
-
-  while read -r package; do
-    brew cask install "${package}"
-  done < osx/casks.txt
-
-  for tap in $(echo "$(cat osx/taps.txt)" "$(cat osx/taps.txt)" "$(brew tap)" | tr ' ' '\n' | sort | uniq -u); do
-    echo "Found extraneous tapped homebrew tap ${tap}; consider adding it to osx/taps.txt."
-  done
-
-  for package in $(echo "$(cat osx/casks.txt)" "$(cat osx/casks.txt)" "$(brew cask list)" | tr ' ' '\n' | sort | uniq -u); do
-    echo "Found extraneous installed homebrew cask ${package}; consider adding it to osx/casks.txt."
-  done
-fi
-
-# (Re)install nodenv hooks for any existing installed node versions
-nodenv package-hooks install --all
-
-#
-# Change shell
-#
-
-if ! grep "/usr/local/bin/zsh" /etc/shells > /dev/null; then
-    echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells > /dev/null
-fi
-
-if [[ "$(dscl . -read "${HOME}" UserShell | cut -d ' ' -f 2)" != "/usr/local/bin/zsh" ]]; then
-  chsh -s /usr/local/bin/zsh
-fi
+case "${OSTYPE}" in
+  darwin*):
+    "${CURRENT_SCRIPT_PATH}/osx/install"
+    ;;
+  linux*):
+    "${CURRENT_SCRIPT_PATH}/linux/install"
+    ;;
+esac
 
 #
 # Link dotfiles
 #
 
 packages=(
-    "ag"
-    "bin"
-    "clojure"
-    "emacs"
-    "git"
-    "haskell"
-    "javascript"
-    "ruby"
-    "ssh"
-    "tmux"
-    "vim"
-    "zsh"
+  "ag"
+  "bin"
+  "clojure"
+  "emacs"
+  "git"
+  "haskell"
+  "javascript"
+  "ruby"
+  "ssh"
+  "tmux"
+  "vim"
+  "zsh"
 )
 
-for pkg in "${packages[@]}"; do
+if command -v stow > /dev/null 2>&1; then
+  echo "Symlinking dotfiles into $HOME..."
+  for pkg in "${packages[@]}"; do
     stow --target="$HOME" --verbose=1 "${pkg}"
-done
+  done
+  echo "Symlinked dotfiles into $HOME."
+else
+  echo "stow not installed. Skipping dotfiles symlinking..."
+fi
 
 #
 # Install language packages
 #
 
 go_packages=(
-    "github.com/alecthomas/gometalinter"
-    "github.com/kardianos/govendor"
-    "github.com/nsf/gocode"
-    "golang.org/x/tools/cmd/gorename"
-    "golang.org/x/tools/cmd/guru"
+  "github.com/alecthomas/gometalinter"
+  "github.com/kardianos/govendor"
+  "github.com/nsf/gocode"
+  "golang.org/x/tools/cmd/gorename"
+  "golang.org/x/tools/cmd/guru"
 )
 
-python_packages=(
-    "tmuxp"
-)
-
-ruby_packages=(
-    "pry"
-    "terminal-notifier"
-)
-
-for pkg in "${go_packages[@]}"; do
+if command -v go > /dev/null 2>&1; then
+  echo "Installing Go packages..."
+  for pkg in "${go_packages[@]}"; do
     go get -u "${pkg}"
-done
-
-for pkg in "${node_packages[@]}"; do
-    npm install -g "${pkg}"
-done
-
-for pkg in "${python_packages[@]}"; do
-    pip install "${pkg}"
-done
-
-for pkg in "${ruby_packages[@]}"; do
-    gem install "${pkg}"
-done
+  done
+  echo "Installed Go packages."
+else
+  echo "Go not installed. Skipping package installation."
+fi
