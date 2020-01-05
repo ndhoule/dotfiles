@@ -1,5 +1,5 @@
 {
-  "editor.fontFamily": "'DejaVu Sans Mono for Powerline', Menlo, Monaco, monospace",
+  "editor.fontFamily": "'DejaVu Sans Mono', Menlo, Monaco, monospace",
   "editor.tabSize": 2,
   "editor.wordWrapColumn": 100
 }
