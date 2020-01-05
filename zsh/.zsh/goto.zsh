@@ -1,5 +1,5 @@
-export GOTO_ROOT="${GOTO_ROOT:-${HOME}/dev/src/github.com}"
-export GOTO_ORG="${GOTO_ORG:-$(whoami)}"
+GOTO_ROOT="${GOTO_ROOT:-${PROJECTS_DIR:-$HOME/dev}/src/github.com}"
+GOTO_ORG="${GOTO_ORG:-$(whoami)}"
 
 # `goto` is an alias that quickly navigates to a project in a workspace, cloning
 # the project from GitHub if it does not exist. It assumes you store your
@@ -72,5 +72,3 @@ _zsh_goto() {
 if type compdef &> /dev/null ; then
   compdef _zsh_goto goto
 fi
-
-# TODO(ndhoule): Add bash completion

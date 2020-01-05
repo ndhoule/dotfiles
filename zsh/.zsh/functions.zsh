@@ -7,26 +7,18 @@
 #   Nathan Houle <nathan@nathanhoule.com>
 #
 
-# Launch a static server in the current directory
-unalias http-serve
+# Launch a static HTTP server in the current directory
 http-serve() {
   local port=${1:-8080}
 
-  if [[ -x $(which http-server) ]]; then
+  if (( $+commands[http-server] )); then
     http-server -p $port
   else
     python -m SimpleHTTPServer $port
   fi
 }
 
-# Keep a process running, restarting it if it crashes
-always() {
-  until $1; do
-    echo "$1 died with exit code $?. Respawning..." >&2
-    sleep 1
-  done
-}
-
+# cd to the root of the current git project.
 goroot() {
   cd "$(git rev-parse --show-toplevel)"
 }

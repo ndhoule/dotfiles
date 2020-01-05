@@ -4,9 +4,9 @@
 [submodule "vim/vim.symlink"]
 	path = vim/.config/nvim
 	url = git://github.com/ndhoule/vimrc.git
-[submodule "zsh/zprezto.symlink"]
-	path = zsh/.zprezto
-	url = git://github.com/ndhoule/prezto.git
 [submodule "tmux/.tmux/tpm"]
 	path = tmux/.tmux/plugins/tpm
 	url = git@github.com:tmux-plugins/tpm.git
+[submodule "zsh/antigen"]
+	path = zsh/.zsh/vendor/antigen
+	url = git@github.com:zsh-users/antigen.git
