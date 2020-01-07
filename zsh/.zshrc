@@ -418,6 +418,12 @@ alias gs='git stash'
 # Tag (t)
 alias gt='git tag'
 
+# Working Copy (w)
+alias gws='git status --short'
+alias gwS='git status'
+alias gwd='git diff --no-ext-diff'
+alias gwD='git diff --no-ext-diff --word-diff'
+
 #
 # More business
 #
