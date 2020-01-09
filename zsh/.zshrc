@@ -389,6 +389,8 @@ alias gia='git add'
 alias giA='git add --patch'
 alias gir='git reset'
 alias giR='git reset --patch'
+alias gid='git diff --staged --no-ext-diff'
+alias giD='git diff --staged --no-ext-diff --word-diff'
 
 # Log (l)
 _git_log_brief_format='%C(green)%h%C(reset) %s%n%C(blue)(%ar by %an)%C(red)%d%C(reset)%n'
