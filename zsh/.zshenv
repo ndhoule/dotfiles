@@ -8,7 +8,7 @@
 #
 
 export ZDOTDIR="${ZDOTDIR:-$HOME}"
-export PROJECTS_DIR="${PROJECTS_DIR-$HOME/dev}"
+export PROJECTS_DIR="${PROJECTS_DIR:-$HOME/dev}"
 
 #
 # Editor
@@ -43,7 +43,7 @@ path=(
 # Go
 #
 
-export GOPATH="${GOPATH:-PROJECTS_DIR}"
+export GOPATH="${GOPATH:-$PROJECTS_DIR}"
 
 path=("${GOPATH}/bin" $path)
 
