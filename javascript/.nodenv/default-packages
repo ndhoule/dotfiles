@@ -10,8 +10,7 @@ yo
 
 # LSP Servers
 dockerfile-language-server-nodejs 0.0.21
-flow-bin
-typescript-language-server 0.4.0
+flow-bin 0.116.1
 javascript-typescript-langserver 2.11.3
+vim-language-server 1.4.1
 vscode-css-languageserver-bin 1.4.0
-vscode-json-languageserver-bin 1.0.1
