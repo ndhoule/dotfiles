@@ -204,4 +204,8 @@ bar {
     swaybar_command waybar
 }
 
+# Float Firefox PIP windows
+for_window [app_id="firefox" title="^Picture-in-Picture$"] \
+    floating enable, move position 877 450, sticky enable
+
 include @sysconfdir@/sway/config.d/*
