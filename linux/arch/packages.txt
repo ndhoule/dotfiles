@@ -1,57 +1,107 @@
+aftershotpro3
+aws-vault
 clamav clamtk
-dnsutils
 exfat-utils
-gnome-calculator
-gnome-keyring libsecret seahorse
-gnome-system-monitor
-go
 gvfs
 imv
-playerctl
-python python-pip
-sddm
-sysstat
-thunar
-traceroute
-tree
+mongodb-tools-bin
+neovim-symlinks
 veracrypt
 
+#
 # Audio
+#
+
 pavucontrol
 pulseaudio
 pulseaudio-alsa
 
+#
+# Display manager
+#
+
+gdm
+
+#
+# Desktop environment
+#
+
+gnome-calculator
+gnome-font-viewer
+gnome-keyring libsecret seahorse
+gnome-system-monitor
+playerctl
+thunar
+
+#
 # wayland
+#
+
+pipewire xdg-desktop-portal
 qt5-wayland
+redshift-wlr-gamma-control-git geoclue
 wayland
 wl-clipboard
 xorg-server-xwayland
-redshift-wlr-gamma-control-git geoclue
 
-# sway
-dmenu
+#
+# sway WM
+#
+
 mako
 sway
+sway-services-git
 swaybg
 swayidle
 swaylock
 waybar python-gobject gtk3
+wofi
 
+#
+# Desktop apps
+#
+
+alacritty
+android-messages-desktop
+dropbox thunar-dropbox
+fedora-firefox-wayland-bin
+notion-app
+slack-desktop
+spotify
+zeal
+
+#
 # Developer tools
+#
+
 aws-cli
+direnv
+dnsutils
 docker
 docker-compose
 fzf
 git
 gnupg
+go
 jq
 neovim python-pynvim
 openssh
 parallel
+selenium-server-standalone
 shellcheck
 stow
+sysstat
 the_silver_searcher
 tmux
 tmuxp
-zeal
+traceroute
+tree
 zsh
+python python-pip
+
+#
+# Fonts
+#
+
+ttf-dejavu
+ttf-material-design-fonts-git
