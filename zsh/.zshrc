@@ -353,7 +353,7 @@ alias ll="ls -lh"
 alias lll="ls -ah"
 
 # Remap more to less when it exists
-if (( $+commaands[less] )); then
+if (( $+commands[less] )); then
   alias more="less"
 fi
 
