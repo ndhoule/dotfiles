@@ -4,6 +4,7 @@
 .nvimrc
 .projections.json
 .stylelintcache
+.lvimrc
 
 #
 # JS-specific files
