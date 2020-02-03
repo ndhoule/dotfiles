@@ -8,7 +8,6 @@ clang-format
 cmake
 coreutils
 cppcheck
-ctags
 curl
 direnv
 editorconfig
@@ -67,6 +66,7 @@ tidy-html5
 tmux
 travis
 tree
+universal-ctags/universal-ctags/universal-ctags --HEAD
 watchman
 wget
 yarn
