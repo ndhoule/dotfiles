@@ -50,6 +50,10 @@ pkg-config
 postgresql
 python
 python2
+rbenv
+rbenv-aliases
+rbenv-binstubs
+rbenv-default-gems
 readline
 reattach-to-user-namespace
 redis
