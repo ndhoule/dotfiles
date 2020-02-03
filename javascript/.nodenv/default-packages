@@ -7,10 +7,3 @@ neovim
 npm-check
 yarn 1.9.4
 yo
-
-# LSP Servers
-dockerfile-language-server-nodejs 0.0.21
-flow-bin 0.116.1
-javascript-typescript-langserver 2.11.3
-vim-language-server 1.4.1
-vscode-css-languageserver-bin 1.4.0
