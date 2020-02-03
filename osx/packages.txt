@@ -38,10 +38,12 @@ lua
 mongodb
 neovim
 node
-nodenv
-nodenv-default-packages
-nodenv-package-json-engine
-nodenv-package-rehash
+nodenv/nodenv/node-build-update-defs
+nodenv/nodenv/nodenv
+nodenv/nodenv/nodenv-aliases nodenv/nodenv/nodenv-each
+nodenv/nodenv/nodenv-default-packages
+nodenv/nodenv/nodenv-package-json-engine
+nodenv/nodenv/nodenv-package-rehash
 openssh
 openssl
 parallel

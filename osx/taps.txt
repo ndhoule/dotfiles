@@ -4,4 +4,3 @@ caskroom/fonts
 caskroom/versions
 homebrew/core
 homebrew/services
-nodenv/nodenv
