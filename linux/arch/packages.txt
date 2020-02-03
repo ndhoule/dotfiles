@@ -104,4 +104,5 @@ python python-pip
 #
 
 ttf-dejavu
+ttf-jetbrains-mono
 ttf-material-design-fonts-git
