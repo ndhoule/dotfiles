@@ -325,6 +325,18 @@ elif (( $+commands[nodenv] )); then
 fi
 
 #
+# rbenv
+#
+
+# Load a locally-installed rbenv if it exists.
+if [[ -s "${RBENV_ROOT}/bin/rbenv" ]]; then
+  eval "$(rbenv init -)"
+# Otherwise, load a system-installed rbenv if it exists.
+elif (( $+commands[rbenv] )); then
+  eval "$(rbenv init -)"
+fi
+
+#
 # direnv
 #
 
