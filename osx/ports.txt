@@ -1,0 +1,6 @@
+gsed
+neovim
+py-neovim
+rbenv
+shellcheck
+tmux
