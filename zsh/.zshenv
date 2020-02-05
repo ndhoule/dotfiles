@@ -68,7 +68,12 @@ fi
 # Python
 #
 
-path=($HOME/.pyenv/shims $path)
+export PYENV_ROOT="${PYENV_ROOT:-$HOME/.pyenv}"
+
+# Add a user's local pyenv install's binaries to the path
+if [[ -s "${PYENV_ROOT}/bin/pyenv" ]]; then
+  path=("${PYENV_ROOT}/bin" $path)
+fi
 
 #
 # Ruby

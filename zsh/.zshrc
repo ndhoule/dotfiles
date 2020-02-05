@@ -337,6 +337,18 @@ elif (( $+commands[rbenv] )); then
 fi
 
 #
+# pyenv
+#
+
+# Load a locally-installed pyenv if it exists.
+if [[ -s "${PYENV_ROOT}/bin/pyenv" ]]; then
+  eval "$(pyenv init -)"
+# Otherwise, load a system-installed pyenv if it exists.
+elif (( $+commands[pyenv] )); then
+  eval "$(pyenv init -)"
+fi
+
+#
 # direnv
 #
 
