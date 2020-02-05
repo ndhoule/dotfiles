@@ -1,12 +1,12 @@
 [submodule "emacs/emacs.d.symlink"]
-	path = emacs/.emacs.d
+	path = packages/emacs/.emacs.d
 	url = git://github.com/ndhoule/emacs.d.git
 [submodule "vim/vim.symlink"]
-	path = vim/.config/nvim
+	path = packages/vim/.config/nvim
 	url = git://github.com/ndhoule/vimrc.git
 [submodule "tmux/.tmux/tpm"]
-	path = tmux/.tmux/plugins/tpm
+	path = packages/tmux/.tmux/plugins/tpm
 	url = git@github.com:tmux-plugins/tpm.git
 [submodule "zsh/antigen"]
-	path = zsh/.zsh/vendor/antigen
+	path = packages/zsh/.zsh/vendor/antigen
 	url = git@github.com:zsh-users/antigen.git

@@ -8,6 +8,18 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+log_info() {
+  echo "[INFO]: $*"
+}
+
+log_warn() {
+  echo "[WARN]: $*"
+}
+
+log_error() {
+  echo "[ERROR]: $*"
+}
+
 CURRENT_SCRIPT_PATH="$(cd "$(dirname "$0")" ; pwd -P)"
 
 # Validate that the current OS is supported
@@ -16,7 +28,7 @@ case "${OSTYPE}" in
     # continue
     ;;
   *):
-    echo "ERROR: Unsupported OS: '${OSTYPE}'"
+    log_error "Unsupported OS: '${OSTYPE}'"
     exit 1
     ;;
 esac
@@ -26,7 +38,7 @@ esac
 #
 
 if [[ -z "${GOPATH}" ]]; then
-  echo "ERROR: Must set GOPATH before running this script."
+  log_error "Must set GOPATH before running this script."
   exit 1
 fi
 
@@ -63,13 +75,15 @@ packages=(
 )
 
 if command -v stow > /dev/null 2>&1; then
-  echo "Symlinking dotfiles into $HOME..."
+  log_info "Symlinking dotfiles into $HOME..."
   for pkg in "${packages[@]}"; do
+    pushd "${CURRENT_SCRIPT_PATH}/packages" > /dev/null
     stow --target="$HOME" --verbose=1 "${pkg}"
+    popd > /dev/null
   done
-  echo "Symlinked dotfiles into $HOME."
+  log_info "Symlinked dotfiles into $HOME."
 else
-  echo "stow not installed. Skipping dotfiles symlinking..."
+  log_warn "stow not installed. Skipping dotfiles symlinking..."
 fi
 
 #
@@ -85,11 +99,11 @@ go_packages=(
 )
 
 if command -v go > /dev/null 2>&1; then
-  echo "Installing Go packages..."
+  log_info "Installing Go packages..."
   for pkg in "${go_packages[@]}"; do
     go get -u "${pkg}"
   done
-  echo "Installed Go packages."
+  log_info "Installed Go packages."
 else
-  echo "Go not installed. Skipping package installation."
+  log_warn "Go not installed. Skipping package installation."
 fi
