@@ -3,6 +3,7 @@ aws-vault
 clamav clamtk
 exfat-utils
 gvfs
+hub-bin
 imv
 mongodb-tools-bin
 neovim-symlinks
