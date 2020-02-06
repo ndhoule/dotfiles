@@ -1,6 +1,6 @@
+packages/tmux/.tmux/plugins/
+packages/tmux/.tmux/resurrect/
 ssh/.ssh/config.d/*
-tmux/.tmux/plugins
-tmux/.tmux/resurrect
 
 #
 # Temporary files
