@@ -30,5 +30,6 @@ while read -r pkg; do
   fi
 
   # Lines may contain multiple packages, so don't double quote
+  # shellcheck disable=SC2086
   yay -S --noconfirm $pkg
 done < "${PACKAGES_LIST}"
