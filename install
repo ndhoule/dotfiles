@@ -48,7 +48,7 @@ fi
 
 case "${OSTYPE}" in
   darwin*):
-    "${CURRENT_SCRIPT_PATH}/osx/install"
+    "${CURRENT_SCRIPT_PATH}/macos/install"
     ;;
   linux*):
     "${CURRENT_SCRIPT_PATH}/linux/install"
