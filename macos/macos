@@ -241,6 +241,20 @@ defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 7
 # Disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
+# Add extras to tray
+defaults write com.apple.systemuiserver menuExtras -array \
+  "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+  "/System/Library/CoreServices/Menu Extras/Battery.menu" \
+  "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+  "/System/Library/CoreServices/Menu Extras/Clock.menu" \
+  "/System/Library/CoreServices/Menu Extras/Volume.menu"
+
+# Show long date format on date tray item
+defaults write com.apple.menuextra.clock "DateFormat" "EEE MMM d  h:mm:ss a"
+
+# Show percentage on battery tray item
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+
 #
 # Cleanup
 #
