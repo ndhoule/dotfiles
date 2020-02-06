@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+#
+# Install dependencies via Homebrew.
+#
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+if [[ "${OSTYPE}" != darwin* ]]; then
+  echo "ERROR: This script can only be run on macOS."
+  exit 1
+fi
+
+CURRENT_SCRIPT_PATH="$(cd "$(dirname "$0")" ; pwd -P)"
+
+CASKS_LIST="${CURRENT_SCRIPT_PATH}/casks.txt"
+PACKAGES_LIST="${CURRENT_SCRIPT_PATH}/packages.txt"
+TAPS_LIST="${CURRENT_SCRIPT_PATH}/taps.txt"
+
+if ! command -v brew > /dev/null 2>&1; then
+  echo "ERROR: Could not find brew. Please install Homebrew and re-run this script."
+  exit 1
+fi
+
+brew update
+
+while read -r tap; do
+  HOMEBREW_NO_AUTO_UPDATE=1 brew tap "${tap}"
+done < "${TAPS_LIST}"
+
+while read -r package; do
+  HOMEBREW_NO_AUTO_UPDATE=1 brew install "${package}"
+done < "${PACKAGES_LIST}"
+
+while read -r package; do
+  HOMEBREW_NO_AUTO_UPDATE=1 brew cask install "${package}"
+done < "${CASKS_LIST}"

@@ -15,38 +15,11 @@ fi
 
 CURRENT_SCRIPT_PATH="$(cd "$(dirname "$0")" ; pwd -P)"
 
-CASKS_LIST="${CURRENT_SCRIPT_PATH}/casks.txt"
-PACKAGES_LIST="${CURRENT_SCRIPT_PATH}/packages.txt"
-TAPS_LIST="${CURRENT_SCRIPT_PATH}/taps.txt"
-
-if ! command -v brew > /dev/null 2>&1; then
-  echo "ERROR: Could not find brew. Please install brew and re-run this script."
-  exit 1
+if command -v port > /dev/null 2>&1; then
+  "${CURRENT_SCRIPT_PATH}/macports/install"
+elif command -v brew > /dev/null 2>&1; then
+  "${CURRENT_SCRIPT_PATH}/homebrew/install"
 fi
 
-brew update
-
-while read -r tap; do
-  HOMEBREW_NO_AUTO_UPDATE=1 brew tap "${tap}"
-done < "${TAPS_LIST}"
-
-while read -r package; do
-  HOMEBREW_NO_AUTO_UPDATE=1 brew install "${package}"
-done < "${PACKAGES_LIST}"
-
-while read -r package; do
-  HOMEBREW_NO_AUTO_UPDATE=1 brew cask install "${package}"
-done < "${CASKS_LIST}"
-
-# Print a warning for any taps that are not committed to taps.txt
-for tap in $(echo "$(cat "${TAPS_LIST}")" "$(cat "${TAPS_LIST}")" "$(brew tap)" | tr ' ' '\n' | sort | uniq -u); do
-  echo "Found extraneous tapped homebrew tap ${tap}; consider adding it to taps.txt."
-done
-
-# Print a warning for any casks that are not committed to casks.txt
-for package in $(echo "$(cat "${CASKS_LIST}")" "$(cat "${CASKS_LIST}")" "$(brew cask list)" | tr ' ' '\n' | sort | uniq -u); do
-  echo "Found extraneous installed homebrew cask ${package}; consider adding it to casks.txt."
-done
-
-# tmuxp is not available through Homebrew
+# tmuxp is not available through Homebrew/MacPorts
 pip install tmuxp

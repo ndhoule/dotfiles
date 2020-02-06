@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+#
+# Install dependencies via MacPorts.
+#
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+if [[ "${OSTYPE}" != darwin* ]]; then
+  echo "ERROR: This script can only be run on macOS."
+  exit 1
+fi
+
+CURRENT_SCRIPT_PATH="$(cd "$(dirname "$0")" ; pwd -P)"
+
+PACKAGES_LIST="${CURRENT_SCRIPT_PATH}/packages.txt"
+
+if ! command -v port > /dev/null 2>&1; then
+  echo "ERROR: Could not find port. Please install MacPorts and re-run this script."
+  exit 1
+fi
+
+port sync
+
+while read -r package; do
+  sudo port install "${package}"
+done < "${PACKAGES_LIST}"
