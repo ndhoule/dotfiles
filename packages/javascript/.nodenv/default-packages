@@ -1,4 +1,5 @@
 eslint_d 8.0.0
+expo-cli
 flow-typed
 generator-generator
 jscodeshift
