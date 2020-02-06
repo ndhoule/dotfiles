@@ -27,13 +27,32 @@ fi
 brew update
 
 while read -r tap; do
+  # Skip comments and empty lines
+  if [[ -z "${pkg}" || "${pkg}" =~ ^# ]]; then
+    continue
+  fi
+
   HOMEBREW_NO_AUTO_UPDATE=1 brew tap "${tap}"
 done < "${TAPS_LIST}"
 
-while read -r package; do
-  HOMEBREW_NO_AUTO_UPDATE=1 brew install "${package}"
+while read -r pkg; do
+  # Skip comments and empty lines
+  if [[ -z "${pkg}" || "${pkg}" =~ ^# ]]; then
+    continue
+  fi
+
+  # Lines may contain multiple packages, so don't double quote
+  # shellcheck disable=SC2086
+  HOMEBREW_NO_AUTO_UPDATE=1 brew install "${pkg}"
 done < "${PACKAGES_LIST}"
 
-while read -r package; do
-  HOMEBREW_NO_AUTO_UPDATE=1 brew cask install "${package}"
+while read -r pkg; do
+  # Skip comments and empty lines
+  if [[ -z "${pkg}" || "${pkg}" =~ ^# ]]; then
+    continue
+  fi
+
+  # Lines may contain multiple packages, so don't double quote
+  # shellcheck disable=SC2086
+  HOMEBREW_NO_AUTO_UPDATE=1 brew cask install $pkg
 done < "${CASKS_LIST}"
