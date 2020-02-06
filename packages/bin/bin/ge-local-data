@@ -1,0 +1,171 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+# FIXME(ndhoule): `read` always exits 1. What gives?
+set +o errexit
+read -r -d '' USAGE << "EOF"
+Usage:
+  ge-local-data [command] [assortment|ops|shopping]
+
+Available Commands:
+  reset    Reset the data container to a pristine state.
+  restart  Restart the data container.
+  update   Pull up-to-date data for the container. Resets the container to a pristine, updated state.
+  run      Run a data container, only pulling the image if no local copy exists.
+EOF
+set -o errexit
+
+# A mapping of target (i.e. assortment, ops, shopping) to Mongo port number.
+declare -A ports
+ports[shopping]=27017
+ports[ops]=27018
+ports[assortment]=27019
+
+# Prints CLI usage.
+usage() {
+  echo "${USAGE}"
+}
+
+# Prints an informational message.
+log_info() {
+  echo "[INFO]: $*"
+}
+
+# Prints an error message.
+log_error() {
+  echo "[ERROR]: $*"
+}
+
+# Prints an error message and exits.
+log_fatal() {
+  echo "[FATAL]: $*"
+  exit 1
+}
+
+# Updates an image definition from Docker Hub.
+update_target_image() {
+  local target=$1
+  local container_name="mongo-${target}"
+
+  log_info "Pulling data for ${container_name}..."
+  docker pull "goodeggs/${container_name}:latest" > /dev/null
+  log_info "Pulled data for ${container_name}."
+}
+
+# Resets a container to a pristine state. Fails if no container for the given target is running.
+cmd_reset() {
+  local target=$1
+  local container_name="mongo-${target}"
+  local image_name="goodeggs/mongo-${target}"
+
+  if [[ $(docker ps --filter "name=^/${container_name}$" --format '{{.Names}}') != "${container_name}" ]]; then
+    log_fatal "A data container with the name ${container_name} does not exist."
+  fi
+
+  log_info "Resetting container ${container_name}..."
+  cmd_remove "${target}"
+  cmd_run "${target}"
+  log_info "Reset container ${container_name}."
+}
+
+# Stops and starts an existing container. Fails if no container for the given target is running.
+cmd_restart() {
+  local target=$1
+  local container_name="mongo-${target}"
+  local image_name="goodeggs/mongo-${target}"
+
+  if [[ $(docker ps --filter "name=^/${container_name}$" --format '{{.Names}}') != "${container_name}" ]]; then
+    log_fatal "A data container with the name ${container_name} does not exist."
+  fi
+
+  log_info "Restarting container ${container_name}..."
+  docker stop "${container_name}" > /dev/null
+  docker start "${container_name}" > /dev/null
+  log_info "Restarted container ${container_name}."
+}
+
+# Stops and removes an existing container. Fails if no container for the given target is running.
+cmd_remove() {
+  local target=$1
+  local container_name="mongo-${target}"
+
+  if [[ $(docker ps --filter "name=^/${container_name}$" --format '{{.Names}}') == "${container_name}" ]]; then
+    log_info "Stopping container ${container_name}..."
+    docker stop "${container_name}" > /dev/null
+    log_info "Stopped container ${container_name}."
+  fi
+
+  log_info "Removing container ${container_name}..."
+  docker rm "${container_name}" > /dev/null
+  log_info "Removed container ${container_name}."
+}
+
+# Run a container. Fails if a container for the given target is already running.
+cmd_run() {
+  local target=$1
+  local container_name="mongo-${target}"
+  local image_name="goodeggs/mongo-${target}"
+
+  if [[ $(docker ps --filter "name=^/${container_name}$" --format '{{.Names}}') == "${container_name}" ]]; then
+    log_fatal "Container ${container_name} is already running."
+  fi
+
+  log_info "Starting container ${container_name}..."
+  docker run \
+    --detach \
+    --restart "unless-stopped" \
+    --name "${container_name}" \
+    -p "${ports[$target]}:27017" \
+    "${image_name}:latest" > /dev/null
+  log_info "Started container ${container_name}."
+}
+
+# Update a container (pulling any image definition updates in the process). Destroys any existing
+# container for the given target.
+cmd_update() {
+  local target=$1
+  local container_name="mongo-${target}"
+  local image_name="goodeggs/mongo-${target}"
+
+  update_target_image "${target}"
+
+  if [[ $(docker ps --filter "name=^/${container_name}$" --format '{{.Names}}') == "${container_name}" ]]; then
+    cmd_remove "${target}"
+  fi
+
+  cmd_run "${target}"
+}
+
+main() {
+  local command="${1:-}"
+  local target="${2:-}"
+
+  # TODO(ndhoule): Better error messaging if command is empty, or if target is invalid.
+  case "${command}" in
+    "reset" | "reload")
+      cmd_reset "${target}"
+      ;;
+    "restart")
+      cmd_restart "${target}"
+      ;;
+    "remove")
+      cmd_remove "${target}"
+      ;;
+    "run")
+      cmd_run "${target}"
+      ;;
+    "update")
+      cmd_update "${target}"
+      ;;
+    *)
+      log_error "Unknown command: ${command}"
+      usage
+      exit 1
+      ;;
+  esac
+}
+
+main "$@"
