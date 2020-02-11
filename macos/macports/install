@@ -24,7 +24,7 @@ fi
 
 port sync
 
-while read -r package; do
+while read -r pkg; do
   # Skip comments and empty lines
   if [[ -z "${pkg}" || "${pkg}" =~ ^# ]]; then
     continue
@@ -32,5 +32,5 @@ while read -r package; do
 
   # Lines may contain multiple packages, so don't double quote
   # shellcheck disable=SC2086
-  sudo port install $package
+  sudo port install $pkg
 done < "${PACKAGES_LIST}"
