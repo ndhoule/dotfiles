@@ -1,10 +1,12 @@
 ImageMagick
 aspell
+bash
 chromedriver
 coreutils
 cppcheck
 curl
 direnv
+dnsmasq
 emacs
 findutils
 git
@@ -15,9 +17,11 @@ gsed
 htop
 hub
 jq
+mkcert
 mongo-tools
 neovim
 nodejs12
+nss
 parallel
 py-neovim
 rbenv
