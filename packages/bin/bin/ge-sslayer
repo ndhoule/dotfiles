@@ -1,0 +1,167 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+CA_ROOT_DIR="$HOME/Library/Application Support/mkcert"
+
+log_fatal() {
+  echo "ERROR: $*"
+  exit 1
+}
+
+log_info() {
+  echo "INFO: $*"
+}
+
+mark_last_setup() {
+  mkdir -p "$HOME/Library/Application Support/sslayer"
+  date '+%s' > "$HOME/Library/Application Support/sslayer/.last_setup"
+}
+
+configure_dnsmasq() {
+  mkdir -p /usr/local/etc
+  tee /usr/local/etc/dnsmasq.conf > /dev/null << EOF
+address=/goodeggs.dev/127.0.0.1
+address=/goodeggs.test/127.0.0.1
+EOF
+}
+
+configure_dns_resolver() {
+  sudo mkdir -p /etc/resolver
+  sudo tee /etc/resolver/goodeggs.dev > /dev/null <<EOF
+nameserver 127.0.0.1
+EOF
+  sudo tee /etc/resolver/goodeggs.test > /dev/null << EOF
+nameserver 127.0.0.1
+EOF
+}
+
+setup_dns() {
+  configure_dnsmasq
+  configure_dns_resolver
+}
+
+generate_ssl_certificate() {
+  mkdir -p "$CA_ROOT_DIR"
+  docker run \
+    --rm \
+    --name mkcert \
+    --mount "type=bind,src=$CA_ROOT_DIR,dst=/root/.local/share/mkcert" \
+    goodeggs/mkcert \
+    '*.goodeggs.test'
+  sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain "$CA_ROOT_DIR/rootCA.pem"
+}
+
+migrate_from_legacy_sslayer() {
+  # Stop legacy sslayer
+  if [ "$(brew services list | grep sslayer | awk '{print $2}')" = "started" ]; then
+    log_info "Stopping legacy sslayer..."
+    sudo brew services stop sslayer
+  fi
+}
+
+#
+# Commands
+#
+
+setup() {
+  # Check to ensure the user is logged in (this will succeed if the user is already logged in)
+  docker login
+
+  # If upgrading from sslayer v1, make sure to stop it
+  migrate_from_legacy_sslayer
+
+  # Generate a new root certificate if one does not yet exist
+  if [ ! -f "$CA_ROOT_DIR/rootCA.pem" ]; then
+    generate_ssl_certificate
+  fi
+
+  # Configure OS X to send all requests to *.goodeggs.test to localhost
+  configure_dnsmasq
+  configure_dns_resolver
+
+  log_info "Finished setting up sslayer. Run \`sslayer start\` to start sslayer."
+
+  mark_last_setup
+}
+
+start() {
+  if ! pgrep dnsmasq > /dev/null; then
+    sudo brew services start dnsmasq
+  fi
+
+  # If sslayer is already running, bail.
+  if [ "$(docker ps --all --filter "name=^sslayer$" --filter "status=running" --format "{{.ID}}")" != "" ]; then
+    log_fatal "sslayer is already running."
+  fi
+
+  # If the container already exists, start it.
+  if [ "$(docker ps --all --filter "name=^sslayer$" --filter "status=exited" --format "{{.ID}}")" != "" ]; then
+    log_info "Starting existing sslayer container."
+    docker start sslayer > /dev/null
+    log_info "Started sslayer."
+    return
+  fi
+
+  # If no container exists, create one.
+  log_info "Creating a sslayer container."
+
+  # https://github.com/moby/moby/pull/40007
+  extra_args=""
+  if [ -n "${SSLAYER_DOCKER_MACHINE:-}" ]; then
+    extra_args+=" --add-host 'host.docker.internal:$(docker-machine ip)'"
+  fi
+
+  docker run -d \
+    --name sslayer \
+    --restart unless-stopped \
+    --mount "type=bind,src=$CA_ROOT_DIR,dst=/usr/local/share/ca-certificates" \
+    --mount "type=bind,src=$CA_ROOT_DIR/certs,dst=/etc/nginx/certs" \
+    -p 80:80 \
+    -p 443:443 \
+    $extra_args \
+    goodeggs/sslayer:osx > /dev/null
+  log_info "Started sslayer."
+}
+
+stop() {
+  sudo brew services stop dnsmasq > /dev/null 2>&1 || true
+  docker stop sslayer > /dev/null
+}
+
+# Don't use sudo in this command, it gets run in Homebrew's post_install hook which does not permit
+# sudo.
+update() {
+  if [ ! -f "$HOME/Library/Application Support/sslayer/.last_setup" ]; then
+    log_info "Cannot update sslayer before running setup."
+    return
+  fi
+
+  log_info "Stopping sslayer..."
+  if [ "$(docker ps --all --filter "name=^sslayer$" --format "{{.ID}}" | wc -l)" -gt 0 ]; then
+    docker rm -f sslayer
+  fi
+  docker pull goodeggs/sslayer:osx
+
+  start
+}
+
+#
+# Main
+#
+
+main() {
+  case "${1-}" in
+    setup-root-cert) generate_ssl_certificate ;;
+    setup-dns) setup_dns ;;
+    setup) setup "${2-}" ;;
+    start) start "${2-}" ;;
+    stop) stop "${2-}" ;;
+    update) update "${2-}" ;;
+    *) log_fatal "usage: slayer [setup | server | stop | update]" ;;
+  esac
+}
+
+main "$@"

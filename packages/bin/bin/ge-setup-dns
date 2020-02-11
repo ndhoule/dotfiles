@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# TODO(ndhoule): Change this to /usr/local when run via brew, and also possibly sort out permissions
+# differences between homebrew and macports?
+ROOT="/opt/local"
+ETC_PATH="${ROOT}/etc"
+
+assert_dnsmasq_exists() {
+  if ! command -v dnsmasq > /dev/null 2>&1; then
+    echo "ERROR: dnsmasq not found. Please install dnsmasq and re-run this script."
+    exit 1
+  fi
+}
+
+configure_dnsmasq() {
+  sudo mkdir -p "${ETC_PATH}"
+  sudo tee "${ETC_PATH}/dnsmasq.conf" > /dev/null << EOF
+address=/goodeggs.dev/127.0.0.1
+address=/goodeggs.test/127.0.0.1
+EOF
+}
+
+configure_dns_resolver() {
+  sudo mkdir -p /etc/resolver
+  sudo tee /etc/resolver/goodeggs.dev > /dev/null <<EOF
+nameserver 127.0.0.1
+EOF
+  sudo tee /etc/resolver/goodeggs.test > /dev/null << EOF
+nameserver 127.0.0.1
+EOF
+}
+
+
+#
+# Main
+#
+
+main() {
+  assert_dnsmasq_exists
+  configure_dnsmasq
+  configure_dns_resolver
+}
+
+main "$@"
