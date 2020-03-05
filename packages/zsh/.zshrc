@@ -399,6 +399,7 @@ alias gb='git branch'
 alias gc='git commit --verbose'
 alias gco='git checkout'
 alias gcp='git cherry-pick --ff'
+alias gcf='git commit --verbose --fixup'
 
 # Fetch (f)
 alias gf='git fetch'
