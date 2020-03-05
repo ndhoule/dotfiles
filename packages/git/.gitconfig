@@ -26,6 +26,9 @@
 [branch]
 	autosetuprebase = always
 
+[rebase]
+	autosquash = true
+
 [commit]
 	gpgSign = true
 	template = ~/.gitmessage
