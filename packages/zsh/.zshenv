@@ -31,13 +31,14 @@ typeset -gU cdpath fpath mailpath path
 
 fpath=(
   $ZDOTDIR/.zprompts
+  /opt/local/share/git/contrib/completion/git-completion.zsh
   $fpath
 )
 
 path=(
-  $HOME/bin
   $path
 )
+PATH="$HOME/bin:${PATH}"
 
 #
 # Go

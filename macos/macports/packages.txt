@@ -20,7 +20,7 @@ jq
 mkcert
 mongo-tools
 neovim
-nodejs12
+nodejs12 npm6
 nss
 parallel
 py-neovim

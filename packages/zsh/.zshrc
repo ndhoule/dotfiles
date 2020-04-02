@@ -12,6 +12,7 @@ source "${ZDOTDIR}/.zsh/vendor/antigen/bin/antigen.zsh"
 
 antigen bundles <<EOF
 command-not-found
+gitfast
 greymd/docker-zsh-completion
 zsh-users/zsh-completions
 zsh-users/zsh-history-substring-search

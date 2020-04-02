@@ -107,3 +107,5 @@ if command -v go > /dev/null 2>&1; then
 else
   log_warn "Go not installed. Skipping package installation."
 fi
+
+"$HOME/.tmux/plugins/tpm/bin/install_plugins"
