@@ -222,4 +222,7 @@ for_window [class="whatsapp-nativefier"] move window to workspace 3
 for_window [class="firefox" title="^Picture-in-Picture$"] \
     floating enable, move position 877 450, sticky enable
 
+# Start applications on login
+exec --no-startup-id dropbox start
+
 include @sysconfdir@/sway/config.d/*
