@@ -1,10 +1,7 @@
-eslint_d 8.0.0
 expo-cli
 flow-typed
 generator-generator
 jscodeshift
 jsonlint
-neovim
 npm-check
-yarn 1.9.4
 yo
