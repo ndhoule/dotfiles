@@ -78,6 +78,9 @@ input "1241:617:USB_Keyboard" {
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'Are you sure you want to exit sway?' -b 'Yes, exit sway' 'swaymsg exit'
 
+    # Lock screen
+    bindsym $mod+Control+Q exec swaylock
+
 #
 # Multimedia:
 #
