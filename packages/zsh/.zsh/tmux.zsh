@@ -12,7 +12,7 @@ _chpwd_tmux() {
     local t_org=$(basename "$(dirname "${PWD}")")
     local t_repo=$(basename "${PWD}")
     local t_md5=$(echo "${PWD}" | md5sum | cut -d ' ' -f 1)
-    local session_name="${t_org}/${t_repo} [${t_md5}]"
+    local session_name="${t_org//\./_}/${t_repo//\./_} [${t_md5}]"
 
     if tmux has-session -t "${session_name}" &> /dev/null; then
         # If there is an existing session we're not attached to, switch to that
