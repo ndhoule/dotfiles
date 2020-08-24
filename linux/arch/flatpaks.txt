@@ -1,0 +1,8 @@
+flathub com.discordapp.Discord
+flathub com.google.AndroidStudio
+flathub com.slack.Slack
+flathub com.spotify.Client
+flathub com.visualstudio.code
+flathub org.mozilla.Thunderbird
+flathub org.mozilla.firefox
+flathub org.zealdocs.Zeal

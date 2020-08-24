@@ -13,8 +13,8 @@
     "return-type": "json",
     "max-length": 40,
     "format-icons": {
-      "spotify": "",
-      "default": ""
+      "spotify": "󰓇",
+      "default": "󰐋"
     },
     "escape": true,
     "exec": "$HOME/.config/waybar/mediaplayer 2> /dev/null"
@@ -22,8 +22,8 @@
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
-      "activated": "",
-      "deactivated": ""
+      "activated": "󰛐",
+      "deactivated": "󰛑"
     }
   },
   "tray": {
@@ -34,39 +34,39 @@
     "tooltip": false
   },
   "cpu": {
-    "format": "{usage}% ￇ",
+    "format": "{usage}% 󰾧",
     "tooltip": false
   },
   "memory": {
-    "format": "{}% "
+    "format": "{}% 󰍛"
   },
   "temperature": {
     "format": "{temperatureF}°F {icon}",
-    "format-icons": ["󰃮", "󰃭", "﹡"]
+    "format-icons": ["󰔏", "󱃂", "󰸁"]
   },
   "network": {
-    "format-wifi": "{essid} ({signalStrength}%) 蠟",
-    "format-ethernet": "{ifname}: {ipaddr}/{cidr} ﱹ",
-    "format-linked": "{ifname} (No IP) ﱶ",
-    "format-disconnected": "Disconnected ﱸ",
+    "format-wifi": "{essid} ({signalStrength}%)  󰖩",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr}  󰈀",
+    "format-linked": "{ifname} (No IP) 󰲚",
+    "format-disconnected": "Disconnected 󰱟",
     "format-alt": "{ifname}: {ipaddr}/{cidr}"
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
     "format": "{volume}% {icon} {format_source}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": "{icon} {format_source}",
-    "format-muted": " {format_source}",
-    "format-source": "{volume}% 󰅋",
-    "format-source-muted": "󰅋",
+    "format-bluetooth": "{volume}% {icon}󰂰 {format_source}",
+    "format-bluetooth-muted": "{icon}󰂲 {format_source}",
+    "format-muted": "󰝟 {format_source}",
+    "format-source": "{volume}% 󱄠",
+    "format-source-muted": "󰸈",
     "format-icons": {
-      "headphones": "",
-      "handsfree": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["", "", ""]
+      "headphones": "󰋋",
+      "handsfree": "󰄝",
+      "headset": "󰋎",
+      "phone": "󰏲",
+      "portable": "(Portable)",
+      "car": "󰄋",
+      "default": ["󰕿", "󰖀", "󰕾"]
     },
     "on-click": "pavucontrol"
   }
