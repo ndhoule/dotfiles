@@ -31,11 +31,11 @@ output DP-2 scale 1.15
 ### Idle configuration
 # Lock screen after 5 minutes of inactivity and turn off display after 10 minutes of inactivity.
 # Require a password on unlock.
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' \
-#               resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+    timeout 300 'swaylock -f -c 000000' \
+    timeout 600 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -f -c 000000'
 
 ### Input configuration
 #
