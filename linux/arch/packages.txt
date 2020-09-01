@@ -28,6 +28,7 @@ gdm
 # Desktop environment
 #
 
+geoclue
 gnome-calculator
 gnome-font-viewer
 gnome-keyring libsecret seahorse
@@ -39,9 +40,9 @@ thunar
 # wayland
 #
 
+gammastep
 pipewire xdg-desktop-portal
 qt5-wayland
-redshift-wlr-gamma-control-git geoclue
 wayland
 wl-clipboard
 xorg-server-xwayland

@@ -64,6 +64,7 @@ packages=(
   "bin"
   "clojure"
   "emacs"
+  "gammastep"
   "git"
   "haskell"
   "javascript"
