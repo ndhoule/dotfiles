@@ -66,6 +66,7 @@ packages=(
   "emacs"
   "gammastep"
   "git"
+  "gpg"
   "haskell"
   "javascript"
   "redshift"
