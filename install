@@ -68,6 +68,7 @@ packages=(
   "git"
   "haskell"
   "javascript"
+  "redshift"
   "ruby"
   "ssh"
   "tmux"
