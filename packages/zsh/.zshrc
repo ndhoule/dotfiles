@@ -315,42 +315,6 @@ promptinit
 prompt ndhoule
 
 #
-# nodenv
-#
-
-# Load a locally-installed nodenv if it exists.
-if [[ -s "${NODENV_ROOT}/bin/nodenv" ]]; then
-  eval "$(nodenv init - --no-rehash zsh)"
-# Otherwise, load a system-installed nodenv if it exists.
-elif (( $+commands[nodenv] )); then
-  eval "$(nodenv init - --no-rehash zsh)"
-fi
-
-#
-# rbenv
-#
-
-# Load a locally-installed rbenv if it exists.
-if [[ -s "${RBENV_ROOT}/bin/rbenv" ]]; then
-  eval "$(rbenv init -)"
-# Otherwise, load a system-installed rbenv if it exists.
-elif (( $+commands[rbenv] )); then
-  eval "$(rbenv init -)"
-fi
-
-#
-# pyenv
-#
-
-# Load a locally-installed pyenv if it exists.
-if [[ -s "${PYENV_ROOT}/bin/pyenv" ]]; then
-  eval "$(pyenv init -)"
-# Otherwise, load a system-installed pyenv if it exists.
-elif (( $+commands[pyenv] )); then
-  eval "$(pyenv init -)"
-fi
-
-#
 # direnv
 #
 
