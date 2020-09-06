@@ -11,6 +11,7 @@
 source "${ZDOTDIR}/.zsh/vendor/antigen/bin/antigen.zsh"
 
 antigen bundles <<EOF
+asdf
 command-not-found
 greymd/docker-zsh-completion
 zsh-users/zsh-completions

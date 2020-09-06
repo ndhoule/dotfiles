@@ -40,46 +40,26 @@ path=(
 )
 
 #
+# asdf
+#
+
+export ASDF_DIR="${ASDF_DIR-}"
+
+if [[ -z "${ASDF_DIR}" ]]; then
+  if [[ -d /opt/asdf-vm ]]; then
+    export ASDF_DIR="/opt/asdf-vm"
+  else if [[ -d "$HOME/.asdf" ]]
+    export ASDF_DIR="$HOME/.asdf"
+  fi
+fi
+
+#
 # Go
 #
 
 export GOPATH="${GOPATH:-$PROJECTS_DIR}"
 
 path=("${GOPATH}/bin" $path)
-
-#
-# Node
-#
-
-export NODENV_ROOT="${NODENV_ROOT:-$HOME/.nodenv}"
-
-path=(
-  "${NODENV_ROOT}/shims"
-  "${HOME}/.config/yarn/global/node_modules/.bin"
-  $path
-)
-
-# Add a user's local nodenv install's binaries to the path
-if [[ -s "${NODENV_ROOT}/bin/nodenv" ]]; then
-  path=("${NODENV_ROOT}/bin" $path)
-fi
-
-#
-# Python
-#
-
-export PYENV_ROOT="${PYENV_ROOT:-$HOME/.pyenv}"
-
-# Add a user's local pyenv install's binaries to the path
-if [[ -s "${PYENV_ROOT}/bin/pyenv" ]]; then
-  path=("${PYENV_ROOT}/bin" $path)
-fi
-
-#
-# Ruby
-#
-
-path=($HOME/.rbenv/shims $path)
 
 #
 # Android SDK
