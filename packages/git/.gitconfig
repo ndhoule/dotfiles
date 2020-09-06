@@ -4,6 +4,7 @@
 [user]
 	name = Nathan Houle
 	email = nathan@nathanhoule.com
+	signingkey = 2A46563F6B85B9F751A48678882A2D6B15D4AD43
 
 [github]
 	user = ndhoule
