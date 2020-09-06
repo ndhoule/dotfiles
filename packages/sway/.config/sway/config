@@ -224,5 +224,6 @@ for_window [class="firefox" title="^Picture-in-Picture$"] \
 
 # Start applications on login
 exec --no-startup-id dropbox start
+exec --no-startup-id gammastep-indicator
 
 include @sysconfdir@/sway/config.d/*
