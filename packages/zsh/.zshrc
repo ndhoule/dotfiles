@@ -13,6 +13,7 @@ source "${ZDOTDIR}/.zsh/vendor/antigen/bin/antigen.zsh"
 antigen bundles <<EOF
 asdf
 command-not-found
+gpg-agent
 greymd/docker-zsh-completion
 zsh-users/zsh-completions
 zsh-users/zsh-history-substring-search
