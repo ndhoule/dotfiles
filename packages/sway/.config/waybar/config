@@ -36,10 +36,12 @@
   },
   "cpu": {
     "format": "{usage}% 󰾧",
-    "tooltip": false
+    "tooltip": false,
+    "on-click": "gnome-system-monitor"
   },
   "memory": {
-    "format": "{}% 󰍛"
+    "format": "{}% 󰍛",
+    "on-click": "gnome-system-monitor"
   },
   "temperature": {
     "format": "{temperatureF}°F {icon}",
