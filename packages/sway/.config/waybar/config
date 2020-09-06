@@ -30,7 +30,8 @@
     "spacing": 10
   },
   "clock": {
-    "format": "{:%a %b %e   %I:%M %p}",
+    "format": "{:%a %b %e   %I:%M:%S %p}",
+    "interval": 1,
     "tooltip": false
   },
   "cpu": {
