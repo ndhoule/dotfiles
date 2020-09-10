@@ -1,20 +1,32 @@
-aftershotpro3
-aws-vault
-clamav clamtk
-exfat-utils
+#
+# System Utilities
+#
+
+aspell
+exfatprogs
 gvfs
-hub-bin
-imv
-mongodb-tools-bin
-neovim-symlinks
-nodejs-lts-erbium
-veracrypt
+ntp
+
+#
+# Package Management
+#
+
+flatpak
+gnome-software
+gnome-software-packagekit-plugin
+pacman-contrib
+
+#
+# Printing
+#
+
+cups
+brother-hll2300d
 
 #
 # Audio
 #
 
-pavucontrol
 pulseaudio
 pulseaudio-alsa
 
@@ -28,24 +40,35 @@ gdm
 # Desktop environment
 #
 
+eog
+evince
 geoclue
-gnome-calculator
-gnome-font-viewer
-gnome-keyring libsecret seahorse
+gnome-keyring libsecret
 gnome-system-monitor
+nautilus nautilus-dropbox
 playerctl
-thunar
 
 #
-# wayland
+# Wayland
 #
 
 gammastep
-pipewire xdg-desktop-portal
+grim grimshot slurp wf-recorder
 qt5-wayland
 wayland
 wl-clipboard
 xorg-server-xwayland
+
+#
+# Wayland screen sharing
+#
+
+pipewire
+xdg-desktop-portal
+# Support for streaming on GNOME
+xdg-desktop-portal-gtk
+# Support for streaming on wlroots-compatible compositors (e.g. sway)
+xdg-desktop-portal-wlr
 
 #
 # sway WM
@@ -53,7 +76,6 @@ xorg-server-xwayland
 
 mako
 sway
-sway-services-git
 swaybg
 swayidle
 swaylock
@@ -64,14 +86,20 @@ wofi
 # Desktop apps
 #
 
+aftershotpro3
 alacritty
-android-messages-desktop
-dropbox thunar-dropbox
+chromium
+dropbox
 fedora-firefox-wayland-bin
-notion-app
-slack-desktop
-spotify
-zeal
+veracrypt
+
+#
+# YubiKey Support
+#
+
+yubikey-manager
+pcsc-tools
+yubikey-touch-detector
 
 #
 # Developer tools
@@ -79,6 +107,8 @@ zeal
 
 asdf-vm
 aws-cli
+aws-vault
+certbot
 direnv
 dnsutils
 docker
@@ -87,26 +117,35 @@ fzf
 git
 gnupg
 go
+hub-bin
 jq
-neovim python-pynvim
+mongodb-tools-bin
+neovim neovim-symlinks python-pynvim
+ngrok
+nodejs-lts-erbium npm
 openssh
 parallel
+python python-pip
 selenium-server-standalone
 shellcheck
 stow
 sysstat
+terraform
 the_silver_searcher
+tidy
 tmux
 tmuxp
 traceroute
 tree
+universal-ctags-git
+watchman
 zsh
-python python-pip
 
 #
 # Fonts
 #
 
 ttf-dejavu
-ttf-jetbrains-mono
+ttf-mac-fonts
 ttf-material-design-fonts-git
+ttf-roboto

@@ -33,3 +33,10 @@ while read -r pkg; do
   # shellcheck disable=SC2086
   yay -S --noconfirm $pkg
 done < "${PACKAGES_LIST}"
+
+# Enable services
+systemctl enable --now gdm.service
+systemctl enable --now ntpd.service
+systemctl enable --now org.cups.cupsd.service
+systemctl enable --now pcscd.service
+systemctl --user enable --now yubikey-touch-detector.service
