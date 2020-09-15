@@ -325,6 +325,10 @@ prompt ndhoule
 
 if (( $+commands[direnv] )); then
   eval "$(direnv hook $(basename $SHELL))"
+
+  # Unload direnv before executing tmux to avoid issues
+  # https://github.com/direnv/direnv/wiki/Tmux
+  alias tmux='direnv exec / tmux'
 fi
 
 #
