@@ -75,6 +75,7 @@ packages=(
   "ssh"
   "tmux"
   "vim"
+  "yubikey"
   "zsh"
 )
 
