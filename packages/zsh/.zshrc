@@ -24,6 +24,11 @@ EOF
 
 antigen apply
 
+# Set LS_COLORS (used by `ls`, `tree`, etc.) if not yet set
+if [[ -z "$LS_COLORS" ]]; then
+  eval "$(dircolors --sh)"
+fi
+
 #
 # Completion
 #
