@@ -178,6 +178,7 @@ alias ln="nocorrect ln"
 alias man="nocorrect man"
 alias mkdir="nocorrect mkdir"
 alias mv="nocorrect mv"
+alias rg="nocorrect rg"
 alias rm="nocorrect rm"
 
 # Ask for confirmation when running potentially dangerous commands

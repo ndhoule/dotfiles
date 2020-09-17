@@ -126,6 +126,7 @@ nodejs-lts-erbium npm
 openssh
 parallel
 python python-pip
+ripgrep
 selenium-server-standalone
 shellcheck
 stow
