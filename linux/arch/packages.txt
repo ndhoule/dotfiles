@@ -120,7 +120,7 @@ go
 hub-bin
 jq
 mongodb-tools-bin
-neovim neovim-symlinks python-pynvim
+neovim-nightly neovim-symlinks python-neovim-git
 ngrok
 nodejs-lts-erbium npm
 openssh
