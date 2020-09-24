@@ -203,6 +203,13 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 ##
+# Window Title Bar:
+#
+
+font "Noto Sans Mono 10"
+titlebar_padding 7 4
+
+##
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
