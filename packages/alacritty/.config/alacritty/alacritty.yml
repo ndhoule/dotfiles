@@ -3,17 +3,17 @@ scrolling:
 
 font:
   normal:
-    family: JetBrains Mono
-    style: Regular
+    family: DejaVu Sans Mono
+    style: Book
   bold:
-    family: JetBrains Mono
+    family: DejaVu Sans Mono
     style: Bold
   italic:
-    family: JetBrains Mono
-    style: Italic
+    family: DejaVu Sans Mono
+    style: ;talic
   bold_italic:
-    family: JetBrains Mono
-    style: Bold Italic
+    family: DejaVu Sans Mono
+    style: Bold Oblique
 
   size: 12.0
 
