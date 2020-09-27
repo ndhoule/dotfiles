@@ -9,7 +9,22 @@
 
 export ZDOTDIR="${ZDOTDIR:-$HOME}"
 export PROJECTS_DIR="${PROJECTS_DIR:-$HOME/dev}"
+
+#
+# XDG Base Directory
+#
+# For more info, see the spec:
+# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+#
+
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
+export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-}
+
+if [[ -f "${XDG_CONFIG_HOME}/user-dirs.dirs" ]]; then
+  source "${XDG_CONFIG_HOME}/user-dirs.dirs"
+fi
 
 #
 # Editor
