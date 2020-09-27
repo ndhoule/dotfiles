@@ -10,7 +10,7 @@ font:
     style: Bold
   italic:
     family: DejaVu Sans Mono
-    style: ;talic
+    style: Oblique
   bold_italic:
     family: DejaVu Sans Mono
     style: Bold Oblique
