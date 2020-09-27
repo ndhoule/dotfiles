@@ -9,6 +9,7 @@
 
 export ZDOTDIR="${ZDOTDIR:-$HOME}"
 export PROJECTS_DIR="${PROJECTS_DIR:-$HOME/dev}"
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 
 #
 # Editor
