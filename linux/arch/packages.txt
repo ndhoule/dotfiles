@@ -1,4 +1,18 @@
 #
+# Base System
+#
+
+base
+base-devel
+btrfs-progs
+efibootmgr
+intel-ucode
+linux linux-headers
+linux-firmware
+linux-lts linux-lts-headers
+networkmanager
+
+#
 # System Utilities
 #
 
@@ -122,6 +136,7 @@ gnupg
 go
 hub-bin
 jq
+man-db
 mongodb-tools-bin
 neovim-nightly neovim-symlinks python-neovim-git
 ngrok
