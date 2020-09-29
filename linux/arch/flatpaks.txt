@@ -21,4 +21,3 @@ flathub org.pulseaudio.pavucontrol
 flathub org.signal.Signal
 flathub org.videolan.VLC
 flathub org.zealdocs.Zeal
-flathub com.dropbox.Client
