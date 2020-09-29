@@ -143,6 +143,12 @@ watchman
 zsh
 
 #
+# LSP Servers
+#
+
+terraform-ls-bin
+
+#
 # Fonts
 #
 

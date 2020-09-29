@@ -3,3 +3,14 @@ generator-generator
 jscodeshift
 npm-check
 yo
+
+bash-language-server
+dockerfile-language-server-nodejs
+javascript-typescript-langserver
+sql-language-server
+typescript-language-server
+vim-language-server
+vscode-css-languageserver-bin
+vscode-html-languageserver-bin
+vscode-json-languageserver
+yaml-language-server
