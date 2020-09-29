@@ -141,6 +141,7 @@ tmuxp
 traceroute
 tree
 universal-ctags-git
+virtualbox virtualbox-guest-dkms
 watchman
 wget
 zsh
