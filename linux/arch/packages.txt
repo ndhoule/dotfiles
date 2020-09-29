@@ -128,6 +128,7 @@ openssh
 parallel
 python python-pip
 ripgrep
+rsync
 selenium-server-standalone
 shellcheck
 stow
