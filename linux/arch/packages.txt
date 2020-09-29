@@ -142,6 +142,7 @@ traceroute
 tree
 universal-ctags-git
 watchman
+wget
 zsh
 
 #
