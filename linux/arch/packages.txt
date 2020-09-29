@@ -106,6 +106,7 @@ yubikey-touch-detector
 # Developer tools
 #
 
+android-tools android-udev
 asdf-vm
 aws-cli
 aws-vault
