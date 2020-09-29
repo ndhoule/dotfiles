@@ -115,6 +115,7 @@ direnv
 dnsutils
 docker
 docker-compose
+emacs
 fzf
 git
 gnupg
