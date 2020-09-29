@@ -40,6 +40,7 @@ systemctl enable --now ntpd.service
 systemctl enable --now org.cups.cupsd.service
 systemctl enable --now pcscd.service
 systemctl --user enable --now yubikey-touch-detector.service
+systemctl --user enable --now xdg-user-dirs-update.service
 
 # Grant Zeal's Flatpak filesystem access to the configuration package in this repository.
 # Gross.

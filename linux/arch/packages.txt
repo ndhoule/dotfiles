@@ -57,6 +57,7 @@ grim grimshot slurp wf-recorder
 qt5-wayland
 wayland
 wl-clipboard
+xdg-user-dirs
 xorg-server-xwayland
 
 #
