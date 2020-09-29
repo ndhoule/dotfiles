@@ -222,7 +222,7 @@ bar {
 for_window [class="Signal"] move window to workspace 3
 for_window [class="Spotify"] move window to workspace 2
 for_window [class="android-messages-desktop"] move window to workspace 3
-for_window [class="whatsapp-nativefier"] move window to workspace 3
+for_window [app_id="WhatsAppQT"] move window to workspace 3
 
 # Float Firefox PIP windows
 for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, sticky enable, move position 877 450

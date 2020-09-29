@@ -5,6 +5,7 @@ flathub com.slack.Slack
 flathub com.spotify.Client
 flathub com.transmissionbt.Transmission
 flathub com.yubico.yubioath
+flathub io.bit3.WhatsAppQT
 flathub org.darktable.Darktable
 flathub org.gnome.Calculator
 flathub org.gnome.Evince
