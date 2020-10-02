@@ -173,6 +173,7 @@ zsh
 # LSP Servers
 #
 
+lua-language-server-git
 terraform-ls-bin
 
 #
