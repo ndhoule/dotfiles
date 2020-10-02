@@ -17,6 +17,7 @@ fi
 
 CURRENT_SCRIPT_PATH="$(cd "$(dirname "$0")" ; pwd -P)"
 PACKAGES_LIST="${CURRENT_SCRIPT_PATH}/packages.txt"
+FLATPAKS_LIST="${CURRENT_SCRIPT_PATH}/flatpaks.txt"
 
 if ! command -v yay > /dev/null 2>&1; then
   echo "ERROR: Could not find yay. Please install yay and re-run this script."
@@ -29,12 +30,23 @@ while read -r pkg; do
     continue
   fi
 
-  # Lines may contain multiple packages, so don't double quote
+  # Lines may contain multiple packages, so permit word splitting
   # shellcheck disable=SC2086
   yay -S --noconfirm $pkg
 done < "${PACKAGES_LIST}"
 
-# Enable services
+while read -r pkg; do
+  # Skip comments and empty lines
+  if [[ -z "${pkg}" || "${pkg}" =~ ^# ]]; then
+    continue
+  fi
+
+  # Lines may (well, should) contain both the remote (e.g. `flatpak`) and the package name (e.g.
+  # `org.gnome.Calculator`) separated by a space, so permit word splitting
+  # shellcheck disable=SC2086
+  flatpak install -y ${pkg}
+done < "${FLATPAKS_LIST}"
+
 systemctl enable --now gdm.service
 systemctl enable --now ntpd.service
 systemctl enable --now org.cups.cupsd.service
