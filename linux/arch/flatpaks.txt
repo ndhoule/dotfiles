@@ -1,3 +1,4 @@
+flathub com.bitwarden.desktop
 flathub com.discordapp.Discord
 flathub com.github.alecaddd.sequeler
 flathub com.github.tchx84.Flatseal

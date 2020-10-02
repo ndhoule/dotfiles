@@ -109,6 +109,12 @@ fedora-firefox-wayland-bin
 veracrypt
 
 #
+# CLI apps
+#
+
+bitwarden-cli-bin
+
+#
 # YubiKey Support
 #
 
