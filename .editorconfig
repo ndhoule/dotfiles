@@ -1,0 +1,9 @@
+root = true
+
+[{*.sh,**/install,packages/bin/bin/*}]
+indent_style = space
+indent_size = 2
+
+# shfmt options
+space_redirects    = true
+switch_case_indent = true

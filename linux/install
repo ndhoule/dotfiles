@@ -8,7 +8,10 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-CURRENT_SCRIPT_PATH="$(cd "$(dirname "$0")" ; pwd -P)"
+CURRENT_SCRIPT_PATH="$(
+  cd "$(dirname "$0")"
+  pwd -P
+)"
 
 if [[ "${OSTYPE}" != linux* ]]; then
   echo "ERROR: This script can only be run on Linux."
@@ -18,10 +21,12 @@ fi
 DISTRO_NAME=$(hostnamectl | grep "Operating System" | cut -d ':' -f 2 | xargs)
 
 case "${DISTRO_NAME}" in
-  "Arch Linux"):
+  "Arch Linux")
+    :
     "${CURRENT_SCRIPT_PATH}/arch/install"
     ;;
-  *):
+  *)
+    :
     echo "Linux distribution '${DISTRO_NAME}' not supported."
     ;;
 esac

@@ -20,14 +20,19 @@ log_error() {
   echo "[ERROR]: $*"
 }
 
-CURRENT_SCRIPT_PATH="$(cd "$(dirname "$0")" ; pwd -P)"
+CURRENT_SCRIPT_PATH="$(
+  cd "$(dirname "$0")"
+  pwd -P
+)"
 
 # Validate that the current OS is supported
 case "${OSTYPE}" in
-  darwin* | linux*):
+  darwin* | linux*)
+    :
     # continue
     ;;
-  *):
+  *)
+    :
     log_error "Unsupported OS: '${OSTYPE}'"
     exit 1
     ;;
@@ -47,10 +52,12 @@ fi
 #
 
 case "${OSTYPE}" in
-  darwin*):
+  darwin*)
+    :
     "${CURRENT_SCRIPT_PATH}/macos/install"
     ;;
-  linux*):
+  linux*)
+    :
     "${CURRENT_SCRIPT_PATH}/linux/install"
     ;;
 esac

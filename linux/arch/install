@@ -15,7 +15,10 @@ if [[ "${DISTRO_NAME}" != "Arch Linux" ]]; then
   exit 1
 fi
 
-CURRENT_SCRIPT_PATH="$(cd "$(dirname "$0")" ; pwd -P)"
+CURRENT_SCRIPT_PATH="$(
+  cd "$(dirname "$0")"
+  pwd -P
+)"
 PACKAGES_LIST="${CURRENT_SCRIPT_PATH}/packages.txt"
 FLATPAKS_LIST="${CURRENT_SCRIPT_PATH}/flatpaks.txt"
 

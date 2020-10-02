@@ -13,7 +13,10 @@ if [[ "${OSTYPE}" != darwin* ]]; then
   exit 1
 fi
 
-CURRENT_SCRIPT_PATH="$(cd "$(dirname "$0")" ; pwd -P)"
+CURRENT_SCRIPT_PATH="$(
+  cd "$(dirname "$0")"
+  pwd -P
+)"
 
 if command -v port > /dev/null 2>&1; then
   "${CURRENT_SCRIPT_PATH}/macports/install"
