@@ -47,10 +47,13 @@ while read -r pkg; do
   flatpak install -y ${pkg}
 done < "${FLATPAKS_LIST}"
 
+# Enable system services
 systemctl enable --now gdm.service
 systemctl enable --now ntpd.service
 systemctl enable --now org.cups.cupsd.service
 systemctl enable --now pcscd.service
+
+# Enable user services
 systemctl --user enable --now yubikey-touch-detector.service
 systemctl --user enable --now xdg-user-dirs-update.service
 
