@@ -6,6 +6,7 @@ flathub com.spotify.Client
 flathub com.transmissionbt.Transmission
 flathub com.yubico.yubioath
 flathub io.bit3.WhatsAppQT
+flathub io.github.celluloid_player.Celluloid
 flathub org.darktable.Darktable
 flathub org.gnome.Calculator
 flathub org.gnome.Evince
@@ -19,5 +20,4 @@ flathub org.libreoffice.LibreOffice
 flathub org.mozilla.Thunderbird
 flathub org.pulseaudio.pavucontrol
 flathub org.signal.Signal
-flathub org.videolan.VLC
 flathub org.zealdocs.Zeal
