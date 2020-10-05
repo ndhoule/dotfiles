@@ -60,6 +60,7 @@ geoclue
 gnome-keyring libsecret
 gnome-system-monitor
 nautilus nautilus-dropbox
+pavucontrol
 playerctl
 
 #

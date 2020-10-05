@@ -70,6 +70,6 @@
       "car": "󰄋",
       "default": ["󰕿", "󰖀", "󰕾"]
     },
-    "on-click": "flatpak run org.pulseaudio.pavucontrol"
+    "on-click": "pavucontrol"
   }
 }
