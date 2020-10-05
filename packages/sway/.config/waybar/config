@@ -17,7 +17,7 @@
       "default": "󰐋"
     },
     "escape": true,
-    "exec": "$HOME/.config/waybar/mediaplayer 2> /dev/null"
+    "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
   },
   "idle_inhibitor": {
     "format": "{icon}",
