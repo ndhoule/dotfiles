@@ -80,6 +80,14 @@ input "1241:617:USB_Keyboard" {
     # Lock screen
     bindsym $mod+Control+Q exec swaylock
 
+    # Screenshots
+    bindsym --no-repeat Print exec grimshot save screen
+    bindsym --no-repeat Control+Print exec grimshot copy screen
+    bindsym --no-repeat $mod+Print exec grimshot save win
+    bindsym --no-repeat $mod+Control+Print exec grimshot copy win
+    bindsym --no-repeat Shift+Print exec grimshot save area
+    bindsym --no-repeat Shift+Control+Print exec grimshot copy area
+
 #
 # Multimedia:
 #
