@@ -6,7 +6,7 @@
   "modules-center": ["sway/window"],
   "modules-right": ["idle_inhibitor", "cpu", "memory", "temperature", "network", "pulseaudio", "battery", "clock", "custom/logout", "tray"],
   "battery": {
-    "format-icons": ["", "", "", "", ""],
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "format": "<span foreground='#929292'>{icon}</span> {capacity}%",
     "format-charging": "<span foreground='#929292'>{icon}</span> {capacity}%",
     "format-discharging": "<span foreground='#929292'>{icon}</span> {time}",
@@ -55,16 +55,21 @@
     "on-click": "gnome-system-monitor"
   },
   "network": {
-    "format-wifi": "{essid} ({signalStrength}%)  󰖩",
-    "format-ethernet": "{ifname}: {ipaddr}/{cidr}  󰈀",
-    "format-linked": "{ifname} (No IP) 󰲚",
-    "format-disconnected": "Disconnected 󰱟"
+    "format-disconnected": "Disconnected 󰈂",
+    "tooltip-format-disconnected": "Disconnected",
+    "format-ethernet": "Connected 󰈁",
+    "tooltip-format-ethernet": "Connected via: Ethernet\nInterface: {ifname}\nIP: {ipaddr}/{cidr}",
+    "format-linked": "Connected (No IP) 󰲚",
+    "tooltip-format-linked": "Connected via: Link\nInterface: {ifname}\nIP: None",
+    "format-wifi": "Connected 󰖩",
+    "tooltip-format-wifi": "Connected via: WiFi\nNetwork: {essid}\nSignal Strength: {signalStrength}%\nInterface: {ifname}\nIP: {ipaddr}/{cidr}",
+    "on-click": "nm-connection-editor"
   },
   "pulseaudio": {
-    "format": "{volume}% {icon} {format_source}",
-    "format-bluetooth": "{volume}% {icon}󰂰 {format_source}",
-    "format-bluetooth-muted": "{icon}󰂲 {format_source}",
-    "format-muted": "󰝟 {format_source}",
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}󰂰",
+    "format-bluetooth-muted": "{icon}󰂲",
+    "format-muted": "󰝟",
     "format-source": "{volume}% 󱄠",
     "format-source-muted": "󰸈",
     "format-icons": {
