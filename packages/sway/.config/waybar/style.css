@@ -74,6 +74,7 @@ window#waybar.chromium {
 #network,
 #pulseaudio,
 #custom-media,
+#custom-logout,
 #tray,
 #mode,
 #idle_inhibitor,
@@ -161,6 +162,11 @@ label:focus {
 
 #custom-media.custom-vlc {
     background-color: #ffa000;
+}
+
+#custom-logout {
+    background-color: #66cc99;
+    color: #2a5c45;
 }
 
 #temperature {
