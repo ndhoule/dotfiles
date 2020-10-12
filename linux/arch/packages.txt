@@ -41,6 +41,7 @@ brother-hll2300d
 # Audio
 #
 
+pamixer
 pulseaudio
 pulseaudio-alsa
 
@@ -97,6 +98,7 @@ swaybg
 swayidle
 swaylock
 waybar python-gobject gtk3
+wob
 wofi
 
 #
