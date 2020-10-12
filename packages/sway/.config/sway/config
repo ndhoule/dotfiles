@@ -48,7 +48,7 @@ input * {
   repeat_rate 50
 }
 
-input "1241:617:USB_Keyboard" {
+input "1241:361:USB_Keyboard" {
   # Remap Caps Lock to Esc
   xkb_options caps:escape
 }
