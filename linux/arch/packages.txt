@@ -76,7 +76,6 @@ grim grimshot slurp wf-recorder
 qt5-wayland
 wayland
 wl-clipboard
-wlogout
 xdg-user-dirs
 xorg-server-xwayland
 
@@ -101,6 +100,7 @@ swaybg
 swayidle
 swaylock
 waybar python-gobject gtk3
+wlogout
 wob
 wofi
 
