@@ -160,7 +160,6 @@ python python-pip
 ripgrep
 rsync
 selenium-server-standalone
-shellcheck
 stow
 sysstat
 terraform
@@ -177,7 +176,14 @@ wget
 zsh
 
 #
-# LSP Servers
+## Linters
+#
+
+bashate
+shellcheck
+
+#
+## LSP Servers
 #
 
 lua-language-server-git
