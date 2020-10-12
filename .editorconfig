@@ -1,6 +1,6 @@
 root = true
 
-[{*.sh,**/install,packages/bin/bin/*}]
+[{**.sh,**/install,packages/bin/bin/*}]
 indent_style = space
 indent_size = 2
 
