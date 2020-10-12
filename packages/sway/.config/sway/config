@@ -230,6 +230,7 @@ bar {
 
 # Static workspace assignments
 for_window [class="Signal"] move window to workspace 3
+for_window [app_id="Lollypop"] move window to workspace 2
 for_window [class="Spotify"] move window to workspace 2
 for_window [class="android-messages-desktop"] move window to workspace 3
 for_window [app_id="WhatsAppQT"] move window to workspace 3
