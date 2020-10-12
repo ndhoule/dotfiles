@@ -30,12 +30,14 @@ set $wobsock $SWAYSOCK.wob
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
-# Lock screen after 10 minutes of inactivity and turn off display after 60 minutes of inactivity.
+# Lock screen after 10 minutes of inactivity, turn off display after 60 minutes of inactivity, and
+# sleep system after 4 hours of inactivity.
 # Require a password on unlock.
 exec swayidle -w \
     timeout 600 'swaylock -f -c 000000' \
     timeout 3600 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
+    timeout 14400 'systemctl suspend ' \
     before-sleep 'swaylock -f -c 000000'
 
 ### Input configuration
