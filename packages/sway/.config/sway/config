@@ -238,6 +238,10 @@ for_window [app_id="WhatsAppQT"] move window to workspace 3
 # Float Firefox PIP windows
 for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, sticky enable, move position 877 450
 
+# Fix Firefox's sharing indicator
+# https://bugzilla.mozilla.org/show_bug.cgi?id=1590661
+for_window [app_id="firefox" title="\ -\ Sharing\ Indicator$"] floating enable, sticky enable
+
 # Start applications on login
 exec ( test -p $wobsock || mkfifo $wobsock ) && tail -f $wobsock | wob --anchor bottom --margin 400 --timeout 2000
 exec --no-startup-id dropbox start
