@@ -53,6 +53,8 @@ input * {
 input "1241:361:USB_Keyboard" {
   # Remap Caps Lock to Esc
   xkb_options caps:escape
+  # Enable Num Lock on startup
+  xkb_numlock enabled
 }
 
 ### Key bindings
