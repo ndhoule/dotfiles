@@ -58,6 +58,7 @@ gdm
 # Desktop environment
 #
 
+adwaita-qt adwaita-qt4
 eog
 evince
 geoclue
