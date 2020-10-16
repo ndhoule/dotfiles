@@ -166,7 +166,6 @@ stow
 sysstat
 terraform
 the_silver_searcher
-tidy
 tmux
 tmuxp
 traceroute
@@ -183,6 +182,7 @@ zsh
 
 bashate
 shellcheck
+tidy
 
 #
 ## LSP Servers
