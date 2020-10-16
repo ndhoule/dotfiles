@@ -11,6 +11,7 @@ linux linux-headers
 linux-firmware
 linux-lts linux-lts-headers
 networkmanager
+nouveau nouveau-fw
 
 #
 # System Utilities
