@@ -39,6 +39,14 @@ export SVN_EDITOR="nvim"
 export VISUAL="${EDITOR}"
 
 #
+# vmux
+#
+# https://github.com/jceb/vmux
+#
+
+export VMUX_NVIM_SESSION_DIR="${XDG_CACHE_HOME}/nvim/vmux_sessions"
+
+#
 # Path
 #
 
@@ -51,7 +59,8 @@ fpath=(
 )
 
 path=(
-  $HOME/bin
+  "${HOME}/bin"
+  "${HOME}/.local/bin"
   $path
 )
 
