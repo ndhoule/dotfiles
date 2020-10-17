@@ -97,25 +97,3 @@ if command -v stow > /dev/null 2>&1; then
 else
   log_warn "stow not installed. Skipping dotfiles symlinking..."
 fi
-
-#
-# Install language packages
-#
-
-go_packages=(
-  "github.com/alecthomas/gometalinter"
-  "github.com/kardianos/govendor"
-  "github.com/nsf/gocode"
-  "golang.org/x/tools/cmd/gorename"
-  "golang.org/x/tools/cmd/guru"
-)
-
-if command -v go > /dev/null 2>&1; then
-  log_info "Installing Go packages..."
-  for pkg in "${go_packages[@]}"; do
-    go get -u "${pkg}"
-  done
-  log_info "Installed Go packages."
-else
-  log_warn "Go not installed. Skipping package installation."
-fi
