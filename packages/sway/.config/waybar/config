@@ -44,7 +44,7 @@
     "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
   },
   "idle_inhibitor": {
-    "format": "{icon}",
+    "format": "Idle inhibitor {status} {icon}",
     "format-icons": {
       "activated": "󰛐",
       "deactivated": "󰛑"
