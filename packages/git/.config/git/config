@@ -1,6 +1,3 @@
-[core]
-	excludesfile = ~/.gitignore.global
-
 [user]
 	name = Nathan Houle
 	email = nathan@nathanhoule.com
@@ -32,7 +29,6 @@
 
 [commit]
 	gpgSign = true
-	template = ~/.gitmessage
 	verbose = true
 
 [tag]
