@@ -4,8 +4,8 @@
 [submodule "vim/vim.symlink"]
 	path = packages/vim/.config/nvim
 	url = git://github.com/ndhoule/vimrc.git
-[submodule "tmux/.tmux/tpm"]
-	path = packages/tmux/.tmux/plugins/tpm
+[submodule "packages/tmux/.cache/tmux/plugins/tpm"]
+	path = packages/tmux/.cache/tmux/plugins/tpm
 	url = git@github.com:tmux-plugins/tpm.git
 [submodule "zsh/antigen"]
 	path = packages/zsh/.zsh/vendor/antigen

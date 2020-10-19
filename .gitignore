@@ -1,3 +1,3 @@
-packages/tmux/.tmux/plugins/
-packages/tmux/.tmux/resurrect/
+! packages/tmux/.cache/plugins/tpm
+packages/tmux/.cache/
 ssh/.ssh/config.d/*
