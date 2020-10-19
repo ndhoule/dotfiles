@@ -30,7 +30,7 @@
   "custom/logout": {
     "format": "󰀄",
     "tooltip": false,
-    "on-click": "wlogout"
+    "on-click": "wlogout --protocol layer-shell"
   },
   "custom/media": {
     "format": "{icon} {}",
