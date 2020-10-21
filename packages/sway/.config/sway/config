@@ -248,7 +248,7 @@ for_window [app_id="firefox" title="\ -\ Sharing\ Indicator$"] floating enable, 
 
 # Start applications on login
 exec ( test -p $wobsock || mkfifo $wobsock ) && tail -f $wobsock | wob --anchor bottom --margin 400 --timeout 2000
-exec --no-startup-id dropbox start
-exec --no-startup-id gammastep-indicator
+exec dropbox start
+exec gammastep-indicator
 
 include @sysconfdir@/sway/config.d/*
