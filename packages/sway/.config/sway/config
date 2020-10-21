@@ -70,6 +70,9 @@ input "1241:361:USB_Keyboard" {
     # Start your launcher
     bindsym $mod+d exec $menu
 
+    # Flash current window
+    bindsym $mod+n exec flash_window
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -249,6 +252,7 @@ for_window [app_id="firefox" title="\ -\ Sharing\ Indicator$"] floating enable, 
 # Start applications on login
 exec ( test -p $wobsock || mkfifo $wobsock ) && tail -f $wobsock | wob --anchor bottom --margin 400 --timeout 2000
 exec dropbox start
+exec flashfocus
 exec gammastep-indicator
 
 include @sysconfdir@/sway/config.d/*

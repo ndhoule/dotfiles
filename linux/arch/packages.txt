@@ -62,6 +62,7 @@ gdm
 adwaita-qt adwaita-qt4
 eog
 evince
+flashfocus-git
 geoclue
 gnome-keyring libsecret
 gnome-system-monitor
