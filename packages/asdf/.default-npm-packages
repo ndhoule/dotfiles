@@ -2,6 +2,7 @@ eslint_d
 generator-generator
 jscodeshift
 npm-check
+yarn
 yo
 
 bash-language-server
