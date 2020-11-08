@@ -50,6 +50,13 @@ pulseaudio-zeroconf
 python-pychromecast6 pulseaudio-dlna-python3-git
 
 #
+# Bluetooth
+#
+
+bluez
+bluez-utils
+
+#
 # Display manager
 #
 
