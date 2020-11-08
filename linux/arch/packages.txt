@@ -123,6 +123,7 @@ alacritty
 chromium
 dropbox
 fedora-firefox-wayland-bin
+ice-ssb
 veracrypt
 
 #
