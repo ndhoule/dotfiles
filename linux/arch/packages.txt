@@ -205,6 +205,7 @@ terraform-ls-bin
 #
 
 noto-fonts noto-fonts-emoji noto-fonts-extra
+otf-raleway
 ttf-dejavu
 ttf-mac-fonts
 ttf-material-design-fonts-git
