@@ -18,7 +18,7 @@ ntimepoints: 50
 flash-on-focus: true
 
 # Set this to false if you don't want fullscreen windows to flash.
-flash-fullscreen: true
+flash-fullscreen: false
 
 # Whether or not to flash windows if they are the only window on the desktop.
 # Possible values:
@@ -31,4 +31,4 @@ flash-fullscreen: true
 #      if another window was just closed.
 #   'on_switch':
 #      Lone windows will be flashed only upon switching desktops.
-flash-lone-windows: 'always'
+flash-lone-windows: 'never'
