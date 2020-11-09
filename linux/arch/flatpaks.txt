@@ -19,6 +19,5 @@ flathub org.gnome.clocks
 flathub org.gnome.design.IconLibrary
 flathub org.gnome.seahorse.Application
 flathub org.libreoffice.LibreOffice
-flathub org.mozilla.Thunderbird
 flathub org.signal.Signal
 flathub org.zealdocs.Zeal
