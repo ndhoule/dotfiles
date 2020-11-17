@@ -10,7 +10,6 @@ intel-ucode
 linux linux-headers
 linux-firmware
 linux-lts linux-lts-headers
-networkmanager
 nouveau nouveau-fw
 earlyoom
 
@@ -62,6 +61,13 @@ bluez-utils
 #
 
 gdm
+
+#
+# Networking
+#
+
+networkmanager
+nextdns
 
 #
 # Desktop environment
