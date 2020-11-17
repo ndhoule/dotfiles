@@ -12,6 +12,7 @@ linux-firmware
 linux-lts linux-lts-headers
 networkmanager
 nouveau nouveau-fw
+earlyoom
 
 #
 # System Utilities

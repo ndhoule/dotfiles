@@ -51,6 +51,7 @@ while read -r pkg; do
 done < "${FLATPAKS_LIST}"
 
 # Enable system services
+systemctl enable --now earlyoom.service
 systemctl enable --now gdm.service
 systemctl enable --now ntpd.service
 systemctl enable --now org.cups.cupsd.service
