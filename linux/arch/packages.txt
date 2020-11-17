@@ -89,6 +89,7 @@ wayland
 wl-clipboard
 xdg-user-dirs
 xorg-server-xwayland
+wev
 
 #
 # Wayland screen sharing
