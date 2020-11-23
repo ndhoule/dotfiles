@@ -5,6 +5,7 @@
 .projections.json
 .stylelintcache
 .lvimrc
+.vimspector.json
 
 #
 # JS-specific files
