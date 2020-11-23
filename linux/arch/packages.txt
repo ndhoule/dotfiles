@@ -169,6 +169,7 @@ gnupg
 go
 hub-bin
 jq
+lsof
 man-db
 mongodb-tools-bin
 neovim-nightly neovim-symlinks python-neovim-git
