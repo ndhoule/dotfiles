@@ -62,8 +62,7 @@
     "format-linked": "Connected (No IP) 󰲚",
     "tooltip-format-linked": "Connected via: Link\nInterface: {ifname}\nIP: None",
     "format-wifi": "Connected 󰖩",
-    "tooltip-format-wifi": "Connected via: WiFi\nNetwork: {essid}\nSignal Strength: {signalStrength}%\nInterface: {ifname}\nIP: {ipaddr}/{cidr}",
-    "on-click": "nm-connection-editor"
+    "tooltip-format-wifi": "Connected via: WiFi\nNetwork: {essid}\nSignal Strength: {signalStrength}%\nInterface: {ifname}\nIP: {ipaddr}/{cidr}"
   },
   "pulseaudio": {
     "format": "{volume}% {icon}",
