@@ -93,3 +93,20 @@ sudo patch --forward --unified --reject-file - /etc/pulse/default.pa << EOF
  ### Use the static hardware detection module (for systems that lack udev support)
  load-module module-detect
 EOF
+
+# Create a service file for pulseaudio-dlna and enable it
+mkdir -p "${HOME}/.config/systemd/user"
+tee "${HOME}/.config/systemd/user/pulseaudio-dlna.service" << EOF
+[Unit]
+Description=PulseAudio DLNA Service
+
+[Install]
+WantedBy=default.target
+
+[Service]
+Type=simple
+PrivateTmp=true
+ExecStart=/usr/bin/pulseaudio-dlna
+EOF
+
+systemctl --user enable --now pulseaudio-dlna.service

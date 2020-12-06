@@ -47,7 +47,7 @@ pulseaudio
 pulseaudio-alsa
 pulseaudio-bluetooth
 pulseaudio-zeroconf
-python-pychromecast6 pulseaudio-dlna-python3-git
+pulseaudio-dlna-python3-git python-pychromecast6 python-casttube
 
 #
 # Bluetooth
