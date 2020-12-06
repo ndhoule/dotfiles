@@ -23,7 +23,7 @@ PACKAGES_LIST="${CURRENT_SCRIPT_PATH}/packages.txt"
 FLATPAKS_LIST="${CURRENT_SCRIPT_PATH}/flatpaks.txt"
 
 if ! command -v yay > /dev/null 2>&1; then
-  echo "ERROR: Could not find yay. Please install yay and re-run this script."
+  echo "ERROR: Could not find \`yay\`. Please install yay and re-run this script."
   exit 1
 fi
 
@@ -37,6 +37,11 @@ while read -r pkg; do
   # shellcheck disable=SC2086
   yay -S --noconfirm $pkg
 done < "${PACKAGES_LIST}"
+
+if ! command -v flatpak > /dev/null 2>&1; then
+  echo "ERROR: Could not find \`flatpak\`. Please install yay and re-run this script."
+  exit 1
+fi
 
 while read -r pkg; do
   # Skip comments and empty lines
