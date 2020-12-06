@@ -10,6 +10,7 @@ intel-ucode
 linux linux-headers
 linux-firmware
 linux-lts linux-lts-headers
+mesa
 nouveau nouveau-fw
 earlyoom
 
