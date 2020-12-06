@@ -21,7 +21,6 @@ earlyoom
 aspell
 exfatprogs
 gvfs
-ntp
 
 #
 # Package Management
