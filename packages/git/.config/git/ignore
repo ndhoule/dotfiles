@@ -6,6 +6,7 @@
 .stylelintcache
 .lvimrc
 .vimspector.json
+.yo-rc.json
 
 #
 # JS-specific files
