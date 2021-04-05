@@ -29,6 +29,10 @@ set $wobsock $SWAYSOCK.wob
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
+output "Acer Technologies Acer X27 P #ASP4E/Q9JMvd" {
+  resolution 3840x2160@119.999001Hz
+}
+
 ### Idle configuration
 # Lock screen after 10 minutes of inactivity, turn off display after 60 minutes of inactivity, and
 # sleep system after 4 hours of inactivity.
