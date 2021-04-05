@@ -11,20 +11,10 @@
 #   https://github.com/holman/dotfiles
 #
 
-if [ -n "${TMUX}" ] && command -v vmux &> /dev/null; then
-  if [ "$1" = "" ]; then
-    # shellcheck disable=SC2086
-    VMUX_EDITOR="${EDITOR}" exec vmux .
-  else
-    # shellcheck disable=SC2086
-    VMUX_EDITOR="${EDITOR}" exec vmux "$@"
-  fi
+if [ "$1" = "" ]; then
+  # shellcheck disable=SC2086
+  exec $EDITOR .
 else
-  if [ "$1" = "" ]; then
-    # shellcheck disable=SC2086
-    exec $EDITOR .
-  else
-    # shellcheck disable=SC2086
-    exec $EDITOR "$@"
-  fi
+  # shellcheck disable=SC2086
+  exec $EDITOR "$@"
 fi
