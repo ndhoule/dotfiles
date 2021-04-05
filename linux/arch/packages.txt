@@ -10,8 +10,8 @@ intel-ucode
 linux linux-headers
 linux-firmware
 linux-lts linux-lts-headers
-mesa
-nouveau nouveau-fw
+mesa vulkan-radeon libva-mesa-driver
+corectrl mesa-demos util-linux vulkan-tools
 earlyoom
 
 #
