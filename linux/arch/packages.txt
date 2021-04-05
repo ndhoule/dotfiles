@@ -149,7 +149,7 @@ asdf-vm
 aws-cli
 aws-vault
 certbot
-direnv
+direnv-bin
 dnsutils
 docker
 docker-compose
