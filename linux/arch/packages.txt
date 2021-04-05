@@ -42,12 +42,9 @@ brother-hll2300d
 # Audio
 #
 
-pamixer
-pulseaudio
-pulseaudio-alsa
-pulseaudio-bluetooth
-pulseaudio-zeroconf
-pulseaudio-dlna-python3-git python-pychromecast6 python-casttube
+pavucontrol
+pipewire pipewire-alsa pipewire-pulse
+playerctl
 
 #
 # Bluetooth
@@ -80,8 +77,6 @@ geoclue
 gnome-keyring libsecret
 gnome-system-monitor
 nautilus nautilus-dropbox
-pavucontrol
-playerctl
 
 #
 # Wayland
@@ -100,7 +95,6 @@ wev
 # Wayland screen sharing
 #
 
-pipewire
 xdg-desktop-portal
 # Support for streaming on GNOME
 xdg-desktop-portal-gtk
