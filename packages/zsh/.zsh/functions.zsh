@@ -29,3 +29,8 @@ http-serve() {
     alias http-serve="python -m SimpleHTTPServer"
   fi
 }
+
+# Create and enter a directory
+mkcd() {
+  mkdir -p "$@" && cd "$@";
+}
