@@ -10,13 +10,8 @@ flathub io.bit3.WhatsAppQT
 flathub io.github.celluloid_player.Celluloid
 flathub org.darktable.Darktable
 flathub org.gnome.Calculator
-flathub org.gnome.Evince
-flathub org.gnome.Extensions
 flathub org.gnome.FontManager
-flathub org.gnome.Logs
 flathub org.gnome.Lollypop
-flathub org.gnome.clocks
-flathub org.gnome.design.IconLibrary
 flathub org.gnome.seahorse.Application
 flathub org.libreoffice.LibreOffice
 flathub org.signal.Signal
