@@ -57,7 +57,7 @@ bluez-utils
 # Display manager
 #
 
-gdm
+greetd greetd-wlgreet
 
 #
 # Networking
@@ -70,13 +70,14 @@ nextdns
 #
 
 adwaita-qt adwaita-qt4
-eog
-evince
+imv
 flashfocus-git
 geoclue
 gnome-keyring libsecret
 gnome-system-monitor
 nautilus nautilus-dropbox
+# GTK anti-aliasing
+xdg-desktop-portal-gtk
 
 #
 # Wayland
@@ -96,9 +97,6 @@ wev
 #
 
 xdg-desktop-portal
-# Support for streaming on GNOME
-xdg-desktop-portal-gtk
-# Support for streaming on wlroots-compatible compositors (e.g. sway)
 xdg-desktop-portal-wlr
 
 #

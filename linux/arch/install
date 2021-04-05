@@ -99,3 +99,43 @@ sudo patch --forward --unified --reject-file - /etc/pulse/default.pa << EOF
  ### Use the static hardware detection module (for systems that lack udev support)
  load-module module-detect
 EOF
+
+#
+# Configure greetd
+#
+
+sudo tee /etc/greetd/config.toml << 'EOF' > /dev/null
+[general]
+source_profile = true
+
+[terminal]
+vt = 1
+
+[default_session]
+user = "greeter"
+command = "sway --config /etc/greetd/sway-config"
+EOF
+
+sudo tee /etc/greetd/sway-config << 'EOF' > /dev/null
+exec "wlgreet --command sway; swaymsg exit"
+
+bindsym Mod4+shift+e exec swaynag \
+    -t warning \
+    -m 'What do you want to do?' \
+    -b 'Poweroff' 'systemctl poweroff' \
+    -b 'Reboot' 'systemctl reboot'
+
+include /etc/sway/config.d/*
+EOF
+
+sudo tee /etc/greetd/wlgreet.toml << 'EOF' > /dev/null
+command = "sway-run"
+outputMode = "all"
+scale = 1
+
+[background]
+red = 0
+green = 0
+blue = 0
+opacity = 0.9
+EOF
