@@ -7,6 +7,7 @@ base-devel
 btrfs-progs
 efibootmgr
 intel-ucode
+amd-ucode
 linux linux-headers
 linux-firmware
 linux-lts linux-lts-headers
@@ -154,7 +155,7 @@ docker
 docker-compose
 emacs
 fzf
-git
+git git-crypt
 gnupg
 go
 hub-bin
@@ -175,6 +176,7 @@ stow
 sysstat
 terraform
 the_silver_searcher
+time
 tmux
 tmuxp
 traceroute
@@ -182,6 +184,7 @@ tree
 virtualbox virtualbox-guest-utils
 watchman
 wget
+zip
 zsh
 
 #
