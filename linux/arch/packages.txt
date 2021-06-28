@@ -45,6 +45,7 @@ brother-hll2300d
 pavucontrol
 pipewire pipewire-alsa pipewire-pulse
 playerctl
+pamixer
 
 #
 # Bluetooth
@@ -76,8 +77,6 @@ geoclue
 gnome-keyring libsecret
 gnome-system-monitor
 nautilus nautilus-dropbox
-# GTK anti-aliasing
-xdg-desktop-portal-gtk
 
 #
 # Wayland
@@ -163,7 +162,7 @@ jq
 lsof
 man-db
 mongodb-tools-bin
-neovim-nightly neovim-symlinks python-pynvim-git
+neovim-nightly-bin neovim-symlinks python-pynvim-git
 ngrok
 nodejs-lts-erbium npm
 openssh
@@ -180,8 +179,7 @@ tmux
 tmuxp
 traceroute
 tree
-universal-ctags-git
-virtualbox virtualbox-guest-dkms
+virtualbox virtualbox-guest-utils
 watchman
 wget
 zsh
@@ -209,5 +207,5 @@ noto-fonts noto-fonts-emoji noto-fonts-extra
 otf-raleway
 ttf-dejavu
 ttf-mac-fonts
-ttf-material-design-fonts-git
+ttf-material-design-icons-git
 ttf-roboto
