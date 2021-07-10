@@ -163,7 +163,7 @@ jq
 lsof
 man-db
 mongodb-tools-bin
-neovim-nightly-bin neovim-symlinks python-pynvim-git
+neovim python-pynvim neovim-symlinks
 ngrok
 nodejs-lts-erbium npm
 openssh
