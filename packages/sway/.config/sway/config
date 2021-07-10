@@ -3,5 +3,5 @@
 # Read `man 5 sway` for a complete reference.
 
 include @sysconfdir@/sway/config.d/*
-include $XDG_CONFIG_HOME/sway/config.d/*
-include $XDG_CONFIG_HOME/sway/config.d/$(hostname)/*
+include config.d/*.conf
+include config.d/$(hostname)/*.conf
