@@ -63,7 +63,7 @@ flatpak override org.zealdocs.Zeal --user --filesystem="$(realpath ../../package
 systemctl enable --now earlyoom.service
 systemctl enable --now gdm.service
 systemctl enable --now nextdns.service
-systemctl enable --now org.cups.cupsd.service
+systemctl enable --now cups.service
 systemctl enable --now pcscd.service
 systemctl enable --now systemd-networkd.service
 systemctl enable --now systemd-resolved.service
