@@ -2,17 +2,25 @@
 # General
 ##
 
-.git
-tmp
-build
+.git/
+tmp/
+build/
+dist/
+coverage/
 
 ##
 # Node/JavaScript
 ##
 
+bundle.js
+bundle.*.js
+*.map
 *.min.js
-flow-typed
-node_modules
+flow-typed/
+node_modules/
+package-lock.json
+manifest.json
+*.tsbuildinfo
 
 ##
 # Golang
