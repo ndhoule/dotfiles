@@ -86,3 +86,9 @@ path=("${GOPATH}/bin" $path)
 if [[ "${OSTYPE}" == darwin* && -d "${HOME}/Library/Android/sdk/platform-tools" ]]; then
   path=($HOME/Library/Android/sdk/platform-tools $path)
 fi
+
+#
+# AWS Vault
+#
+
+export AWS_VAULT_BACKEND=pass
