@@ -39,15 +39,6 @@ case "${OSTYPE}" in
 esac
 
 #
-# Check dependencies
-#
-
-if [[ -z "${GOPATH}" ]]; then
-  log_error "Must set GOPATH before running this script."
-  exit 1
-fi
-
-#
 # Install dependencies
 #
 
