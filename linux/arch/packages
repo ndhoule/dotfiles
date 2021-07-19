@@ -41,7 +41,7 @@ packages=(
   #
 
   pavucontrol
-  pipewire pipewire-alsa pipewire-pulse
+  pipewire pipewire-alsa pipewire-pulse libpipewire02
   playerctl
   pamixer
 
