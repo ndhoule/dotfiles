@@ -4,4 +4,4 @@
 
 include @sysconfdir@/sway/config.d/*
 include config.d/*.conf
-include config.d/$(hostname)/*.conf
+include config.d/by_hostname/`hostname`/*.conf
