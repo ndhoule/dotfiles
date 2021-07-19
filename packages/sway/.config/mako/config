@@ -2,3 +2,7 @@ border-radius=3
 default-timeout=6000
 font=Noto Sans Mono 10
 output=DP-1
+on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/window-attention.oga
+
+[app-name=Spotify]
+on-notify=exec true
