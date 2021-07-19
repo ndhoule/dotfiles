@@ -31,6 +31,11 @@ packages=(
   "flathub org.zealdocs.Zeal"
 )
 
+if ! command -v flatpak > /dev/null 2>&1; then
+  echo "ERROR: Could not find \`flatpak\`. Please install yay and re-run this script."
+  exit 1
+fi
+
 for package in "${packages[@]}"; do
   # Split repository name / package name
   # shellcheck disable=SC2086

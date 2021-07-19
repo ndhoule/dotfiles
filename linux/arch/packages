@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+set -o errexit
+set -o nounset
+set -o pipefail
+
+if ! command -v yay > /dev/null 2>&1; then
+  echo "ERROR: Could not find \`yay\`. Please install yay and re-run this script."
+  exit 1
+fi
+
 packages=(
   #
   # Base System
@@ -222,4 +231,6 @@ packages=(
   unzip
 )
 
+# Split array elements into individual package names
+# shellcheck disable=SC2068
 yay -S ${packages[@]}

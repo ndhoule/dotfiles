@@ -19,18 +19,7 @@ if [[ "${DISTRO_NAME}" != "Arch Linux" ]]; then
   exit 1
 fi
 
-if ! command -v yay > /dev/null 2>&1; then
-  echo "ERROR: Could not find \`yay\`. Please install yay and re-run this script."
-  exit 1
-fi
-
 "${CURRENT_SCRIPT_PATH}/packages"
-
-if ! command -v flatpak > /dev/null 2>&1; then
-  echo "ERROR: Could not find \`flatpak\`. Please install yay and re-run this script."
-  exit 1
-fi
-
 "${CURRENT_SCRIPT_PATH}/flatpaks"
 
 # Enable system services
