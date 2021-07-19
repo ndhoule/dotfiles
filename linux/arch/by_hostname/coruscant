@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+#
+# Install Arch Linux-specific dependencies.
+#
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+DISTRO_NAME=$(hostnamectl | grep "Operating System" | cut -d ':' -f 2 | xargs)
+
+if [[ "${DISTRO_NAME}" != "Arch Linux" ]]; then
+  echo "ERROR: This script can only be run on Arch Linux."
+  exit 1
+fi
+
+packages=(
+  amd-ucode
+  vulkan-radeon
+)
+
+yay -S ${packages[0]}
+
+# Enable system services
+systemctl enable --now systemd-networkd.service
+systemctl enable --now systemd-resolved.service
+
+# Configure wired networking
+sudo tee /etc/systemd/network/20-wired.network << 'EOF' > /dev/null
+[Match]
+Name=enp12s0
+
+[Network]
+DHCP=yes
+IgnoreCarrierLoss=true
+EOF
+
+# Fix crackling on Intel HDA sound cards
+# https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Glitches,_skips_or_crackling
+sudo patch --forward --unified --reject-file - /etc/pulse/default.pa << EOF
+--- default.pa	2020-12-05 22:26:36.884631452 -0800
++++ default-patched.pa	2020-12-05 22:27:23.155159841 -0800
+@@ -44,7 +44,7 @@
+
+ ### Automatically load driver modules depending on the hardware available
+ .ifexists module-udev-detect.so
+-load-module module-udev-detect
++load-module module-udev-detect tsched=0
+ .else
+ ### Use the static hardware detection module (for systems that lack udev support)
+ load-module module-detect
+EOF

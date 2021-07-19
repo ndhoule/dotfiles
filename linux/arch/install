@@ -8,6 +8,10 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+CURRENT_SCRIPT_PATH="$(
+  cd "$(dirname "$0")"
+  pwd -P
+)"
 DISTRO_NAME=$(hostnamectl | grep "Operating System" | cut -d ':' -f 2 | xargs)
 
 if [[ "${DISTRO_NAME}" != "Arch Linux" ]]; then
@@ -20,96 +24,32 @@ if ! command -v yay > /dev/null 2>&1; then
   exit 1
 fi
 
-./packages
+"${CURRENT_SCRIPT_PATH}/packages"
 
 if ! command -v flatpak > /dev/null 2>&1; then
   echo "ERROR: Could not find \`flatpak\`. Please install yay and re-run this script."
   exit 1
 fi
 
-./flatpaks
-
-# Grant Zeal's Flatpak filesystem access to the configuration package in this repository.
-# Gross.
-flatpak override org.zealdocs.Zeal --user --filesystem="$(realpath ../../packages/zeal | sed "s|${HOME}|~|"):rw"
+"${CURRENT_SCRIPT_PATH}/flatpaks"
 
 # Enable system services
-systemctl enable --now earlyoom.service
-systemctl enable --now gdm.service
-systemctl enable --now nextdns.service
+systemctl enable --now bluetooth.service
 systemctl enable --now cups.service
+systemctl enable --now docker.service
+systemctl enable --now earlyoom.service
+systemctl enable --now nextdns.service
 systemctl enable --now pcscd.service
-systemctl enable --now systemd-networkd.service
-systemctl enable --now systemd-resolved.service
 systemctl enable --now systemd-timesyncd.service
 
-# Enable user services
-systemctl --user enable --now yubikey-touch-detector.service
-systemctl --user enable --now xdg-user-dirs-update.service
-systemctl --user enable --now pulseaudio-dlna.service
-
-# Configure wired networking
-sudo tee /etc/systemd/network/20-wired.network << 'EOF' > /dev/null
-[Match]
-Name=enp12s0
-
-[Network]
-DHCP=yes
-IgnoreCarrierLoss=true
+# Enable USB automounting
+sudo tee /etc/udev/rules.d/99-media-automount.rules << 'EOF' > /dev/null
+ACTION=="add", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesystem", \
+  RUN{program}+="/usr/bin/systemd-mount --no-block --automount=yes --collect $devnode"
 EOF
 
-# Fix crackling on Intel HDA sound cards
-# https://wiki.archlinux.org/index.php/PulseAudio/Troubleshooting#Glitches,_skips_or_crackling
-sudo patch --forward --unified --reject-file - /etc/pulse/default.pa << EOF
---- default.pa	2020-12-05 22:26:36.884631452 -0800
-+++ default-patched.pa	2020-12-05 22:27:23.155159841 -0800
-@@ -44,7 +44,7 @@
+"${CURRENT_SCRIPT_PATH}/setup-greetd"
 
- ### Automatically load driver modules depending on the hardware available
- .ifexists module-udev-detect.so
--load-module module-udev-detect
-+load-module module-udev-detect tsched=0
- .else
- ### Use the static hardware detection module (for systems that lack udev support)
- load-module module-detect
-EOF
-
-#
-# Configure greetd
-#
-
-sudo tee /etc/greetd/config.toml << 'EOF' > /dev/null
-[general]
-source_profile = true
-
-[terminal]
-vt = 1
-
-[default_session]
-user = "greeter"
-command = "sway --config /etc/greetd/sway-config"
-EOF
-
-sudo tee /etc/greetd/sway-config << 'EOF' > /dev/null
-exec "wlgreet --command sway; swaymsg exit"
-
-bindsym Mod4+shift+e exec swaynag \
-    -t warning \
-    -m 'What do you want to do?' \
-    -b 'Poweroff' 'systemctl poweroff' \
-    -b 'Reboot' 'systemctl reboot'
-
-include /etc/sway/config.d/*
-EOF
-
-sudo tee /etc/greetd/wlgreet.toml << 'EOF' > /dev/null
-command = "sway-run"
-outputMode = "all"
-scale = 1
-
-[background]
-red = 0
-green = 0
-blue = 0
-opacity = 0.9
-EOF
+if [[ -x "${CURRENT_SCRIPT_PATH}/by_hostname/${HOSTNAME}" ]]; then
+  "${CURRENT_SCRIPT_PATH}/by_hostname/${HOSTNAME}"
+fi

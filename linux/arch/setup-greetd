@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+#
+# Install Arch Linux-specific dependencies.
+#
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+#
+# Configure greetd
+#
+
+sudo tee /usr/local/bin/sway-run << 'EOF' > /dev/null
+#!/bin/sh
+
+# Session
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=sway
+export XDG_CURRENT_DESKTOP=sway
+
+source /usr/local/bin/wayland_enablement.sh
+
+systemd-cat --identifier=sway sway $@
+EOF
+
+sudo chmod +x /usr/local/bin/sway-run
+
+sudo tee /usr/local/bin/wayland_enablement.sh << 'EOF' > /dev/null
+#!/bin/sh
+export MOZ_ENABLE_WAYLAND=1
+export CLUTTER_BACKEND=wayland
+export QT_QPA_PLATFORM=wayland-egl
+export ECORE_EVAS_ENGINE=wayland-egl
+export ELM_ENGINE=wayland_egl
+export SDL_VIDEODRIVER=wayland
+export _JAVA_AWT_WM_NONREPARENTING=1
+export NO_AT_BRIDGE=1
+EOF
+
+sudo tee /etc/greetd/wlgreet.toml << 'EOF' > /dev/null
+command = "sway-run"
+outputMode = "all"
+scale = 1
+
+[background]
+red = 0
+green = 0
+blue = 0
+opacity = 0.9
+EOF
+
+
+sudo tee /etc/greetd/config.toml << 'EOF' > /dev/null
+[general]
+source_profile = true
+
+[terminal]
+vt = 1
+
+[default_session]
+user = "greeter"
+command = "sway-run --config /etc/greetd/sway-config"
+EOF
+
+sudo tee /etc/greetd/sway-config << 'EOF' > /dev/null
+exec "wlgreet --command sway-run; swaymsg exit"
+
+bindsym Mod4+shift+e exec swaynag \
+    -t warning \
+    -m 'What do you want to do?' \
+    -b 'Poweroff' 'systemctl poweroff' \
+    -b 'Reboot' 'systemctl reboot'
+
+include /etc/sway/config.d/*
+EOF

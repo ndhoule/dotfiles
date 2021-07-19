@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+#
+# Install Arch Linux-specific dependencies.
+#
+# https://wiki.archlinux.org/title/Dell_XPS_13_(9310)
+#
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+DISTRO_NAME=$(hostnamectl | grep "Operating System" | cut -d ':' -f 2 | xargs)
+
+if [[ "${DISTRO_NAME}" != "Arch Linux" ]]; then
+  echo "ERROR: This script can only be run on Arch Linux."
+  exit 1
+fi
+
+if [[ "${HOSTNAME}" != "endor" ]]; then
+  echo "ERROR: This script can only be run on machines with the hostname 'endor'."
+  exit 1
+fi
+
+# TODO(ndhoule) packages+=(...)
+packages=(
+  acpi
+  brightnessctl
+  iio-sensor-proxy
+  intel-ucode
+  networkmanager
+  sof-firmware
+)
+
+yay -S ${packages[@]}
+
+systemctl enable --now NetworkManager.service
+
+sudo tee /etc/systemd/system/ath11k-suspend.service << 'EOF' > /dev/null
+[Unit]
+Description=Suspend: rmmod ath11k_pci
+Before=sleep.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/rmmod ath11k_pci
+
+[Install]
+WantedBy=sleep.target
+EOF
+
+sudo tee /etc/systemd/system/ath11k-resume.service << 'EOF' > /dev/null
+[Unit]
+Description=Resume: modprobe ath11k_pci
+After=suspend.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/modprobe ath11k_pci
+
+[Install]
+WantedBy=suspend.target
+EOF
