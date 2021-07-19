@@ -1,0 +1,211 @@
+#!/usr/bin/env bash
+
+packages=(
+  #
+  # Base System
+  #
+
+  base
+  base-devel
+  btrfs-progs
+  efibootmgr
+  linux linux-headers
+  linux-firmware
+  linux-lts linux-lts-headers
+  mesa libva-mesa-driver
+  corectrl mesa-demos util-linux vulkan-tools
+  earlyoom
+
+  #
+  # System Utilities
+  #
+
+  aspell
+  exfatprogs
+
+  #
+  # Package Management
+  #
+
+  flatpak
+
+  #
+  # Printing
+  #
+
+  cups
+  brother-hll2300d
+
+  #
+  # Audio
+  #
+
+  pavucontrol
+  pipewire pipewire-alsa pipewire-pulse
+  playerctl
+  pamixer
+
+  #
+  # Bluetooth
+  #
+
+  bluez
+  bluez-utils
+
+  #
+  # Display manager
+  #
+
+  greetd greetd-wlgreet
+
+  #
+  # Networking
+  #
+
+  nextdns
+
+  #
+  # Desktop environment
+  #
+
+  #adwaita-qt adwaita-qt4
+  imv
+  flashfocus-git
+  #geoclue
+  #gnome-keyring libsecret
+  gnome-system-monitor
+  nautilus nautilus-dropbox gvfs gvfs-mtp gvfs-gphoto2 gvfs-afc gvfs-smb
+
+  #
+  # Wayland
+  #
+
+  gammastep
+  grim grimshot slurp wf-recorder
+  qt5-wayland qt6-wayland
+  wayland
+  wl-clipboard
+  xdg-user-dirs
+  xorg-server-xwayland
+  wev
+
+  #
+  # Wayland screen sharing
+  #
+
+  xdg-desktop-portal
+  xdg-desktop-portal-wlr
+
+  #
+  # sway WM
+  #
+
+  mako
+  sway
+  swaybg
+  swayidle
+  swaylock
+  waybar python-gobject gtk3
+  wlogout
+  wob
+  wofi
+
+  #
+  # Desktop apps
+  #
+
+  #aftershotpro3
+  alacritty
+  chromium
+  dropbox
+  firefox
+  #ice-ssb
+  veracrypt
+
+  #
+  # CLI apps
+  #
+
+  bitwarden-cli-bin
+
+  #
+  # YubiKey Support
+  #
+
+  yubikey-manager
+  pcsc-tools
+
+  #
+  # Developer tools
+  #
+
+  android-tools android-udev
+  asdf-vm
+  aws-cli
+  aws-vault
+  certbot
+  direnv-bin
+  dnsutils
+  docker
+  docker-compose
+  emacs
+  fzf
+  git git-crypt
+  gnupg
+  go
+  hub-bin
+  jq
+  lsof
+  man-db
+  mongodb-tools-bin
+  neovim python-pynvim neovim-symlinks
+  ngrok
+  openssh
+  parallel
+  pass
+  python python-pip
+  ripgrep
+  rsync
+  stow
+  sysstat
+  terraform
+  the_silver_searcher
+  time
+  tmux
+  tmuxp
+  traceroute
+  tree
+  virtualbox virtualbox-guest-utils
+  watchman
+  wget
+  zip
+  zsh
+
+  #
+  ## Linters
+  #
+
+  bashate
+  shellcheck
+  tidy
+
+  #
+  ## LSP Servers
+  #
+
+  lua-language-server-git
+  terraform-ls-bin
+
+  #
+  # Fonts
+  #
+
+  noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+  otf-raleway
+  ttf-dejavu
+  ttf-mac-fonts
+  ttf-material-design-icons-git
+  ttf-roboto
+)
+
+yay -S ${packages[@]}
