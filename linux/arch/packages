@@ -206,6 +206,20 @@ packages=(
   ttf-mac-fonts
   ttf-material-design-icons-git
   ttf-roboto
+
+  # TODO(ndhoule): SORT ME
+  vorbis-tools
+  brightnessctl
+  mpv
+  circleci-cli-bin
+  inetutils
+  blueberry # bluetooth
+  xdg-desktop-portal-gtk gnome-settings-daemon
+  task taskwarrior-tui
+  jmtpfs
+  gpxsee
+  gpsbabel
+  unzip
 )
 
 yay -S ${packages[@]}
