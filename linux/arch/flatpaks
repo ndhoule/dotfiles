@@ -4,6 +4,11 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+CURRENT_SCRIPT_PATH="$(
+  cd "$(dirname "$0")"
+  pwd -P
+)"
+
 packages=(
   "flathub com.bitwarden.desktop"
   #"flathub com.discordapp.Discord"
@@ -35,5 +40,5 @@ done
 # Enable Wayland support in Firefox
 flatpak override --user --socket=wayland --env=MOZ_ENABLE_WAYLAND=1 org.mozilla.firefox
 
-# Allow Zeal to read configuration from dotfiles/packages/zeal
-flatpak override --user --filesystem="$(realpath ../../packages/zeal | sed "s|${HOME}|~|"):rw" org.zealdocs.Zeal
+# Allow Zeal r/w access to dotfiles/packages/zeal
+flatpak override --user --filesystem="$(realpath "$(dirname "${CURRENT_SCRIPT_PATH}")/../../packages/zeal" | sed "s|${HOME}|~|"):rw" org.zealdocs.Zeal
