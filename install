@@ -91,7 +91,6 @@ esac
 if command -v stow > /dev/null 2>&1; then
   log_info "Symlinking dotfiles into $HOME..."
   for pkg in "${packages[@]}"; do
-    echo "${pkg}"
     pushd "${CURRENT_SCRIPT_PATH}/packages" > /dev/null
     stow --target="$HOME" --verbose=1 "${pkg}"
     popd > /dev/null
