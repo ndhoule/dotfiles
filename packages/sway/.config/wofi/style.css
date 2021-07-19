@@ -1,0 +1,30 @@
+window {
+  border-radius: 4px;
+  border: 1px solid black;
+}
+
+#input {
+  margin: 5px;
+}
+
+#inner-box {
+  margin: 5px;
+}
+
+#outer-box {
+  margin: 5px;
+  border: 2px black;
+}
+
+#scroll {
+  margin: 5px;
+}
+
+#text {
+  margin: 5px;
+}
+
+#text:selected {
+  text-decoration: underline;
+  text-decoration-color: white;
+}
