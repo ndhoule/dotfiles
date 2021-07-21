@@ -46,4 +46,4 @@ done
 flatpak override --user --socket=wayland --env=MOZ_ENABLE_WAYLAND=1 org.mozilla.firefox
 
 # Allow Zeal r/w access to dotfiles/packages/zeal
-flatpak override --user --filesystem="$(realpath "$(dirname "${CURRENT_SCRIPT_PATH}")/../../packages/zeal" | sed "s|${HOME}|~|"):rw" org.zealdocs.Zeal
+flatpak override --user --filesystem="$(realpath "${CURRENT_SCRIPT_PATH}/../../packages/zeal" | sed "s|${HOME}|~|"):rw" org.zealdocs.Zeal
