@@ -53,3 +53,17 @@ EOF
 if [[ -x "${CURRENT_SCRIPT_PATH}/by_hostname/${HOSTNAME}" ]]; then
   "${CURRENT_SCRIPT_PATH}/by_hostname/${HOSTNAME}"
 fi
+
+sudo patch --forward --unified --reject-file - /etc/geoclue/geoclue.conf << EOF
+--- /etc/geoclue/geoclue.conf	2021-07-20 22:52:16.353737827 -0700
++++ /etc/geoclue/geoclue.patch.conf	2021-07-20 22:52:52.626936247 -0700
+@@ -128,3 +128,8 @@
+ allowed=true
+ system=false
+ users=
++
++[gammastep]
++allowed=true
++system=false
++users=
+EOF
