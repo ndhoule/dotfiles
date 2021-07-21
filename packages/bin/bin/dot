@@ -1,0 +1,134 @@
+#!/usr/bin/env bash
+
+#
+# Refresh dotfiles from repository and update dependencies.
+#
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+CURRENT_SCRIPT_PATH="$(
+  cd "$(dirname "$0")"
+  pwd -P
+)"
+OSTYPE=${OSTYPE:-}
+
+function log_info() {
+  echo "[INFO]: $*"
+}
+
+function log_warn() {
+  echo "[WARN]: $*"
+}
+
+function log_error() {
+  echo "[ERROR]: $*" >&2
+}
+
+# TODO(ndhoule): This is duplicated from the root install script, extract this into a reusable chunk
+# or script
+function link_dotfile_packages() {
+  if ! command -v stow > /dev/null 2>&1; then
+    log_warn "stow not installed, skipping dotfile linking..."
+    return
+  fi
+
+  packages=(
+    "ag"
+    "alacritty"
+    "asdf"
+    "bin"
+    "clojure"
+    "emacs"
+    "git"
+    "gpg"
+    "haskell"
+    "javascript"
+    "ruby"
+    "ssh"
+    "taskwarrior"
+    "tmux"
+    "vim"
+    "yubikey"
+    "zsh"
+  )
+
+  case "${OSTYPE}" in
+    linux*)
+      :
+      packages+=(
+        "gammastep"
+        "linux"
+        "sway"
+      )
+      ;;
+  esac
+
+  log_info "Symlinking dotfiles into ${HOME}..."
+  for pkg in "${packages[@]}"; do
+    pushd "${CURRENT_SCRIPT_PATH}/../../../packages" > /dev/null
+    stow --target="${HOME}" --verbose=1 "${pkg}"
+    popd > /dev/null
+  done
+  log_info "Symlinked dotfiles into ${HOME}."
+}
+
+function dot_linux_arch() {
+  if ! command -v yay > /dev/null 2>&1; then
+    log_warn "yay not installed, skipping system package updates..."
+  else
+    log_info "Updating system packages..."
+    yay -Syu --nodiffmenu --norebuild --removemake
+    log_info "Updated system packages."
+  fi
+
+  if ! command -v flatpak > /dev/null 2>&1; then
+    log_warn "flatpak not installed, skipping flatpak package updates..."
+  else
+    log_info "Updating Flatpaks..."
+    flatpak update --noninteractive
+    log_info "Updated Flatpaks."
+  fi
+}
+
+function dot_linux() {
+  local distro_name
+  distro_name=$(hostnamectl | grep "Operating System" | cut -d ':' -f 2 | xargs)
+  case "${distro_name}" in
+    "Arch Linux")
+      :
+      dot_linux_arch
+      ;;
+    *)
+      :
+      echo "Linux distribution '${distro_name}' not supported."
+      ;;
+  esac
+}
+
+function dot_darwin() {
+  log_error "macOS not yet supported."
+}
+
+function main() {
+  case "${OSTYPE}" in
+    darwin*)
+      :
+      dot_darwin
+      link_dotfile_packages
+      ;;
+    linux*)
+      :
+      dot_linux
+      link_dotfile_packages
+      ;;
+    *)
+      :
+      log_error "Unsupported OS: '${OSTYPE}'"
+      exit 1
+      ;;
+  esac
+}
+
+main "$@"
