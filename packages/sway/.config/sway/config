@@ -2,6 +2,5 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-include @sysconfdir@/sway/config.d/*
 include config.d/*.conf
 include config.d/by_hostname/`hostname`/*.conf
