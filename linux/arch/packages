@@ -233,4 +233,4 @@ packages=(
 
 # Split array elements into individual package names
 # shellcheck disable=SC2068
-yay -S ${packages[@]}
+yay -S --needed ${packages[@]}
