@@ -39,7 +39,7 @@ fi
 for package in "${packages[@]}"; do
   # Split repository name / package name
   # shellcheck disable=SC2086
-  flatpak install --or-update -y $package
+  flatpak install -y $package
 done
 
 # Enable Wayland support in Firefox
