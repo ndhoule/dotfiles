@@ -24,16 +24,16 @@ packages=(
 # shellcheck disable=SC2086
 yay -S --needed ${packages[0]}
 
-# Enable system services
-systemctl enable --now systemd-networkd.service
-systemctl enable --now systemd-resolved.service
-
 # Configure wired networking
 sudo tee /etc/systemd/network/20-wired.network << 'EOF' > /dev/null
 [Match]
-Name=enp12s0
+Name=enp5s0
 
 [Network]
 DHCP=yes
 IgnoreCarrierLoss=true
 EOF
+
+# Enable system services
+systemctl enable --now systemd-networkd.service
+systemctl enable --now systemd-resolved.service
