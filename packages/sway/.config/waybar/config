@@ -2,8 +2,24 @@
   "layer": "top",
   "position": "top",
   "height": 35,
-  "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
-  "modules-right": ["idle_inhibitor", "cpu", "memory", "temperature", "network", "pulseaudio", "battery", "clock", "custom/logout", "tray"],
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode",
+    "custom/media"
+  ],
+  "modules-right": [
+    "custom/do_not_disturb",
+    "idle_inhibitor",
+    "cpu",
+    "memory",
+    "temperature",
+    "network",
+    "pulseaudio",
+    "battery",
+    "clock",
+    "custom/logout",
+    "tray"
+  ],
   "battery": {
     "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "format": "<span foreground='#929292'>{icon}</span> {capacity}%",
@@ -27,9 +43,20 @@
     "on-click": "gnome-system-monitor"
   },
   "custom/logout": {
-    "format": "󰀄",
+    "format": "{}   󰀄",
+    "exec": "whoami",
     "tooltip": false,
     "on-click": "wlogout --protocol layer-shell"
+  },
+  "custom/do_not_disturb": {
+    "format-icons": {
+      "disabled": "󰂚",
+      "enabled": "󰂛"
+    },
+    "format": "{icon}",
+    "return-type": "json",
+    "exec": "${HOME}/bin/dnd-status",
+    "on-click": "${HOME}/bin/dnd-toggle"
   },
   "custom/media": {
     "format": "{icon} {}",
@@ -40,10 +67,10 @@
       "default": "󰐋"
     },
     "escape": true,
-    "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
+    "exec": "${HOME}/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
   },
   "idle_inhibitor": {
-    "format": "Idle inhibitor {status} {icon}",
+    "format": "{icon}",
     "format-icons": {
       "activated": "󰛐",
       "deactivated": "󰛑"
