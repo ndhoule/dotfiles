@@ -61,6 +61,7 @@ function link_dotfile_packages() {
         "gammastep"
         "linux"
         "sway"
+        "zeal"
       )
       ;;
   esac

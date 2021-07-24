@@ -85,6 +85,7 @@ case "${OSTYPE}" in
       "gammastep"
       "linux"
       "sway"
+      "zeal"
     )
     ;;
 esac
