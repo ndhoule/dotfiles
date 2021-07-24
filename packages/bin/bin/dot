@@ -79,7 +79,8 @@ function dot_linux_arch() {
     log_warn "yay not installed, skipping system package updates..."
   else
     log_info "Updating system packages..."
-    yay -Syu --nodiffmenu --norebuild --removemake
+    yay --sync --refresh --sysupgrade --nodiffmenu --norebuild --removemake --noanswerclean
+    yay --sync --clean --noconfirm --quiet
     log_info "Updated system packages."
   fi
 
