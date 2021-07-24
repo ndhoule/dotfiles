@@ -109,7 +109,6 @@ packages=(
   # sway WM
   #
 
-  mako
   sway
   swaybg
   swayidle
@@ -230,6 +229,7 @@ packages=(
   gpsbabel
   unzip
   dunst
+  dasht
 )
 
 # Split array elements into individual package names
