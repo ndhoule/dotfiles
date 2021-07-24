@@ -229,6 +229,7 @@ packages=(
   gpxsee
   gpsbabel
   unzip
+  dunst
 )
 
 # Split array elements into individual package names
