@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+if [[ "${OSTYPE}" != linux* ]]; then
+  echo "ERROR: This script can only be run on Linux."
+  exit 1
+fi
+
+function print_status() {
+  local output
+  local status
+
+  output=$(dunstctl is-paused)
+  status="disabled" && [ "${output}" == "true" ] && status="enabled"
+
+  cat << EOF | jq -M --unbuffered --compact-output
+    {
+      "alt": "${status}",
+      "tooltip": "Do not disturb mode ${status}"
+    }
+EOF
+}
+
+function main() {
+  while true; do
+    print_status
+    sleep 0.25
+  done
+}
+
+main "$@"

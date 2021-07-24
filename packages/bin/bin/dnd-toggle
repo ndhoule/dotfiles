@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+if [[ "${OSTYPE}" != linux* ]]; then
+  echo "ERROR: This script can only be run on Linux."
+  exit 1
+fi
+
+dunstctl set-paused toggle
