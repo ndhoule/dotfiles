@@ -43,7 +43,44 @@ for package in "${packages[@]}"; do
 done
 
 # Enable Wayland support in Firefox
-flatpak override --user --socket=wayland --env=MOZ_ENABLE_WAYLAND=1 org.mozilla.firefox
+flatpak override --user --socket=wayland --nosocket=x11 --env=MOZ_ENABLE_WAYLAND=1 org.mozilla.firefox
 
 # Allow Zeal r/w access to dotfiles/packages/zeal
 flatpak override --user --filesystem="$(realpath "${CURRENT_SCRIPT_PATH}/../../packages/zeal" | sed "s|${HOME}|~|"):rw" org.zealdocs.Zeal
+
+# Enable Wayland support in Signal
+flatpak override --user --socket=wayland --nosocket=x11 org.signal.Signal
+tee "${HOME}/.local/share/applications/org.signal.Signal.desktop" << 'EOF' > /dev/null
+[Desktop Entry]
+Name=Signal
+Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=signal --file-forwarding org.signal.Signal --enable-features=UseOzonePlatform --ozone-platform=wayland @@u %U @@
+Terminal=false
+Type=Application
+Icon=org.signal.Signal
+StartupWMClass=Signal
+Comment=Private messaging from your desktop
+MimeType=x-scheme-handler/sgnl;x-scheme-handler/signalcaptcha;
+Categories=Network;InstantMessaging;Chat;
+X-Desktop-File-Install-Version=0.26
+X-Flatpak-RenamedFrom=signal-desktop.desktop;
+X-Flatpak=org.signal.Signal
+EOF
+
+# Enable Wayland support in Slack
+flatpak override --user --socket=wayland --nosocket=x11 com.slack.Slack
+tee "${HOME}/.local/share/applications/com.slack.Slack.desktop" << 'EOF' > /dev/null
+[Desktop Entry]
+Name=Slack
+Comment=Slack Desktop
+GenericName=Slack Client for Linux
+Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=slack --file-forwarding com.slack.Slack --enable-features=WebRTCPipeWireCapturer --enable-features=UseOzonePlatform --ozone-platform=wayland @@u %U @@
+Icon=com.slack.Slack
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;Network;InstantMessaging;
+MimeType=x-scheme-handler/slack;
+X-Desktop-File-Install-Version=0.26
+StartupWMClass=Slack
+X-Flatpak-RenamedFrom=slack.desktop;
+X-Flatpak=com.slack.Slack
+EOF
