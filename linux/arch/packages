@@ -208,6 +208,7 @@ packages=(
   # Fonts
   #
 
+  nerd-fonts-dejavu-complete
   noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
   otf-raleway
   ttf-dejavu
