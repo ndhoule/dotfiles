@@ -1,0 +1,7 @@
+git_protocol: ssh
+editor:
+prompt: enabled
+pager:
+aliases:
+http_unix_socket:
+browser:
