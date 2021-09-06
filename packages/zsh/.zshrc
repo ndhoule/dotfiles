@@ -355,11 +355,6 @@ if (( $+commands[rlwrap] )); then
   alias sml="rlwrap sml"
 fi
 
-# If hub is installed, use it as a Git wrapper
-if (( $+commands[hub] )); then
-  eval "$(hub alias -s)"
-fi
-
 # Docker
 alias dc="docker-compose"
 

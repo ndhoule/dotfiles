@@ -36,7 +36,6 @@
 
 [alias]
 	amend = "!git-amend"
-	checkout-pr = "!git-checkout-pr"
 	get-commit-message = "!git log --format=%B -n 1"
 	up = "!git-update"
 

@@ -161,7 +161,7 @@ packages=(
   git git-crypt
   gnupg
   go
-  hub-bin
+  github-cli
   jq
   lsof
   man-db
