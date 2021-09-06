@@ -122,12 +122,9 @@ packages=(
   # Desktop apps
   #
 
-  #aftershotpro3
   alacritty
   chromium
   dropbox
-  firefox
-  #ice-ssb
   veracrypt
 
   #
