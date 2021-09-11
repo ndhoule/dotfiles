@@ -1,6 +1,7 @@
 eslint_d
 generator-generator
 jscodeshift
+5to6-codemod
 npm-check
 yarn
 yo

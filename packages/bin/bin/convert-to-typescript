@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+CODEMOD_PACKAGE_ROOT="${CODEMOD_PACKAGE_ROOT:-$(asdf where nodejs)/.npm/lib/node_modules}"
+
+function log_warn() {
+  echo "[WARN]: $*" >&2
+}
+
+function log_fatal() {
+  echo "[FATAL]: $*" >&2
+  exit 1
+}
+
+function assert_file_is_valid() {
+  local input="$1"
+  local extension="${input##*.}"
+
+  if [[ "${extension}" == "ts" || "${extension}" == "tsx" ]]; then
+    log_warn "File '${input}' has already been converted to TypeScript."
+    exit 0
+  fi
+
+  if [[ "${extension}" != "js" && "${extension}" != "jsx" ]]; then
+    log_fatal "Cannot convert non-JavaScript file '${input}' to TypeScript. Please ensure the file you're trying to convert has a .js or .jsx extension."
+  fi
+}
+
+function main() {
+  for input in "$@"; do
+    assert_file_is_valid "${input}"
+  done
+
+  for input in "$@"; do
+    local extension="${input##*.}"
+    local target_extension="ts" && [[ "${extension}" == "jsx" ]] && target_extension="tsx"
+    local destination="${input%.${extension}}.${target_extension}"
+
+    mv "${input}" "${destination}"
+    jscodeshift -t "${CODEMOD_PACKAGE_ROOT}/5to6-codemod/transforms/cjs.js" "${destination}"
+    jscodeshift -t "${CODEMOD_PACKAGE_ROOT}/5to6-codemod/transforms/import-cleanup.js" "${destination}"
+    jscodeshift -t "${CODEMOD_PACKAGE_ROOT}/5to6-codemod/transforms/exports.js" "${destination}"
+  done
+}
+
+main "$@"
