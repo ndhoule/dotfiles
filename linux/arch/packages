@@ -191,7 +191,9 @@ packages=(
   #
 
   bashate
+  luacheck
   shellcheck
+  stylua-bin
   tidy
 
   #
