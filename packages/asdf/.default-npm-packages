@@ -16,4 +16,5 @@ vim-language-server
 vscode-css-languageserver-bin
 vscode-html-languageserver-bin
 vscode-json-languageserver
+write-good
 yaml-language-server
