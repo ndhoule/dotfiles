@@ -151,7 +151,8 @@ packages=(
   certbot
   direnv-bin
   dnsutils
-  docker
+  podman-docker
+  podman-dnsname
   docker-compose
   emacs
   fzf

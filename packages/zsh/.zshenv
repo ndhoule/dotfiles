@@ -71,6 +71,14 @@ if [[ -z "${ASDF_DIR}" ]]; then
 fi
 
 #
+# Docker/Podman
+#
+
+if command -v podman > /dev/null; then
+  export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/podman/podman.sock"
+fi
+
+#
 # Go
 #
 
