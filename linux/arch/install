@@ -26,6 +26,8 @@ fi
 sudo touch /etc/subuid /etc/subgid
 sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 "${USER}"
 podman system migrate
+# Silence warning about Docker compatibility
+sudo touch /etc/containers/nodocker
 
 # Enable system services
 systemctl enable --now bluetooth.service
