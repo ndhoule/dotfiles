@@ -231,6 +231,9 @@ packages=(
   unzip
   dunst
   dasht
+  websocat
+  gnu-netcat
+  entr
 )
 
 # Split array elements into individual package names
