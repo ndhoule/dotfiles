@@ -72,7 +72,7 @@ packages=(
   "ssh"
   "taskwarrior"
   "tmux"
-  "vim"
+  "nvim"
   "yubikey"
   "zsh"
 )
