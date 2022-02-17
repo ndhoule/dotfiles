@@ -20,20 +20,5 @@ packages=(
   vulkan-radeon
 )
 
-# Split array elements into individual package names
-# shellcheck disable=SC2086
-yay -S --needed ${packages[0]}
-
-# Configure wired networking
-sudo tee /etc/systemd/network/20-wired.network << 'EOF' > /dev/null
-[Match]
-Name=enp5s0
-
-[Network]
-DHCP=yes
-IgnoreCarrierLoss=true
-EOF
-
-# Enable system services
-systemctl enable --now systemd-networkd.service
-systemctl enable --now systemd-resolved.service
+# shellcheck disable=SC2068
+yay -S --needed ${packages[@]}

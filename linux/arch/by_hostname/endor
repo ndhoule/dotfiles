@@ -22,45 +22,12 @@ if [[ "${HOSTNAME}" != "endor" ]]; then
   exit 1
 fi
 
-# TODO(ndhoule) packages+=(...)
 packages=(
-  acpi
   brightnessctl
   iio-sensor-proxy
   intel-ucode
-  networkmanager
   sof-firmware
 )
 
-yay -S ${packages[@]}
-
-systemctl enable --now NetworkManager.service
-
-sudo tee /etc/systemd/system/ath11k-suspend.service << 'EOF' > /dev/null
-[Unit]
-Description=Suspend: rmmod ath11k_pci
-Before=sleep.target hibernate.target
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/rmmod ath11k_pci
-
-[Install]
-WantedBy=sleep.target hibernate.target
-EOF
-
-sudo tee /etc/systemd/system/ath11k-resume.service << 'EOF' > /dev/null
-[Unit]
-Description=Resume: modprobe ath11k_pci
-After=suspend.target hibernate.target
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/modprobe ath11k_pci
-
-[Install]
-WantedBy=suspend.target hibernate.target
-EOF
-
-systemctl enable --now /etc/systemd/system/ath11k-suspend.service
-systemctl enable --now /etc/systemd/system/ath11k-resume.service
+# shellcheck disable=SC2068
+yay -S --needed ${packages[@]}

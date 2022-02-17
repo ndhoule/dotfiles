@@ -14,6 +14,7 @@ packages=(
   # Base System
   #
 
+  acpi
   base
   base-devel
   btrfs-progs
@@ -71,6 +72,7 @@ packages=(
   # Networking
   #
 
+  networkmanager nm-connection-editor
   nextdns
 
   #
