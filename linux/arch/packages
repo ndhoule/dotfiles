@@ -236,8 +236,10 @@ packages=(
   websocat
   gnu-netcat
   entr
+  usbutils
+  system-config-printer
+  google-messages
 )
 
-# Split array elements into individual package names
 # shellcheck disable=SC2068
 yay -S --needed ${packages[@]}
