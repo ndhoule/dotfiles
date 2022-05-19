@@ -34,12 +34,13 @@ systemctl enable --now NetworkManager.service
 systemctl enable --now bluetooth.service
 systemctl enable --now cups.service
 systemctl enable --now earlyoom.service
+systemctl enable --now ipp-usb.service
 systemctl enable --now nextdns.service
 systemctl enable --now pcscd.service
 systemctl enable --now systemd-timesyncd.service
 
 # Enable user services
-systemctl enable --user --now podman.service
+systemctl --user enable --now podman.service
 
 # Enable USB automounting
 sudo tee /etc/udev/rules.d/99-media-automount.rules << 'EOF' > /dev/null
