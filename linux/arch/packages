@@ -242,6 +242,7 @@ packages=(
   sops
   avahi
   nss-mdns
+  google-cloud-sdk
 )
 
 # shellcheck disable=SC2068
