@@ -49,7 +49,7 @@ function link_dotfile_packages() {
     "ssh"
     "taskwarrior"
     "tmux"
-    "vim"
+    "nvim"
     "yubikey"
     "zsh"
   )
