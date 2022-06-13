@@ -239,6 +239,8 @@ packages=(
   usbutils
   system-config-printer
   google-messages
+  avahi
+  nss-mdns
 )
 
 # shellcheck disable=SC2068

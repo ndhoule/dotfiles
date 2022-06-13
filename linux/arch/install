@@ -38,6 +38,7 @@ systemctl enable --now ipp-usb.service
 systemctl enable --now nextdns.service
 systemctl enable --now pcscd.service
 systemctl enable --now systemd-timesyncd.service
+systemctl enable --now avahi-daemon.service
 
 # Enable user services
 systemctl --user enable --now podman.service
@@ -47,12 +48,6 @@ sudo tee /etc/udev/rules.d/99-media-automount.rules << 'EOF' > /dev/null
 ACTION=="add", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesystem", \
   RUN{program}+="/usr/bin/systemd-mount --no-block --automount=yes --collect $devnode"
 EOF
-
-"${CURRENT_SCRIPT_PATH}/setup-greetd"
-
-if [[ -x "${CURRENT_SCRIPT_PATH}/by_hostname/${HOSTNAME}" ]]; then
-  "${CURRENT_SCRIPT_PATH}/by_hostname/${HOSTNAME}"
-fi
 
 sudo patch --forward --unified --reject-file - /etc/geoclue/geoclue.conf << EOF
 --- /etc/geoclue/geoclue.conf	2021-07-20 22:52:16.353737827 -0700
@@ -67,3 +62,23 @@ sudo patch --forward --unified --reject-file - /etc/geoclue/geoclue.conf << EOF
 +system=false
 +users=
 EOF
+
+sudo patch --forward --unified --reject-file - /etc/nsswitch.conf << EOF
+--- nsswitch.conf       2021-12-06 18:41:28.000000000 -0800
++++ nsswitch.patch.conf 2022-06-11 11:32:09.016976489 -0700
+@@ -8,7 +8,7 @@
+
+ publickey: files
+
+-hosts: mymachines resolve [!UNAVAIL=return] files myhostname dns
++hosts: mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns
+ networks: files
+
+ protocols: files
+EOF
+
+"${CURRENT_SCRIPT_PATH}/setup-greetd"
+
+if [[ -x "${CURRENT_SCRIPT_PATH}/by_hostname/${HOSTNAME}" ]]; then
+  "${CURRENT_SCRIPT_PATH}/by_hostname/${HOSTNAME}"
+fi
