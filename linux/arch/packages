@@ -239,6 +239,7 @@ packages=(
   usbutils
   system-config-printer
   google-messages
+  sops
   avahi
   nss-mdns
 )
