@@ -84,7 +84,8 @@ packages=(
   #geoclue
   #gnome-keyring libsecret
   gnome-system-monitor
-  nautilus nautilus-dropbox gvfs gvfs-mtp gvfs-gphoto2 gvfs-afc gvfs-smb
+  thunar tumbler
+  gvfs gvfs-mtp gvfs-gphoto2 gvfs-afc gvfs-smb
 
   #
   # Wayland
