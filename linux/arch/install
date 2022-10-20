@@ -60,6 +60,7 @@ esac
 EOF
 sudo chmod +x /etc/NetworkManager/dispatcher.d/09-timezone
 
+# Allow Gammastep access to geolocation data
 sudo patch --forward --unified --reject-file - /etc/geoclue/geoclue.conf << EOF
 --- /etc/geoclue/geoclue.conf	2021-07-20 22:52:16.353737827 -0700
 +++ /etc/geoclue/geoclue.patch.conf	2021-07-20 22:52:52.626936247 -0700
@@ -74,6 +75,7 @@ sudo patch --forward --unified --reject-file - /etc/geoclue/geoclue.conf << EOF
 +users=
 EOF
 
+# Enable mdns name resolution (e.g. .local)
 sudo patch --forward --unified --reject-file - /etc/nsswitch.conf << EOF
 --- nsswitch.conf       2021-12-06 18:41:28.000000000 -0800
 +++ nsswitch.patch.conf 2022-06-11 11:32:09.016976489 -0700
