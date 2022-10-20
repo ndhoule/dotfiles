@@ -1,6 +1,7 @@
-generator-generator
-jscodeshift
 5to6-codemod
+generator-generator
+hygen
+jscodeshift
 npm-check
 yarn
 yo
