@@ -49,6 +49,17 @@ ACTION=="add", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesys
   RUN{program}+="/usr/bin/systemd-mount --no-block --automount=yes --collect $devnode"
 EOF
 
+# Set system timezone to current geolocation when NetworkManager connects to a network
+sudo tee /etc/NetworkManager/dispatcher.d/09-timezone << 'EOF' > /dev/null
+#!/bin/sh
+case "$2" in
+    up)
+        timedatectl set-timezone "$(curl --fail https://ipapi.co/timezone)"
+    ;;
+esac
+EOF
+sudo chmod +x /etc/NetworkManager/dispatcher.d/09-timezone
+
 sudo patch --forward --unified --reject-file - /etc/geoclue/geoclue.conf << EOF
 --- /etc/geoclue/geoclue.conf	2021-07-20 22:52:16.353737827 -0700
 +++ /etc/geoclue/geoclue.patch.conf	2021-07-20 22:52:52.626936247 -0700
