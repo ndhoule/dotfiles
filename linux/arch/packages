@@ -24,7 +24,6 @@ packages=(
   linux-lts linux-lts-headers
   mesa libva-mesa-driver
   corectrl mesa-demos util-linux vulkan-tools
-  earlyoom
 
   #
   # System Utilities
