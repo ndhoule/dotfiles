@@ -242,6 +242,7 @@ packages=(
   avahi
   nss-mdns
   google-cloud-sdk
+  libfido2
 )
 
 # shellcheck disable=SC2068
