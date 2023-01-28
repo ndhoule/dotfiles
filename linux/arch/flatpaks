@@ -14,21 +14,20 @@ packages=(
   "flathub com.discordapp.Discord"
   "flathub com.github.alecaddd.sequeler"
   "flathub com.github.tchx84.Flatseal"
+  "flathub com.nextcloud.desktopclient.nextcloud"
   "flathub com.slack.Slack"
   "flathub com.spotify.Client"
   "flathub com.transmissionbt.Transmission"
   "flathub com.yubico.yubioath"
   "flathub io.github.celluloid_player.Celluloid"
+  "flathub io.github.mimbrero.WhatsAppDesktop"
   "flathub org.darktable.Darktable"
   "flathub org.gnome.Calculator"
   "flathub org.gnome.FontManager"
   "flathub org.gnome.seahorse.Application"
   "flathub org.libreoffice.LibreOffice"
   # "flathub org.mozilla.firefox"
-  "flathub org.signal.Signal"
   "flathub org.zealdocs.Zeal"
-  "flathub io.github.mimbrero.WhatsAppDesktop"
-
 )
 
 if ! command -v flatpak > /dev/null 2>&1; then
