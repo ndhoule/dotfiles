@@ -43,7 +43,6 @@ packages=(
   #
 
   cups
-  brother-hll2300d
 
   #
   # Audio
@@ -58,6 +57,7 @@ packages=(
   # Bluetooth
   #
 
+  blueman
   bluez
   bluez-utils
 
@@ -177,6 +177,9 @@ packages=(
   stow
   sysstat
   terraform
+  nomad
+  consul
+  vault
   the_silver_searcher
   time
   tmux
@@ -210,7 +213,7 @@ packages=(
   # Fonts
   #
 
-  nerd-fonts-dejavu-complete
+  ttf-dejavu-nerd
   noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
   otf-raleway
   ttf-dejavu
@@ -244,6 +247,9 @@ packages=(
   nss-mdns
   google-cloud-sdk
   libfido2
+  simple-scan sane brscan5
+  reflector
+  transmission-remote-gtk
 )
 
 # shellcheck disable=SC2068
