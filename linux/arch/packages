@@ -250,6 +250,9 @@ packages=(
   simple-scan sane brscan5
   reflector
   transmission-remote-gtk
+  ansible ansible-lint
+  packer
+  nfs-utils
 )
 
 # shellcheck disable=SC2068
