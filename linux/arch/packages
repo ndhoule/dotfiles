@@ -253,6 +253,9 @@ packages=(
   ansible ansible-lint
   packer
   nfs-utils
+  virt-manager
+  iperf3
+  speedtest-cli
 )
 
 # shellcheck disable=SC2068
