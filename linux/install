@@ -8,6 +8,10 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+
 CURRENT_SCRIPT_PATH="$(
   cd "$(dirname "$0")"
   pwd -P
@@ -19,6 +23,13 @@ if [[ "${OSTYPE}" != linux* ]]; then
 fi
 
 DISTRO_NAME=$(hostnamectl | grep "Operating System" | cut -d ':' -f 2 | xargs)
+
+# Create standard XDG base directories; if these don't exist, stow will create them as symlinks into
+# the first package that asks for them (e.g. `packages/asdf/.config/asdf` will be linked as
+# `${HOME}/.config` rather than "${HOME}/.config/asdf" as we want)
+mkdir -p "${XDG_CACHE_HOME}"
+mkdir -p "${XDG_CONFIG_HOME}"
+mkdir -p "${XDG_DATA_HOME}"
 
 case "${DISTRO_NAME}" in
   "Arch Linux")
