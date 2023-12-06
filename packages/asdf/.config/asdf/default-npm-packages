@@ -3,7 +3,6 @@ generator-generator
 hygen
 jscodeshift
 npm-check
-yarn
 yo
 
 bash-language-server
