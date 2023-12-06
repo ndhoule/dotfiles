@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+#
+# Install Fedora Silverblue-specific dependencies.
+#
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+CURRENT_SCRIPT_PATH="$(
+  cd "$(dirname "$0")"
+  pwd -P
+)"
+
+DISTRO_ID=$(cat /etc/*-release | grep "^ID=" | cut -d "=" -f 2)
+
+if [[ "${DISTRO_ID}" != "fedora" ]]; then
+  echo "ERROR: This script can only be run on Fedora Silverblue Linux."
+  exit 1
+fi
+
+"${CURRENT_SCRIPT_PATH}/packages"
+"${CURRENT_SCRIPT_PATH}/flatpaks"

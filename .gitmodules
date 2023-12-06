@@ -1,9 +1,9 @@
 [submodule "emacs/emacs.d.symlink"]
 	path = packages/emacs/.config/emacs
-	url = git://github.com/ndhoule/emacs.d.git
+	url = git@github.com:ndhoule/emacs.d.git
 [submodule "vim/vim.symlink"]
 	path = packages/nvim/.config/nvim
-	url = git://github.com/ndhoule/vimrc.git
+	url = git@github.com:ndhoule/vimrc.git
 [submodule "packages/tmux/.cache/tmux/plugins/tpm"]
 	path = packages/tmux/.cache/tmux/plugins/tpm
 	url = git@github.com:tmux-plugins/tpm.git

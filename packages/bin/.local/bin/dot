@@ -8,71 +8,18 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-CURRENT_SCRIPT_PATH="$(
-  cd "$(dirname "$0")"
-  pwd -P
-)"
 OSTYPE=${OSTYPE:-}
 
 function log_info() {
-  echo "[INFO]: $*"
+  printf "[INFO]: %s\n" "$*"
 }
 
 function log_warn() {
-  echo "[WARN]: $*"
+  printf "[WARN]: %s\n" "$*" >&2
 }
 
 function log_error() {
-  echo "[ERROR]: $*" >&2
-}
-
-# TODO(ndhoule): This is duplicated from the root install script, extract this into a reusable chunk
-# or script
-function link_dotfile_packages() {
-  if ! command -v stow > /dev/null 2>&1; then
-    log_warn "stow not installed, skipping dotfile linking..."
-    return
-  fi
-
-  packages=(
-    "ag"
-    "alacritty"
-    "asdf"
-    "bin"
-    "clojure"
-    "emacs"
-    "git"
-    "gpg"
-    "haskell"
-    "javascript"
-    "ruby"
-    "ssh"
-    "taskwarrior"
-    "tmux"
-    "nvim"
-    "yubikey"
-    "zsh"
-  )
-
-  case "${OSTYPE}" in
-    linux*)
-      :
-      packages+=(
-        "gammastep"
-        "linux"
-        "sway"
-        "zeal"
-      )
-      ;;
-  esac
-
-  log_info "Symlinking dotfiles into ${HOME}..."
-  for pkg in "${packages[@]}"; do
-    pushd "${CURRENT_SCRIPT_PATH}/../../../packages" > /dev/null
-    stow --target="${HOME}" --verbose=1 "${pkg}"
-    popd > /dev/null
-  done
-  log_info "Symlinked dotfiles into ${HOME}."
+  printf "[ERROR]: %s\n" "$*" >&2
 }
 
 function dot_linux_arch() {
@@ -84,29 +31,43 @@ function dot_linux_arch() {
     yay --sync --clean --noconfirm --quiet
     log_info "Updated system packages."
   fi
+}
+
+function dot_linux_fedora() {
+  if command -v dnf > /dev/null 2>&1; then
+    echo "Do something with dnf"
+  elif command -v rpm-ostree > /dev/null 2>&1; then
+    echo "Do something with rpm-ostree"
+  else
+    log_error "Could not find a known package manager (dnf or rpm-ostree). Skipping package updates."
+  fi
+}
+
+function dot_linux() {
+  local distro_id
+  distro_id=$(cat /etc/*-release | grep "^ID=" | cut -d "=" -f 2 | xargs)
+  case "${distro_id}" in
+    "arch")
+      :
+      dot_linux_arch
+      ;;
+    "fedora")
+      :
+      dot_linux_fedora
+      ;;
+    *)
+      :
+      log_error "Linux distribution '${distro_id}' not supported." >&2
+      ;;
+  esac
 
   if ! command -v flatpak > /dev/null 2>&1; then
-    log_warn "flatpak not installed, skipping flatpak package updates..."
+    log_warn "flatpak not installed, skipping flatpak package updates."
   else
     log_info "Updating Flatpaks..."
     flatpak update --noninteractive
     log_info "Updated Flatpaks."
   fi
-}
-
-function dot_linux() {
-  local distro_name
-  distro_name=$(hostnamectl | grep "Operating System" | cut -d ':' -f 2 | xargs)
-  case "${distro_name}" in
-    "Arch Linux")
-      :
-      dot_linux_arch
-      ;;
-    *)
-      :
-      echo "Linux distribution '${distro_name}' not supported."
-      ;;
-  esac
 }
 
 function dot_darwin() {
@@ -118,12 +79,10 @@ function main() {
     darwin*)
       :
       dot_darwin
-      link_dotfile_packages
       ;;
     linux*)
       :
       dot_linux
-      link_dotfile_packages
       ;;
     *)
       :

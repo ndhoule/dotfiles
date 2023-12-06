@@ -12,9 +12,10 @@ CURRENT_SCRIPT_PATH="$(
   cd "$(dirname "$0")"
   pwd -P
 )"
-DISTRO_NAME=$(hostnamectl | grep "Operating System" | cut -d ':' -f 2 | xargs)
 
-if [[ "${DISTRO_NAME}" != "Arch Linux" ]]; then
+DISTRO_ID=$(cat /etc/*-release | grep "^ID=" | cut -d "=" -f 2)
+
+if [[ "${DISTRO_ID}" != "arch" ]]; then
   echo "ERROR: This script can only be run on Arch Linux."
   exit 1
 fi

@@ -1,12 +1,11 @@
+// vi:ft=json
 {
   "layer": "top",
   "position": "top",
   "height": 35,
-  "modules-left": [
-    "sway/workspaces",
-    "sway/mode",
-    "custom/media"
-  ],
+  "spcaing": 4,
+  "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "custom/media"],
+  "modules-center": [],
   "modules-right": [
     "custom/do_not_disturb",
     "idle_inhibitor",
@@ -14,12 +13,17 @@
     "memory",
     "temperature",
     "network",
+    "backlight",
     "pulseaudio",
     "battery",
     "clock",
     "custom/logout",
     "tray"
   ],
+  "backlight": {
+    "format": "{percent}% {icon}",
+    "format-icons": ["", "", "", "", "", "", "", "", ""]
+  },
   "battery": {
     "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "format": "<span foreground='#929292'>{icon}</span> {capacity}%",
@@ -28,8 +32,8 @@
     "format-full": "<span foreground='#929292'>{icon}</span> {capacity}%",
     "interval": 30,
     "states": {
-      "warning": 25,
-      "critical": 10
+      "warning": 30,
+      "critical": 15
     },
     "tooltip": true
   },
@@ -88,8 +92,7 @@
     "format-linked": "Connected (No IP) 󰲚",
     "tooltip-format-linked": "Connected via: Link\nInterface: {ifname}\nIP: None",
     "format-wifi": "Connected 󰖩",
-    "tooltip-format-wifi": "Connected via: WiFi\nNetwork: {essid}\nSignal Strength: {signalStrength}%\nInterface: {ifname}\nIP: {ipaddr}/{cidr}",
-    "on-click": "nm-connection-editor"
+    "tooltip-format-wifi": "Connected via: WiFi\nNetwork: {essid}\nSignal Strength: {signalStrength}%\nInterface: {ifname}\nIP: {ipaddr}/{cidr}"
   },
   "pulseaudio": {
     "format": "{volume}% {icon}",

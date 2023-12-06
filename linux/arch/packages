@@ -73,7 +73,6 @@ packages=(
   #
 
   networkmanager nm-connection-editor
-  nextdns
 
   #
   # Desktop environment

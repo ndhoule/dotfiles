@@ -4,25 +4,6 @@
 # See zsh(1) STARTUP/SHUTDOWN FILES for more documentation.
 #
 
-#
-# Plugins
-#
-
-source "${ZDOTDIR}/.zsh/vendor/antigen/bin/antigen.zsh"
-
-antigen bundles <<EOF
-asdf
-command-not-found
-greymd/docker-zsh-completion
-zsh-users/zsh-completions
-zsh-users/zsh-history-substring-search
-
-# Must be last bundle
-zsh-users/zsh-syntax-highlighting
-EOF
-
-antigen apply
-
 # Set LS_COLORS (used by `ls`, `tree`, etc.) if not yet set
 if [[ -z "$LS_COLORS" ]]; then
   eval "$(dircolors --sh)"
@@ -450,3 +431,22 @@ fi
 source "${ZDOTDIR}/.zsh/functions.zsh"
 source "${ZDOTDIR}/.zsh/goto.zsh"
 source "${ZDOTDIR}/.zsh/tmux.zsh"
+
+#
+# Plugins
+#
+
+source "${ZDOTDIR}/.zsh/vendor/antigen/bin/antigen.zsh"
+
+antigen bundles <<EOF
+asdf
+command-not-found
+greymd/docker-zsh-completion
+zsh-users/zsh-completions
+zsh-users/zsh-history-substring-search
+
+# Must be last bundle
+zsh-users/zsh-syntax-highlighting
+EOF
+
+antigen apply

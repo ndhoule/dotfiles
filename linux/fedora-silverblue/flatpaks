@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+packages=(
+  "flathub com.bitwarden.desktop"
+  "flathub com.discordapp.Discord"
+  "flathub com.nextcloud.desktopclient.nextcloud"
+  "flathub com.spotify.Client"
+  "flathub io.github.mimbrero.WhatsAppDesktop"
+  "flathub org.chromium.Chromium"
+  "flathub org.gnome.Boxes"
+  "flathub org.gnome.Calculator"
+  "flathub org.gnome.FontManager"
+  "flathub org.libreoffice.LibreOffice"
+  "flathub org.musicbrainz.Picard"
+)
+
+if ! command -v flatpak > /dev/null 2>&1; then
+  echo "ERROR: Could not find \`flatpak\`. Please install yay and re-run this script."
+  exit 1
+fi
+
+for package in "${packages[@]}"; do
+  # Split repository name / package name
+  # shellcheck disable=SC2086
+  flatpak install -y $package
+done

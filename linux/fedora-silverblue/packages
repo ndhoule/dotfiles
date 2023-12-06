@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+ASDF_DIR="${ASDF_DIR:-"${HOME}/.asdf"}"
+
+if ! command -v rpm-ostree > /dev/null 2>&1; then
+  echo "ERROR: Could not find \`rpm-ostree\`. Exiting."
+  exit 1
+fi
+
+# Install DejaVu Sans Mono Nerd Fonts
+if [[ ! -d  "${XDG_DATA_HOME}/fonts/Unknown Vendor/TrueType/DejaVuSansM Nerd Font" ]]; then
+  mkdir -p "${XDG_DATA_HOME}/fonts/Unknown Vendor/TrueType/DejaVuSansM Nerd Font"
+  curl --fail --silent --show-error --location \
+    "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold/DejaVuSansMNerdFont-Bold.ttf" \
+    > "${XDG_DATA_HOME}/fonts/Unknown Vendor/TrueType/DejaVuSansM Nerd Font/DejaVuSansM_Nerd_Font_Bold.ttf"
+  curl --fail --silent --show-error --location \
+    "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold-Italic/DejaVuSansMNerdFont-BoldOblique.ttf" \
+    > "${XDG_DATA_HOME}/fonts/Unknown Vendor/TrueType/DejaVuSansM Nerd Font/DejaVuSansM_Nerd_Font_Bold_Oblique.ttf"
+  curl --fail --silent --show-error --location \
+    "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Italic/DejaVuSansMNerdFont-Oblique.ttf" \
+    > "${XDG_DATA_HOME}/fonts/Unknown Vendor/TrueType/DejaVuSansM Nerd Font/DejaVuSansM_Nerd_Font_Oblique.ttf"
+  curl --fail --silent --show-error --location \
+    "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Regular/DejaVuSansMNerdFont-Regular.ttf" \
+    > "${XDG_DATA_HOME}/fonts/Unknown Vendor/TrueType/DejaVuSansM Nerd Font/DejaVuSansM_Nerd_Font_Regular.ttf"
+fi
+
+if [[ ! -d "${ASDF_DIR}" ]]; then
+  git clone https://github.com/asdf-vm/asdf.git "${ASDF_DIR}" --branch v0.13.1
+
+  asdf plugin add golang
+  asdf plugin add nodejs
+
+  # TODO(ndhoule): $HOME/.tool-versions isn't yet symlinked when this script runs
+  # asdf install
+fi
+
+if [[ ! -f /etc/yum.repos.d/hashicorp.repo ]]; then
+
+  curl --fail --silent --show-error --location https://rpm.releases.hashicorp.com/fedora/hashicorp.repo \
+    | sudo tee /etc/yum.repos.d/hashicorp.repo > /dev/null 2>&1
+fi
+
+# TODO:
+# - aws-vault
+# - bitwarden-cli
+# - ngrok
+# - veracrypt
+# - chromaprint-tools
+# - lua-language-server
+packages=(
+  ShellCheck
+  ansible python3-ansible-lint
+  aspell aspell-en
+  awscli2
+  certbot
+  clang
+  consul consul-template
+  direnv
+  emacs
+  entr
+  gammastep gammastep-indicator
+  gh
+  git-crypt
+  gnome-system-monitor
+  gvfs-afc gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
+  iperf3
+  material-icons-fonts
+  mpv
+  neovim
+  netcat
+  nomad nomad-pack
+  openssh-askpass
+  parallel
+  podman-docker
+  ripgrep
+  stow
+  terraform terraform-ls
+  the_silver_searcher
+  tidy
+  tmux python3-tmuxp
+  traceroute
+  virt-manager
+  watchman
+  wlogout
+  yubikey-manager
+  zsh
+)
+
+# shellcheck disable=SC2068
+rpm-ostree install --idempotent ${packages[@]}
