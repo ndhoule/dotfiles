@@ -67,7 +67,6 @@ packages=(
   "gpg"
   "haskell"
   "javascript"
-  "ruby"
   "ssh"
   "tmux"
   "nvim"
