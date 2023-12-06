@@ -13,7 +13,9 @@
 
 if [ "$1" = "" ]; then
   # shellcheck disable=SC2086
-  exec $EDITOR .
+  exec $EDITOR
+elif [ "$1" = "." ]; then
+  exec $EDITOR
 else
   # shellcheck disable=SC2086
   exec $EDITOR "$@"
