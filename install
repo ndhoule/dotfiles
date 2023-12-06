@@ -74,13 +74,11 @@ packages=(
   "zsh"
 )
 
-
 case "${OSTYPE}" in
   linux*)
     :
     packages+=(
       "gammastep"
-      "linux"
       "sway"
       "zeal"
     )
