@@ -24,6 +24,7 @@ packages=(
   "flathub io.github.seadve.Kooha"
   "flathub io.gitlab.news_flash.NewsFlash"
   "flathub org.darktable.Darktable"
+  "flathub org.filezillaproject.Filezilla"
   "flathub org.gnome.Calculator"
   "flathub org.gnome.FontManager"
   "flathub org.gnome.seahorse.Application"
