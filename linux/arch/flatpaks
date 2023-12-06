@@ -27,6 +27,7 @@ packages=(
   "flathub org.filezillaproject.Filezilla"
   "flathub org.gnome.Calculator"
   "flathub org.gnome.FontManager"
+  "flathub org.gnome.gedit"
   "flathub org.gnome.seahorse.Application"
   "flathub org.libreoffice.LibreOffice"
   # "flathub org.mozilla.firefox"
