@@ -37,6 +37,7 @@ packages=(
   #
 
   flatpak
+  reflector
 
   #
   # Printing
@@ -84,7 +85,7 @@ packages=(
   #geoclue
   #gnome-keyring libsecret
   gnome-system-monitor
-  thunar tumbler
+  thunar tumbler thunar-dropbox
   gvfs gvfs-mtp gvfs-gphoto2 gvfs-afc gvfs-smb
 
   #
@@ -105,6 +106,7 @@ packages=(
   #
 
   xdg-desktop-portal
+  xdg-desktop-portal-gtk
   xdg-desktop-portal-wlr
 
   #
@@ -178,7 +180,7 @@ packages=(
   sysstat
   terraform
   nomad
-  consul
+  consul consul-template
   vault
   the_silver_searcher
   time
@@ -187,7 +189,7 @@ packages=(
   traceroute
   tree
   virtualbox virtualbox-guest-utils
-  watchman
+  watchman-bin
   wget
   zip
   zsh
@@ -219,6 +221,7 @@ packages=(
   ttf-dejavu
   ttf-mac-fonts
   ttf-material-design-icons-git
+  ttf-ms-fonts
   ttf-roboto
 
   # TODO(ndhoule): SORT ME
@@ -247,15 +250,23 @@ packages=(
   nss-mdns
   google-cloud-sdk
   libfido2
-  simple-scan sane brscan5
+  cloud-sql-proxy-bin
   reflector
-  transmission-remote-gtk
+  simple-scan sane brscan5
   ansible ansible-lint
-  packer
-  nfs-utils
-  virt-manager
+  chromaprint
+  ethtool
   iperf3
+  netcat
+  nfs-utils
+  packer
+  picard
+  putty
+  screen
   speedtest-cli
+  virt-manager
+  wireguard-tools
+  zsa-wally
 )
 
 # shellcheck disable=SC2068
