@@ -21,6 +21,7 @@ packages=(
   "flathub io.github.TransmissionRemoteGtk"
   "flathub io.github.celluloid_player.Celluloid"
   "flathub io.github.mimbrero.WhatsAppDesktop"
+  "flathub io.gitlab.news_flash.NewsFlash"
   "flathub org.darktable.Darktable"
   "flathub org.gnome.Calculator"
   "flathub org.gnome.FontManager"
