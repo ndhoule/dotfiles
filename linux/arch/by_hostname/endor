@@ -31,3 +31,5 @@ packages=(
 
 # shellcheck disable=SC2068
 yay -S --needed ${packages[@]}
+
+systemctl enable --now NetworkManager.service

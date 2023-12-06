@@ -30,7 +30,6 @@ podman system migrate
 sudo touch /etc/containers/nodocker
 
 # Enable system services
-systemctl enable --now NetworkManager.service
 systemctl enable --now avahi-daemon.service
 systemctl enable --now bluetooth.service
 systemctl enable --now cups.service
