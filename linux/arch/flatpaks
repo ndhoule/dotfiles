@@ -31,6 +31,7 @@ packages=(
   "flathub org.gnome.seahorse.Application"
   "flathub org.libreoffice.LibreOffice"
   # "flathub org.mozilla.firefox"
+  "flathub org.mozilla.Thunderbird"
   "flathub org.zealdocs.Zeal"
 )
 
