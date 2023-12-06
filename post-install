@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+#
+# Perform post-installation configuration.
+#
+# XXX(ndhoule): This script isn't yet tested; it currently serves mostly to document as-of-yet
+# uncaptured setup steps.
+#
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+log_info() {
+  printf "[INFO]: %s\n" "$*"
+}
+
+log_warn() {
+  printf "[WARN]: %s\n" "$*" >&2
+}
+
+log_error() {
+  printf "[ERROR]: %s\n" "$*" >&2
+}
+
+if command -v zsh && [[ "$(getent passwd "$(whoami)" | awk -F : '{print $NF}' | rev | cut -d '/' -f 1 | rev)" == "zsh" ]]; then
+  log_info "The user shell has been changed to zsh. Please restart your session for changes to take effect, and then re-run this script."
+  exit 0
+fi
+
+#
+# Install shell plugins
+#
+
+if command -v antigen > /dev/null 2>&1; then
+  antigen update
+  log_info "Shell plugins have been installed. Please restart your session for changes to take effect."
+else
+  log_warn "\`asdf\` not found in \$PATH. Skipping tool installation."
+fi
+
+#
+# Install language runtimes
+#
+
+if command -v asdf > /dev/null 2>&1; then
+  asdf plugin add golang
+  asdf plugin add nodejs
+  asdf install
+else
+  log_warn "\`asdf\` not found in \$PATH. Skipping tool installation."
+fi
+
+# FIXME(ndhoule): I really, really doubt this will work, but theoretically it should load the
+# config (and so run the packer.nvim clone contained within), quit and start (loading packer.nvim
+# files), install everything, then quit.
+if command -v nvim > /dev/null 2>&1; then
+  nvim +qall
+  nvim +PackerInstall +qall
+  nvim +TSInstallSync +qall
+fi

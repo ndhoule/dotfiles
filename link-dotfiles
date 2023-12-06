@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+#
+# Link all user dotfiles into their standard locations.
+#
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+log_info() {
+  printf "[INFO]: %s\n" "$*"
+}
+
+log_warn() {
+  printf "[WARN]: %s\n" "$*" >&2
+}
+
+log_error() {
+  printf "[ERROR]: %s\n" "$*" >&2
+}
+
+CURRENT_SCRIPT_PATH="$(
+  cd "$(dirname "$0")"
+  pwd -P
+)"
+
+packages=(
+  "ag"
+  "alacritty"
+  "asdf"
+  "bin"
+  "emacs"
+  "git"
+  "gpg"
+  "haskell"
+  "javascript"
+  "ssh"
+  "tmux"
+  "nvim"
+  "yubikey"
+  "zsh"
+)
+
+case "${OSTYPE}" in
+  linux*)
+    :
+    packages+=(
+      "gammastep"
+      "sway"
+      "zeal"
+    )
+    ;;
+esac
+
+if command -v stow > /dev/null 2>&1; then
+  log_info "Symlinking dotfiles into $HOME..."
+  for pkg in "${packages[@]}"; do
+    pushd "${CURRENT_SCRIPT_PATH}/packages" > /dev/null
+    stow --target="$HOME" --verbose=1 "${pkg}"
+    popd > /dev/null
+  done
+  log_info "Symlinked dotfiles into $HOME."
+else
+  log_warn "stow not installed. Skipping dotfiles symlinking..."
+fi
