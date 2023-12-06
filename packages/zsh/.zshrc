@@ -339,6 +339,10 @@ alias l="ls -alh"
 alias ll="ls -lh"
 alias lll="ls -ah"
 
+if [[ $+commands[xdg-open] ]]; then
+  alias open="xdg-open"
+fi
+
 # Remap more to less when it exists
 if (( $+commands[less] )); then
   alias more="less"
