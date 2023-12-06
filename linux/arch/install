@@ -34,7 +34,6 @@ systemctl enable --now avahi-daemon.service
 systemctl enable --now bluetooth.service
 systemctl enable --now cups.service
 systemctl enable --now ipp-usb.service
-systemctl enable --now nextdns.service
 systemctl enable --now pcscd.service
 systemctl enable --now systemd-oomd.service
 systemctl enable --now systemd-timesyncd.service
