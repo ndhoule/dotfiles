@@ -8,4 +8,4 @@ ORG=$(basename "$(dirname "${PWD}")")
 REPO=$(basename "${PWD}")
 MD5=$(echo "${PWD}" | md5sum | cut -d ' ' -f 1)
 
-SESSION_NAME="${ORG//\./_}/${REPO//\./_} [${MD5}]" tmuxp load default
+SESSION_NAME="${ORG//\./_}/${REPO//\./_} [${MD5}]" tmuxp load "${1:-default}"
