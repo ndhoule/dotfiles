@@ -62,7 +62,6 @@ packages=(
   "alacritty"
   "asdf"
   "bin"
-  "clojure"
   "emacs"
   "git"
   "gpg"
