@@ -15,6 +15,17 @@ if [[ "${DISTRO_NAME}" != "Arch Linux" ]]; then
   exit 1
 fi
 
+sudo tee /etc/systemd/network/00-wired.network << 'EOF' > /dev/null
+[Match]
+Name=enp5s0
+
+[Network]
+DHCP=yes
+EOF
+
+systemctl enable --now systemd-networkd.service
+systemctl enable --now systemd-resolved.service
+
 packages=(
   amd-ucode
   vulkan-radeon
