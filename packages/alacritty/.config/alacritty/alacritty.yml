@@ -314,9 +314,6 @@ colors:
 # directory of the parent process will be used.
 #working_directory: None
 
-# Send ESC (\x1b) before characters when alt is pressed.
-alt_send_esc: true
-
 #mouse:
   # Click settings
   #
