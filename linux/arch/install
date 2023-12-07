@@ -94,3 +94,14 @@ EOF
 if [[ -x "${CURRENT_SCRIPT_PATH}/by_hostname/${HOSTNAME}" ]]; then
   "${CURRENT_SCRIPT_PATH}/by_hostname/${HOSTNAME}"
 fi
+
+sudo mkdir -p "/usr/libexec/sway"
+
+curl --fail --silent --show-error --location \
+  "https://gitlab.com/fedora/sigs/sway/sway-config-fedora/-/raw/967a54323c1cbb02f4d4c43418294d29a7bef5b7/scripts/sway/volume-helper" \
+  | sudo tee /usr/libexec/sway/volume-helper > /dev/null 2>&1
+sudo chmod +x /usr/libexec/sway/volume-helper
+
+# TODO: Install a bunch of stuff out of here:
+# - https://github.com/alebastr/sway-systemd/tree/main
+# ...or install the sway-systemd package from the aur

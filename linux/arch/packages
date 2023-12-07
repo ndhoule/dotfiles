@@ -78,11 +78,9 @@ packages=(
   # Desktop environment
   #
 
-  #adwaita-qt adwaita-qt4
   imv
   flashfocus-git
-  #geoclue
-  #gnome-keyring libsecret
+  geoclue
   gnome-system-monitor
   thunar tumbler thunar-dropbox
   gvfs gvfs-mtp gvfs-gphoto2 gvfs-afc gvfs-smb
@@ -95,10 +93,10 @@ packages=(
   grim grimshot slurp wf-recorder
   qt5-wayland qt6-wayland
   wayland
+  wev
   wl-clipboard
   xdg-user-dirs
   xorg-server-xwayland
-  wev
 
   #
   # Wayland screen sharing
@@ -112,6 +110,7 @@ packages=(
   # sway WM
   #
 
+  light
   sway
   swaybg
   swayidle
@@ -225,7 +224,6 @@ packages=(
 
   # TODO(ndhoule): SORT ME
   vorbis-tools
-  brightnessctl
   mpv
   circleci-cli-bin
   inetutils
