@@ -23,7 +23,10 @@ log_error() {
   printf "[ERROR]: %s\n" "$*" >&2
 }
 
-if command -v zsh && [[ "$(getent passwd "$(whoami)" | awk -F : '{print $NF}' | rev | cut -d '/' -f 1 | rev)" == "zsh" ]]; then
+# TODO: Move dotfile symlinking to this script, stow won't be present on Fedora Silverblue systems until reboot
+
+if command -v zsh > /dev/null 2>&1 && [[ "$(getent passwd "$(whoami)" | awk -F : '{print $NF}' | rev | cut -d '/' -f 1 | rev)" != "zsh" ]]; then
+  chsh --shell "$(which zsh)"
   log_info "The user shell has been changed to zsh. Please restart your session for changes to take effect, and then re-run this script."
   exit 0
 fi
@@ -36,14 +39,28 @@ if command -v antigen > /dev/null 2>&1; then
   antigen update
   log_info "Shell plugins have been installed. Please restart your session for changes to take effect."
 else
-  log_warn "\`asdf\` not found in \$PATH. Skipping tool installation."
+  log_warn "\`antigen\` not found in \$PATH. Skipping tool installation."
 fi
 
 #
 # Install language runtimes
 #
 
+ASDF_DIR="${ASDF_DIR:-"${HOME}/.asdf"}"
+
+# FIXME(ndhoule): This isn't exactly right but whatever. It assumes that there's no system asdf
+# install available and that the user wants a local install, which may not be right but again who
+# cares right now
+if [ ! -d "${ASDF_DIR}" ]; then
+  git clone https://github.com/asdf-vm/asdf.git "${ASDF_DIR}" --branch v0.13.1 || echo "test"
+fi
+
+if ! command -v asdf > /dev/null 2>&1; then
+  source "${ASDF_DIR}/asdf.sh"
+fi
+
 if command -v asdf > /dev/null 2>&1; then
+  # Clone asdf
   asdf plugin add golang
   asdf plugin add nodejs
   asdf install
@@ -51,11 +68,18 @@ else
   log_warn "\`asdf\` not found in \$PATH. Skipping tool installation."
 fi
 
-# FIXME(ndhoule): I really, really doubt this will work, but theoretically it should load the
-# config (and so run the packer.nvim clone contained within), quit and start (loading packer.nvim
-# files), install everything, then quit.
+# FIXME(ndhoule): This relies on Packer being installed already I think
 if command -v nvim > /dev/null 2>&1; then
-  nvim +qall
-  nvim +PackerInstall +qall
-  nvim +TSInstallSync +qall
+  if test -e "${XDG_CONFIG_HOME}/nvim/plugin/packer_compiled.lua"; then
+    rm "${XDG_CONFIG_HOME}/nvim/plugin/packer_compiled.lua"
+  fi
+
+  if ! test -d "${XDG_DATA_HOME}/site/pack/packer/start/packer.nvim"; then
+    git clone https://github.com/wbthomason/packer.nvim "${XDG_DATA_HOME}/site/pack/packer/start/packer.nvim"
+  fi
+
+  nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+  # TODO(ndhoule): :TSInstallSync
 fi
+
+"${HOME}/.cache/tmux/plugins/tpm/scripts/install_plugins.sh"

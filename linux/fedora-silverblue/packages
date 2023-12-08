@@ -4,8 +4,6 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-ASDF_DIR="${ASDF_DIR:-"${HOME}/.asdf"}"
-
 if ! command -v rpm-ostree > /dev/null 2>&1; then
   echo "ERROR: Could not find \`rpm-ostree\`. Exiting."
   exit 1
@@ -28,31 +26,28 @@ if [[ ! -d  "${XDG_DATA_HOME}/fonts/Unknown Vendor/TrueType/DejaVuSansM Nerd Fon
     > "${XDG_DATA_HOME}/fonts/Unknown Vendor/TrueType/DejaVuSansM Nerd Font/DejaVuSansM_Nerd_Font_Regular.ttf"
 fi
 
-if [[ ! -d "${ASDF_DIR}" ]]; then
-  git clone https://github.com/asdf-vm/asdf.git "${ASDF_DIR}" --branch v0.13.1
-
-  asdf plugin add golang
-  asdf plugin add nodejs
-
-  # TODO(ndhoule): $HOME/.tool-versions isn't yet symlinked when this script runs
-  # asdf install
-fi
-
-if [[ ! -f /etc/yum.repos.d/hashicorp.repo ]]; then
-
+if ! test -f /etc/yum.repos.d/hashicorp.repo; then
   curl --fail --silent --show-error --location https://rpm.releases.hashicorp.com/fedora/hashicorp.repo \
     | sudo tee /etc/yum.repos.d/hashicorp.repo > /dev/null 2>&1
+fi
+
+# https://packagecloud.io/filips/FirefoxPWA
+if ! test -f /etc/yum.repos.d/firefoxpwa.repo; then
+  sudo rpm --import https://packagecloud.io/filips/FirefoxPWA/gpgkey
+  echo -e "[firefoxpwa]\nname=FirefoxPWA\nmetadata_expire=300\nbaseurl=https://packagecloud.io/filips/FirefoxPWA/rpm_any/rpm_any/\$basearch\ngpgkey=https://packagecloud.io/filips/FirefoxPWA/gpgkey\nrepo_gpgcheck=1\ngpgcheck=0\nenabled=1" \
+    | sudo tee /etc/yum.repos.d/firefoxpwa.repo > /dev/null 2>&1
 fi
 
 # TODO:
 # - aws-vault
 # - bitwarden-cli
-# - ngrok
-# - veracrypt
 # - chromaprint-tools
 # - lua-language-server
+# - ngrok
+# - veracrypt
 packages=(
   ShellCheck
+  alacritty
   ansible python3-ansible-lint
   aspell aspell-en
   awscli2
@@ -62,15 +57,15 @@ packages=(
   direnv
   emacs
   entr
+  fd-find
   gammastep gammastep-indicator
   gh
   git-crypt
   gnome-system-monitor
   gvfs-afc gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
   iperf3
-  material-icons-fonts
   mpv
-  neovim
+  neovim python3-neovim
   netcat
   nomad nomad-pack
   openssh-askpass
@@ -86,9 +81,19 @@ packages=(
   virt-manager
   watchman
   wlogout
+  wofi
   yubikey-manager
   zsh
+
+  # Fonts
+  fira-code-fonts
+  google-roboto-fonts
+  jetbrains-mono-fonts
+  material-icons-fonts
+  rsms-inter-fonts
 )
+
+rpm-ostree update
 
 # shellcheck disable=SC2068
 rpm-ostree install --idempotent ${packages[@]}

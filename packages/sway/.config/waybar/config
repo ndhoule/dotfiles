@@ -2,8 +2,8 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 35,
-  "spcaing": 4,
+  "height": 42,
+  "spacing": 8,
   "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "custom/media"],
   "modules-center": [],
   "modules-right": [

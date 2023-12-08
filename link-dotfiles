@@ -42,6 +42,17 @@ packages=(
   "zsh"
 )
 
+# Create standard XDG base directories; if these don't exist, stow will create them as symlinks into
+# the first package that asks for them (e.g. `packages/asdf/.config/asdf` will be linked as
+# `${HOME}/.config` rather than "${HOME}/.config/asdf" as we want)
+mkdir -p "${XDG_CACHE_HOME}"
+mkdir -p "${XDG_CONFIG_HOME}"
+mkdir -p "${XDG_DATA_HOME}"
+
+mkdir -p "${HOME}/.gnupg"
+mkdir -p "${HOME}/.ssh"
+mkdir -p "${HOME}/.var/app"
+
 case "${OSTYPE}" in
   linux*)
     :

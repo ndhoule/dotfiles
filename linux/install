@@ -24,13 +24,6 @@ fi
 
 DISTRO_ID=$(cat /etc/*-release | grep "^ID=" | cut -d "=" -f 2)
 
-# Create standard XDG base directories; if these don't exist, stow will create them as symlinks into
-# the first package that asks for them (e.g. `packages/asdf/.config/asdf` will be linked as
-# `${HOME}/.config` rather than "${HOME}/.config/asdf" as we want)
-mkdir -p "${XDG_CACHE_HOME}"
-mkdir -p "${XDG_CONFIG_HOME}"
-mkdir -p "${XDG_DATA_HOME}"
-
 case "${DISTRO_ID}" in
   "arch")
     :
