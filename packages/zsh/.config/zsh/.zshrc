@@ -27,11 +27,11 @@ unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor.
 # cache time of 20 hours, so it should almost always regenerate the first time a
 # shell is opened each day.
 autoload -Uz compinit
-_comp_files=(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))
+_comp_files=(${HOME}/.local/state/zcompdump(Nm-20))
 if (( $#_comp_files )); then
-  compinit -i -C
+  compinit -i -C -d "${HOME}/.local/state/zcompdump"
 else
-  compinit -i
+  compinit -i -d "${HOME}/.local/state/zcompdump"
 fi
 unset _comp_files
 
@@ -265,7 +265,7 @@ key[Up]="${terminfo[kcuu1]}"
 HISTCONTROL=ignorespace
 
 # Write command history to file
-HISTFILE="${HISTFILE:-${ZDOTDIR:-$HOME}/.zhistory}"
+HISTFILE="${HOME}/.local/state/zhistory"
 
 # Omit noisy commands from history
 HISTIGNORE="&:ls:l:ll:lll:pwd:exit:clear"
@@ -428,9 +428,9 @@ fi
 # More business
 #
 
-source "${ZDOTDIR}/.zsh/functions.zsh"
-source "${ZDOTDIR}/.zsh/goto.zsh"
-source "${ZDOTDIR}/.zsh/tmux.zsh"
+source "${ZDOTDIR}/lib/functions.zsh"
+source "${ZDOTDIR}/lib/goto.zsh"
+source "${ZDOTDIR}/lib/tmux.zsh"
 
 #
 # Plugins
@@ -438,4 +438,4 @@ source "${ZDOTDIR}/.zsh/tmux.zsh"
 
 source "${ANTIDOTE_DIR}/antidote.zsh"
 
-antidote load "${ZDOTDIR}/.zsh/plugins.txt"
+antidote load "${ZDOTDIR}/plugins.txt"
