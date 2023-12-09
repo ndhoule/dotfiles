@@ -7,6 +7,6 @@
 [submodule "packages/tmux/.cache/tmux/plugins/tpm"]
 	path = packages/tmux/.cache/tmux/plugins/tpm
 	url = git@github.com:tmux-plugins/tpm.git
-[submodule "zsh/antigen"]
-	path = packages/zsh/.zsh/vendor/antigen
-	url = git@github.com:zsh-users/antigen.git
+[submodule "packages/zsh/.cache/antidote"]
+	path = packages/zsh/.cache/antidote
+	url = https://github.com/mattmc3/antidote.git

@@ -305,7 +305,7 @@ prompt ndhoule
 #
 
 if (( $+commands[direnv] )); then
-  eval "$(direnv hook $(basename $SHELL))"
+  eval "$(direnv hook zsh)"
 
   # Unload direnv before executing tmux to avoid issues
   # https://github.com/direnv/direnv/wiki/Tmux
@@ -436,17 +436,6 @@ source "${ZDOTDIR}/.zsh/tmux.zsh"
 # Plugins
 #
 
-source "${ZDOTDIR}/.zsh/vendor/antigen/bin/antigen.zsh"
+source "${ANTIDOTE_DIR}/antidote.zsh"
 
-antigen bundles <<EOF
-asdf
-command-not-found
-greymd/docker-zsh-completion
-zsh-users/zsh-completions
-zsh-users/zsh-history-substring-search
-
-# Must be last bundle
-zsh-users/zsh-syntax-highlighting
-EOF
-
-antigen apply
+antidote load "${ZDOTDIR}/.zsh/plugins.txt"

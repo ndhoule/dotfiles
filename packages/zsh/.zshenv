@@ -56,6 +56,16 @@ path=(
 )
 
 #
+# antidote
+#
+
+# Where Antidote is installed
+export ANTIDOTE_DIR="${XDG_CACHE_HOME}/antidote"
+
+# Where Antidote should store plugins it downloads
+export ANTIDOTE_HOME="${XDG_DATA_HOME}/antidote"
+
+#
 # asdf
 #
 

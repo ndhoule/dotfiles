@@ -1,0 +1,7 @@
+greymd/docker-zsh-completion
+ohmyzsh/ohmyzsh path:plugins/asdf
+ohmyzsh/ohmyzsh path:plugins/command-not-found
+zsh-users/zsh-completions
+zsh-users/zsh-history-substring-search
+
+zsh-users/zsh-syntax-highlighting
