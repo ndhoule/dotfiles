@@ -35,9 +35,9 @@ packages=(
   "gpg"
   "haskell"
   "javascript"
+  "nvim"
   "ssh"
   "tmux"
-  "nvim"
   "yubikey"
   "zsh"
 )
@@ -60,6 +60,7 @@ case "${OSTYPE}" in
     :
     packages+=(
       "gammastep"
+      "podman"
       "sway"
       "zeal"
     )
