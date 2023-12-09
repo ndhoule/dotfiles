@@ -26,6 +26,7 @@ if [[ ! -d  "${XDG_DATA_HOME}/fonts" ]]; then
     > "${XDG_DATA_HOME}/fonts/DejaVuSansM_Nerd_Font_Regular.ttf"
 fi
 
+source /etc/os-release
 if ! test -f /etc/yum.repos.d/hashicorp.repo; then
   curl --fail --silent --show-error --location https://rpm.releases.hashicorp.com/fedora/hashicorp.repo \
     | sudo tee /etc/yum.repos.d/hashicorp.repo > /dev/null 2>&1
@@ -38,6 +39,27 @@ if ! test -f /etc/yum.repos.d/firefoxpwa.repo; then
     | sudo tee /etc/yum.repos.d/firefoxpwa.repo > /dev/null 2>&1
 fi
 
+packages=(
+  alacritty
+  firefoxpwa
+  gammastep gammastep-indicator
+  gnome-system-monitor
+  neovim
+  openssh-askpass
+  podman-docker
+  stow
+  virt-manager
+  wlogout
+  wofi
+  zsh
+
+  # Fonts
+  fira-code-fonts
+  google-roboto-fonts
+  material-icons-fonts
+  rsms-inter-fonts
+)
+
 # TODO:
 # - aws-vault
 # - bitwarden-cli
@@ -45,9 +67,7 @@ fi
 # - lua-language-server
 # - ngrok
 # - veracrypt
-packages=(
-  ShellCheck
-  alacritty
+toolbox_packages=(
   ansible python3-ansible-lint
   aspell aspell-en
   awscli2
@@ -58,42 +78,34 @@ packages=(
   emacs
   entr
   fd-find
-  gammastep gammastep-indicator
   gh
   git-crypt
-  gnome-system-monitor
   gvfs-afc gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
   iperf3
-  mpv
   neovim python3-neovim
   netcat
   nomad nomad-pack
   openssh-askpass
   parallel
-  podman-docker
   ripgrep
+  shellcheck
   stow
   terraform terraform-ls
   the_silver_searcher
   tidy
   tmux python3-tmuxp
   traceroute
-  virt-manager
   watchman
-  wlogout
-  wofi
   yubikey-manager
   zsh
-
-  # Fonts
-  fira-code-fonts
-  google-roboto-fonts
-  jetbrains-mono-fonts
-  material-icons-fonts
-  rsms-inter-fonts
 )
 
 rpm-ostree update
-
 # shellcheck disable=SC2068
 rpm-ostree install --idempotent ${packages[@]}
+
+if ! toolbox list | grep "fedora-toolbox-${VERSION_ID}"; then
+  toolbox create
+fi
+# shellcheck disable=SC2068
+toolbox run sudo dnf install --assumeyes ${toolbox_packages[@]}
