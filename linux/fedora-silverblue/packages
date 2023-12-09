@@ -16,103 +16,135 @@ fi
 
 source /etc/os-release
 
-# Install DejaVu Sans Mono Nerd Fonts
-if [[ ! -d  "${XDG_DATA_HOME}/fonts" ]]; then
-  mkdir -p "${XDG_DATA_HOME}/fonts"
-  curl --fail --silent --show-error --location \
-    "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold/DejaVuSansMNerdFont-Bold.ttf" \
-    > "${XDG_DATA_HOME}/fonts/DejaVuSansM_Nerd_Font_Bold.ttf"
-  curl --fail --silent --show-error --location \
-    "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold-Italic/DejaVuSansMNerdFont-BoldOblique.ttf" \
-    > "${XDG_DATA_HOME}/fonts/DejaVuSansM_Nerd_Font_Bold_Oblique.ttf"
-  curl --fail --silent --show-error --location \
-    "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Italic/DejaVuSansMNerdFont-Oblique.ttf" \
-    > "${XDG_DATA_HOME}/fonts/DejaVuSansM_Nerd_Font_Oblique.ttf"
-  curl --fail --silent --show-error --location \
-    "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Regular/DejaVuSansMNerdFont-Regular.ttf" \
-    > "${XDG_DATA_HOME}/fonts/DejaVuSansM_Nerd_Font_Regular.ttf"
-fi
+function install_dejavu_sans_mono_nerd_fonts() {
+  local font_urls=(
+    "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold/DejaVuSansMNerdFont-Bold.ttf"
+    "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold-Italic/DejaVuSansMNerdFont-BoldOblique.ttf"
+    "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Italic/DejaVuSansMNerdFont-Oblique.ttf"
+    "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Regular/DejaVuSansMNerdFont-Regular.ttf"
+  )
 
-if ! test -f /etc/yum.repos.d/hashicorp.repo; then
-  curl --fail --silent --show-error --location https://rpm.releases.hashicorp.com/fedora/hashicorp.repo \
-    | sudo tee /etc/yum.repos.d/hashicorp.repo > /dev/null 2>&1
-fi
+  if ! test -d "${XDG_DATA_HOME}/fonts"; then
+    mkdir -p "${XDG_DATA_HOME}/fonts"
+  fi
 
-# https://packagecloud.io/filips/FirefoxPWA
-if ! test -f /etc/yum.repos.d/firefoxpwa.repo; then
-  sudo rpm --import https://packagecloud.io/filips/FirefoxPWA/gpgkey
-  echo -e "[firefoxpwa]\nname=FirefoxPWA\nmetadata_expire=300\nbaseurl=https://packagecloud.io/filips/FirefoxPWA/rpm_any/rpm_any/\$basearch\ngpgkey=https://packagecloud.io/filips/FirefoxPWA/gpgkey\nrepo_gpgcheck=1\ngpgcheck=0\nenabled=1" \
-    | sudo tee /etc/yum.repos.d/firefoxpwa.repo > /dev/null 2>&1
-fi
+  for font_url in "${font_urls[@]}"; do
+    curl --fail --silent --show-error --location --output-dir "${XDG_DATA_HOME}/fonts" --remote-name "${font_url}"
+  done
+}
 
-packages=(
-  alacritty
-  firefoxpwa
-  gammastep gammastep-indicator
-  gnome-system-monitor
-  neovim
-  openssh-askpass
-  podman-docker
-  stow
-  virt-manager
-  wlogout
-  wofi
-  zsh
+function install_system_packages() {
+  local packages=(
+    alacritty
+    firefoxpwa
+    gammastep gammastep-indicator
+    gnome-system-monitor
+    neovim
+    openssh-askpass
+    podman-docker
+    stow
+    virt-manager
+    wlogout
+    wofi
+    zsh
 
-  # Fonts
-  fira-code-fonts
-  google-roboto-fonts
-  material-icons-fonts
-  rsms-inter-fonts
-)
+    # Fonts
+    fira-code-fonts
+    google-roboto-fonts
+    material-icons-fonts
+    overpass-mono-fonts
+    rsms-inter-fonts
+  )
 
-# TODO:
-# - aws-vault
-# - bitwarden-cli
-# - chromaprint-tools
-# - lua-language-server
-# - ngrok
-# - veracrypt
-toolbox_packages=(
-  ansible python3-ansible-lint
-  aspell aspell-en
-  awscli2
-  certbot
-  clang
-  consul consul-template
-  direnv
-  emacs
-  entr
-  fd-find
-  gh
-  git-crypt
-  gvfs-afc gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
-  iperf3
-  neovim python3-neovim
-  netcat
-  nomad nomad-pack
-  openssh-askpass
-  parallel
-  ripgrep
-  shellcheck
-  stow
-  terraform terraform-ls
-  the_silver_searcher
-  tidy
-  tmux python3-tmuxp
-  traceroute
-  watchman
-  yubikey-manager
-  zsh
-)
+  # TODO(ndhoule): Consider running this
+  # rpm-ostree reset
 
-rpm-ostree update
-# shellcheck disable=SC2068
-rpm-ostree install --idempotent ${packages[@]}
+  # Install native runtime for Firefox PWA plugin
+  # https://packagecloud.io/filips/FirefoxPWA
+  if ! test -f /etc/yum.repos.d/firefoxpwa.repo; then
+    sudo rpm --import "https://packagecloud.io/filips/FirefoxPWA/gpgkey"
+    printf "[firefoxpwa]\nname=FirefoxPWA\nmetadata_expire=300\nbaseurl=https://packagecloud.io/filips/FirefoxPWA/rpm_any/rpm_any/\$basearch\ngpgkey=https://packagecloud.io/filips/FirefoxPWA/gpgkey\nrepo_gpgcheck=1\ngpgcheck=0\nenabled=1\n" | \
+      sudo tee /etc/yum.repos.d/firefoxpwa.repo > /dev/null 2>&1
+  fi
 
-if ! toolbox list | grep "fedora-toolbox-${VERSION_ID}"; then
-  toolbox create
-  toolbox run sudo hostnamectl hostname "$(hostname)"
-fi
-# shellcheck disable=SC2068
-toolbox run sudo dnf install --assumeyes ${toolbox_packages[@]}
+  rpm-ostree update
+  # shellcheck disable=SC2068
+  rpm-ostree install --idempotent ${packages[@]}
+}
+
+function ensure_toolbox_exists() {
+  local name="${1}"
+
+  if ! toolbox list | grep "${name}" > /dev/null 2>&1; then
+    toolbox create --assumeyes "${name}"
+
+    # TODO(ndhoule): Setting the hostname in a toolbox is... difficult.
+    # https://github.com/containers/toolbox/issues/969
+    # toolbox run sudo hostnamectl hostname "$(hostname)"
+  fi
+}
+
+function install_toolbox_packages() {
+  local name="${1}"
+  local version_id="${2}"
+
+  # TODO:
+  # - aws-vault
+  # - bitwarden-cli
+  # - chromaprint-tools
+  # - lua-language-server
+  # - ngrok
+  # - veracrypt
+  local packages=(
+    ansible python3-ansible-lint
+    aspell aspell-en
+    awscli2
+    certbot
+    clang
+    consul consul-template
+    direnv
+    emacs
+    entr
+    fd-find
+    gh
+    git-crypt
+    gvfs-afc gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
+    iperf3
+    neovim python3-neovim
+    netcat
+    nomad nomad-pack
+    openssh-askpass
+    parallel
+    ripgrep
+    shellcheck
+    stow
+    terraform terraform-ls
+    the_silver_searcher
+    tidy
+    tmux python3-tmuxp
+    traceroute
+    watchman
+    yubikey-manager
+    zsh
+  )
+
+  toolbox run sudo dnf install --assumeyes "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-${version_id}.noarch.rpm"
+  # Install Hashicorp repository
+  toolbox run sudo curl --fail --silent --show-error --location --output "/etc/yum.repos.d/hashicorp.repo" "https://rpm.releases.hashicorp.com/fedora/hashicorp.repo"
+
+  toolbox run sudo dnf upgrade --assumeyes --refresh
+  # shellcheck disable=SC2068
+  toolbox run sudo dnf install --assumeyes ${packages[@]}
+}
+
+function main() {
+  local version_id="${VERSION_ID}"
+  local toolbox_name="fedora-toolbox-${version_id}"
+
+  install_dejavu_sans_mono_nerd_fonts
+  install_system_packages
+  ensure_toolbox_exists "${toolbox_name}"
+  install_toolbox_packages "${toolbox_name}" "${version_id}"
+}
+
+main "${@}"
