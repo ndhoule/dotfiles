@@ -5,6 +5,7 @@ jscodeshift
 npm-check
 yo
 
+@johnnymorganz/stylua-bin
 bash-language-server
 dockerfile-language-server-nodejs
 graphql-language-service-cli
