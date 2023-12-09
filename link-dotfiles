@@ -52,6 +52,7 @@ mkdir -p "${XDG_DATA_HOME}"
 mkdir -p "${HOME}/.gnupg"
 mkdir -p "${HOME}/.ssh"
 mkdir -p "${HOME}/.var/app"
+mkdir -p "${XDG_CONFIG_HOME}/containers"
 
 case "${OSTYPE}" in
   linux*)
