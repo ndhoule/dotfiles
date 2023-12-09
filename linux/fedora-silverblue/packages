@@ -9,6 +9,13 @@ if ! command -v rpm-ostree > /dev/null 2>&1; then
   exit 1
 fi
 
+if test -e /var/.toolboxenv; then
+  echo "ERROR: This script must be run from outside a toolbox container."
+  exit 1
+fi
+
+source /etc/os-release
+
 # Install DejaVu Sans Mono Nerd Fonts
 if [[ ! -d  "${XDG_DATA_HOME}/fonts" ]]; then
   mkdir -p "${XDG_DATA_HOME}/fonts"
@@ -26,7 +33,6 @@ if [[ ! -d  "${XDG_DATA_HOME}/fonts" ]]; then
     > "${XDG_DATA_HOME}/fonts/DejaVuSansM_Nerd_Font_Regular.ttf"
 fi
 
-source /etc/os-release
 if ! test -f /etc/yum.repos.d/hashicorp.repo; then
   curl --fail --silent --show-error --location https://rpm.releases.hashicorp.com/fedora/hashicorp.repo \
     | sudo tee /etc/yum.repos.d/hashicorp.repo > /dev/null 2>&1
