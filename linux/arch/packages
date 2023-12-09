@@ -262,6 +262,7 @@ packages=(
   virt-manager
   wireguard-tools
   zsa-wally
+  firefox-pwa-bin
 )
 
 # shellcheck disable=SC2068
