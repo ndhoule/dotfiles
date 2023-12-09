@@ -60,9 +60,10 @@ if ! command -v asdf > /dev/null 2>&1; then
 fi
 
 if command -v asdf > /dev/null 2>&1; then
-  # Clone asdf
   asdf plugin add golang
+  asdf plugin add lua-language-server
   asdf plugin add nodejs
+
   asdf install
 else
   log_warn "\`asdf\` not found in \$PATH. Skipping tool installation."

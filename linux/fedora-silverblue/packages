@@ -92,7 +92,6 @@ function install_toolbox_packages() {
   # - aws-vault
   # - bitwarden-cli
   # - chromaprint-tools
-  # - lua-language-server
   # - ngrok
   # - veracrypt
   local packages=(
