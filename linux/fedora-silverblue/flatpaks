@@ -17,6 +17,7 @@ packages=(
   "flathub com.spotify.Client"
   "flathub com.valvesoftware.Steam"
   "flathub io.github.mimbrero.WhatsAppDesktop"
+  "flathub io.mpv.Mpv"
   "flathub org.chromium.Chromium"
   "flathub org.gnome.Boxes"
   "flathub org.gnome.Calculator"
