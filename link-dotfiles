@@ -77,3 +77,8 @@ if command -v stow > /dev/null 2>&1; then
 else
   log_warn "stow not installed. Skipping dotfiles symlinking..."
 fi
+
+# Update the desktop database to pick up any installed .desktop files
+if [[ "${OSTYPE}" == linux* ]] && command -v update-desktop-database; then
+  update-desktop-database "${XDG_DATA_HOME}/applications/"
+fi
