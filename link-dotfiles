@@ -80,6 +80,6 @@ else
 fi
 
 # Update the desktop database to pick up any installed .desktop files
-if [[ "${OSTYPE}" == linux* ]] && command -v update-desktop-database; then
+if [[ "${OSTYPE}" == linux* ]] && command -v update-desktop-database > /dev/null 2>&1; then
   update-desktop-database "${XDG_DATA_HOME}/applications/"
 fi
