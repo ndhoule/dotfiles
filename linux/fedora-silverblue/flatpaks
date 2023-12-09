@@ -44,7 +44,7 @@ done
 flatpak permission-set flatpak background app.tuple.app yes
 flatpak permission-set flatpak updates app.tuple.app yes
 
-# Slack erroneously launches via xwayland when an x11 socket is available
+# Slack defaults to xwayland when an x11 socket is available
 flatpak override --user --nosocket=x11 com.slack.Slack
 # XXX(ndhoule): Hack around screensharing issue: https://github.com/flathub/com.slack.Slack/issues/101
-sudo sed -i -e 's/"WebRTCPipeWireCapturer"/"LebRTCPipeWireCapturer"/' /var/lib/flatpak/app/com.slack.Slack/x86_64/stable/*/files/extra/resources/app.asar
+sudo sed -i -e 's/"WebRTCPipeWireCapturer"/"LebRTCPipeWireCapturer"/' /var/lib/flatpak/app/com.slack.Slack/current/active/files/extra/resources/app.asar
