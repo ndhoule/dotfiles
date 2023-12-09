@@ -35,11 +35,10 @@ fi
 # Install shell plugins
 #
 
-if command -v antigen > /dev/null 2>&1; then
-  antigen update
-  log_info "Shell plugins have been installed. Please restart your session for changes to take effect."
+if command -v antidote > /dev/null 2>&1; then
+  antidote bundle
 else
-  log_warn "\`antigen\` not found in \$PATH. Skipping tool installation."
+  log_warn "\`antidote\` not found in \$PATH. Skipping zsh plugin installation."
 fi
 
 #
