@@ -106,6 +106,7 @@ rpm-ostree install --idempotent ${packages[@]}
 
 if ! toolbox list | grep "fedora-toolbox-${VERSION_ID}"; then
   toolbox create
+  toolbox run sudo hostnamectl hostname "$(hostname)"
 fi
 # shellcheck disable=SC2068
 toolbox run sudo dnf install --assumeyes ${toolbox_packages[@]}
