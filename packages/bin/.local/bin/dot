@@ -10,6 +10,11 @@ set -o pipefail
 
 OSTYPE=${OSTYPE:-}
 
+IN_TOOLBOX=0
+if test -f /run/.toolboxenv; then
+  IN_TOOLBOX=1
+fi
+
 function log_info() {
   printf "[INFO]: %s\n" "$*"
 }
@@ -34,10 +39,10 @@ function dot_linux_arch() {
 }
 
 function dot_linux_fedora() {
-  if command -v dnf > /dev/null 2>&1; then
-    echo "Do something with dnf"
-  elif command -v rpm-ostree > /dev/null 2>&1; then
-    echo "Do something with rpm-ostree"
+  if command -v rpm-ostree > /dev/null 2>&1; then
+    rpm-ostree update
+  elif command -v dnf > /dev/null 2>&1; then
+    sudo dnf upgrade --assumeyes
   else
     log_error "Could not find a known package manager (dnf or rpm-ostree). Skipping package updates."
   fi
@@ -61,12 +66,12 @@ function dot_linux() {
       ;;
   esac
 
-  if ! command -v flatpak > /dev/null 2>&1; then
-    log_warn "flatpak not installed, skipping flatpak package updates."
-  else
+  if test $IN_TOOLBOX -eq 0 && command -v flatpak > /dev/null 2>&1; then
     log_info "Updating Flatpaks..."
     flatpak update --noninteractive
     log_info "Updated Flatpaks."
+  else
+    log_warn "flatpak not installed, skipping flatpak package updates."
   fi
 }
 
