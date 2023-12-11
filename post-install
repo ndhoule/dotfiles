@@ -82,4 +82,8 @@ if command -v nvim > /dev/null 2>&1; then
   # TODO(ndhoule): :TSInstallSync
 fi
 
+if ! test -d "${XDG_DATA_HOME}/firefoxpwa/runtime" && command -v firefoxpwa > /dev/null 2>&1; then
+  firefoxpwa runtime install
+fi
+
 "${HOME}/.cache/tmux/plugins/tpm/scripts/install_plugins.sh"
