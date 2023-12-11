@@ -1,4 +1,4 @@
 packages/git/.config/gh/hosts.yml
 packages/tmux/.cache/
 !packages/tmux/.cache/plugins/tpm
-packages/zsh/.zsh/plugins.zsh
+packages/zsh/.config/zsh/plugins.zsh
