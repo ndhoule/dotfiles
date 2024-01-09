@@ -39,6 +39,7 @@ function install_system_packages() {
     firefoxpwa
     gammastep gammastep-indicator
     gnome-system-monitor
+    gstreamer1-plugin-openh264
     neovim
     openssh-askpass
     podman-docker
