@@ -5,3 +5,4 @@ pager:
 aliases:
 http_unix_socket:
 browser:
+version: "1"
