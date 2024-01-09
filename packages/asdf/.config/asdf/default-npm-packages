@@ -4,15 +4,3 @@ hygen
 jscodeshift
 npm-check
 yo
-
-@johnnymorganz/stylua-bin
-bash-language-server
-dockerfile-language-server-nodejs
-graphql-language-service-cli
-javascript-typescript-langserver
-sql-language-server
-typescript-language-server
-vim-language-server
-vscode-langservers-extracted
-write-good
-yaml-language-server
