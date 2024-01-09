@@ -109,7 +109,7 @@ function install_toolbox_packages() {
     git-crypt
     gvfs-afc gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
     iperf3
-    neovim python3-neovim
+    neovim
     netcat
     nomad nomad-pack
     openssh-askpass
@@ -125,6 +125,18 @@ function install_toolbox_packages() {
     watchman
     yubikey-manager
     zsh
+
+    # Development tools for building dependencies, e.g. Python
+    "@Development Tools"
+    bzip2 bzip2-devel
+    findutils
+    libffi-devel
+    openssl-devel
+    readline-devel
+    sqlite sqlite-devel
+    tk-devel
+    xz xz-devel
+    zlib-devel
   )
 
   toolbox run sudo dnf install --assumeyes "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-${version_id}.noarch.rpm"

@@ -76,6 +76,7 @@ export ASDF_DIR="${XDG_CACHE_HOME}/asdf"
 export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME="${XDG_CONFIG_HOME}/asdf/default-tool-versions"
 export ASDF_GOLANG_DEFAULT_PACKAGES_FILE="${XDG_CONFIG_HOME}/asdf/default-golang-packages"
 export ASDF_NPM_DEFAULT_PACKAGES_FILE="${XDG_CONFIG_HOME}/asdf/default-npm-packages"
+export ASDF_PYTHON_DEFAULT_PACKAGES_FILE="${XDG_CONFIG_HOME}/asdf/default-python-packages"
 
 # Prefer a user-specific asdf installation, falling back to a system installation if one exists
 if [[ ! -d "${ASDF_DIR}" ]] && [[ -d "/opt/asdf-vm" ]]; then
