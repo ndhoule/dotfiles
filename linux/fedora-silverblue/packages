@@ -117,6 +117,7 @@ function install_toolbox_packages() {
     nomad nomad-pack
     openssh-askpass
     parallel
+    pinentry pinentry-gnome3
     rclone
     restic
     ripgrep
