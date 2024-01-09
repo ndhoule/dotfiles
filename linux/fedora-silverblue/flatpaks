@@ -14,6 +14,7 @@ packages=(
   "flathub com.github.iwalton3.jellyfin-media-player"
   "flathub com.github.tchx84.Flatseal"
   "flathub com.nextcloud.desktopclient.nextcloud"
+  "flathub com.rawtherapee.RawTherapee"
   "flathub com.slack.Slack"
   "flathub com.spotify.Client"
   "flathub com.valvesoftware.Steam"
