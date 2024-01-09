@@ -28,6 +28,7 @@ packages=(
   "flathub org.gnome.FontManager"
   "flathub org.gnome.gedit"
   "flathub org.libreoffice.LibreOffice"
+  "flathub org.mozilla.Thunderbird"
   "flathub org.musicbrainz.Picard"
   "kdeapps org.kde.xwaylandvideobridge"
   "tuple app.tuple.app"
