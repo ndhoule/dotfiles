@@ -99,6 +99,7 @@ function install_toolbox_packages() {
     ansible python3-ansible-lint
     aspell aspell-en
     awscli2
+    bind-utils
     certbot
     clang
     consul consul-template
@@ -110,11 +111,14 @@ function install_toolbox_packages() {
     git-crypt
     gvfs-afc gvfs-gphoto2 gvfs-mtp gvfs-nfs gvfs-smb
     iperf3
+    jq
     neovim
     netcat
     nomad nomad-pack
     openssh-askpass
     parallel
+    rclone
+    restic
     ripgrep
     shellcheck
     stow
