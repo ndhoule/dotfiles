@@ -35,24 +35,13 @@ function prompt_ndhoule_setup {
   # Add hook for calling vcs_info before each command.
   add-zsh-hook precmd prompt_ndhoule_precmd
 
-  # Use extended color pallete if available.
-  if [[ $TERM = *256color* || $TERM = *rxvt* ]]; then
-    _prompt_colors=(
-      "%F{81}"  # Turquoise
-      "%F{166}" # Orange
-      "%F{135}" # Purple
-      "%F{161}" # Hotpink
-      "%F{118}" # Limegreen
-    )
-  else
-    _prompt_colors=(
-      "%F{cyan}"
-      "%F{yellow}"
-      "%F{magenta}"
-      "%F{red}"
-      "%F{green}"
-    )
-  fi
+  _prompt_colors=(
+    "%F{cyan}"
+    "%F{yellow}"
+    "%F{magenta}"
+    "%F{red}"
+    "%F{green}"
+  )
 
   # Formats:
   #   %b - branchname
