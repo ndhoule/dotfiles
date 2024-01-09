@@ -11,6 +11,7 @@ flatpak remote-add --if-not-exists kdeapps https://distribute.kde.org/kdeapps.fl
 packages=(
   "flathub com.bitwarden.desktop"
   "flathub com.discordapp.Discord"
+  "flathub com.github.iwalton3.jellyfin-media-player"
   "flathub com.github.tchx84.Flatseal"
   "flathub com.nextcloud.desktopclient.nextcloud"
   "flathub com.slack.Slack"
