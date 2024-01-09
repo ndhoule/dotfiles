@@ -21,6 +21,7 @@ packages=(
   "flathub io.github.mimbrero.WhatsAppDesktop"
   "flathub io.mpv.Mpv"
   "flathub org.chromium.Chromium"
+  "flathub org.gimp.GIMP"
   "flathub org.gnome.Boxes"
   "flathub org.gnome.Calculator"
   "flathub org.gnome.FileRoller"
