@@ -2,5 +2,6 @@
 generator-generator
 hygen
 jscodeshift
+netlify-cli
 npm-check
 yo
