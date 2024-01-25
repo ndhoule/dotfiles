@@ -60,6 +60,7 @@ function install_system_packages() {
     podman-docker
     stow
     virt-manager
+    wf-recorder ffmpeg
     wlogout
     wofi
     zsh
