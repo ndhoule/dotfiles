@@ -65,6 +65,9 @@ function install_system_packages() {
     wofi
     zsh
 
+    # Device drivers
+    printer-driver-brlaser
+
     # Fonts
     fira-code-fonts
     google-roboto-fonts
