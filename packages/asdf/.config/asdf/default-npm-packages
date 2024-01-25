@@ -1,6 +1,5 @@
 5to6-codemod
 generator-generator
-hygen
 jscodeshift
 netlify-cli
 npm-check
