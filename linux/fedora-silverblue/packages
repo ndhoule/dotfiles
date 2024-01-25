@@ -16,6 +16,21 @@ fi
 
 source /etc/os-release
 
+# Installs `host-spawn`, a utility for executing host binaries from within a sandbox.
+#
+# https://github.com/1player/host-spawn
+function install_host_spawn() {
+  toolbox run sudo curl --fail --silent --show-error --location --output "/usr/local/bin/host-spawn" \
+    "https://github.com/1player/host-spawn/releases/download/v1.5.1/host-spawn-x86_64"
+  toolbox run sudo chmod +x /usr/local/bin/host-spawn
+
+  # Create proxy binaries for host programs; host-spawn runs these as `host-spawn flatpak "$@"`
+  toolbox run sudo ln -s /usr/local/bin/host-spawn /usr/local/bin/flatpak
+  toolbox run sudo ln -s /usr/local/bin/host-spawn /usr/local/bin/podman
+  toolbox run sudo ln -s /usr/local/bin/host-spawn /usr/local/bin/rpm-ostree
+  toolbox run sudo ln -s /usr/local/bin/host-spawn /usr/local/bin/swaymsg
+}
+
 function install_dejavu_sans_mono_nerd_fonts() {
   local font_urls=(
     "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Bold/DejaVuSansMNerdFont-Bold.ttf"
@@ -160,6 +175,7 @@ function main() {
   local toolbox_name="fedora-toolbox-${version_id}"
 
   install_dejavu_sans_mono_nerd_fonts
+  install_host_spawn
   install_system_packages
   ensure_toolbox_exists "${toolbox_name}"
   install_toolbox_packages "${toolbox_name}" "${version_id}"
