@@ -86,7 +86,7 @@ fi
 # Docker/Podman
 #
 
-if command -v podman > /dev/null; then
+if (( $+commands[podman] )); then
   export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/podman/podman.sock"
 fi
 

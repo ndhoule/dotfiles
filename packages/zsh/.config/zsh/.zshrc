@@ -437,5 +437,4 @@ source "${ZDOTDIR}/lib/tmux.zsh"
 #
 
 source "${ANTIDOTE_DIR}/antidote.zsh"
-
 antidote load "${ZDOTDIR}/plugins.txt"
