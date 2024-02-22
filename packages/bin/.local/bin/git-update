@@ -27,29 +27,29 @@ COLOR_UNDERLINE=$(tput smul)
 #
 
 separator() {
-  echo "${COLOR_GRAY}${COLOR_BOLD}--------------------${COLOR_RESET}"
+	echo "${COLOR_GRAY}${COLOR_BOLD}--------------------${COLOR_RESET}"
 }
 
 header() {
-  echo "${COLOR_BOLD}${COLOR_UNDERLINE}${@}${COLOR_RESET}"
+	echo "${COLOR_BOLD}${COLOR_UNDERLINE}${*}${COLOR_RESET}"
 }
 
 report() {
-  local from=$1
-  local to=$2
+	local from=$1
+	local to=$2
 
-  echo ""
-  separator
+	echo ""
+	separator
 
-  header "Stats:"
-  echo ""
-  git --no-pager diff --color --stat $from..$to | sed 's/^/  /'
-  echo ""
-  header "Commits:"
-  echo ""
-  git --no-pager log --color --pretty=oneline --abbrev-commit $from..$to | sed 's/^/  /'
+	header "Stats:"
+	echo ""
+	git --no-pager diff --color --stat "${from}".."${to}" | sed 's/^/  /'
+	echo ""
+	header "Commits:"
+	echo ""
+	git --no-pager log --color --pretty=oneline --abbrev-commit "${from}".."${to}" | sed 's/^/  /'
 
-  separator
+	separator
 }
 
 #
@@ -57,6 +57,8 @@ report() {
 #
 
 FROM=$(git rev-parse HEAD)
-git pull --rebase $@
+git pull --rebase "$@"
 TO=$(git rev-parse HEAD)
-[[ $FROM != $TO ]] && report $FROM $TO
+if ! test "${FROM}" = "${TO}"; then
+	report "${FROM}" "${TO}"
+fi
