@@ -1,52 +1,52 @@
-[user]
-	name = Nathan Houle
-	email = nathan@nathanhoule.com
-	signingkey = 2A46563F6B85B9F751A48678882A2D6B15D4AD43
-
-[github]
-	user = ndhoule
-
-[color]
-	ui = true
-
-[hub]
-	protocol = ssh
-
-[mergetool]
-	prompt = false
-
-[diff]
-	tool = ediff
-
-[difftool]
-	prompt = false
+[alias]
+	amend = "!git-amend"
+	up = "!git-update"
 
 [branch]
 	autosetuprebase = always
 
-[rebase]
-	autosquash = true
+[color]
+	ui = true
 
 [commit]
 	gpgSign = true
 	verbose = true
 
-[tag]
-	gpgSign = true
+[diff]
+	tool = nvimdiff
 
-[alias]
-	amend = "!git-amend"
-	get-commit-message = "!git log --format=%B -n 1"
-	up = "!git-update"
+[difftool]
+	prompt = false
+
+[init]
+	defaultBranch = main
+
+[merge]
+	tool = nvimdiff
+
+[mergetool]
+	prompt = true
 
 [push]
 	default = current
 	followTags = true
 
+[user]
+	name = Nathan Houle
+	email = nathan@nathanhoule.com
+	signingkey = 2A46563F6B85B9F751A48678882A2D6B15D4AD43
+
+[rebase]
+	autosquash = true
+
+[tag]
+	gpgSign = true
+
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 
-[include]
-	path = ~/.gitconfig.private
-[init]
-	defaultBranch = main
+[hub]
+	protocol = ssh
+
+[includeIf "gitdir:~/dev/src/github.com/netlify/"]
+	path = ./netlify.config
