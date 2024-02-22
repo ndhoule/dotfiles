@@ -10,91 +10,98 @@ set -o pipefail
 
 OSTYPE=${OSTYPE:-}
 
-IN_TOOLBOX=0
-if test -f /run/.toolboxenv; then
-  IN_TOOLBOX=1
-fi
-
 function log_info() {
-  printf "[INFO]: %s\n" "$*"
+	printf "[INFO]: %s\n" "$*"
 }
 
 function log_warn() {
-  printf "[WARN]: %s\n" "$*" >&2
+	printf "[WARN]: %s\n" "$*" >&2
 }
 
 function log_error() {
-  printf "[ERROR]: %s\n" "$*" >&2
+	printf "[ERROR]: %s\n" "$*" >&2
 }
 
 function dot_linux_arch() {
-  if ! command -v yay > /dev/null 2>&1; then
-    log_warn "yay not installed, skipping system package updates..."
-  else
-    log_info "Updating system packages..."
-    yay --sync --refresh --sysupgrade --nodiffmenu --norebuild --removemake --noanswerclean
-    yay --sync --clean --noconfirm --quiet
-    log_info "Updated system packages."
-  fi
+	if command -v yay >/dev/null 2>&1; then
+		log_info "Updating system packages..."
+		yay --sync --refresh --sysupgrade --nodiffmenu --norebuild --removemake --noanswerclean
+		yay --sync --clean --noconfirm --quiet
+		log_info "Updated system packages."
+	else
+		log_warn "yay not present, skipping system package updates."
+	fi
 }
 
 function dot_linux_fedora() {
-  if command -v rpm-ostree > /dev/null 2>&1; then
-    rpm-ostree update
-  elif command -v dnf > /dev/null 2>&1; then
-    sudo dnf upgrade --assumeyes
-  else
-    log_error "Could not find a known package manager (dnf or rpm-ostree). Skipping package updates."
-  fi
+	if command -v rpm-ostree >/dev/null 2>&1; then
+		log_info "Updating system packages via rpm-ostree..."
+		rpm-ostree update
+		log_info "Updated system packages via rpm-ostree."
+	else
+		log_warn "rpm-ostree not present, skipping system package updates."
+	fi
+
+	if command -v dnf >/dev/null 2>&1; then
+		log_info "Updating system packages via dnf..."
+		sudo dnf update --assumeyes
+		log_info "Updated system packages via dnf."
+	else
+		log_warn "dnf not present, skipping system package updates."
+	fi
+
+	if ! command -v dnf >/dev/null 2>&1 && ! command -v rpm-ostree >/dev/null 2>&1; then
+		log_error "Could not find a known package manager (dnf or rpm-ostree). Skipping system package updates."
+	fi
 }
 
 function dot_linux() {
-  local distro_id
-  distro_id=$(cat /etc/*-release | grep "^ID=" | cut -d "=" -f 2 | xargs)
-  case "${distro_id}" in
-    "arch")
-      :
-      dot_linux_arch
-      ;;
-    "fedora")
-      :
-      dot_linux_fedora
-      ;;
-    *)
-      :
-      log_error "Linux distribution '${distro_id}' not supported." >&2
-      ;;
-  esac
+	local distro_id
+	distro_id=$(cat /etc/*-release | grep "^ID=" | cut -d "=" -f 2 | xargs)
+	case "${distro_id}" in
+	"arch")
+		:
+		dot_linux_arch
+		;;
+	"fedora")
+		:
+		dot_linux_fedora
+		;;
+	*)
+		:
+		log_error "Linux distribution '${distro_id}' not supported." >&2
+		;;
+	esac
 
-  if test $IN_TOOLBOX -eq 0 && command -v flatpak > /dev/null 2>&1; then
-    log_info "Updating Flatpaks..."
-    flatpak update --noninteractive
-    log_info "Updated Flatpaks."
-  else
-    log_warn "flatpak not installed, skipping flatpak package updates."
-  fi
+	if command -v flatpak >/dev/null 2>&1; then
+		log_info "Updating Flatpaks..."
+		flatpak update --noninteractive
+		log_info "Updated Flatpaks."
+	else
+		log_warn "flatpak not installed, skipping flatpak updates."
+	fi
 }
 
 function dot_darwin() {
-  log_error "macOS not yet supported."
+	log_error "macOS not yet supported."
 }
 
 function main() {
-  case "${OSTYPE}" in
-    darwin*)
-      :
-      dot_darwin
-      ;;
-    linux*)
-      :
-      dot_linux
-      ;;
-    *)
-      :
-      log_error "Unsupported OS: '${OSTYPE}'"
-      exit 1
-      ;;
-  esac
+	case "${OSTYPE}" in
+	darwin*)
+		:
+		dot_darwin
+		;;
+	linux*)
+		:
+		dot_linux
+		;;
+	*)
+		:
+		log_error "Unsupported OS: '${OSTYPE}'"
+		exit 1
+		;;
+	esac
 }
 
 main "$@"
